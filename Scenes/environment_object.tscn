@@ -7,11 +7,8 @@
 height = 2.6799998
 radius = 1.152
 
-[node name="EnvironmentObject" type="Node3D" unique_id=1079766370 node_paths=PackedStringArray("sprite", "rigid_body", "collider")]
+[node name="EnvironmentObject" type="Node3D" unique_id=1079766370]
 script = ExtResource("1_66yj1")
-sprite = NodePath("Sprite3D")
-rigid_body = NodePath("RigidBody3D")
-collider = NodePath("RigidBody3D/CollisionShape3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=652869338]
 billboard = 2
