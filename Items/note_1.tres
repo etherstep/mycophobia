@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://wuon56xger2q"]
+
+[ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_wn210"]
+[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/PNG-Single Sheet-02.png" id="2_wn210"]
+
+[resource]
+script = ExtResource("1_wn210")
+name = "note_1"
+item_type = 1
+texture = ExtResource("2_wn210")
+text = "Houses infected.
+Breathing out spores. 
+People transforming.
+Made a mistake.
+Salt dries the people out. 
+Run to avoid mushroom people, facemasks useless.
+Salt and then fire destroys the spore shooters. 
+Salt water restores health for infected lungs.
+
+Dr. Donovan"
+metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

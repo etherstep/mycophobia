@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://buqhpnvq3x60w"]
+
+[ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_owpok"]
+[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/PNG-Single Sheet-02.png" id="2_2xg3g"]
+
+[resource]
+script = ExtResource("1_owpok")
+name = "note_3"
+item_type = 1
+texture = ExtResource("2_2xg3g")
+text = "The infected do not trigger the spore shooters or other infected people.
+Dr. Donovan"
+metadata/_custom_type_script = "uid://dafwh6dm3o2hn"
