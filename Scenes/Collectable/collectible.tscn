@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://mrel6vbb8f75"]
+
+[ext_resource type="Script" uid="uid://c2g4mg6q43r6o" path="res://Scripts/collectible.gd" id="1_sbuda"]
+[ext_resource type="Resource" uid="uid://wuon56xger2q" path="res://Items/note_1.tres" id="2_bhxhe"]
+[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/PNG-Single Sheet-02.png" id="3_8nals"]
+[ext_resource type="FontFile" uid="uid://cro8r0d8svrul" path="res://Assets/Fonts/Bastliga One.ttf" id="4_8nals"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
+size = Vector3(0.12124634, 0.18652344, 0.0072631836)
+
+[node name="Collectible" type="Area3D" unique_id=376975287 node_paths=PackedStringArray("sprite", "label")]
+script = ExtResource("1_sbuda")
+item_data = ExtResource("2_bhxhe")
+sprite = NodePath("Sprite3D")
+label = NodePath("Label3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=936071494]
+modulate = Color(0.6189661, 0.6073571, 0.5496641, 1)
+texture = ExtResource("3_8nals")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1578078474]
+transform = Transform3D(30.145, 0, 0, 0, 30.145, 0, 0, 0, 30.145, -0.017019242, 0.18081379, 0.022004038)
+shape = SubResource("BoxShape3D_y1mi7")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=457749072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05897358, 0.0056913495)
+alpha_cut = 1
+modulate = Color(0, 0, 0, 1)
+text = "Houses infected.
+Breathing out spores. 
+People transforming.
+Made a mistake.
+Salt dries the people out. 
+Run to avoid mushroom people, facemasks useless.
+Salt and then fire 
+destroys the spore shooters. 
+Salt water restores healthfor infected lungs.
+
+
+Dr. Donovan"
+font = ExtResource("4_8nals")
+font_size = 48
+outline_size = 2

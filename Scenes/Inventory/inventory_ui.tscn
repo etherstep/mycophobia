@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c7un65hd14m7y"]
+
+[ext_resource type="Script" uid="uid://car8gcbef5qxc" path="res://Scripts/Inventory/inventory_ui.gd" id="1_a3clf"]
+[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="3_s1kqi"]
+
+[node name="Inventory_ui" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a3clf")
+item_texture = NodePath("ItemDetails/ItemTexture")
+item_text = NodePath("ItemDetails/ItemTexture/ItemText")
+
+[node name="Slots" type="GridContainer" parent="." unique_id=863513507]
+layout_mode = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="Panel" type="Panel" parent="." unique_id=92153644]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ItemDetails" type="VBoxContainer" parent="." unique_id=1842983767]
+layout_mode = 0
+
+[node name="ItemTexture" type="TextureRect" parent="ItemDetails" unique_id=1113905775]
+layout_mode = 2
+
+[node name="ItemText" type="Label" parent="ItemDetails/ItemTexture" unique_id=944290168]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_s1kqi")
+theme_override_font_sizes/font_size = 21
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoteView" type="Control" parent="." unique_id=2013187292]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoteTexture" type="TextureRect" parent="NoteView" unique_id=277415346]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoteText" type="RichTextLabel" parent="NoteView" unique_id=960714025]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_s1kqi")
+theme_override_font_sizes/normal_font_size = 62
+bbcode_enabled = true
+
+[node name="NoteReadablePanel" type="PanelContainer" parent="NoteView" unique_id=1291626641]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoteReadableText" type="RichTextLabel" parent="NoteView/NoteReadablePanel" unique_id=660730989]
+layout_mode = 2
