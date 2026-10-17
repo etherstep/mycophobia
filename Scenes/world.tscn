@@ -2,6 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
+[ext_resource type="Resource" uid="uid://ck2x7gq3y85ng" path="res://Items/note_2.tres" id="7_5v1tr"]
+[ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
+[ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 
 [sub_resource type="Environment" id="Environment_baysf"]
 ambient_light_energy = 0.1
@@ -39,8 +45,32 @@ mesh = SubResource("BoxMesh_baysf")
 transform = Transform3D(1, 4.144645e-05, -5.3947766e-05, -4.142441e-05, 0.99999994, 0.00027505087, 5.396469e-05, -0.00027504755, 0.99999994, -1.7321346, -0.33124948, -4.384234)
 shape = SubResource("BoxShape3D_baysf")
 
-[node name="Player" parent="." unique_id=892995834 instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7738996, 0)
+[node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
 transform = Transform3D(4.6, 0, 0, 0, 4.6, 0, 0, 0, 4.6, 0, 0.9149241, 0)
+
+[node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
+
+[node name="Inventory_ui" parent="." unique_id=196500527 node_paths=PackedStringArray("inventory") instance=ExtResource("4_5ukr8")]
+visible = false
+inventory = NodePath("../Inventory")
+
+[node name="Collectibles" type="Node3D" parent="." unique_id=3839576]
+
+[node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.14381513, 0, -0.01849884, 0, 0.145, 0, 0.01849884, 0, 0.14381513, 1.7368666, 1.0764514, -1.4891031)
+
+[node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -6.5571527, 2.944763, -7.5704565)
+item_data = ExtResource("7_5v1tr")
+
+[node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 1.4764042, 2.1105397, -5.3393574)
+item_data = ExtResource("8_0fj1v")
+
+[node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -1.5221806, 1.843358, -2.46498)
+item_data = ExtResource("9_ikia7")

@@ -9,6 +9,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var pitch := 0.0
 
 @onready var camera_3d: Camera3D = $Camera3D
+@export var inventory_ui: Control
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -16,6 +17,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		return
+	if event.is_action_pressed("inventory"):
+		toggle_inventory()
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -30,6 +34,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_3d.rotation.x = pitch
 		return
 
+func toggle_inventory() -> void:
+	if inventory_ui:
+		inventory_ui.visible = not inventory_ui.visible
+
+		if inventory_ui.visible:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+		get_viewport().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
