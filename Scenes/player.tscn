@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://casgcs7q8ujxx"]
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://4lasgcmipv8" path="res://Assets/Sprites/flashlight.png" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -14,6 +15,24 @@ shape = SubResource("CapsuleShape3D_baysf")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1325310241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.125563, 0)
+current = true
+
+[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035404205, -0.49950033)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 30.0
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
 target_position = Vector3(0, 0, -2.6)
+
+[node name="PlayerHands" type="CanvasLayer" parent="." unique_id=1444067506]
+
+[node name="FlashLight" type="TextureRect" parent="PlayerHands" unique_id=1666657837]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cvnsp")
+expand_mode = 3
