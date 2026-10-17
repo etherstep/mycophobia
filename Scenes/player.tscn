@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scenes/camera_3d.gd" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -33,9 +34,16 @@ target_position = Vector3(0, 0, -2.6)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 352.00006
+offset_top = 952.0
+offset_right = 1164.0
+offset_bottom = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 3
+rotation = -0.61086524
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_6t5aa")
+flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
