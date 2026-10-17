@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7un65hd14m7y"]
 
 [ext_resource type="Script" uid="uid://car8gcbef5qxc" path="res://Scripts/Inventory/inventory_ui.gd" id="1_a3clf"]
-[ext_resource type="FontFile" uid="uid://bpjw2t3qpj5rj" path="res://Assets/Fonts/Bastliga One.otf" id="3_s1kqi"]
+[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="3_s1kqi"]
 
 [node name="Inventory_ui" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text")]
 layout_mode = 3

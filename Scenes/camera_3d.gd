@@ -1,4 +1,3 @@
-
 extends Camera3D
 
 @export var interaction_distance: float = 4.0
