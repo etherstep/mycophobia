@@ -29,8 +29,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseMotion:
 		# Yaw turns the body. Pitch turns only the camera, so the horizon stays level.
-		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
-		pitch = clampf(pitch - event.relative.y * MOUSE_SENSITIVITY, -PITCH_LIMIT, PITCH_LIMIT)
+		rotate_y(-event.relative.x * Settings.mouse_sensitivity)
+		pitch = clampf(pitch - event.relative.y * Settings.mouse_sensitivity, -PITCH_LIMIT, PITCH_LIMIT)
 		camera_3d.rotation.x = pitch
 		return
 
@@ -50,8 +50,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
+	var input_dir := Input.get_vector("left", "right", "up", "down")
 	#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
