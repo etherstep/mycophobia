@@ -3,14 +3,19 @@
 class_name EnvironmentObject
 extends Node3D
 
-@export var sprite: Sprite3D
-@export var rigid_body: RigidBody3D
-@export var collider: CollisionShape3D
+@onready var sprite: Sprite3D = $Sprite3D
+@onready var rigid_body: RigidBody3D = $RigidBody3D
+@onready var collider: CollisionShape3D = $RigidBody3D/CollisionShape3D
 
 @export var object_type: ObjectType = ObjectType.MUSHROOM:
 	set(value):
 		object_type = value
-		_on_type_changed()
+		_on_parameters_changed()
+
+@export var freeze: bool = true:
+	set(value):
+		freeze = value
+		_on_parameters_changed()
 
 var height: float
 var width: float
@@ -56,7 +61,9 @@ func setup() -> void:
 	cylinder_shape.height = height
 	cylinder_shape.radius = width / 2
 	collider.shape = cylinder_shape
+	
+	rigid_body.freeze = freeze
 
-func _on_type_changed() -> void:
+func _on_parameters_changed() -> void:
 	if is_node_ready():
 		setup()
