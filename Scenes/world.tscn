@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bokn5m4sjypna"]
+
+[ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
+
+[sub_resource type="Environment" id="Environment_baysf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_baysf"]
+size = Vector3(11.013672, 0.12384033, 13.774719)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_baysf"]
+size = Vector3(10.667969, 0.7709961, 13.860382)
+
+[node name="World" type="Node3D" unique_id=322679481]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
+environment = SubResource("Environment_baysf")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=190759193]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=879477997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6520996, 0.0011901855, -4.342804)
+mesh = SubResource("BoxMesh_baysf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=621423171]
+transform = Transform3D(1, 4.144645e-05, -5.3947766e-05, -4.142441e-05, 0.99999994, 0.00027505087, 5.396469e-05, -0.00027504755, 0.99999994, -1.7321346, -0.33124948, -4.384234)
+shape = SubResource("BoxShape3D_baysf")
+
+[node name="Player" parent="." unique_id=892995834 instance=ExtResource("1_a02cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
