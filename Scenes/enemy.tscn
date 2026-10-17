@@ -177,5 +177,6 @@ animated_sprite = NodePath("AnimatedSprite3D")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=767845271]
 billboard = 2
+shaded = true
 sprite_frames = SubResource("SpriteFrames_f0dak")
 animation = &"back"
