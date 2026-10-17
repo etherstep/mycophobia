@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2g4mg6q43r6o" path="res://Scripts/collectible.gd" id="1_sbuda"]
 [ext_resource type="Resource" uid="uid://wuon56xger2q" path="res://Items/note_1.tres" id="2_bhxhe"]
 [ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/PNG-Single Sheet-02.png" id="3_8nals"]
-[ext_resource type="FontFile" uid="uid://cro8r0d8svrul" path="res://Assets/Fonts/Bastliga One.ttf" id="4_8nals"]
+[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="4_8nals"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
 size = Vector3(0.12124634, 0.18652344, 0.0072631836)
