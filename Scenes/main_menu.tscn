@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ddyetqyxkhfn8"]
+
+[ext_resource type="Script" uid="uid://dwj1y7tj8nsrl" path="res://Scripts/main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Node2D" unique_id=281482085]
+script = ExtResource("1_28flt")
+
+[node name="Label" type="Label" parent="." unique_id=1055449836]
+offset_left = 525.0
+offset_top = 77.0
+offset_right = 702.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 30
+text = "Mycophobia"
+
+[node name="Button" type="Button" parent="." unique_id=1571414463]
+offset_left = 527.0
+offset_top = 226.0
+offset_right = 693.0
+offset_bottom = 276.0
+theme_override_font_sizes/font_size = 30
+text = "New Game"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
