@@ -14,12 +14,7 @@ func _process(delta: float) -> void:
 
 func render_correct_animation() -> void:
 	var player_angle = get_player_angle_to_character()
-	var animation_name = get_4way_animation_name(player_angle)
-	if animation_name == "left":
-		animated_sprite.flip_h = true
-	else:
-		animated_sprite.flip_h = false
-	animated_sprite.play(animation_name)
+	play_correct_angle_animation_4_way(player_angle)
 
 func get_player_angle_to_character() -> float:
 	var character_facing := Vector2(-transform.basis.x.z, -transform.basis.z.z).normalized()
@@ -27,12 +22,41 @@ func get_player_angle_to_character() -> float:
 	var angle_deg := rad_to_deg(character_facing.angle_to(to_camera))
 	return angle_deg
 
-func get_4way_animation_name(angle_deg: float) -> String:
-	if angle_deg >= -45.0 and angle_deg < 45:
-		return "front"
-	elif angle_deg >= 45.0 and angle_deg < 135.0:
-		return "right"
-	elif angle_deg >= -135.0 and angle_deg < -45.0:
-		return "left"
+func play_correct_angle_animation_4_way(angle_deg: float) -> void:
+	if angle_deg >= -45 and angle_deg < 45:
+		animated_sprite.play("front")
+		animated_sprite.flip_h = false
+	elif angle_deg >= 45 and angle_deg < 90:
+		animated_sprite.play("right")
+		animated_sprite.flip_h = false
+	elif angle_deg < -45 and angle_deg >= -112.5:
+		animated_sprite.play("right")
+		animated_sprite.flip_h = true
 	else:
-		return "back"
+		animated_sprite.flip_h = false
+		animated_sprite.play("back")
+
+func play_correct_angle_animation_8_way(angle_deg: float) -> void:
+	if angle_deg >= -22.5 and angle_deg < 22.5:
+		animated_sprite.play("front")
+		animated_sprite.flip_h = false
+	elif angle_deg >= 22.5 and angle_deg < 67.5:
+		animated_sprite.play("front_diagonal")
+		animated_sprite.flip_h = false
+	elif angle_deg >= 67.5 and angle_deg < 112.5:
+		animated_sprite.play("right")
+		animated_sprite.flip_h = false
+	elif angle_deg >= 112.5 and angle_deg < 157.5:
+		animated_sprite.play("back_diagonal")
+		animated_sprite.flip_h = false
+	elif angle_deg <= -22.5 and angle_deg > -67.5:
+		animated_sprite.play("front_diagonal")
+		animated_sprite.flip_h = true
+	elif angle_deg <= -67.5 and angle_deg > -112.5:
+		animated_sprite.play("right")
+		animated_sprite.flip_h = true
+	elif angle_deg <= -112.5 and angle_deg > -157.5:
+		animated_sprite.play("back_diagonal")
+		animated_sprite.flip_h = true
+	else:
+		animated_sprite.play("back")
