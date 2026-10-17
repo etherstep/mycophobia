@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scenes/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -14,11 +15,12 @@ script = ExtResource("1_v0iea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2845459, 0)
 shape = SubResource("CapsuleShape3D_baysf")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1325310241 node_paths=PackedStringArray("crosshair", "flashlight", "flashlight_asset")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1325310241 node_paths=PackedStringArray("crosshair_interact", "crosshair_normal", "flashlight", "flashlight_asset")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.125563, 0)
 current = true
 script = ExtResource("2_cvnsp")
-crosshair = NodePath("../HUD/Crosshair")
+crosshair_interact = NodePath("../HUD/Crosshair_interact")
+crosshair_normal = NodePath("../HUD/Crosshair_normal")
 flashlight = NodePath("FlashLight")
 flashlight_asset = NodePath("../PlayerHands/FlashLight")
 
@@ -52,18 +54,34 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
-[node name="Crosshair" type="Label" parent="HUD" unique_id=437704891]
+[node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -60.0
+offset_right = 48.599976
+offset_bottom = 42.400024
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 1
+flip_h = true
+
+[node name="Crosshair_normal" type="Label" parent="HUD" unique_id=769975194]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -11.5
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "·"
+text = "•"
 horizontal_alignment = 1
 vertical_alignment = 1

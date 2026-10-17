@@ -1,7 +1,8 @@
 extends Camera3D
 
 @export var interaction_distance: float = 4.0
-@export var crosshair: Label
+@export var crosshair_interact: TextureRect
+@export var crosshair_normal: Label
 @export var flashlight: SpotLight3D
 @export var flashlight_asset: TextureRect
 
@@ -66,5 +67,9 @@ func update_target() -> void:
 			if current_target.has_method("set_hovered"):
 				current_target.set_hovered(true)
 
-	if is_instance_valid(crosshair):
-		crosshair.text = "+" if is_instance_valid(current_target) else "·"
+	# Update crosshair visibility
+	if is_instance_valid(crosshair_interact):
+		crosshair_interact.visible = is_instance_valid(current_target)
+
+	if is_instance_valid(crosshair_normal):
+		crosshair_normal.visible = not is_instance_valid(current_target)
