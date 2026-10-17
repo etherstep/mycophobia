@@ -42,3 +42,8 @@ func apply_gamma(world_environment: WorldEnvironment) -> void:
 		world_environment.environment = Environment.new()
 	world_environment.environment.adjustment_enabled = true
 	world_environment.environment.adjustment_brightness = gamma
+
+func apply_gamma_to_open_world() -> void:
+	var world_environment := get_tree().root.find_child("WorldEnvironment", true, false)
+	if world_environment is WorldEnvironment:
+		apply_gamma(world_environment)

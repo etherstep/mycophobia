@@ -1,4 +1,8 @@
 extends Control
+
+signal closed
+var opened_from_game := false
+
 @onready var sensitivity_slider: HSlider = $VBoxContainer/SensitivityRow/SensitivitySlider
 @onready var sensitivity_value: Label = $VBoxContainer/SensitivityRow/SensitivityValue
 @onready var gamma_slider: HSlider = $VBoxContainer/GammaRow/GammaSlider
@@ -29,6 +33,7 @@ func _on_sensitivity_changed(value: float) -> void:
 func _on_gamma_changed(value: float) -> void:
 	Settings.gamma = value
 	_show_gamma(value)
+	Settings.apply_gamma_to_open_world()
 	Settings.save_settings()
 
 func _on_volume_changed(value: float) -> void:
@@ -47,4 +52,7 @@ func _show_volume(value: float) -> void:
 	volume_value.text = "%d%%" % roundi(value * 100.0)
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	if opened_from_game:
+		closed.emit()
+	else:
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

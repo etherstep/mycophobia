@@ -1,6 +1,6 @@
 extends Node3D
 
-const OPTIONS_SCENE := preload("res://Scenes/options_menu.tscn")
+const OPTIONS_SCENE = preload("res://Scenes/options_menu.tscn")
 
 var _options_layer: CanvasLayer
 
