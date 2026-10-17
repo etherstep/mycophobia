@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://ck2x7gq3y85ng" path="res://Items/note_2.tres" id="7_5v1tr"]
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
+[ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
 
 [sub_resource type="Environment" id="Environment_baysf"]
 ambient_light_energy = 0.1
@@ -20,6 +21,7 @@ size = Vector3(11.013672, 0.12384033, 13.774719)
 size = Vector3(10.667969, 0.7709961, 13.860382)
 
 [node name="World" type="Node3D" unique_id=322679481]
+script = ExtResource("10_world")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
