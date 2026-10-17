@@ -23,7 +23,11 @@ func _ready() -> void:
 	sensitivity_slider.value_changed.connect(_on_sensitivity_changed)
 	gamma_slider.value_changed.connect(_on_gamma_changed)
 	volume_slider.value_changed.connect(_on_volume_changed)
-
+	var bus_index := AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(
+		bus_index,
+		linear_to_db(Settings.volume) if Settings.volume > 0.0 else -80.0
+	)
 
 func _on_sensitivity_changed(value: float) -> void:
 	Settings.mouse_sensitivity = value
@@ -38,9 +42,14 @@ func _on_gamma_changed(value: float) -> void:
 
 func _on_volume_changed(value: float) -> void:
 	Settings.volume = value
+	var bus_index := AudioServer.get_bus_index("Music")
+	if bus_index >= 0:
+		AudioServer.set_bus_volume_db(
+			bus_index,
+			linear_to_db(value) if value > 0.0 else -80.0
+		)
 	_show_volume(value)
 	Settings.save_settings()
-
 
 func _show_sensitivity(value: float) -> void:
 	sensitivity_value.text = "%.4f" % value
