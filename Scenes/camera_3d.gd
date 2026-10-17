@@ -2,15 +2,27 @@ extends Camera3D
 
 @export var interaction_distance: float = 4.0
 @export var crosshair: Label
+@export var flashlight: SpotLight3D
+@export var flashlight_asset: TextureRect
 
 var current_target: Object = null
 
+func _ready() -> void:
+	if is_instance_valid(flashlight):
+		flashlight.visible = false
 
 func _process(_delta: float) -> void:
 	update_target()
 
-
 func _unhandled_input(event: InputEvent) -> void:
+	# Toggle flashlight
+	if event.is_action_pressed("flashlight"):
+		if is_instance_valid(flashlight):
+			flashlight.visible = not flashlight.visible
+			
+		return
+
+	# Interact with targeted object
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_LEFT \
 	and event.pressed:
@@ -21,7 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if is_instance_valid(current_target):
 			if current_target.has_method("interact"):
 				current_target.interact()
-
 
 func update_target() -> void:
 	var screen_center := get_viewport().get_visible_rect().size / 2.0

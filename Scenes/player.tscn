@@ -14,16 +14,21 @@ script = ExtResource("1_v0iea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2845459, 0)
 shape = SubResource("CapsuleShape3D_baysf")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1325310241]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1325310241 node_paths=PackedStringArray("crosshair", "flashlight", "flashlight_asset")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.125563, 0)
 current = true
 script = ExtResource("2_cvnsp")
+crosshair = NodePath("../HUD/Crosshair")
+flashlight = NodePath("FlashLight")
+flashlight_asset = NodePath("../PlayerHands/FlashLight")
 
 [node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035404205, -0.49950033)
-shadow_enabled = true
-spot_range = 30.0
-spot_angle = 30.0
+light_color = Color(0.9647059, 0.9372549, 0.92156863, 1)
+spot_range = 80.0
+spot_attenuation = 0.4
+spot_angle = 26.25
+spot_angle_attenuation = 1.4640903
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
 target_position = Vector3(0, 0, -2.6)
