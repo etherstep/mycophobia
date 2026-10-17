@@ -25,8 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseMotion:
 		# Yaw turns the body. Pitch turns only the camera, so the horizon stays level.
-		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
-		pitch = clampf(pitch - event.relative.y * MOUSE_SENSITIVITY, -PITCH_LIMIT, PITCH_LIMIT)
+		rotate_y(-event.relative.x * Settings.mouse_sensitivity)
+		pitch = clampf(pitch - event.relative.y * Settings.mouse_sensitivity, -PITCH_LIMIT, PITCH_LIMIT)
 		camera_3d.rotation.x = pitch
 		return
 

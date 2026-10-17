@@ -1,24 +1,58 @@
 [gd_scene format=3 uid="uid://ddyetqyxkhfn8"]
 
 [ext_resource type="Script" uid="uid://dwj1y7tj8nsrl" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="FontFile" uid="uid://bqukxbmr12qdg" path="res://Assets/Fonts/Horror.ttf" id="2_1ehe0"]
+[ext_resource type="FontFile" uid="uid://da2hb2lpfncvr" path="res://Assets/Fonts/Typewriter.ttf" id="3_ce3w2"]
 
-[node name="MainMenu" type="Node2D" unique_id=281482085]
+[node name="MainMenu" type="Control" unique_id=476423682]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_28flt")
 
-[node name="Label" type="Label" parent="." unique_id=1055449836]
-offset_left = 525.0
-offset_top = 77.0
-offset_right = 702.0
-offset_bottom = 119.0
-theme_override_font_sizes/font_size = 30
-text = "Mycophobia"
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2114750601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="Button" type="Button" parent="." unique_id=1571414463]
-offset_left = 527.0
-offset_top = 226.0
-offset_right = 693.0
-offset_bottom = 276.0
-theme_override_font_sizes/font_size = 30
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2035931958]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1055449836]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 100
+text = "Mycophobia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="New_Game" type="Button" parent="VBoxContainer" unique_id=1571414463]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ce3w2")
+theme_override_font_sizes/font_size = 40
 text = "New Game"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=299866381]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ce3w2")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[connection signal="pressed" from="VBoxContainer/New_Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bokn5m4sjypna"]
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="1_go701"]
 
 [sub_resource type="Environment" id="Environment_baysf"]
 
@@ -11,6 +12,7 @@ size = Vector3(11.013672, 0.12384033, 13.774719)
 size = Vector3(10.667969, 0.7709961, 13.860382)
 
 [node name="World" type="Node3D" unique_id=322679481]
+script = ExtResource("1_go701")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
