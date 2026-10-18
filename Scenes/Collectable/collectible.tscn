@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c2g4mg6q43r6o" path="res://Scripts/collectible.gd" id="1_sbuda"]
 [ext_resource type="Resource" uid="uid://wuon56xger2q" path="res://Items/note_1.tres" id="2_bhxhe"]
 [ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/PNG-Single Sheet-02.png" id="3_8nals"]
+[ext_resource type="AudioStream" uid="uid://d3rwk4jywvwe3" path="res://Assets/SFX/Interact/note-interact_2.wav" id="3_73n1k"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="4_8nals"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
@@ -13,6 +14,7 @@ script = ExtResource("1_sbuda")
 item_data = ExtResource("2_bhxhe")
 sprite = NodePath("Sprite3D")
 label = NodePath("Label3D")
+note_interact_sfx = ExtResource("3_73n1k")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=936071494]
 modulate = Color(0.6189661, 0.6073571, 0.5496641, 1)
@@ -41,3 +43,6 @@ Dr. Donovan"
 font = ExtResource("4_8nals")
 font_size = 48
 outline_size = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1769951174]
+bus = &"SFX-Interaction"
