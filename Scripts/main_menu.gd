@@ -5,7 +5,6 @@ var starting_game := false
 func _on_new_game_pressed() -> void:
 	if starting_game:
 		return
-
 	starting_game = true
 
 	var black_screen := ColorRect.new()
@@ -14,7 +13,8 @@ func _on_new_game_pressed() -> void:
 	black_screen.mouse_filter = Control.MOUSE_FILTER_STOP
 	black_screen.z_index = 100
 	add_child(black_screen)
-
+	
+	MusicManager.lower_menu_music()
 	MusicManager.play_starting_effect()
 
 	await get_tree().create_timer(5.0).timeout

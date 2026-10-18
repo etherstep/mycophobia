@@ -7,6 +7,9 @@ var brochure_player: AudioStreamPlayer
 const STARTING_EFFECT: AudioStream = preload("res://Assets/SFX/UI/game-start.wav")
 const BROCHURE_PART_1: AudioStream = preload("res://Assets/SFX/UI/brochure_part_1.mp3")
 
+var menu_music_volume_db: float = 0.0
+var music_tween: Tween
+
 func _ready() -> void:
 	stream = preload("res://Assets/Music/main_menu_theme.mp3")
 	bus = "Music"
@@ -45,3 +48,13 @@ func play_brochure_sequence() -> void:
 
 func stop_brochure_sequence() -> void:
 	brochure_player.stop()
+
+func lower_menu_music() -> void:
+	_fade_music_to(-32.0)
+
+func _fade_music_to(target_db: float) -> void:
+	if music_tween and music_tween.is_running():
+		music_tween.kill()
+
+	music_tween = create_tween()
+	music_tween.tween_property(self, "volume_db", target_db, 0.5)
