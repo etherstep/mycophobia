@@ -2,8 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="2_go701"]
-[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/PNG-Single Sheet-02.png" id="2_ikia7"]
-[ext_resource type="Texture2D" uid="uid://iuaexi3w3htk" path="res://Assets/Sprites/mushroom1.png" id="3_7yui6"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
@@ -37,21 +35,6 @@ adjustment_enabled = true
 adjustment_brightness = 0.79
 adjustment_contrast = 1.1
 adjustment_saturation = 1.29
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr235"]
-albedo_color = Color(0.20511743, 0.20511743, 0.20511743, 1)
-albedo_texture = ExtResource("2_ikia7")
-uv1_scale = Vector3(90.205, 90.205, 90.205)
-
-[sub_resource type="BoxMesh" id="BoxMesh_baysf"]
-size = Vector3(11.013672, 0.12384033, 13.774719)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_baysf"]
-size = Vector3(10.667969, 0.7709961, 13.860382)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdvhe"]
-albedo_texture = ExtResource("3_7yui6")
-uv1_scale = Vector3(134.035, 134.035, 134.035)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
 albedo_texture = ExtResource("14_hgpy0")
@@ -2698,32 +2681,8 @@ script = ExtResource("10_world")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
 
-[node name="Floor" type="StaticBody3D" parent="." unique_id=190759193]
-transform = Transform3D(6.5, 0, 0, 0, 6.5, 0, 0, 0, 6.5, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=879477997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6520996, 0.0011901855, -1.7681177)
-material_override = SubResource("StandardMaterial3D_qr235")
-mesh = SubResource("BoxMesh_baysf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=621423171]
-transform = Transform3D(1, 4.144645e-05, -5.3947766e-05, -4.142441e-05, 0.99999994, 0.00027505087, 5.396469e-05, -0.00027504755, 0.99999994, -1.7321346, -0.33124948, -4.384234)
-shape = SubResource("BoxShape3D_baysf")
-
-[node name="Floor2" type="StaticBody3D" parent="." unique_id=2037597493]
-transform = Transform3D(6.4999995, 0, 0, 0, -2.84124e-07, -6.4999995, 0, 6.4999995, -2.84124e-07, 0, 0, -25.704113)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2" unique_id=1399766798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6520996, 0.0011901855, -1.7681177)
-material_override = SubResource("StandardMaterial3D_jdvhe")
-mesh = SubResource("BoxMesh_baysf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2" unique_id=586245009]
-transform = Transform3D(1, 4.144645e-05, -5.3947766e-05, -4.142441e-05, 0.99999994, 0.00027505087, 5.396469e-05, -0.00027504755, 0.99999994, -1.7321346, -0.33124948, -4.384234)
-shape = SubResource("BoxShape3D_baysf")
-
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.18384, 24.76329, -13.704739)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -186.98831, 43.82829, -11.999847)
 inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
@@ -2736,20 +2695,21 @@ visible = false
 inventory = NodePath("../Inventory")
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=3839576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -214.09137, 3.776679, 0)
 
 [node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.14381513, 0, -0.01849884, 0, 0.145, 0, 0.01849884, 0, 0.14381513, 1.7368666, 1.0764514, -1.4891031)
+transform = Transform3D(0.14381513, 0, -0.01849884, 0, 0.145, 0, 0.01849884, 0, 0.14381513, 1.697403, 1, 0)
 
 [node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -6.5571527, 2.944763, -7.5704565)
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 1, 1, 0)
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 1.4764042, 2.1105397, -5.3393574)
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0.21669006, 1, 0)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -1.5221806, 1.843358, -2.46498)
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.59687805, 1, 0)
 item_data = ExtResource("9_ikia7")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
