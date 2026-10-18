@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://casgcs7q8ujxx"]
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="AudioStream" uid="uid://cm6b8a2tlggum" path="res://Assets/SFX/Footsteps/untitled - Track 1.wav" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scenes/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://1qis3w7j73t7" path="res://Assets/SFX/Footsteps/untitled - Track 2.wav" id="3_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://bf7b83p5n4x03" path="res://Assets/SFX/Footsteps/untitled - Track 3.wav" id="4_tx1dd"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://bdg1c8o8vgqf3" path="res://Assets/SFX/Footsteps/untitled - Track 4.wav" id="5_gymyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
 
 [node name="Player" type="CharacterBody3D" unique_id=892995834]
 script = ExtResource("1_v0iea")
+footstep_sounds = Array[AudioStream]([ExtResource("2_8erm5"), ExtResource("3_f1ek2"), ExtResource("4_tx1dd"), ExtResource("5_gymyn")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944353870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2845459, 0)
@@ -77,11 +82,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
+offset_top = -20.0
 offset_right = 20.0
-offset_bottom = 11.5
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "•"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=795634399]
+transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
+bus = &"SFX"
+emission_angle_enabled = true
