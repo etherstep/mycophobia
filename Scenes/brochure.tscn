@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://0t8jcnv734j8"]
+
+[ext_resource type="Script" uid="uid://ctxlo4m6dch7b" path="res://Scenes/brochure.gd" id="1_rxxsa"]
+
+[node name="Brochure" type="Control" unique_id=417166242 node_paths=PackedStringArray("skip_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rxxsa")
+skip_text = NodePath("ColorRect/Label")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=684148965]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=1206707307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+bbcode_enabled = true
+text = "[center][color=#66BB6A][font_size=32][b]Mycelium Underground Village[/b][/font_size][/color]
+
+[color=#A5D6A7][font_size=22][b]Green Building for the Future[/b][/font_size][/color][/center]
+
+Welcome to the Mycelium Underground Village (M.U.V.) Project, a futuristic approach to building, using plant matter to grow into a brighter tomorrow!
+
+Mushroom bricks are the foundation of our village, using nature’s materials as bricks for our answer to polluting building materials that release Greenhouse Gases during manufacturing.
+
+[center][color=#81C784][font_size=18][b]The future is here, and it’s green![/b][/font_size][/color]
+
+
+[color=#A5D6A7][font_size=22][b]Founder Theo Donovan[/b][/font_size][/color][/center]
+
+This project was dreamt up in a lab where Dr. Theo Donovan decided he would take the miracle fungus material and use it to build a village like no other!
+
+Careful study for making sturdy materials that weather any storm led to the local government greenlighting Dr. Donovan’s work.
+
+Dr. Donovan was one of the first village inhabitants and lives here still!
+
+
+[color=#A5D6A7][font_size=22][b]From Mycellium Underground Village to the World![/b][/font_size][/color][/center]
+
+Dr. Donovan’s dream is to spread the use of mushrooms for building materials to the world. Buy your property now, and be a part of the future!
+
+Buildings are affordable, equipped with all the modern features you desire, and soon perhaps even possessing a mycellium based intranet!
+
+
+[center][color=#66BB6A][font_size=24][b]Be the pioneer! Buy your lot and grow the mushroom movement![/b][/font_size][/color][/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1619580313]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 111.0
+offset_bottom = 39.0
+text = "[ESC] to skip"
