@@ -4,10 +4,21 @@ extends CharacterBody3D
 const SPEED = 5.0
 const MOUSE_SENSITIVITY := 0.0022
 const PITCH_LIMIT := deg_to_rad(80.0)
+const JUMP_VELOCITY := 4.5
+const SPRINT_SPEED := 8.0
+const CROUCH_SPEED := 2.5
+const CROUCH_HEIGHT := 1.4
+const CROUCH_CAMERA_Y = 1.15
+const CROUCH_CAMERA_SPEED := 6.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var pitch := 0.0
+var crouched := false
+var stand_height: float
+var stand_shape_y: float
+var stand_camera_y: float
 
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
 
@@ -21,6 +32,10 @@ var last_footstep_index: int = -1
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	var capsule := collision_shape_3d.shape as CapsuleShape3D
+	stand_height = capsule.height
+	stand_shape_y = collision_shape_3d.position.y
+	stand_camera_y = camera_3d.position.y
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -54,21 +69,62 @@ func toggle_inventory() -> void:
 		get_viewport().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
+	if Input.is_action_just_pressed("crouch"):
+		if crouched:
+			if _can_stand():
+				crouched = false
+		else:
+			crouched = true
+	
+	var capsule := collision_shape_3d.shape as CapsuleShape3D
+	if crouched :
+		capsule.height = CROUCH_HEIGHT
+		collision_shape_3d.position.y = CROUCH_HEIGHT * 0.5
+	else:
+		capsule.height = stand_height
+		collision_shape_3d.position.y = stand_shape_y
+	
+	var target_camera_y := CROUCH_CAMERA_Y if crouched else stand_camera_y
+	camera_3d.position.y = move_toward(camera_3d.position.y, target_camera_y, CROUCH_CAMERA_SPEED * delta)
+	
+	if is_on_floor():
+		if Input.is_action_just_pressed("jump") and not crouched:
+			velocity.y = JUMP_VELOCITY
+	else:
 		velocity += get_gravity() * delta
+	
+	var speed := SPEED
+	if crouched:
+		speed = CROUCH_SPEED
+	elif Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED
 		
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed )
 
 	move_and_slide()
+
+func _can_stand() -> bool:
+	var capsule := collision_shape_3d.shape as CapsuleShape3D
+	var stand_shape := CapsuleShape3D.new()
+	stand_shape.radius = capsule.radius
+	stand_shape.height = stand_height
+	var bottom := stand_shape_y - stand_height * 0.5
+	var lift: float = maxf(0.0, -bottom) + 0.01
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = stand_shape
+	query.margin = 0.0
+	query.transform = global_transform * Transform3D(Basis(), Vector3(0, stand_shape_y + lift, 0))
+	query.exclude = [get_rid()]
+	var hits := get_world_3d().direct_space_state.intersect_shape(query, 1)
+	return hits.is_empty()
 	update_footsteps(delta)
 
 # AUDIO
