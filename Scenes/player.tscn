@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bf7b83p5n4x03" path="res://Assets/SFX/Footsteps/untitled - Track 3.wav" id="4_tx1dd"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://bdg1c8o8vgqf3" path="res://Assets/SFX/Footsteps/untitled - Track 4.wav" id="5_gymyn"]
+[ext_resource type="AudioStream" uid="uid://cx1fkshtswgva" path="res://Assets/SFX/Flashlight/flashlight-on.wav" id="7_tx1dd"]
+[ext_resource type="AudioStream" uid="uid://cfys2ibbhxyp4" path="res://Assets/SFX/Flashlight/flashlight-off.wav" id="8_gymyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -28,6 +30,8 @@ crosshair_interact = NodePath("../HUD/Crosshair_interact")
 crosshair_normal = NodePath("../HUD/Crosshair_normal")
 flashlight = NodePath("FlashLight")
 flashlight_asset = NodePath("../PlayerHands/FlashLight")
+flashlight_on_sfx = ExtResource("7_tx1dd")
+flashlight_off_sfx = ExtResource("8_gymyn")
 
 [node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035404205, -0.49950033)
@@ -93,5 +97,8 @@ vertical_alignment = 1
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=795634399]
 transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
-bus = &"SFX"
+bus = &"SFX-Movement"
 emission_angle_enabled = true
+
+[node name="FlashlightPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1477521273]
+bus = &"SFX-Interaction"

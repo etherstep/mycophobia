@@ -8,19 +8,27 @@ extends Camera3D
 
 var current_target: Object = null
 
+@export var flashlight_on_sfx: AudioStream
+@export var flashlight_off_sfx: AudioStream
+@onready var flashlight_player: AudioStreamPlayer3D = $"../FlashlightPlayer"
+
 func _ready() -> void:
 	if is_instance_valid(flashlight):
 		flashlight.visible = false
+	add_child(flashlight_player)
 
 func _process(_delta: float) -> void:
 	update_target()
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Toggle flashlight
-	if event.is_action_pressed("flashlight"):
+	if event.is_action_pressed("flashlight") and not event.is_echo():
 		if is_instance_valid(flashlight):
 			flashlight.visible = not flashlight.visible
-			
+			if flashlight.visible:
+				play_flashlight_sfx(flashlight_on_sfx)
+			else:
+				play_flashlight_sfx(flashlight_off_sfx)
 		return
 
 	# Interact with targeted object
@@ -73,3 +81,11 @@ func update_target() -> void:
 
 	if is_instance_valid(crosshair_normal):
 		crosshair_normal.visible = not is_instance_valid(current_target)
+
+# AUDIO
+func play_flashlight_sfx(sound: AudioStream) -> void:
+	if sound == null:
+		return
+	flashlight_player.stop()
+	flashlight_player.stream = sound
+	flashlight_player.play()

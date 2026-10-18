@@ -131,13 +131,9 @@ func _can_stand() -> bool:
 func update_footsteps(delta: float) -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
 	var is_moving := is_on_floor() and horizontal_speed > 0.1
-
 	if not is_moving:
-		# Don't reset the timer and don't cut off the current footstep.
 		return
-
 	footstep_timer -= delta
-
 	if footstep_timer <= 0.0:
 		if not footstep_player.playing:
 			play_random_footstep()
@@ -160,14 +156,12 @@ func stop_footsteps() -> void:
 func play_random_footstep() -> void:
 	if footstep_sounds.is_empty():
 		return
-	# Avoid restarting a sound that is still playing
 	if footstep_player.playing:
 		return
 	var sound_index: int
 	if footstep_sounds.size() == 1:
 		sound_index = 0
 	else:
-		# Pick a different sound from the previous one
 		sound_index = randi_range(0, footstep_sounds.size() - 1)
 		while sound_index == last_footstep_index:
 			sound_index = randi_range(0, footstep_sounds.size() - 1)
