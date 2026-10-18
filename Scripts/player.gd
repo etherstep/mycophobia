@@ -110,6 +110,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, speed )
 
 	move_and_slide()
+	update_footsteps(delta)
 
 func _can_stand() -> bool:
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
@@ -125,7 +126,6 @@ func _can_stand() -> bool:
 	query.exclude = [get_rid()]
 	var hits := get_world_3d().direct_space_state.intersect_shape(query, 1)
 	return hits.is_empty()
-	update_footsteps(delta)
 
 # AUDIO
 func update_footsteps(delta: float) -> void:
