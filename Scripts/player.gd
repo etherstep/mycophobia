@@ -22,6 +22,14 @@ var stand_camera_y: float
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
 
+# AUDIO
+@onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+@export var footstep_sounds: Array[AudioStream]
+@export var footstep_interval: float = 0.45
+var footstep_tween: Tween
+var footstep_timer: float = 0.0
+var last_footstep_index: int = -1
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
@@ -117,3 +125,52 @@ func _can_stand() -> bool:
 	query.exclude = [get_rid()]
 	var hits := get_world_3d().direct_space_state.intersect_shape(query, 1)
 	return hits.is_empty()
+	update_footsteps(delta)
+
+# AUDIO
+func update_footsteps(delta: float) -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_moving := is_on_floor() and horizontal_speed > 0.1
+
+	if not is_moving:
+		# Don't reset the timer and don't cut off the current footstep.
+		return
+
+	footstep_timer -= delta
+
+	if footstep_timer <= 0.0:
+		if not footstep_player.playing:
+			play_random_footstep()
+			footstep_timer = footstep_interval
+
+func stop_footsteps() -> void:
+	if not footstep_player.playing:
+		return
+	if footstep_tween and footstep_tween.is_running():
+		footstep_tween.kill()
+	footstep_tween = create_tween()
+	footstep_tween.tween_property(
+		footstep_player, "volume_db", -40.0, 0.2
+	)
+	footstep_tween.tween_callback(footstep_player.stop)
+	footstep_tween.tween_callback(
+		func(): footstep_player.volume_db = 0.0
+	)
+
+func play_random_footstep() -> void:
+	if footstep_sounds.is_empty():
+		return
+	# Avoid restarting a sound that is still playing
+	if footstep_player.playing:
+		return
+	var sound_index: int
+	if footstep_sounds.size() == 1:
+		sound_index = 0
+	else:
+		# Pick a different sound from the previous one
+		sound_index = randi_range(0, footstep_sounds.size() - 1)
+		while sound_index == last_footstep_index:
+			sound_index = randi_range(0, footstep_sounds.size() - 1)
+	last_footstep_index = sound_index
+	footstep_player.stream = footstep_sounds[sound_index]
+	footstep_player.play()
