@@ -2682,7 +2682,7 @@ script = ExtResource("10_world")
 environment = SubResource("Environment_baysf")
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -186.98831, 43.82829, -11.999847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -384.87958, 43.82829, -11.999847)
 inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
@@ -2695,7 +2695,7 @@ visible = false
 inventory = NodePath("../Inventory")
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=3839576]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -214.09137, 3.776679, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385.36694, 39.99962, -5.5679874)
 
 [node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
 transform = Transform3D(0.14381513, 0, -0.01849884, 0, 0.145, 0, 0.01849884, 0, 0.14381513, 1.697403, 1, 0)
@@ -2713,7 +2713,6 @@ transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.59687805, 1, 0
 item_data = ExtResource("9_ikia7")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 202.73871, 0, 0)
 script = ExtResource("12_e0ngr")
 local_map_file = "uid://by4sncyrqt820"
 map_settings = ExtResource("13_kn0ld")
