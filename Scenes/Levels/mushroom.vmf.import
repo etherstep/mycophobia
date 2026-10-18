@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="QuakeMapFile"
+uid="uid://by4sncyrqt820"
+path="res://.godot/imported/mushroom.vmf-22e864b978f76886067e285f99fc7b4f.tres"
+
+[deps]
+
+source_file="res://Scenes/Levels/mushroom.vmf"
+dest_files=["res://.godot/imported/mushroom.vmf-22e864b978f76886067e285f99fc7b4f.tres"]
+
+[params]
+
