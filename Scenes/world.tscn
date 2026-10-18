@@ -13,28 +13,32 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7yui6"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
+panorama = ExtResource("14_hgpy0")
 
 [sub_resource type="Sky" id="Sky_ikia7"]
-sky_material = SubResource("PanoramaSkyMaterial_7yui6")
+sky_material = SubResource("PanoramaSkyMaterial_n8wo2")
 
 [sub_resource type="Environment" id="Environment_baysf"]
 background_mode = 2
 sky = SubResource("Sky_ikia7")
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_source = 3
+tonemap_mode = 4
+tonemap_exposure = 1.36
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
+sdfgi_use_occlusion = true
 glow_enabled = true
 volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0.26140887, 0.16589144, 0.100374795, 1)
-volumetric_fog_emission = Color(6.4675696e-08, 0.093095444, 6.016344e-09, 1)
+volumetric_fog_albedo = Color(0.07786066, 0.03666746, 0.0162071, 1)
+volumetric_fog_emission = Color(0.09687596, 0.075165935, 0.009954414, 1)
 volumetric_fog_detail_spread = 3.8236837
 adjustment_enabled = true
-adjustment_brightness = 0.79
-adjustment_contrast = 1.1
-adjustment_saturation = 1.29
+adjustment_brightness = 0.69
+adjustment_contrast = 1.125
+adjustment_saturation = 4.35
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
 albedo_texture = ExtResource("14_hgpy0")

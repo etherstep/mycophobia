@@ -8,13 +8,13 @@ const CROUCH_CAMERA_Y = 1.15
 const CROUCH_CAMERA_SPEED := 6.0
 
 const SPEED = 5.0
-const JUMP_VELOCITY := 6.2
+const JUMP_VELOCITY := 5.0
 const SPRINT_SPEED := 8.0
 const CROUCH_SPEED := 2.5
 
-const GRAVITY := 18.0
-const FALL_GRAVITY_MULTIPLIER := 1.5
-const JUMP_CUT_MULTIPLIER := 2.0
+const GRAVITY := 16.0
+const FALL_GRAVITY_MULTIPLIER := 1.15
+const JUMP_CUT_MULTIPLIER := 1.5
 
 # RUNNING CAMERA BOB
 const BOB_AMOUNT := 0.045
@@ -106,12 +106,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		var current_gravity := GRAVITY
 
-		# Fall faster than you rise.
 		if velocity.y < 0.0:
 			current_gravity *= FALL_GRAVITY_MULTIPLIER
-
-		# Releasing jump early cuts the jump short.
-		if velocity.y > 0.0 and not Input.is_action_pressed("jump"):
+		elif velocity.y > 0.0 and not Input.is_action_pressed("jump"):
 			current_gravity *= JUMP_CUT_MULTIPLIER
 
 		velocity.y -= current_gravity * delta
@@ -125,14 +122,38 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+	if is_on_floor():
+		# Responsive ground movement.
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0.0, speed * 2.5 * delta)
+			velocity.z = move_toward(velocity.z, 0.0, speed * 2.5 * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed )
+		# Preserve momentum in the air, with limited air control.
+		var air_acceleration := 4.0
+
+		if direction:
+			velocity.x = move_toward(
+				velocity.x,
+				direction.x * speed,
+				air_acceleration * delta
+			)
+			velocity.z = move_toward(
+				velocity.z,
+				direction.z * speed,
+				air_acceleration * delta
+			)
 
 	move_and_slide()
+	# Stop horizontal momentum immediately upon landing
+	if is_on_floor() and not Input.is_action_pressed("left") \
+	and not Input.is_action_pressed("right") \
+	and not Input.is_action_pressed("up") \
+	and not Input.is_action_pressed("down"):
+		velocity.x = 0.0
+		velocity.z = 0.0
 	update_camera_bob(delta)
 	update_footsteps(delta)
 
