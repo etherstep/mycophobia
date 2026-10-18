@@ -1,17 +1,23 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
 const MOUSE_SENSITIVITY := 0.0022
 const PITCH_LIMIT := deg_to_rad(80.0)
-const JUMP_VELOCITY := 4.5
-const SPRINT_SPEED := 8.0
-const CROUCH_SPEED := 2.5
 const CROUCH_HEIGHT := 1.4
 const CROUCH_CAMERA_Y = 1.15
 const CROUCH_CAMERA_SPEED := 6.0
 
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+const SPEED = 5.0
+const JUMP_VELOCITY := 6.2
+const SPRINT_SPEED := 8.0
+const CROUCH_SPEED := 2.5
+
+const GRAVITY := 18.0
+const FALL_GRAVITY_MULTIPLIER := 1.5
+const JUMP_CUT_MULTIPLIER := 2.0
+
+var gravity: float = GRAVITY
+
 var pitch := 0.0
 var crouched := false
 var stand_height: float
@@ -86,12 +92,22 @@ func _physics_process(delta: float) -> void:
 	
 	var target_camera_y := CROUCH_CAMERA_Y if crouched else stand_camera_y
 	camera_3d.position.y = move_toward(camera_3d.position.y, target_camera_y, CROUCH_CAMERA_SPEED * delta)
-	
+		
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump") and not crouched:
 			velocity.y = JUMP_VELOCITY
 	else:
-		velocity += get_gravity() * delta
+		var current_gravity := GRAVITY
+
+		# Fall faster than you rise.
+		if velocity.y < 0.0:
+			current_gravity *= FALL_GRAVITY_MULTIPLIER
+
+		# Releasing jump early cuts the jump short.
+		if velocity.y > 0.0 and not Input.is_action_pressed("jump"):
+			current_gravity *= JUMP_CUT_MULTIPLIER
+
+		velocity.y -= current_gravity * delta
 	
 	var speed := SPEED
 	if crouched:
