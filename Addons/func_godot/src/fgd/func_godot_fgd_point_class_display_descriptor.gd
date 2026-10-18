@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godambler3d.svg")
+@icon("res://Addons/func_godot/icons/icon_godambler3d.svg")
 class_name FuncGodotFGDPointClassDisplayDescriptor extends Resource
 ## Resource that describes how to display an FGD Point Class entity.
 ##

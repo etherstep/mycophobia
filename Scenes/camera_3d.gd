@@ -15,7 +15,6 @@ var current_target: Object = null
 func _ready() -> void:
 	if is_instance_valid(flashlight):
 		flashlight.visible = false
-	add_child(flashlight_player)
 
 func _process(_delta: float) -> void:
 	update_target()

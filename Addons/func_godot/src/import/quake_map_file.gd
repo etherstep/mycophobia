@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_quake_file.svg")
+@icon("res://Addons/func_godot/icons/icon_quake_file.svg")
 class_name QuakeMapFile extends Resource
 ## Map file that can be built by [FuncGodotMap].
 ## 

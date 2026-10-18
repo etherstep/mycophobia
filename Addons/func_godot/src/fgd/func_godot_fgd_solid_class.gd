@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_slipgate3d.svg")
+@icon("res://Addons/func_godot/icons/icon_slipgate3d.svg")
 class_name FuncGodotFGDSolidClass extends FuncGodotFGDEntityClass
 ## FGD SolidClass entity definition that generates a mesh from [FuncGodotData.BrushData].
 ##

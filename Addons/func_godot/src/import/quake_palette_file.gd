@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_quake_file.svg")
+@icon("res://Addons/func_godot/icons/icon_quake_file.svg")
 class_name QuakePaletteFile extends Resource
 ## Quake LMP palette format file used with [QuakeWadFile].
 ##

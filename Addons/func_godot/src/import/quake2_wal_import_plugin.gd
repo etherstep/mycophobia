@@ -3,7 +3,7 @@ class_name Quake2WalImportPlugin extends EditorImportPlugin
 
 const TEXTURE_NAME_LENGTH := 32
 const MAX_MIP_LEVELS := 4
-const DEFAULT_PALETTE_PATH := "res://addons/func_godot/quake2_palette.lmp"
+const DEFAULT_PALETTE_PATH := "res://Addons/func_godot/quake2_palette.lmp"
 
 func _get_importer_name() -> String:
 	return "func_godot.wal"

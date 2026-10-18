@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotMapSettings extends Resource
 ## Reusable map settings configuration for [FuncGodotMap] nodes.
 
@@ -20,7 +20,7 @@ var scale_factor: float = 0.03125
 		scale_factor = 1.0 / value
 
 ## [FuncGodotFGDFile] that translates map file classnames into Godot nodes and packed scenes.
-@export var entity_fgd: FuncGodotFGDFile = preload("res://addons/func_godot/fgd/func_godot_fgd.tres")
+@export var entity_fgd: FuncGodotFGDFile = preload("res://Addons/func_godot/fgd/func_godot_fgd.tres")
 
 ## If true, will organize [SceneTree] using TrenchBroom Layers and Groups or Hammer Visgroups. Groups will be generated as [Node3D] nodes. 
 ## All non-entity structural brushes will be moved out of their groups and merged into the `Worldspawn` entity.
@@ -112,7 +112,7 @@ var scale_factor: float = 0.03125
 @export var material_file_extension: String = "tres"
 
 ## [Material] used as template when generating missing materials.
-@export var default_material: Material = preload("res://addons/func_godot/textures/default_material.tres")
+@export var default_material: Material = preload("res://Addons/func_godot/textures/default_material.tres")
 
 ## Sampler2D uniform that supplies the Albedo in a custom shader when [member default_material] is a [ShaderMaterial].
 @export var default_material_albedo_uniform: String = ""

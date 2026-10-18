@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotEntityAssembler extends RefCounted
 ## Entity assembly class that is instantiated by a [FuncGodotMap] node.
 

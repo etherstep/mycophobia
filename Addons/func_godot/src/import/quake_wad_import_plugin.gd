@@ -44,7 +44,7 @@ func _get_import_options(path, preset) -> Array[Dictionary]:
 	return [
 		{
 			'name': 'palette_file',
-			'default_value': 'res://addons/func_godot/palette.lmp',
+			'default_value': 'res://Addons/func_godot/palette.lmp',
 			'property_hint': PROPERTY_HINT_FILE,
 			'hint_string': '*.lmp'
 		},

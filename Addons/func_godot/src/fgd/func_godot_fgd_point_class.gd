@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godambler3d.svg")
+@icon("res://Addons/func_godot/icons/icon_godambler3d.svg")
 class_name FuncGodotFGDPointClass extends FuncGodotFGDEntityClass
 ## FGD PointClass entity definition.
 ##

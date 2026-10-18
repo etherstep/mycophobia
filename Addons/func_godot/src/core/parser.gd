@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_godambler.svg")
+@icon("res://Addons/func_godot/icons/icon_godambler.svg")
 class_name FuncGodotParser extends RefCounted
 ## MAP and VMF parser class that is instantiated by a [FuncGodotMap] node during the build process.
 ##

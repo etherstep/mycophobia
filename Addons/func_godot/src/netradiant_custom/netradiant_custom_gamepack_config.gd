@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name NetRadiantCustomGamePackConfig extends Resource
 ## Builds a gamepack for NetRadiant Custom.
 ##
@@ -25,16 +25,16 @@ enum NetRadiantCustomMapType {
 
 ## [FuncGodotFGDFile] to include with this gamepack. If using multiple FGD file resources, 
 ## this should be the master FGD that contains them in [member FuncGodotFGDFile.base_fgd_files].
-@export var fgd_file : FuncGodotFGDFile = preload("res://addons/func_godot/fgd/func_godot_fgd.tres")
+@export var fgd_file : FuncGodotFGDFile = preload("res://Addons/func_godot/fgd/func_godot_fgd.tres")
 
 ## Toggles whether [FuncGodotFGDModelPointClass] resources will generate models from their [PackedScene] files.
 @export var generate_model_point_class_models: bool = true
 
 ## Collection of [NetRadiantCustomShader] resources for shader file generation.
 @export var netradiant_custom_shaders : Array[Resource] = [
-	preload("res://addons/func_godot/game_config/netradiant_custom/netradiant_custom_shader_clip.tres"),
-	preload("res://addons/func_godot/game_config/netradiant_custom/netradiant_custom_shader_skip.tres"),
-	preload("res://addons/func_godot/game_config/netradiant_custom/netradiant_custom_shader_origin.tres")
+	preload("res://Addons/func_godot/game_config/netradiant_custom/netradiant_custom_shader_clip.tres"),
+	preload("res://Addons/func_godot/game_config/netradiant_custom/netradiant_custom_shader_skip.tres"),
+	preload("res://Addons/func_godot/game_config/netradiant_custom/netradiant_custom_shader_origin.tres")
 ]
 
 ## Supported model file types.

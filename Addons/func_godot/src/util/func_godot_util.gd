@@ -97,7 +97,7 @@ static func update_ref_curve(curve: Curve3D, p0: Vector3, p1: Vector3, p2: Vecto
 #region TEXTURES
 
 ## Fallback texture if the one defined in the [QuakeMapFile] cannot be found.
-const default_texture_path: String = "res://addons/func_godot/textures/default_texture.png"
+const default_texture_path: String = "res://Addons/func_godot/textures/default_texture.png"
 
 const _pbr_textures: PackedInt32Array = [
 	StandardMaterial3D.TEXTURE_ALBEDO,

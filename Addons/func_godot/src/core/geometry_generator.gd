@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_slipgate.svg")
+@icon("res://Addons/func_godot/icons/icon_slipgate.svg")
 class_name FuncGodotGeometryGenerator extends RefCounted
 ## Geometry generation class that is instantiated by a [FuncGodotMap] node.
 

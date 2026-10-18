@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name TrenchBroomGameConfig extends Resource
 ## Game configuration definition for TrenchBroom.
 ## 
@@ -20,7 +20,7 @@ enum GameConfigVersion {
 @export var game_name : String = "FuncGodot"
 
 ## Icon for TrenchBroom's game list.
-@export var icon : Texture2D = preload("res://addons/func_godot/icon32.png")
+@export var icon : Texture2D = preload("res://Addons/func_godot/icon32.png")
 
 ## Available map formats when creating a new map in TrenchBroom. The order of elements in the array is the order TrenchBroom will list the available formats. 
 ## The [i]"initialmap"[/i] key value is optional.
@@ -46,7 +46,7 @@ enum GameConfigVersion {
 
 ## [FuncGodotFGDFile] resource to include with this game. If using multiple FGD File resources, 
 ## this should be the master FGD File that contains them in [member FuncGodotFGDFile.base_fgd_files].
-@export var fgd_file : FuncGodotFGDFile = preload("res://addons/func_godot/fgd/func_godot_fgd.tres")
+@export var fgd_file : FuncGodotFGDFile = preload("res://Addons/func_godot/fgd/func_godot_fgd.tres")
 
 ## Scale expression that modifies the default display scale of entities in TrenchBroom.
 ## See [url="https://trenchbroom.github.io/manual/latest/#game_configuration_files_entities"]TrenchBroom Manual Entity Configuration Information[/url] for more information.
@@ -67,9 +67,9 @@ enum GameConfigVersion {
 
 ## [TrenchbroomTag] resources that apply to brush faces.
 @export var brushface_tags : Array[Resource] = [
-	preload("res://addons/func_godot/game_config/trenchbroom/tb_face_tag_clip.tres"),
-	preload("res://addons/func_godot/game_config/trenchbroom/tb_face_tag_skip.tres"),
-	preload("res://addons/func_godot/game_config/trenchbroom/tb_face_tag_origin.tres")
+	preload("res://Addons/func_godot/game_config/trenchbroom/tb_face_tag_clip.tres"),
+	preload("res://Addons/func_godot/game_config/trenchbroom/tb_face_tag_skip.tres"),
+	preload("res://Addons/func_godot/game_config/trenchbroom/tb_face_tag_origin.tres")
 ]
 
 @export_group("Face Attributes")

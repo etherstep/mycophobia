@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotPlugin extends EditorPlugin
 
 var map_import_plugin : QuakeMapImportPlugin = null
@@ -39,11 +39,11 @@ func _enter_tree() -> void:
 	#func_godot_map_progress_bar.set_visible(false)
 	#add_control_to_container(EditorPlugin.CONTAINER_INSPECTOR_BOTTOM, func_godot_map_progress_bar)
 	
-	add_custom_type("FuncGodotMap", "Node3D", preload("res://addons/func_godot/src/map/func_godot_map.gd"), null)
+	add_custom_type("FuncGodotMap", "Node3D", preload("res://Addons/func_godot/src/map/func_godot_map.gd"), null)
 	
 	# Default Map Settings
 	if not ProjectSettings.has_setting("func_godot/default_map_settings"):
-		ProjectSettings.set_setting("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres")
+		ProjectSettings.set_setting("func_godot/default_map_settings", "res://Addons/func_godot/func_godot_default_map_settings.tres")
 		var property_info = {
 			"name": "func_godot/default_map_settings",
 			"type": TYPE_STRING,
@@ -52,7 +52,7 @@ func _enter_tree() -> void:
 		}
 		ProjectSettings.add_property_info(property_info)
 		ProjectSettings.set_as_basic("func_godot/default_map_settings", true)
-		ProjectSettings.set_initial_value("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres")
+		ProjectSettings.set_initial_value("func_godot/default_map_settings", "res://Addons/func_godot/func_godot_default_map_settings.tres")
 	
 	# Default Inverse Scale Factor
 	if not ProjectSettings.has_setting("func_godot/default_inverse_scale_factor"):

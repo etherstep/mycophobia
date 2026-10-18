@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 @abstract class_name FuncGodotFGDEntityClass extends Resource
 ## Entity definition template. WARNING! Not to be used directly! Use [FuncGodotFGDBaseClass], [FuncGodotFGDSolidClass], or [FuncGodotFGDPointClass] instead.
 ##

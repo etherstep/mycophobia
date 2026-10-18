@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name NetRadiantCustomShader
 extends Resource
 ## Shader resource for NetRadiant Custom configurations.

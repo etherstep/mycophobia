@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_slipgate3d.svg")
+@icon("res://Addons/func_godot/icons/icon_slipgate3d.svg")
 class_name FuncGodotMap extends Node3D
 ## Scene generator node that parses a [QuakeMapFile] according to its [FuncGodotMapSettings].
 ##
@@ -37,7 +37,7 @@ signal build_complete
 var _map_file_internal: String = ""
 
 ## Map settings resource that defines map build scale, textures location, entity definitions, and more.
-@export var map_settings: FuncGodotMapSettings = load(ProjectSettings.get_setting("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres"))
+@export var map_settings: FuncGodotMapSettings = load(ProjectSettings.get_setting("func_godot/default_map_settings", "res://Addons/func_godot/func_godot_default_map_settings.tres"))
 
 @export_category("Build")
 ## [enum BuildFlags] that can affect certain aspects of the build process.
@@ -106,7 +106,7 @@ func build() -> void:
 	
 	if not map_settings:
 		push_warning("Map assembler does not have a map settings provided and will use default map settings.")
-		load(ProjectSettings.get_setting("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres"))
+		load(ProjectSettings.get_setting("func_godot/default_map_settings", "res://Addons/func_godot/func_godot_default_map_settings.tres"))
 	
 	# Parse and collect map data
 	var parser := FuncGodotParser.new()

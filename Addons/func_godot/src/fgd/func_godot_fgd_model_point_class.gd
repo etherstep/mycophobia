@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godambler3d.svg")
+@icon("res://Addons/func_godot/icons/icon_godambler3d.svg")
 class_name FuncGodotFGDModelPointClass extends FuncGodotFGDPointClass
 ## A special type of [FuncGodotFGDPointClass] entity that automatically generates a special simplified GLB model file for the map editor display.
 ## Only supported in map editors that support GLTF or GLB.

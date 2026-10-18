@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_quake_file.svg")
+@icon("res://Addons/func_godot/icons/icon_quake_file.svg")
 class_name QuakeWadFile extends Resource
 ## Texture container in the WAD2 or WAD3 format.
 ##

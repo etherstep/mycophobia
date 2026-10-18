@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotFGDFile extends Resource
 ## [Resource] file used to express a set of [FuncGodotFGDEntity] definitions. 
 ## 

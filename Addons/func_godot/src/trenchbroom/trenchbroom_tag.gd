@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name TrenchBroomTag extends Resource
 ## Pattern matching tag added to [TrenchbroomGameConfig] for appearance and menu filtering purposes.
 ##

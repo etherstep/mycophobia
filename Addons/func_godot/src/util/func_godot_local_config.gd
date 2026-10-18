@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotLocalConfig extends Resource
 ## Local machine project wide settings. [color=red]WARNING![/color] Do not create your own! Use the resource in [i]addons/func_godot[/i].
 ## 
@@ -62,7 +62,7 @@ var _loaded := false
 
 ## Retrieve a setting from the local configuration.
 static func get_setting(name: PROPERTY) -> Variant:
-	var settings: FuncGodotLocalConfig = load("res://addons/func_godot/func_godot_local_config.tres")
+	var settings: FuncGodotLocalConfig = load("res://Addons/func_godot/func_godot_local_config.tres")
 	settings.reload_func_godot_settings()
 	return settings._settings_dict.get(PROPERTY.keys()[name], '') as Variant
 

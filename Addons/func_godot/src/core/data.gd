@@ -1,4 +1,4 @@
-@icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
+@icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotData
 ## Container that holds various data structs to be used in the [FuncGodotMap] build process.
 ##
