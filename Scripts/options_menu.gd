@@ -16,6 +16,9 @@ func _ready() -> void:
 	sensitivity_slider.step = 0.0001
 	sensitivity_slider.value = Settings.mouse_sensitivity
 	gamma_slider.value = Settings.gamma
+	volume_slider.min_value = 0.0
+	volume_slider.max_value = 100.0
+	volume_slider.step = 1.0
 	volume_slider.value = Settings.volume
 	_show_sensitivity(sensitivity_slider.value)
 	_show_gamma(gamma_slider.value)
@@ -37,23 +40,25 @@ func _on_gamma_changed(value: float) -> void:
 
 func _on_volume_changed(value: float) -> void:
 	Settings.volume = value
+
 	var bus_index := AudioServer.get_bus_index("Music")
 	if bus_index >= 0:
 		AudioServer.set_bus_volume_db(
 			bus_index,
-			linear_to_db(value) if value > 0.0 else -80.0
+			Settings.volume_to_db(value)
 		)
+
 	_show_volume(value)
 	Settings.save_settings()
+
+func _show_volume(value: float) -> void:
+	volume_value.text = "%d%%" % roundi(value)
 
 func _show_sensitivity(value: float) -> void:
 	sensitivity_value.text = "%.4f" % value
 
 func _show_gamma(value: float) -> void:
 	gamma_value.text = "%.2f" % value
-
-func _show_volume(value: float) -> void:
-	volume_value.text = "%d%%" % roundi(value * 100.0)
 
 func _on_back_pressed() -> void:
 	if opened_from_game:

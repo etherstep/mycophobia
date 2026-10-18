@@ -3,7 +3,7 @@ extends Node
 const SETTINGS_PATH := "user://settings.cfg"
 const DEFAULT_SENSITIVITY := 0.0022
 const DEFAULT_GAMMA := 1.0
-const DEFAULT_VOLUME := 1.0
+const DEFAULT_VOLUME := 50.0
 
 var mouse_sensitivity := DEFAULT_SENSITIVITY
 var gamma := DEFAULT_GAMMA
@@ -30,13 +30,22 @@ func save_settings() -> void:
 	config.save(SETTINGS_PATH)
 
 func apply_volume() -> void:
-	var bus := AudioServer.get_bus_index("Master")
-	if volume <= 0.0:
-		AudioServer.set_bus_mute(bus, true)
-	else:
-		AudioServer.set_bus_mute(bus, false)
-		AudioServer.set_bus_volume_db(bus, linear_to_db(volume))
-		
+	var bus_index := AudioServer.get_bus_index("Music")
+	if bus_index >= 0:
+		var db := volume_to_db(volume)
+		AudioServer.set_bus_volume_db(bus_index, db)
+
+
+func volume_to_db(percent: float) -> float:
+	var bus_index := AudioServer.get_bus_index("Music")
+	if bus_index < 0:
+		return -80.0
+
+	var min_db := -80.0
+	var max_db := 6.0
+
+	return lerpf(min_db, max_db, clampf(percent / 100.0, 0.0, 1.0))
+
 func apply_gamma(world_environment: WorldEnvironment) -> void:
 	if world_environment.environment == null:
 		world_environment.environment = Environment.new()
