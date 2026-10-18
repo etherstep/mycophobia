@@ -16,6 +16,15 @@ const GRAVITY := 18.0
 const FALL_GRAVITY_MULTIPLIER := 1.5
 const JUMP_CUT_MULTIPLIER := 2.0
 
+# RUNNING CAMERA BOB
+const BOB_AMOUNT := 0.045
+const BOB_FREQUENCY := 10.0
+const SPRINT_BOB_MULTIPLIER := 1.35
+const BOB_SMOOTHING := 10.0
+
+var bob_time := 0.0
+var camera_base_y := 0.0
+
 var gravity: float = GRAVITY
 
 var pitch := 0.0
@@ -42,6 +51,7 @@ func _ready() -> void:
 	stand_height = capsule.height
 	stand_shape_y = collision_shape_3d.position.y
 	stand_camera_y = camera_3d.position.y
+	camera_base_y = camera_3d.position.y
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -90,9 +100,6 @@ func _physics_process(delta: float) -> void:
 		capsule.height = stand_height
 		collision_shape_3d.position.y = stand_shape_y
 	
-	var target_camera_y := CROUCH_CAMERA_Y if crouched else stand_camera_y
-	camera_3d.position.y = move_toward(camera_3d.position.y, target_camera_y, CROUCH_CAMERA_SPEED * delta)
-		
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump") and not crouched:
 			velocity.y = JUMP_VELOCITY
@@ -126,6 +133,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, speed )
 
 	move_and_slide()
+	update_camera_bob(delta)
 	update_footsteps(delta)
 
 func _can_stand() -> bool:
@@ -142,6 +150,31 @@ func _can_stand() -> bool:
 	query.exclude = [get_rid()]
 	var hits := get_world_3d().direct_space_state.intersect_shape(query, 1)
 	return hits.is_empty()
+
+func update_camera_bob(delta: float) -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_running := is_on_floor() and horizontal_speed > 0.5 and not crouched
+
+	var bob_offset := 0.0
+
+	if is_running:
+		var frequency := BOB_FREQUENCY
+		var amount := BOB_AMOUNT
+
+		if Input.is_action_pressed("sprint"):
+			frequency *= SPRINT_BOB_MULTIPLIER
+			amount *= SPRINT_BOB_MULTIPLIER
+
+		bob_time += delta * frequency
+		bob_offset = absf(sin(bob_time)) * amount
+
+	var target_y := (CROUCH_CAMERA_Y if crouched else stand_camera_y) + bob_offset
+
+	camera_3d.position.y = move_toward(
+		camera_3d.position.y,
+		target_y,
+		BOB_SMOOTHING * delta
+	)
 
 # AUDIO
 func update_footsteps(delta: float) -> void:
