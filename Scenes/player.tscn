@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bdg1c8o8vgqf3" path="res://Assets/SFX/Footsteps/untitled - Track 4.wav" id="5_gymyn"]
 [ext_resource type="AudioStream" uid="uid://cx1fkshtswgva" path="res://Assets/SFX/Flashlight/flashlight-on.wav" id="7_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://cfys2ibbhxyp4" path="res://Assets/SFX/Flashlight/flashlight-off.wav" id="8_gymyn"]
+[ext_resource type="Script" uid="uid://cf5p3sxco6q56" path="res://Scripts/infection_meter.gd" id="11_gymyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -65,6 +66,30 @@ texture = ExtResource("3_6t5aa")
 flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
+
+[node name="InfectionMeter" type="Node2D" parent="HUD" unique_id=2078770289 node_paths=PackedStringArray("background", "meter", "player")]
+position = Vector2(940, 520)
+script = ExtResource("11_gymyn")
+background = NodePath("Background")
+meter = NodePath("Meter")
+player = NodePath("../..")
+
+[node name="Background" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2036380106]
+custom_minimum_size = Vector2(312, 64)
+offset_left = -924.0
+offset_top = 488.0
+offset_right = -612.0
+offset_bottom = 552.0
+color = Color(0, 0, 0, 1)
+
+[node name="Meter" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2004676187]
+custom_minimum_size = Vector2(0, 48)
+custom_maximum_size = Vector2(300, -1)
+offset_left = -916.0
+offset_top = 496.0
+offset_right = -620.0
+offset_bottom = 544.0
+color = Color(2.9841065e-06, 0.68424076, 0, 1)
 
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
