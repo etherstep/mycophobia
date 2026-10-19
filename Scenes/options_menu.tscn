@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://fd8kr3vyfitw" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
 [ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_inh3s"]
-[ext_resource type="FontFile" uid="uid://da2hb2lpfncvr" path="res://Assets/Fonts/Typewriter.ttf" id="2_l1wg4"]
 [ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_m6e8v"]
 [ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="4_m6e8v"]
+[ext_resource type="FontFile" uid="uid://sulgwod1q8a6" path="res://Assets/Fonts/Bakula-TTF.ttf" id="5_m6e8v"]
 
 [node name="OptionsMenu" type="Control" unique_id=2003868718 node_paths=PackedStringArray("back_button")]
 layout_mode = 3
@@ -52,7 +52,7 @@ theme_override_constants/separation = 24
 [node name="Title" type="Label" parent="VBoxContainer" unique_id=1429820948]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 64
 text = "Options"
 
@@ -64,7 +64,7 @@ theme_override_constants/separation = 16
 [node name="SensitivityLabel" type="Label" parent="VBoxContainer/SensitivityRow" unique_id=743090394]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
 text = "Mouse sensitivity"
 
@@ -81,7 +81,7 @@ value = 0.002
 [node name="SensitivityValue" type="Label" parent="VBoxContainer/SensitivityRow" unique_id=815817344]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
 text = "0.0022"
 
@@ -93,7 +93,7 @@ theme_override_constants/separation = 16
 [node name="GammaLabel" type="Label" parent="VBoxContainer/GammaRow" unique_id=1599458246]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
 text = "Gamma"
 
@@ -109,7 +109,7 @@ value = 1.0
 [node name="GammaValue" type="Label" parent="VBoxContainer/GammaRow" unique_id=1656514456]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
 text = "1"
 
@@ -121,7 +121,7 @@ theme_override_constants/separation = 16
 [node name="VolumeLabel" type="Label" parent="VBoxContainer/VolumeRow" unique_id=850706632]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
 text = "Volume"
 
@@ -136,15 +136,16 @@ value = 0.5
 [node name="VolumeValue" type="Label" parent="VBoxContainer/VolumeRow" unique_id=972424911]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
 text = "50%"
 
 [node name="Back" type="Button" parent="VBoxContainer" unique_id=467603662]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_l1wg4")
+theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
-text = "Back"
+text = "BACK"
+flat = true
 
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

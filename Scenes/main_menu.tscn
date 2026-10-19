@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://ddyetqyxkhfn8"]
 
 [ext_resource type="Script" uid="uid://dwj1y7tj8nsrl" path="res://Scripts/main_menu.gd" id="1_28flt"]
-[ext_resource type="FontFile" uid="uid://bqukxbmr12qdg" path="res://Assets/Fonts/Horror.ttf" id="2_1ehe0"]
 [ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_n45e2"]
-[ext_resource type="FontFile" uid="uid://da2hb2lpfncvr" path="res://Assets/Fonts/Typewriter.ttf" id="3_ce3w2"]
 [ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_opfnp"]
+[ext_resource type="Shader" uid="uid://lv82xoxqgtwa" path="res://Scenes/blur_effect.gdshader" id="4_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="4_opfnp"]
+[ext_resource type="FontFile" uid="uid://bcl20euoib7c7" path="res://Assets/Fonts/Raven Scream.otf" id="6_cp0ys"]
+[ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="6_opfnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfavn"]
+shader = ExtResource("4_cp0ys")
+shader_parameter/blur_radius = 5.70000008493684
 
 [node name="MainMenu" type="Control" unique_id=476423682 node_paths=PackedStringArray("new_game_button", "options_button")]
 layout_mode = 3
@@ -31,6 +36,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Background" type="TextureRect" parent="." unique_id=1024119360]
 modulate = Color(0.4095817, 0.37222615, 0.3673263, 1)
+material = SubResource("ShaderMaterial_qfavn")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,35 +48,47 @@ expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2035931958]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 80.0
+offset_top = 192.0
+offset_bottom = -368.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 13
 
-[node name="Title" type="Label" parent="VBoxContainer" unique_id=1055449836]
+[node name="Title" type="RichTextLabel" parent="VBoxContainer" unique_id=1748140883]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_1ehe0")
-theme_override_font_sizes/font_size = 100
-text = "Mycophobia"
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0.19634634, 0.17385921, 0.13055879, 0.9882353)
+theme_override_constants/shadow_offset_y = 24
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("6_cp0ys")
+theme_override_font_sizes/normal_font_size = 151
+text = "MYCOPHOBIA
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="New_Game" type="Button" parent="VBoxContainer" unique_id=1571414463]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_ce3w2")
+theme_override_colors/font_focus_color = Color(0.6431373, 0.6392157, 0.45882353, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_opfnp")
 theme_override_font_sizes/font_size = 40
-text = "New Game"
+text = "START GAME"
+flat = true
 
 [node name="Options" type="Button" parent="VBoxContainer" unique_id=299866381]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_ce3w2")
+theme_override_colors/font_focus_color = Color(0.6431373, 0.6392157, 0.45882353, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_opfnp")
 theme_override_font_sizes/font_size = 40
-text = "Options"
+text = "OPTIONS"
+flat = true
 
 [connection signal="pressed" from="VBoxContainer/New_Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
