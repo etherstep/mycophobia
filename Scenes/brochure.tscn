@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://0t8jcnv734j8"]
 
 [ext_resource type="Script" uid="uid://ctxlo4m6dch7b" path="res://Scenes/brochure.gd" id="1_rxxsa"]
-[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_iawld"]
+[ext_resource type="Texture2D" uid="uid://bb62hqsxih1yk" path="res://Assets/UI/Photo before.png" id="2_iawld"]
 
 [node name="Brochure" type="Control" unique_id=417166242 node_paths=PackedStringArray("skip_text")]
 layout_mode = 3
@@ -19,10 +19,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -729.0
+offset_top = -617.0
+offset_right = 83.0
+offset_bottom = 351.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.07679449
+scale = Vector2(1.17, 1.17)
 texture = ExtResource("2_iawld")
-expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1206707307]
 layout_mode = 1

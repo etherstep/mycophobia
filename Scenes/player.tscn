@@ -18,6 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
+[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
+[ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scenes/note_viewer.gd" id="19_l6n3p"]
+[ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
+[ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
+[ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
+[ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -215,6 +221,61 @@ grow_vertical = 2
 text = "•"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
+script = ExtResource("19_l6n3p")
+note_1 = ExtResource("20_2ijsl")
+note_2 = ExtResource("21_p1odr")
+note_3 = ExtResource("22_0gysh")
+note_4 = ExtResource("23_vfarp")
+
+[node name="NoteView" type="Control" parent="NoteViewer" unique_id=1311314576]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NoteTexture" type="TextureRect" parent="NoteViewer/NoteView" unique_id=269486160]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoteText" type="RichTextLabel" parent="NoteViewer/NoteView" unique_id=1184029453]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("19_fs7ks")
+theme_override_font_sizes/normal_font_size = 62
+bbcode_enabled = true
+
+[node name="Label" type="Label" parent="NoteViewer/NoteView" unique_id=292220182]
+z_index = 100
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_right = 110.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Press [TAB] to close the note"
+horizontal_alignment = 1
+
+[node name="NoteReadablePanel" type="PanelContainer" parent="NoteViewer/NoteView" unique_id=1302046320]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoteReadableText" type="RichTextLabel" parent="NoteViewer/NoteView/NoteReadablePanel" unique_id=328604417]
+layout_mode = 2
+
+[node name="NoteDialoguePlayer" type="AudioStreamPlayer" parent="NoteViewer" unique_id=840271635]
+bus = &"SFX-Dialogue"
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=795634399]
 transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)

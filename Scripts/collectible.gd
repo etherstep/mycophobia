@@ -21,12 +21,18 @@ func interact() -> void:
 		return
 	var inventory = get_tree().get_first_node_in_group("inventory")
 	if inventory == null:
-		print("No Inventory node found in the 'inventory' group.")
+		push_warning("No Inventory node found in the 'inventory' group.")
 		return
-	if inventory.add_item(item_data):
-		if item_data.item_type == ItemData.ItemType.NOTE:
-			MusicManager.play_world_sfx(note_interact_sfx)
-		queue_free()
+	if not inventory.add_item(item_data):
+		return
+	if item_data.item_type == ItemData.ItemType.NOTE:
+		MusicManager.play_world_sfx(note_interact_sfx)
+		var note_viewer = get_tree().get_first_node_in_group("note_viewer")
+		if note_viewer:
+			note_viewer.open_note(item_data)
+		else:
+			push_warning("No NoteViewer found in the 'note_viewer' group.")
+	queue_free()
 
 func set_hovered(hovered: bool) -> void:
 	if hovered:

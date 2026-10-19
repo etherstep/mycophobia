@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://betosej4178g3" path="res://Assets/UI/Select outline.PNG" id="19_dk1fi"]
 [ext_resource type="Texture2D" uid="uid://dnwsnjuim587g" path="res://Assets/UI/Select triangle.PNG" id="20_c3dep"]
 [ext_resource type="Texture2D" uid="uid://d4js3nfc6qr43" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
+[ext_resource type="Texture2D" uid="uid://bjk6gc70lfs4a" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
 
 [node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "selection_ui", "inventory_slots")]
 z_index = 100
@@ -247,5 +248,10 @@ texture = ExtResource("14_81ic1")
 position = Vector2(1248, 635)
 scale = Vector2(0.44, 0.44)
 texture = ExtResource("15_s435f")
+
+[node name="Portrait" type="Sprite2D" parent="." unique_id=1056993300]
+position = Vector2(1607, 639)
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("27_f1vfh")
 
 [connection signal="gui_input" from="NoteView" to="." method="_on_note_view_gui_input"]
