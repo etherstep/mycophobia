@@ -36,6 +36,6 @@ func interact() -> void:
 
 func set_hovered(hovered: bool) -> void:
 	if hovered:
-		sprite.modulate = Color("ffffffff")
+		sprite.modulate = Color("c3c1b4ff")
 	else:
 		sprite.modulate = original_modulate
