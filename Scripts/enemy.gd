@@ -85,7 +85,63 @@ func _can_see(player: Node3D) -> bool:
 	)
 	query.exclude = [get_rid()]
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+	if hit.is_empty() or hit.collider != player:
+		return false
+	return _is_player_lit(player)
+
+
+func _is_player_lit(player: Node3D) -> bool:
+	var chest := player.global_position + Vector3(0, 1.2, 0)
+	for node in get_tree().get_nodes_in_group("detection_light"):
+		if not node is Light3D:
+			continue
+		var light: Light3D = node
+		if not light.visible:
+			continue
+		# The player's own flashlight points forward, so the body is outside its cone.
+		if player.is_ancestor_of(light):
+			return true
+		if _light_reaches(light, chest, player):
+			return true
+	return false
+
+
+func _light_reaches(light: Light3D, chest: Vector3, player: Node3D) -> bool:
+	var to_chest := chest - light.global_position
+	var distance := to_chest.length()
+	if distance < 0.01:
+		return true
+	var light_range := 0.0
+	if light is OmniLight3D:
+		var omni: OmniLight3D = light
+		light_range = omni.omni_range
+	elif light is SpotLight3D:
+		var spot: SpotLight3D = light
+		light_range = spot.spot_range
+		var forward := -light.global_basis.z
+		if forward.angle_to(to_chest) > deg_to_rad(spot.spot_angle):
+			return false
+	else:
+		return false
+	if distance > light_range:
+		return false
+	if _point_hits_player(light.global_position, player):
+		return true
+	var query := PhysicsRayQueryParameters3D.create(light.global_position, chest)
+	query.exclude = [get_rid()]
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	return not hit.is_empty() and hit.collider == player
+
+
+func _point_hits_player(point: Vector3, player: Node3D) -> bool:
+	var query := PhysicsPointQueryParameters3D.new()
+	query.position = point
+	query.exclude = [get_rid()]
+	var hits := get_world_3d().direct_space_state.intersect_point(query)
+	for hit in hits:
+		if hit.collider == player:
+			return true
+	return false
 
 
 func _pick_patrol_point() -> void:
@@ -159,41 +215,10 @@ func get_player_angle_to_character() -> float:
 	var angle_deg := rad_to_deg(character_facing.angle_to(to_camera))
 	return angle_deg
 
-func play_correct_angle_animation_4_way(angle_deg: float) -> void:
-	if angle_deg >= -45 and angle_deg < 45:
-		animated_sprite.play("front")
-		animated_sprite.flip_h = false
-	elif angle_deg >= 45 and angle_deg < 90:
-		animated_sprite.play("right")
-		animated_sprite.flip_h = false
-	elif angle_deg < -45 and angle_deg >= -112.5:
-		animated_sprite.play("right")
-		animated_sprite.flip_h = true
-	else:
-		animated_sprite.flip_h = false
-		animated_sprite.play("back")
+func play_correct_angle_animation_4_way(_angle_deg: float) -> void:
+	animated_sprite.flip_h = false
+	animated_sprite.play("front")
 
-func play_correct_angle_animation_8_way(angle_deg: float) -> void:
-	if angle_deg >= -22.5 and angle_deg < 22.5:
-		animated_sprite.play("front")
-		animated_sprite.flip_h = false
-	elif angle_deg >= 22.5 and angle_deg < 67.5:
-		animated_sprite.play("front_diagonal")
-		animated_sprite.flip_h = false
-	elif angle_deg >= 67.5 and angle_deg < 112.5:
-		animated_sprite.play("right")
-		animated_sprite.flip_h = false
-	elif angle_deg >= 112.5 and angle_deg < 157.5:
-		animated_sprite.play("back_diagonal")
-		animated_sprite.flip_h = false
-	elif angle_deg <= -22.5 and angle_deg > -67.5:
-		animated_sprite.play("front_diagonal")
-		animated_sprite.flip_h = true
-	elif angle_deg <= -67.5 and angle_deg > -112.5:
-		animated_sprite.play("right")
-		animated_sprite.flip_h = true
-	elif angle_deg <= -112.5 and angle_deg > -157.5:
-		animated_sprite.play("back_diagonal")
-		animated_sprite.flip_h = true
-	else:
-		animated_sprite.play("back")
+func play_correct_angle_animation_8_way(_angle_deg: float) -> void:
+	animated_sprite.flip_h = false
+	animated_sprite.play("front")

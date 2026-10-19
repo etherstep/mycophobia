@@ -34,7 +34,7 @@ flashlight_asset = NodePath("../PlayerHands/TextureRect")
 flashlight_on_sfx = ExtResource("7_tx1dd")
 flashlight_off_sfx = ExtResource("8_gymyn")
 
-[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633]
+[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035404205, -0.49950033)
 light_color = Color(0.9647059, 0.9372549, 0.92156863, 1)
 spot_range = 80.0

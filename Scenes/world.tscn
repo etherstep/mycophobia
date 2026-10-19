@@ -2690,71 +2690,48 @@ script = ExtResource("10_world")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
 
-<<<<<<< HEAD
 [node name="Navigation" type="NavigationRegion3D" parent="." unique_id=259160484]
 navigation_mesh = ExtResource("12_nav")
 
-[node name="Floor" type="StaticBody3D" parent="Navigation" unique_id=190759193]
-transform = Transform3D(6.5, 0, 0, 0, 6.5, 0, 0, 0, 6.5, 0, 0, 0)
+[node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385, 41, -6)
+omni_range = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Navigation/Floor" unique_id=879477997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6520996, 0.0011901855, -1.7681177)
-material_override = SubResource("StandardMaterial3D_qr235")
-mesh = SubResource("BoxMesh_baysf")
+[node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -376, 41, -16)
+omni_range = 5.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Navigation/Floor" unique_id=621423171]
-transform = Transform3D(1, 4.144645e-05, -5.3947766e-05, -4.142441e-05, 0.99999994, 0.00027505087, 5.396469e-05, -0.00027504755, 0.99999994, -1.7321346, -0.33124948, -4.384234)
-shape = SubResource("BoxShape3D_baysf")
-
-[node name="Floor2" type="StaticBody3D" parent="." unique_id=2037597493]
-transform = Transform3D(6.4999995, 0, 0, 0, -2.84124e-07, -6.4999995, 0, 6.4999995, -2.84124e-07, 0, 0, -25.704113)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2" unique_id=1399766798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6520996, 0.0011901855, -1.7681177)
-material_override = SubResource("StandardMaterial3D_jdvhe")
-mesh = SubResource("BoxMesh_baysf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2" unique_id=586245009]
-transform = Transform3D(1, 4.144645e-05, -5.3947766e-05, -4.142441e-05, 0.99999994, 0.00027505087, 5.396469e-05, -0.00027504755, 0.99999994, -1.7321346, -0.33124948, -4.384234)
-shape = SubResource("BoxShape3D_baysf")
-
-=======
->>>>>>> main
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -384, 43, -12)
 inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
-<<<<<<< HEAD
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -395, 40, 2)
 
 [node name="PatrolA" type="Marker3D" parent="." unique_id=236161329 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -395, 40, -18)
 
 [node name="PatrolB" type="Marker3D" parent="." unique_id=261258822 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -376, 40, -18)
 
 [node name="PatrolC" type="Marker3D" parent="." unique_id=450060164 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -376, 40, 0)
 
 [node name="StashPoint" type="Marker3D" parent="." unique_id=514351422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1, -7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385, 40, -5)
 
 [node name="DrDonovan" parent="." unique_id=654395283 node_paths=PackedStringArray("guard_point") instance=ExtResource("2_go701")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385, 40, -8)
 guards = true
 guard_point = NodePath("../StashPoint")
 
 [node name="AlertZone" type="Area3D" parent="." unique_id=2029997656 node_paths=PackedStringArray("enemy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -380, 40, -2)
 script = ExtResource("11_alert")
 enemy = NodePath("../Enemy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
-=======
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -376.38953, 43, -12)
->>>>>>> main
 
 [node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
 
@@ -2789,7 +2766,7 @@ metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1776206430]
 collision_mask = 0
 
-[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2046574497]
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2046574497 groups=["nav_source"]]
 mesh = SubResource("ArrayMesh_xbk3s")
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=950703413]
