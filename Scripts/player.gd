@@ -296,10 +296,10 @@ func increase_infection(amount: int) -> void:
 func decrease_infection(amount: int) -> void:
 	if (amount <= 0 or infection_level == MIN_INFECTION):
 		return
-	infection_amount -= amount
-	if infection_amount <= MIN_INFECTION:
-		infection_amount = MIN_INFECTION
-	infection_changed.emit(infection_amount)
+	infection_level -= amount
+	if infection_level <= MIN_INFECTION:
+		infection_level = MIN_INFECTION
+	infection_level_changed.emit(infection_level)
 
 func update_running_sfx() -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
