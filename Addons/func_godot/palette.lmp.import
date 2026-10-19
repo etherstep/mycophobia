@@ -1,14 +1,14 @@
 [remap]
 
 importer="func_godot.palette"
-type="Resource"
+type="QuakePaletteFile"
 uid="uid://drgnc41yfybr"
-path="res://.godot/imported/palette.lmp-138c33f2ac0cab3ad6373e7c0425cf00.tres"
+path="res://.godot/imported/palette.lmp-4a861b5bffe3cfdcfa460ba2dd16ff5e.tres"
 
 [deps]
 
-source_file="res://addons/func_godot/palette.lmp"
-dest_files=["res://.godot/imported/palette.lmp-138c33f2ac0cab3ad6373e7c0425cf00.tres"]
+source_file="res://Addons/func_godot/palette.lmp"
+dest_files=["res://.godot/imported/palette.lmp-4a861b5bffe3cfdcfa460ba2dd16ff5e.tres"]
 
 [params]
 
