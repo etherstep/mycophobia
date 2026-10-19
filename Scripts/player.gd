@@ -1,5 +1,5 @@
+class_name Player
 extends CharacterBody3D
-
 
 const MOUSE_SENSITIVITY := 0.0022
 const PITCH_LIMIT := deg_to_rad(80.0)
@@ -32,6 +32,13 @@ var crouched := false
 var stand_height: float
 var stand_shape_y: float
 var stand_camera_y: float
+
+# INFECTION:
+signal infection_changed(infection: float)
+const MAX_INFECTION: float = 100.0
+const MIN_INFECTION: float = 0.0
+var infection_amount: float = MIN_INFECTION
+
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var camera_3d: Camera3D = $Camera3D
@@ -238,3 +245,19 @@ func play_random_footstep() -> void:
 	last_footstep_index = sound_index
 	footstep_player.stream = footstep_sounds[sound_index]
 	footstep_player.play()
+
+func increase_infection(amount: int) -> void:
+	if (amount <= 0):
+		return
+	infection_amount += amount
+	if infection_amount >= MAX_INFECTION:
+		infection_amount = MAX_INFECTION
+	infection_changed.emit(infection_amount)
+
+func decrease_infection(amount: int) -> void:
+	if (amount <= 0 or infection_amount == MIN_INFECTION):
+		return
+	infection_amount -= amount
+	if infection_amount <= MIN_INFECTION:
+		infection_amount = MIN_INFECTION
+	infection_changed.emit(infection_amount)
