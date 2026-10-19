@@ -34,10 +34,10 @@ var stand_shape_y: float
 var stand_camera_y: float
 
 # INFECTION:
-signal infection_changed(infection: float)
+signal infection_level_changed(infection: float)
 const MAX_INFECTION: float = 100.0
 const MIN_INFECTION: float = 0.0
-var infection_amount: float = MIN_INFECTION
+var infection_level: float = MIN_INFECTION
 
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
@@ -288,18 +288,19 @@ func play_random_footstep(force_restart: bool = false) -> void:
 func increase_infection(amount: int) -> void:
 	if (amount <= 0):
 		return
-	infection_amount += amount
-	if infection_amount >= MAX_INFECTION:
-		infection_amount = MAX_INFECTION
-	infection_changed.emit(infection_amount)
+	infection_level += amount
+	if infection_level >= MAX_INFECTION:
+		infection_level = MAX_INFECTION
+	infection_level_changed.emit(infection_level)
 
 func decrease_infection(amount: int) -> void:
-	if (amount <= 0 or infection_amount == MIN_INFECTION):
+	if (amount <= 0 or infection_level == MIN_INFECTION):
 		return
 	infection_amount -= amount
 	if infection_amount <= MIN_INFECTION:
 		infection_amount = MIN_INFECTION
 	infection_changed.emit(infection_amount)
+
 func update_running_sfx() -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
 	var is_sprinting := (
