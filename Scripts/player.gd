@@ -36,6 +36,7 @@ var stand_camera_y: float
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
+@export var player_hand: CanvasLayer
 
 # AUDIO
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
@@ -47,6 +48,10 @@ var last_footstep_index: int = -1
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if inventory_ui:
+		inventory_ui.hide()
+	if player_hand:
+		player_hand.show()
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
 	stand_height = capsule.height
 	stand_shape_y = collision_shape_3d.position.y
@@ -74,15 +79,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 func toggle_inventory() -> void:
-	if inventory_ui:
-		inventory_ui.visible = not inventory_ui.visible
-
-		if inventory_ui.visible:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	if inventory_ui == null:
+		push_warning("Inventory UI is not assigned!")
+		return
+	if inventory_ui.close_note_if_open():
 		get_viewport().set_input_as_handled()
+		return
+	inventory_ui.visible = not inventory_ui.visible
+	_update_inventory_state()
+	get_viewport().set_input_as_handled()
+
+func _update_inventory_state() -> void:
+	var inventory_open := inventory_ui.visible
+	if player_hand:
+		player_hand.visible = not inventory_open
+	Input.mouse_mode = (
+		Input.MOUSE_MODE_VISIBLE
+		if inventory_open
+		else Input.MOUSE_MODE_CAPTURED
+	)
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("crouch"):

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://0t8jcnv734j8"]
 
 [ext_resource type="Script" uid="uid://ctxlo4m6dch7b" path="res://Scenes/brochure.gd" id="1_rxxsa"]
+[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_iawld"]
 
 [node name="Brochure" type="Control" unique_id=417166242 node_paths=PackedStringArray("skip_text")]
 layout_mode = 3
@@ -10,18 +11,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rxxsa")
-skip_text = NodePath("ColorRect/Label")
+skip_text = NodePath("Label")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=684148965]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=548748260]
+modulate = Color(0.30692267, 0.3069227, 0.3069227, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("2_iawld")
+expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=1206707307]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1206707307]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +68,7 @@ Buildings are affordable, equipped with all the modern features you desire, and 
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=1619580313]
+[node name="Label" type="Label" parent="." unique_id=1619580313]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0

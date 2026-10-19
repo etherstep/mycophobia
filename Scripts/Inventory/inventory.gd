@@ -3,7 +3,7 @@ class_name Inventory
 
 signal inventory_changed
 
-@export var max_slots: int = 20
+@export var max_slots: int = 9
 
 var items: Array[ItemData] = []
 
