@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_bhbqf")
 name = "note_4"
-item_type = 1
 texture = ExtResource("2_d2s8c")
 text = "The mother mushroom links all the others. 
 Salt and fire her, and all will reset.

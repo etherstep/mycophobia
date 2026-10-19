@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_4ato6")
 name = "note_2"
-item_type = 1
 texture = ExtResource("2_v23vv")
 text = "Need to restore the people’s health.
 Thought I knew what I was doing.

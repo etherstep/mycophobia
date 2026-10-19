@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_owpok")
 name = "note_3"
-item_type = 1
 texture = ExtResource("2_2xg3g")
 text = "The infected do not trigger the spore shooters or other infected people.
 Dr. Donovan"
