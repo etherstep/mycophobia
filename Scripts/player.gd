@@ -42,6 +42,8 @@ var stand_camera_y: float
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
 @export var footstep_sounds: Array[AudioStream]
 @export var footstep_interval: float = 0.45
+@export var footstep_interval_sprint: float = 0.25
+@export var footstep_interval_crouch: float = 0.75
 var footstep_tween: Tween
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
@@ -217,13 +219,25 @@ func update_camera_bob(delta: float) -> void:
 func update_footsteps(delta: float) -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
 	var is_moving := is_on_floor() and horizontal_speed > 0.1
+
 	if not is_moving:
+		footstep_timer = 0.0
 		return
+
+	var is_sprinting := Input.is_action_pressed("sprint") and not crouched
+
+	var current_interval: float = footstep_interval
+	if crouched:
+		current_interval = footstep_interval_crouch
+	elif is_sprinting:
+		current_interval = footstep_interval_sprint
+
 	footstep_timer -= delta
+
 	if footstep_timer <= 0.0:
-		if not footstep_player.playing:
-			play_random_footstep()
-			footstep_timer = footstep_interval
+		if is_sprinting or not footstep_player.playing:
+			play_random_footstep(is_sprinting)
+			footstep_timer = current_interval
 
 func stop_footsteps() -> void:
 	if not footstep_player.playing:
@@ -239,11 +253,13 @@ func stop_footsteps() -> void:
 		func(): footstep_player.volume_db = 0.0
 	)
 
-func play_random_footstep() -> void:
+func play_random_footstep(force_restart: bool = false) -> void:
 	if footstep_sounds.is_empty():
 		return
-	if footstep_player.playing:
+
+	if footstep_player.playing and not force_restart:
 		return
+
 	var sound_index: int
 	if footstep_sounds.size() == 1:
 		sound_index = 0
@@ -251,6 +267,7 @@ func play_random_footstep() -> void:
 		sound_index = randi_range(0, footstep_sounds.size() - 1)
 		while sound_index == last_footstep_index:
 			sound_index = randi_range(0, footstep_sounds.size() - 1)
+
 	last_footstep_index = sound_index
 	footstep_player.stream = footstep_sounds[sound_index]
 	footstep_player.play()
