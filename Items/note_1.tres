@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_wn210")
 name = "note_1"
-item_type = 1
 texture = ExtResource("2_wn210")
 text = "Houses infected.
 Breathing out spores. 

@@ -1,10 +1,10 @@
 extends Resource
 class_name ItemData
 
-enum ItemType { ITEM, NOTE }
+enum ItemType { MATCHES, SALT, SALINE, NOTE }
 
 @export var name : String = ""
-@export var item_type: ItemType = ItemType.ITEM
+@export var item_type: ItemType = ItemType.NOTE
 @export var stack_limit : int = 1
 @export var texture : Texture2D
 

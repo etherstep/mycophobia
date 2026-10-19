@@ -10,8 +10,11 @@
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
+[ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
+[ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
+[ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
@@ -2694,7 +2697,7 @@ script = ExtResource("10_world")
 environment = SubResource("Environment_baysf")
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -384, 43, -12)
+transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -0.0021242325, -284.6135, 2.1201868, -46.56684)
 inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
@@ -2707,22 +2710,62 @@ visible = false
 inventory = NodePath("../Inventory")
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=3839576]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385.36694, 39.99962, -5.5679874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.77112, 2.4988518, -16.07994)
 
 [node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.14381513, 0, -0.01849884, 0, 0.145, 0, 0.01849884, 0, 0.14381513, 1.697403, 1, 0)
+transform = Transform3D(0.14877428, 0, -0.019136734, 0, 0.15, 0, 0.019136734, 0, 0.14877428, 1.697403, 1, 0)
 
 [node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 1, 1, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1, 1, 0)
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0.21669006, 1, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.21669006, 1, 0)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.59687805, 1, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.59687805, 1, 0)
 item_data = ExtResource("9_ikia7")
+
+[node name="salt_1" parent="Collectibles" unique_id=648026096 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 8.392334, 1, -16.24413)
+item_data = ExtResource("11_e0ngr")
+
+[node name="salt_2" parent="Collectibles" unique_id=1135687664 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 9.143402, 0.35634065, -16.24413)
+item_data = ExtResource("11_e0ngr")
+
+[node name="salt_3" parent="Collectibles" unique_id=938361332 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 8.392334, 0.34691358, -16.24413)
+item_data = ExtResource("11_e0ngr")
+
+[node name="salt_4" parent="Collectibles" unique_id=273507407 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 9.122803, 1, -16.24413)
+item_data = ExtResource("11_e0ngr")
+
+[node name="saline_1" parent="Collectibles" unique_id=1714809678 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 7.4092407, 1, -16.24413)
+item_data = ExtResource("12_hgpy0")
+
+[node name="saline_2" parent="Collectibles" unique_id=768498298 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 7.8852844, 1, -16.24413)
+item_data = ExtResource("12_hgpy0")
+
+[node name="matches_1" parent="Collectibles" unique_id=1578993740 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 5.943207, 1, -16.24413)
+item_data = ExtResource("13_t2t4p")
+
+[node name="matches_2" parent="Collectibles" unique_id=2119621321 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 4.6288757, -0.0032932758, -16.24413)
+item_data = ExtResource("13_t2t4p")
+
+[node name="matches_3" parent="Collectibles" unique_id=1468106813 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 5.943207, -0.043504, -16.24413)
+item_data = ExtResource("13_t2t4p")
+
+[node name="matches_4" parent="Collectibles" unique_id=2040173787 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 4.5945435, 1, -16.24413)
+item_data = ExtResource("13_t2t4p")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
 script = ExtResource("12_e0ngr")
