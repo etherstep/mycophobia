@@ -10,6 +10,10 @@ var opened_from_game := false
 @onready var volume_slider: HSlider = $VBoxContainer/VolumeRow/VolumeSlider
 @onready var volume_value: Label = $VBoxContainer/VolumeRow/VolumeValue
 
+@export var button_hover_sfx: AudioStream
+@export var button_pressed_sfx: AudioStream
+
+@export var back_button: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +30,17 @@ func _ready() -> void:
 	sensitivity_slider.value_changed.connect(_on_sensitivity_changed)
 	gamma_slider.value_changed.connect(_on_gamma_changed)
 	volume_slider.value_changed.connect(_on_volume_changed)
+	sensitivity_slider.mouse_entered.connect(_on_button_hovered)
+	volume_slider.mouse_entered.connect(_on_button_hovered)
+	gamma_slider.mouse_entered.connect(_on_button_hovered)
+	back_button.mouse_entered.connect(_on_button_hovered)
+	back_button.pressed.connect(_on_button_pressed)
+
+func _on_button_hovered() -> void:
+	MusicManager.play_ui_sfx(button_hover_sfx)
+
+func _on_button_pressed() -> void:
+	MusicManager.play_ui_sfx(button_pressed_sfx)
 
 func _on_sensitivity_changed(value: float) -> void:
 	Settings.mouse_sensitivity = value
