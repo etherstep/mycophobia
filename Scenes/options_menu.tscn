@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://drtq5rcm0wxd8"]
 
 [ext_resource type="Script" uid="uid://fd8kr3vyfitw" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
+[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_inh3s"]
 [ext_resource type="FontFile" uid="uid://da2hb2lpfncvr" path="res://Assets/Fonts/Typewriter.ttf" id="2_l1wg4"]
+[ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_m6e8v"]
 
-[node name="OptionsMenu" type="Control" unique_id=2003868718]
+[node name="OptionsMenu" type="Control" unique_id=2003868718 node_paths=PackedStringArray("back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uj0ok")
+button_hover_sfx = ExtResource("2_inh3s")
+button_pressed_sfx = ExtResource("3_m6e8v")
+back_button = NodePath("VBoxContainer/Back")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2094356942]
 layout_mode = 1

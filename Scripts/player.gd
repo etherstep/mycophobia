@@ -8,13 +8,13 @@ const CROUCH_CAMERA_Y = 1.15
 const CROUCH_CAMERA_SPEED := 6.0
 
 const SPEED = 5.0
-const JUMP_VELOCITY := 6.2
+const JUMP_VELOCITY := 5.0
 const SPRINT_SPEED := 8.0
 const CROUCH_SPEED := 2.5
 
-const GRAVITY := 18.0
-const FALL_GRAVITY_MULTIPLIER := 1.5
-const JUMP_CUT_MULTIPLIER := 2.0
+const GRAVITY := 16.0
+const FALL_GRAVITY_MULTIPLIER := 1.15
+const JUMP_CUT_MULTIPLIER := 1.5
 
 # RUNNING CAMERA BOB
 const BOB_AMOUNT := 0.045
@@ -37,6 +37,7 @@ var stand_camera_y: float
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
+@export var player_hand: CanvasLayer
 
 # AUDIO
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
@@ -48,6 +49,10 @@ var last_footstep_index: int = -1
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if inventory_ui:
+		inventory_ui.hide()
+	if player_hand:
+		player_hand.show()
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
 	stand_height = capsule.height
 	stand_shape_y = collision_shape_3d.position.y
@@ -93,15 +98,26 @@ func die() -> void:
 
 
 func toggle_inventory() -> void:
-	if inventory_ui:
-		inventory_ui.visible = not inventory_ui.visible
-
-		if inventory_ui.visible:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	if inventory_ui == null:
+		push_warning("Inventory UI is not assigned!")
+		return
+	if inventory_ui.close_note_if_open():
 		get_viewport().set_input_as_handled()
+		return
+	inventory_ui.visible = not inventory_ui.visible
+	inventory_ui.play_inventory_sfx(inventory_ui.visible)
+	_update_inventory_state()
+	get_viewport().set_input_as_handled()
+
+func _update_inventory_state() -> void:
+	var inventory_open := inventory_ui.visible
+	if player_hand:
+		player_hand.visible = not inventory_open
+	Input.mouse_mode = (
+		Input.MOUSE_MODE_VISIBLE
+		if inventory_open
+		else Input.MOUSE_MODE_CAPTURED
+	)
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -127,12 +143,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		var current_gravity := GRAVITY
 
-		# Fall faster than you rise.
 		if velocity.y < 0.0:
 			current_gravity *= FALL_GRAVITY_MULTIPLIER
-
-		# Releasing jump early cuts the jump short.
-		if velocity.y > 0.0 and not Input.is_action_pressed("jump"):
+		elif velocity.y > 0.0 and not Input.is_action_pressed("jump"):
 			current_gravity *= JUMP_CUT_MULTIPLIER
 
 		velocity.y -= current_gravity * delta
@@ -146,14 +159,38 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+	if is_on_floor():
+		# Responsive ground movement.
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0.0, speed * 2.5 * delta)
+			velocity.z = move_toward(velocity.z, 0.0, speed * 2.5 * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed )
+		# Preserve momentum in the air, with limited air control.
+		var air_acceleration := 4.0
+
+		if direction:
+			velocity.x = move_toward(
+				velocity.x,
+				direction.x * speed,
+				air_acceleration * delta
+			)
+			velocity.z = move_toward(
+				velocity.z,
+				direction.z * speed,
+				air_acceleration * delta
+			)
 
 	move_and_slide()
+	# Stop horizontal momentum immediately upon landing
+	if is_on_floor() and not Input.is_action_pressed("left") \
+	and not Input.is_action_pressed("right") \
+	and not Input.is_action_pressed("up") \
+	and not Input.is_action_pressed("down"):
+		velocity.x = 0.0
+		velocity.z = 0.0
 	update_camera_bob(delta)
 	update_footsteps(delta)
 

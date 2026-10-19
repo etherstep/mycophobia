@@ -1,9 +1,34 @@
 [gd_scene format=3 uid="uid://c7un65hd14m7y"]
 
 [ext_resource type="Script" uid="uid://car8gcbef5qxc" path="res://Scripts/Inventory/inventory_ui.gd" id="1_a3clf"]
+[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_ei62k"]
+[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_mkjsv"]
+[ext_resource type="AudioStream" uid="uid://bc6wugfikl5e" path="res://Assets/SFX/UI/click1.wav" id="3_4grh2"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="3_s1kqi"]
+[ext_resource type="AudioStream" uid="uid://b3fqcwpq4euvt" path="res://Assets/SFX/UI/read-note.wav" id="4_4grh2"]
+[ext_resource type="Texture2D" uid="uid://cupilj73cdnxu" path="res://Assets/UI/Inventory Row 1A.PNG" id="4_o2r74"]
+[ext_resource type="AudioStream" uid="uid://3u1b4kve17df" path="res://Assets/SFX/UI/untitled - Track 1.wav" id="5_eqgu5"]
+[ext_resource type="Texture2D" uid="uid://clp7kbacwda2x" path="res://Assets/UI/Inventory Row 1B.PNG" id="5_mkjsv"]
+[ext_resource type="Texture2D" uid="uid://c72b8ptwswg1o" path="res://Assets/UI/Inventory Row 1C.PNG" id="6_4grh2"]
+[ext_resource type="AudioStream" uid="uid://bpinp3pa82ks" path="res://Assets/SFX/UI/untitled - Track 2.wav" id="6_f1vfh"]
+[ext_resource type="Texture2D" uid="uid://cxucp5df2qrag" path="res://Assets/UI/Inventory Row 2A.PNG" id="7_wqvdr"]
+[ext_resource type="Texture2D" uid="uid://cvhnesxmxy1ep" path="res://Assets/UI/Inventory Row 2B.PNG" id="8_eqgu5"]
+[ext_resource type="Texture2D" uid="uid://dleb5sy513fvb" path="res://Assets/UI/Inventory Row 3A.PNG" id="9_f1vfh"]
+[ext_resource type="Texture2D" uid="uid://tgprgkgrga8m" path="res://Assets/UI/Inventory Row 3B.PNG" id="10_ghpjh"]
+[ext_resource type="Texture2D" uid="uid://c0ic550ow5aeh" path="res://Assets/UI/Inventory Row 3C.PNG" id="11_jroks"]
+[ext_resource type="Texture2D" uid="uid://cbkxc6iypssxj" path="res://Assets/UI/Item select window1.PNG" id="12_oyd3a"]
+[ext_resource type="Texture2D" uid="uid://scatt13k4v0w" path="res://Assets/UI/Item select window 2.PNG" id="13_sgisd"]
+[ext_resource type="Texture2D" uid="uid://dc3pbb0o5quhl" path="res://Assets/UI/Overlay.PNG" id="14_81ic1"]
+[ext_resource type="Texture2D" uid="uid://ct2008a8vng2l" path="res://Assets/UI/Potrait shadow.PNG" id="15_s435f"]
+[ext_resource type="Texture2D" uid="uid://c66ci4nx0gtnx" path="res://Assets/UI/Progress.PNG" id="16_jtn5v"]
+[ext_resource type="Texture2D" uid="uid://cpxndu8saiyir" path="res://Assets/UI/Row 2C.PNG" id="17_wv4rb"]
+[ext_resource type="Texture2D" uid="uid://c4eh1q43ecu8r" path="res://Assets/UI/Select fill in.PNG" id="18_f46an"]
+[ext_resource type="Texture2D" uid="uid://betosej4178g3" path="res://Assets/UI/Select outline.PNG" id="19_dk1fi"]
+[ext_resource type="Texture2D" uid="uid://dnwsnjuim587g" path="res://Assets/UI/Select triangle.PNG" id="20_c3dep"]
+[ext_resource type="Texture2D" uid="uid://d4js3nfc6qr43" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
 
-[node name="Inventory_ui" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text")]
+[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "selection_ui", "inventory_slots")]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,16 +36,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a3clf")
+button_hover_sfx = ExtResource("2_mkjsv")
+button_pressed_sfx = ExtResource("3_4grh2")
+note_pressed_sfx = ExtResource("4_4grh2")
+inventory_open_sfx = ExtResource("5_eqgu5")
+inventory_close_sfx = ExtResource("6_f1vfh")
 item_texture = NodePath("ItemDetails/ItemTexture")
 item_text = NodePath("ItemDetails/ItemTexture/ItemText")
+selection_ui = NodePath("VisualSlots/SelectUI")
+inventory_slots = [NodePath("VisualSlots/1a")]
 
 [node name="Slots" type="GridContainer" parent="." unique_id=863513507]
+z_index = 1
 layout_mode = 0
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 4
+offset_left = 202.0
+offset_top = 202.0
+offset_right = 202.0
+offset_bottom = 202.0
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 32
+columns = 3
 
-[node name="Panel" type="Panel" parent="." unique_id=92153644]
+[node name="Panel" type="TextureRect" parent="." unique_id=670305534]
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,8 +66,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("2_ei62k")
+expand_mode = 1
 
 [node name="ItemDetails" type="VBoxContainer" parent="." unique_id=1842983767]
+z_index = 1
 layout_mode = 0
 
 [node name="ItemTexture" type="TextureRect" parent="ItemDetails" unique_id=1113905775]
@@ -37,8 +78,8 @@ layout_mode = 2
 
 [node name="ItemText" type="Label" parent="ItemDetails/ItemTexture" unique_id=944290168]
 layout_mode = 0
-offset_right = 1.0
-offset_bottom = 32.0
+offset_right = 200.0
+offset_bottom = 200.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_s1kqi")
 theme_override_font_sizes/font_size = 21
@@ -46,9 +87,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NoteView" type="Control" parent="." unique_id=2013187292]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="NoteTexture" type="TextureRect" parent="NoteView" unique_id=277415346]
 layout_mode = 0
@@ -64,6 +109,19 @@ theme_override_fonts/normal_font = ExtResource("3_s1kqi")
 theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
 
+[node name="Label" type="Label" parent="NoteView" unique_id=185079037]
+z_index = 100
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_right = 110.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Press [TAB] to close the note"
+horizontal_alignment = 1
+
 [node name="NoteReadablePanel" type="PanelContainer" parent="NoteView" unique_id=1291626641]
 layout_mode = 0
 offset_right = 40.0
@@ -71,3 +129,123 @@ offset_bottom = 40.0
 
 [node name="NoteReadableText" type="RichTextLabel" parent="NoteView/NoteReadablePanel" unique_id=660730989]
 layout_mode = 2
+
+[node name="VisualSlots" type="Control" parent="." unique_id=1631637050]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="1a" type="Control" parent="VisualSlots" unique_id=80164852]
+anchors_preset = 0
+offset_left = 217.0
+offset_top = 199.0
+offset_right = 396.0
+offset_bottom = 408.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+
+[node name="InventoryRow1a" type="Sprite2D" parent="VisualSlots" unique_id=133876401]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_o2r74")
+
+[node name="InventoryRow1b" type="Sprite2D" parent="VisualSlots" unique_id=468626596]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_mkjsv")
+
+[node name="InventoryRow1c" type="Sprite2D" parent="VisualSlots" unique_id=257271919]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_4grh2")
+
+[node name="InventoryRow2a" type="Sprite2D" parent="VisualSlots" unique_id=2142138046]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_wqvdr")
+
+[node name="InventoryRow2c" type="Sprite2D" parent="VisualSlots" unique_id=1868530864]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_wv4rb")
+
+[node name="InventoryRow2b" type="Sprite2D" parent="VisualSlots" unique_id=252706331]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_eqgu5")
+
+[node name="InventoryRow3a" type="Sprite2D" parent="VisualSlots" unique_id=1923162226]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_f1vfh")
+
+[node name="InventoryRow3b" type="Sprite2D" parent="VisualSlots" unique_id=34268534]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_ghpjh")
+
+[node name="InventoryRow3c" type="Sprite2D" parent="VisualSlots" unique_id=1029367355]
+position = Vector2(779.7, 447.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_jroks")
+
+[node name="ItemSelectWindow1" type="Sprite2D" parent="VisualSlots" unique_id=520099883]
+position = Vector2(731.7, 1415.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_oyd3a")
+
+[node name="ItemSelectWindow2" type="Sprite2D" parent="VisualSlots" unique_id=2075243073]
+position = Vector2(731.7, 1415.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_sgisd")
+
+[node name="SelectUI" type="Control" parent="VisualSlots" unique_id=450111258]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="SelectFillIn" type="Sprite2D" parent="VisualSlots/SelectUI" unique_id=918550804]
+visible = false
+scale = Vector2(17.558334, 6.797619)
+texture = ExtResource("18_f46an")
+
+[node name="SelectOutline" type="Sprite2D" parent="VisualSlots/SelectUI" unique_id=1374827335]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_dk1fi")
+region_enabled = true
+region_rect = Rect2(214, 512, 420, 442)
+
+[node name="SelectTriangle" type="Sprite2D" parent="VisualSlots/SelectUI" unique_id=752496938]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_c3dep")
+region_enabled = true
+region_rect = Rect2(241, 500, 358, 442)
+
+[node name="Progress" type="Sprite2D" parent="VisualSlots" unique_id=1855584474]
+position = Vector2(683.7, 487.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_jtn5v")
+
+[node name="TopBar" type="Sprite2D" parent="VisualSlots" unique_id=343650401]
+position = Vector2(683.7, 487.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_tm4mo")
+
+[node name="Overlay" type="Sprite2D" parent="VisualSlots" unique_id=1813552273]
+visible = false
+position = Vector2(963.7, 527.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_81ic1")
+
+[node name="PotraitShadow" type="Sprite2D" parent="VisualSlots" unique_id=942076616]
+position = Vector2(1248, 635)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("15_s435f")
+
+[connection signal="gui_input" from="NoteView" to="." method="_on_note_view_gui_input"]

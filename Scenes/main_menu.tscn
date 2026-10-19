@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dwj1y7tj8nsrl" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="FontFile" uid="uid://bqukxbmr12qdg" path="res://Assets/Fonts/Horror.ttf" id="2_1ehe0"]
+[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_n45e2"]
 [ext_resource type="FontFile" uid="uid://da2hb2lpfncvr" path="res://Assets/Fonts/Typewriter.ttf" id="3_ce3w2"]
+[ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_opfnp"]
+[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="4_opfnp"]
 
-[node name="MainMenu" type="Control" unique_id=476423682]
+[node name="MainMenu" type="Control" unique_id=476423682 node_paths=PackedStringArray("new_game_button", "options_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +15,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
+button_hover_sfx = ExtResource("2_n45e2")
+button_pressed_sfx = ExtResource("3_opfnp")
+new_game_button = NodePath("VBoxContainer/New_Game")
+options_button = NodePath("VBoxContainer/Options")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2114750601]
 layout_mode = 1
@@ -21,6 +28,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Background" type="TextureRect" parent="." unique_id=1024119360]
+modulate = Color(0.4095817, 0.37222615, 0.3673263, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_opfnp")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2035931958]
 layout_mode = 1
