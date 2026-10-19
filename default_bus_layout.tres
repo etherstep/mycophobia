@@ -1,5 +1,9 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://d3p6onew80nrs"]
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_dqt2m"]
+resource_name = "Reverb"
+wet = 0.05
+
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
 room_size = 1.0
@@ -31,6 +35,8 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = -32.034725
 bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_dqt2m")
+bus/1/effect/0/enabled = true
 bus/2/name = &"SFX-Movement"
 bus/2/solo = false
 bus/2/mute = false
