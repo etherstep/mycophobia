@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dcdcq2dykan23"]
+
+[ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_e228r"]
+[ext_resource type="Texture2D" uid="uid://er41ge2prc7m" path="res://Assets/Sprites/saline.png" id="2_e228r"]
+
+[resource]
+script = ExtResource("1_e228r")
+name = "saline"
+item_type = 2
+stack_limit = 2
+texture = ExtResource("2_e228r")
+metadata/_custom_type_script = "uid://dafwh6dm3o2hn"
