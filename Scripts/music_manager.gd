@@ -8,7 +8,7 @@ var world_player: AudioStreamPlayer
 var player_player: AudioStreamPlayer
 
 const STARTING_EFFECT: AudioStream = preload("res://Assets/SFX/UI/game-start.wav")
-const BROCHURE_PART_1: AudioStream = preload("res://Assets/SFX/UI/brochure_part_1.mp3")
+const BROCHURE_PART_1: AudioStream = preload("res://Assets/SFX/Dialogue/brochure_full.mp3")
 
 var menu_music_volume_db: float = 0.0
 var music_tween: Tween
@@ -32,7 +32,7 @@ func _ready() -> void:
 	add_child(player_player)
 
 	starting_effect_player = AudioStreamPlayer.new()
-	starting_effect_player.bus = "SFX-UI"
+	starting_effect_player.bus = "SFX-Player"
 	add_child(starting_effect_player)
 
 	brochure_player = AudioStreamPlayer.new()
