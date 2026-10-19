@@ -31,7 +31,6 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	note_view.visible = false
 	selection_ui.hide()
-	note_view.gui_input.connect(_on_note_view_gui_input)
 	note_readable_panel.add_theme_stylebox_override(
 		"panel",
 		_create_readable_text_background()

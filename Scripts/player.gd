@@ -48,12 +48,17 @@ var infection_amount: float = MIN_INFECTION
 # AUDIO
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
 @export var footstep_sounds: Array[AudioStream]
+@onready var dialogue_player: AudioStreamPlayer3D = $DialoguePlayer
+@export var running_player_sfx: AudioStream
 @export var footstep_interval: float = 0.45
 @export var footstep_interval_sprint: float = 0.25
 @export var footstep_interval_crouch: float = 0.75
 var footstep_tween: Tween
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
+
+@export var running_sfx_delay: float = 5.0
+var running_sfx_timer: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -181,6 +186,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0.0
 	update_camera_bob(delta)
 	update_footsteps(delta)
+	update_running_sfx()
 
 func _can_stand() -> bool:
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
@@ -294,3 +300,25 @@ func decrease_infection(amount: int) -> void:
 	if infection_amount <= MIN_INFECTION:
 		infection_amount = MIN_INFECTION
 	infection_changed.emit(infection_amount)
+func update_running_sfx() -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_sprinting := (
+		Input.is_action_pressed("sprint")
+		and not crouched
+		and horizontal_speed > 0.5
+	)
+
+	if is_sprinting:
+		if not dialogue_player.playing:
+			running_sfx_timer += get_physics_process_delta_time()
+
+			if running_sfx_timer >= running_sfx_delay:
+				dialogue_player.stream = running_player_sfx
+				dialogue_player.play()
+		else:
+			# Keep the sound playing while sprinting, including in the air.
+			pass
+	else:
+		running_sfx_timer = 0.0
+		if dialogue_player.playing:
+			dialogue_player.stop()

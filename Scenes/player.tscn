@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bf7b83p5n4x03" path="res://Assets/SFX/Footsteps/untitled - Track 3.wav" id="4_tx1dd"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://bdg1c8o8vgqf3" path="res://Assets/SFX/Footsteps/untitled - Track 4.wav" id="5_gymyn"]
+[ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
 [ext_resource type="AudioStream" uid="uid://cx1fkshtswgva" path="res://Assets/SFX/Flashlight/flashlight-on.wav" id="7_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://cfys2ibbhxyp4" path="res://Assets/SFX/Flashlight/flashlight-off.wav" id="8_gymyn"]
 [ext_resource type="Script" uid="uid://cf5p3sxco6q56" path="res://Scripts/infection_meter.gd" id="11_gymyn"]
@@ -19,6 +20,7 @@ height = 2.6291504
 script = ExtResource("1_v0iea")
 player_hand = NodePath("PlayerHands")
 footstep_sounds = Array[AudioStream]([ExtResource("2_8erm5"), ExtResource("3_f1ek2"), ExtResource("4_tx1dd"), ExtResource("5_gymyn")])
+running_player_sfx = ExtResource("6_gymyn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944353870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2845459, 0)
@@ -126,6 +128,11 @@ vertical_alignment = 1
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=795634399]
 transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
 bus = &"SFX-Movement"
+emission_angle_enabled = true
+
+[node name="DialoguePlayer" type="AudioStreamPlayer3D" parent="." unique_id=2063426856]
+transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
+bus = &"SFX-Player"
 emission_angle_enabled = true
 
 [node name="FlashlightPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1477521273]
