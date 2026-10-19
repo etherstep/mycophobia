@@ -22,7 +22,7 @@ wet = 0.09
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_cenje"]
 resource_name = "Reverb"
-wet = 0.05
+wet = 0.1
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_5t1r3"]
 resource_name = "Reverb"

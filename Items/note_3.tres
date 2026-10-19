@@ -10,4 +10,5 @@ item_type = 1
 texture = ExtResource("2_2xg3g")
 text = "The infected do not trigger the spore shooters or other infected people.
 Dr. Donovan"
+note_id = "note_3"
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"
