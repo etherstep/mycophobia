@@ -64,6 +64,30 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
+[node name="InfectionMeter" type="Node2D" parent="HUD" unique_id=2078770289 node_paths=PackedStringArray("background", "meter", "player")]
+position = Vector2(940, 520)
+script = ExtResource("11_gymyn")
+background = NodePath("Background")
+meter = NodePath("Meter")
+player = NodePath("../..")
+
+[node name="Background" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2036380106]
+custom_minimum_size = Vector2(312, 64)
+offset_left = -924.0
+offset_top = 488.0
+offset_right = -612.0
+offset_bottom = 552.0
+color = Color(0, 0, 0, 1)
+
+[node name="Meter" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2004676187]
+custom_minimum_size = Vector2(0, 48)
+custom_maximum_size = Vector2(300, -1)
+offset_left = -916.0
+offset_top = 496.0
+offset_right = -620.0
+offset_bottom = 544.0
+color = Color(2.9841065e-06, 0.68424076, 0, 1)
+
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,29 +119,6 @@ grow_vertical = 2
 text = "•"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="InfectionMeter" type="Node2D" parent="HUD/Crosshair_normal" unique_id=2078770289 node_paths=PackedStringArray("background", "meter", "player")]
-script = ExtResource("11_gymyn")
-background = NodePath("Background")
-meter = NodePath("Meter")
-player = NodePath("../../..")
-
-[node name="Background" type="ColorRect" parent="HUD/Crosshair_normal/InfectionMeter" unique_id=2036380106]
-custom_minimum_size = Vector2(312, 64)
-offset_left = -924.0
-offset_top = 488.0
-offset_right = -612.0
-offset_bottom = 552.0
-color = Color(0, 0, 0, 1)
-
-[node name="Meter" type="ColorRect" parent="HUD/Crosshair_normal/InfectionMeter" unique_id=2004676187]
-custom_minimum_size = Vector2(0, 48)
-custom_maximum_size = Vector2(300, -1)
-offset_left = -916.0
-offset_top = 496.0
-offset_right = -620.0
-offset_bottom = 544.0
-color = Color(2.9841065e-06, 0.68424076, 0, 1)
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=795634399]
 transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
