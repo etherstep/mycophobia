@@ -11,7 +11,13 @@
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
 [ext_resource type="AudioStream" uid="uid://cx1fkshtswgva" path="res://Assets/SFX/Flashlight/flashlight-on.wav" id="7_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://cfys2ibbhxyp4" path="res://Assets/SFX/Flashlight/flashlight-off.wav" id="8_gymyn"]
+[ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
+[ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
+[ext_resource type="Texture2D" uid="uid://xqr4b0ilxp1x" path="res://Assets/Sprites/Stage_2_flashlight.PNG" id="11_fd4e3"]
 [ext_resource type="Script" uid="uid://cf5p3sxco6q56" path="res://Scripts/infection_meter.gd" id="11_gymyn"]
+[ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
+[ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
+[ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -33,7 +39,7 @@ script = ExtResource("2_cvnsp")
 crosshair_interact = NodePath("../HUD/Crosshair_interact")
 crosshair_normal = NodePath("../HUD/Crosshair_normal")
 flashlight = NodePath("FlashLight")
-flashlight_asset = NodePath("../PlayerHands/TextureRect")
+flashlight_asset = NodePath("../PlayerHands/FlashLightStage1")
 flashlight_on_sfx = ExtResource("7_tx1dd")
 flashlight_off_sfx = ExtResource("8_gymyn")
 
@@ -44,14 +50,19 @@ spot_range = 80.0
 spot_attenuation = 0.4
 spot_angle = 26.25
 spot_angle_attenuation = 1.4640903
+script = ExtResource("9_qqcod")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
 target_position = Vector3(0, 0, -2.6)
 
-[node name="PlayerHands" type="CanvasLayer" parent="." unique_id=1444067506]
+[node name="PlayerHands" type="CanvasLayer" parent="." unique_id=1444067506 node_paths=PackedStringArray("player", "flashlight_array", "hands_array", "flashlight")]
+script = ExtResource("9_pu2lt")
+player = NodePath("..")
+flashlight_array = [NodePath("FlashLightStage1"), NodePath("FlashLightStage2"), NodePath("FlashLightStage3")]
+hands_array = [NodePath("HandsStage1"), NodePath("HandsStage2"), NodePath("HandsStage3")]
+flashlight = NodePath("../Camera3D/FlashLight")
 
-[node name="TextureRect" type="TextureRect" parent="PlayerHands" unique_id=1666657837]
-z_index = -1
+[node name="FlashLightStage1" type="TextureRect" parent="PlayerHands" unique_id=1666657837]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -65,6 +76,86 @@ rotation = -0.61086524
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("3_6t5aa")
+flip_h = true
+
+[node name="FlashLightStage2" type="TextureRect" parent="PlayerHands" unique_id=568923382]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.00003
+offset_top = 968.00006
+offset_right = 1196.0
+offset_bottom = 1936.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.61086524
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_fd4e3")
+flip_h = true
+
+[node name="FlashLightStage3" type="TextureRect" parent="PlayerHands" unique_id=318307901]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.00003
+offset_top = 968.00006
+offset_right = 1196.0
+offset_bottom = 1936.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.61086524
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_qqcod")
+flip_h = true
+
+[node name="HandsStage1" type="TextureRect" parent="PlayerHands" unique_id=464731495]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.00003
+offset_top = 968.00006
+offset_right = 1196.0
+offset_bottom = 1936.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.61086524
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_vgqql")
+flip_h = true
+
+[node name="HandsStage2" type="TextureRect" parent="PlayerHands" unique_id=784981196]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.00003
+offset_top = 968.00006
+offset_right = 1196.0
+offset_bottom = 1936.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.61086524
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_igrcy")
+flip_h = true
+
+[node name="HandsStage3" type="TextureRect" parent="PlayerHands" unique_id=456076870]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.00003
+offset_top = 968.00006
+offset_right = 1196.0
+offset_bottom = 1936.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.61086524
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_fs7ks")
 flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
