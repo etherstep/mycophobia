@@ -13,7 +13,8 @@ var menu_music_volume_db: float = 0.0
 var music_tween: Tween
 
 func _ready() -> void:
-	stream = preload("res://Assets/Music/main_menu_theme.mp3")
+	#stream = preload("res://Assets/Music/main_menu_theme.mp3")
+	stream = preload("res://Assets/Music/main_menu_theme_2.mp3")
 	bus = "Music"
 	play()
 
