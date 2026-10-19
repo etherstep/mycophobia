@@ -20,6 +20,7 @@ func _ready() -> void:
 		active_sprite_array = flashlight_array
 	else:
 		active_sprite_array = hands_array
+	calculate_hand_sprite_visibility(player.infection_level)
 
 func calculate_hand_sprite_visibility(infection_level: float) -> void:
 	var current_infection_level: float = player.infection_level
