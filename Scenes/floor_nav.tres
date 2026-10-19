@@ -1,0 +1,7 @@
+[gd_resource type="NavigationMesh" format=3]
+
+[resource]
+vertices = PackedVector3Array(22.966919, 0.82731533, -56.046318, 22.966919, 0.82731533, -73.04632, -45.53308, 0.82731533, -73.04632, -45.53308, 0.82731533, -56.046318, -46.03308, 0.82731533, -55.796318, -46.03308, 0.82731533, 32.703682, 24.466919, 0.82731533, 32.703682, 24.466919, 0.82731533, -55.796318)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 7), PackedInt32Array(4, 7, 6), PackedInt32Array(4, 6, 5)]
+agent_height = 1.6
+agent_max_climb = 0.3

@@ -27,6 +27,7 @@ var camera_base_y := 0.0
 
 var gravity: float = GRAVITY
 
+var dead := false
 var pitch := 0.0
 var crouched := false
 var stand_height: float
@@ -54,6 +55,8 @@ func _ready() -> void:
 	camera_base_y = camera_3d.position.y
 
 func _unhandled_input(event: InputEvent) -> void:
+	if dead:
+		return
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
@@ -73,6 +76,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_3d.rotation.x = pitch
 		return
 
+func die() -> void:
+	if dead:
+		return
+	dead = true
+	velocity = Vector3.ZERO
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var layer := CanvasLayer.new()
+	var label := Label.new()
+	label.text = "The enemy caught you"
+	label.position = Vector2(520, 340)
+	layer.add_child(label)
+	add_child(layer)
+	await get_tree().create_timer(1.5).timeout
+	get_tree().reload_current_scene()
+
+
 func toggle_inventory() -> void:
 	if inventory_ui:
 		inventory_ui.visible = not inventory_ui.visible
@@ -85,6 +104,8 @@ func toggle_inventory() -> void:
 		get_viewport().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	if Input.is_action_just_pressed("crouch"):
 		if crouched:
 			if _can_stand():

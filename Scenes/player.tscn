@@ -14,7 +14,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
 
-[node name="Player" type="CharacterBody3D" unique_id=892995834]
+[node name="Player" type="CharacterBody3D" unique_id=892995834 groups=["player"]]
 script = ExtResource("1_v0iea")
 footstep_sounds = Array[AudioStream]([ExtResource("2_8erm5"), ExtResource("3_f1ek2"), ExtResource("4_tx1dd"), ExtResource("5_gymyn")])
 
