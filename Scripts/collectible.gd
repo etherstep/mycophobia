@@ -25,7 +25,7 @@ func interact() -> void:
 		return
 	if inventory.add_item(item_data):
 		if item_data.item_type == ItemData.ItemType.NOTE:
-			MusicManager.play_sfx(note_interact_sfx)
+			MusicManager.play_world_sfx(note_interact_sfx)
 		queue_free()
 
 func set_hovered(hovered: bool) -> void:

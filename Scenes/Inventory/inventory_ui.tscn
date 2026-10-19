@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://car8gcbef5qxc" path="res://Scripts/Inventory/inventory_ui.gd" id="1_a3clf"]
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_ei62k"]
+[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_mkjsv"]
+[ext_resource type="AudioStream" uid="uid://bc6wugfikl5e" path="res://Assets/SFX/UI/click1.wav" id="3_4grh2"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="3_s1kqi"]
+[ext_resource type="AudioStream" uid="uid://b3fqcwpq4euvt" path="res://Assets/SFX/UI/read-note.wav" id="4_4grh2"]
 [ext_resource type="Texture2D" uid="uid://cupilj73cdnxu" path="res://Assets/UI/Inventory Row 1A.PNG" id="4_o2r74"]
+[ext_resource type="AudioStream" uid="uid://3u1b4kve17df" path="res://Assets/SFX/UI/untitled - Track 1.wav" id="5_eqgu5"]
 [ext_resource type="Texture2D" uid="uid://clp7kbacwda2x" path="res://Assets/UI/Inventory Row 1B.PNG" id="5_mkjsv"]
 [ext_resource type="Texture2D" uid="uid://c72b8ptwswg1o" path="res://Assets/UI/Inventory Row 1C.PNG" id="6_4grh2"]
+[ext_resource type="AudioStream" uid="uid://bpinp3pa82ks" path="res://Assets/SFX/UI/untitled - Track 2.wav" id="6_f1vfh"]
 [ext_resource type="Texture2D" uid="uid://cxucp5df2qrag" path="res://Assets/UI/Inventory Row 2A.PNG" id="7_wqvdr"]
 [ext_resource type="Texture2D" uid="uid://cvhnesxmxy1ep" path="res://Assets/UI/Inventory Row 2B.PNG" id="8_eqgu5"]
 [ext_resource type="Texture2D" uid="uid://dleb5sy513fvb" path="res://Assets/UI/Inventory Row 3A.PNG" id="9_f1vfh"]
@@ -31,6 +36,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a3clf")
+button_hover_sfx = ExtResource("2_mkjsv")
+button_pressed_sfx = ExtResource("3_4grh2")
+note_pressed_sfx = ExtResource("4_4grh2")
+inventory_open_sfx = ExtResource("5_eqgu5")
+inventory_close_sfx = ExtResource("6_f1vfh")
 item_texture = NodePath("ItemDetails/ItemTexture")
 item_text = NodePath("ItemDetails/ItemTexture/ItemText")
 selection_ui = NodePath("VisualSlots/SelectUI")

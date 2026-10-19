@@ -3,6 +3,12 @@ extends Control
 
 @export var inventory: Inventory
 
+@export var button_hover_sfx: AudioStream
+@export var button_pressed_sfx: AudioStream
+@export var note_pressed_sfx: AudioStream
+@export var inventory_open_sfx: AudioStream
+@export var inventory_close_sfx: AudioStream
+
 @onready var slots: GridContainer = $Slots
 @export var item_texture: TextureRect
 @export var item_text: Label
@@ -43,6 +49,7 @@ func _ready() -> void:
 	refresh_inventory()
 
 func _on_slot_mouse_entered(slot: Control) -> void:
+	play_hovered()
 	selection_ui.show()
 	selection_ui.global_position = (
 		slot.global_position
@@ -148,7 +155,9 @@ func close_note_if_open() -> bool:
 func _on_slot_input(event: InputEvent, item: ItemData) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			play_pressed()
 			if item.item_type == ItemData.ItemType.NOTE:
+				play_note_pressed()
 				note_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 				note_view.visible = true
 
@@ -185,15 +194,6 @@ func _on_slot_input(event: InputEvent, item: ItemData) -> void:
 				await get_tree().process_frame
 				_update_readable_panel()
 
-func _set_inventory_open(is_open: bool) -> void:
-	visible = is_open
-	Input.set_mouse_mode(
-		Input.MOUSE_MODE_VISIBLE if is_open
-		else Input.MOUSE_MODE_CAPTURED
-	)
-
-	selection_ui.hide()
-
 func _on_item_selected(item: ItemData) -> void:
 	selected_item = item
 	item_texture.texture = item.texture
@@ -203,3 +203,21 @@ func _clear_details() -> void:
 	selected_item = null
 	item_texture.texture = null
 	item_text.text = "No item selected"
+
+func play_hovered() -> void:
+	MusicManager.play_ui_sfx(button_hover_sfx)
+
+func play_pressed() -> void:
+	MusicManager.play_ui_sfx(button_pressed_sfx)
+
+func play_note_pressed() -> void:
+	MusicManager.play_ui_sfx(note_pressed_sfx)
+
+func play_inventory_sfx(is_open: bool) -> void:
+	play_inventory_open() if is_open else play_inventory_close()
+
+func play_inventory_open() -> void:
+	MusicManager.play_ui_sfx(inventory_open_sfx)
+
+func play_inventory_close() -> void:
+	MusicManager.play_ui_sfx(inventory_close_sfx)

@@ -86,6 +86,7 @@ func toggle_inventory() -> void:
 		get_viewport().set_input_as_handled()
 		return
 	inventory_ui.visible = not inventory_ui.visible
+	inventory_ui.play_inventory_sfx(inventory_ui.visible)
 	_update_inventory_state()
 	get_viewport().set_input_as_handled()
 
