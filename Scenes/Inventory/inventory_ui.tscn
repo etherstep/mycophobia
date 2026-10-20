@@ -28,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://nx3uhtm013n0" path="res://Assets/UI/Infection Meter Micellium Overlay.png" id="26_f1vfh"]
 [ext_resource type="Texture2D" uid="uid://bjk6gc70lfs4a" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
 
-[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "item_quantity", "selection_ui", "inventory_slots")]
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxepx"]
 atlas = ExtResource("26_f1vfh")
 margin = Rect2(-24.2, -7.93, 0, 0)
