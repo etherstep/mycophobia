@@ -12,6 +12,8 @@ enum State { WANDER, CHASE, SEARCH }
 @export var guards := false
 @export var guard_point: Node3D
 @export var leash_radius := 6.0
+@export var see_over_cover := true
+@export var eye_height := 2.6
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
@@ -79,15 +81,29 @@ func _can_see(player: Node3D) -> bool:
 		return false
 	if forward.angle_to(to_player) > deg_to_rad(view_degrees * 0.5):
 		return false
+	var eye_y := 1.2
+	var target_y := 1.2
+	if see_over_cover:
+		eye_y = eye_height
+		target_y = _player_head_height(player)
 	var query := PhysicsRayQueryParameters3D.create(
-		global_position + Vector3(0, 1.2, 0),
-		player.global_position + Vector3(0, 1.2, 0)
+		global_position + Vector3(0, eye_y, 0),
+		player.global_position + Vector3(0, target_y, 0)
 	)
 	query.exclude = [get_rid()]
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	if hit.is_empty() or hit.collider != player:
 		return false
 	return _is_player_lit(player)
+
+
+func _player_head_height(player: Node3D) -> float:
+	if player is Player:
+		var body: Player = player
+		if body.crouched:
+			return Player.CROUCH_CAMERA_Y
+		return body.stand_camera_y
+	return 1.2
 
 
 func _is_player_lit(player: Node3D) -> bool:

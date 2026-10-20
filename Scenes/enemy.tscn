@@ -55,8 +55,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_baysf")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=767845271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.186, 0)
-pixel_size = 0.0012
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.583, 0)
+pixel_size = 0.00232
 billboard = 2
 shaded = true
 sprite_frames = SubResource("SpriteFrames_f0dak")
