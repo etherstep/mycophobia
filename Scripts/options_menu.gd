@@ -15,6 +15,9 @@ var opened_from_game := false
 
 @export var back_button: Button
 
+const back_focus_text: String = "< BACK >"
+const back_text: String = "BACK"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sensitivity_slider.step = 0.0001
@@ -33,8 +36,16 @@ func _ready() -> void:
 	sensitivity_slider.mouse_entered.connect(_on_button_hovered)
 	volume_slider.mouse_entered.connect(_on_button_hovered)
 	gamma_slider.mouse_entered.connect(_on_button_hovered)
-	back_button.mouse_entered.connect(_on_button_hovered)
+	back_button.mouse_entered.connect(_on_back_hovered)
+	back_button.mouse_exited.connect(_on_back_unhovered)
 	back_button.pressed.connect(_on_button_pressed)
+
+func _on_back_hovered() -> void:
+	back_button.text = back_focus_text
+	MusicManager.play_ui_sfx(button_hover_sfx)
+
+func _on_back_unhovered() -> void:
+	back_button.text = back_text
 
 func _on_button_hovered() -> void:
 	MusicManager.play_ui_sfx(button_hover_sfx)

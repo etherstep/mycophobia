@@ -1,5 +1,5 @@
+class_name Player
 extends CharacterBody3D
-
 
 const MOUSE_SENSITIVITY := 0.0022
 const PITCH_LIMIT := deg_to_rad(80.0)
@@ -34,6 +34,13 @@ var stand_height: float
 var stand_shape_y: float
 var stand_camera_y: float
 
+# INFECTION:
+signal infection_level_changed(infection: float)
+const MAX_INFECTION: float = 100.0
+const MIN_INFECTION: float = 0.0
+var infection_level: float = MIN_INFECTION
+
+
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
@@ -42,10 +49,17 @@ var stand_camera_y: float
 # AUDIO
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
 @export var footstep_sounds: Array[AudioStream]
+@onready var dialogue_player: AudioStreamPlayer3D = $DialoguePlayer
+@export var running_player_sfx: AudioStream
 @export var footstep_interval: float = 0.45
+@export var footstep_interval_sprint: float = 0.25
+@export var footstep_interval_crouch: float = 0.75
 var footstep_tween: Tween
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
+
+@export var running_sfx_delay: float = 5.0
+var running_sfx_timer: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -193,6 +207,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0.0
 	update_camera_bob(delta)
 	update_footsteps(delta)
+	update_running_sfx()
 
 func _can_stand() -> bool:
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
@@ -238,13 +253,25 @@ func update_camera_bob(delta: float) -> void:
 func update_footsteps(delta: float) -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
 	var is_moving := is_on_floor() and horizontal_speed > 0.1
+
 	if not is_moving:
+		footstep_timer = 0.0
 		return
+
+	var is_sprinting := Input.is_action_pressed("sprint") and not crouched
+
+	var current_interval: float = footstep_interval
+	if crouched:
+		current_interval = footstep_interval_crouch
+	elif is_sprinting:
+		current_interval = footstep_interval_sprint
+
 	footstep_timer -= delta
+
 	if footstep_timer <= 0.0:
-		if not footstep_player.playing:
-			play_random_footstep()
-			footstep_timer = footstep_interval
+		if is_sprinting or not footstep_player.playing:
+			play_random_footstep(is_sprinting)
+			footstep_timer = current_interval
 
 func stop_footsteps() -> void:
 	if not footstep_player.playing:
@@ -260,11 +287,13 @@ func stop_footsteps() -> void:
 		func(): footstep_player.volume_db = 0.0
 	)
 
-func play_random_footstep() -> void:
+func play_random_footstep(force_restart: bool = false) -> void:
 	if footstep_sounds.is_empty():
 		return
-	if footstep_player.playing:
+
+	if footstep_player.playing and not force_restart:
 		return
+
 	var sound_index: int
 	if footstep_sounds.size() == 1:
 		sound_index = 0
@@ -272,6 +301,46 @@ func play_random_footstep() -> void:
 		sound_index = randi_range(0, footstep_sounds.size() - 1)
 		while sound_index == last_footstep_index:
 			sound_index = randi_range(0, footstep_sounds.size() - 1)
+
 	last_footstep_index = sound_index
 	footstep_player.stream = footstep_sounds[sound_index]
 	footstep_player.play()
+
+func increase_infection(amount: int) -> void:
+	if (amount <= 0):
+		return
+	infection_level += amount
+	if infection_level >= MAX_INFECTION:
+		infection_level = MAX_INFECTION
+	infection_level_changed.emit(infection_level)
+
+func decrease_infection(amount: int) -> void:
+	if (amount <= 0 or infection_level == MIN_INFECTION):
+		return
+	infection_level -= amount
+	if infection_level <= MIN_INFECTION:
+		infection_level = MIN_INFECTION
+	infection_level_changed.emit(infection_level)
+
+func update_running_sfx() -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_sprinting := (
+		Input.is_action_pressed("sprint")
+		and not crouched
+		and horizontal_speed > 0.5
+	)
+
+	if is_sprinting:
+		if not dialogue_player.playing:
+			running_sfx_timer += get_physics_process_delta_time()
+
+			if running_sfx_timer >= running_sfx_delay:
+				dialogue_player.stream = running_player_sfx
+				dialogue_player.play()
+		else:
+			# Keep the sound playing while sprinting, including in the air.
+			pass
+	else:
+		running_sfx_timer = 0.0
+		if dialogue_player.playing:
+			dialogue_player.stop()
