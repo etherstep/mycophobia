@@ -39,9 +39,16 @@ signal infection_level_changed(infection: float)
 const MAX_INFECTION: float = 100.0
 const MIN_INFECTION: float = 0.0
 var infection_level: float = MIN_INFECTION
+var _shove := Vector3.ZERO
+var _shove_left := 0.0
+const SHOVE_SPEED := 12.0
+var _vignette_left := 0.0
+
+const VIGNETTE_TIME := 2.5
 
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var _infection_overlay: ColorRect = $HUD/InfectionOverlay
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
 @export var player_hand: CanvasLayer
@@ -197,7 +204,21 @@ func _physics_process(delta: float) -> void:
 				air_acceleration * delta
 			)
 
+	var shoving := _shove_left > 0.0
+	if shoving:
+		velocity.x = _shove.x
+		velocity.z = _shove.z
+	var position_before := global_position
 	move_and_slide()
+	if shoving:
+		var moved := Vector2(
+			global_position.x - position_before.x,
+			global_position.z - position_before.z
+		).length()
+		_shove_left -= moved
+		if _shove_left <= 0.02 or moved < 0.002:
+			_shove_left = 0.0
+			_shove = Vector3.ZERO
 	# Stop horizontal momentum immediately upon landing
 	if is_on_floor() and not Input.is_action_pressed("left") \
 	and not Input.is_action_pressed("right") \
@@ -309,10 +330,44 @@ func play_random_footstep(force_restart: bool = false) -> void:
 func increase_infection(amount: int) -> void:
 	if (amount <= 0):
 		return
+	var before := infection_level
 	infection_level += amount
 	if infection_level >= MAX_INFECTION:
 		infection_level = MAX_INFECTION
+	if infection_level <= before:
+		return
 	infection_level_changed.emit(infection_level)
+	_pulse_infection_vignette()
+
+
+func shove(direction: Vector3, steps: int) -> void:
+	var flat := Vector3(direction.x, 0.0, direction.z)
+	if flat.length_squared() < 0.0001 or steps <= 0:
+		return
+	flat = flat.normalized()
+	_shove = flat * SHOVE_SPEED
+	_shove_left = SPEED * footstep_interval * float(steps)
+
+
+func _process(delta: float) -> void:
+	if _vignette_left <= 0.0:
+		return
+	_vignette_left = maxf(_vignette_left - delta, 0.0)
+	_set_vignette_strength(_vignette_left / VIGNETTE_TIME)
+	if _vignette_left <= 0.0:
+		_infection_overlay.visible = false
+
+
+func _pulse_infection_vignette() -> void:
+	_vignette_left = VIGNETTE_TIME
+	_infection_overlay.visible = true
+	_set_vignette_strength(1.0)
+
+
+func _set_vignette_strength(strength: float) -> void:
+	var mat := _infection_overlay.material as ShaderMaterial
+	if mat != null:
+		mat.set_shader_parameter("strength", strength)
 
 func decrease_infection(amount: int) -> void:
 	if (amount <= 0 or infection_level == MIN_INFECTION):

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
-[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/Enemies/enemy.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
@@ -10,15 +10,16 @@
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
-[ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/alert_zone.gd" id="11_alert"]
-[ext_resource type="NavigationMesh" path="res://Scenes/floor_nav.tres" id="12_nav"]
+[ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
+[ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
-[ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/spore_cloud.tscn" id="15_spore"]
+[ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/Enemies/spore_cloud.tscn" id="15_spore"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -53,6 +54,9 @@ adjustment_enabled = true
 adjustment_brightness = 1.76
 adjustment_contrast = 0.945
 adjustment_saturation = 0.49
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
+size = Vector3(4, 2, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
 albedo_texture = ExtResource("14_hgpy0")
@@ -2693,9 +2697,6 @@ points = PackedVector3Array(-348.375, 2, -5.125, -348.375, 4, -5.125, -348.375, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hawyw"]
 points = PackedVector3Array(-348.25, 4, -3.875, -348.25, 6, -3.875, -348.25, 4, -5.875, -348.25, 6, -5.875, -346.25, 4, -3.875, -346.25, 6, -3.875, -346.25, 4, -5.875, -346.25, 6, -5.875)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
-size = Vector3(4, 2, 4)
-
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
 
@@ -2707,11 +2708,9 @@ navigation_mesh = ExtResource("12_nav")
 
 [node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
-omni_range = 5.0
 
 [node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
-omni_range = 5.0
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
 transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -0.0021242325, -284.6135, 2.1201868, -46.56684)
@@ -2746,7 +2745,11 @@ enemy = NodePath("../Enemy")
 shape = SubResource("BoxShape3D_alert")
 
 [node name="SporeCloud" parent="." unique_id=1742201103 instance=ExtResource("15_spore")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288, 3.2, -24)
+transform = Transform3D(1.38, 0, 0, 0, 1.38, 0, 0, 0, 1.38, -288.61795, 2.05, -20.727905)
+
+[node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") instance=ExtResource("16_shooter")]
+transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -290.95816, 4.35184, -20.727905)
+cloud = NodePath("../SporeCloud")
 
 [node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
 
