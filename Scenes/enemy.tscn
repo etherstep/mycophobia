@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://b1cgcym7nya6" path="res://Assets/Sprites/fungal.png" id="2_1f0kj"]
+[ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="3_afpow"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 radius = 0.4
@@ -74,5 +75,15 @@ radius = 0.4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CatchArea" unique_id=249314957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("SphereShape3D_catch")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=867803430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5157971, 0)
+stream = ExtResource("3_afpow")
+autoplay = true
+max_distance = 20.0
+bus = &"SFX-Enemy"
+emission_angle_enabled = true
+emission_angle_degrees = 52.1
+parameters/looping = true
 
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

@@ -11,10 +11,10 @@
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
 [ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/alert_zone.gd" id="11_alert"]
-[ext_resource type="NavigationMesh" path="res://Scenes/floor_nav.tres" id="12_nav"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
+[ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
@@ -53,6 +53,9 @@ adjustment_enabled = true
 adjustment_brightness = 1.76
 adjustment_contrast = 0.945
 adjustment_saturation = 0.49
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
+size = Vector3(4, 2, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
 albedo_texture = ExtResource("14_hgpy0")
@@ -2693,9 +2696,6 @@ points = PackedVector3Array(-348.375, 2, -5.125, -348.375, 4, -5.125, -348.375, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hawyw"]
 points = PackedVector3Array(-348.25, 4, -3.875, -348.25, 6, -3.875, -348.25, 4, -5.875, -348.25, 6, -5.875, -346.25, 4, -3.875, -346.25, 6, -3.875, -346.25, 4, -5.875, -346.25, 6, -5.875)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
-size = Vector3(4, 2, 4)
-
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
 
@@ -2707,11 +2707,9 @@ navigation_mesh = ExtResource("12_nav")
 
 [node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
-omni_range = 5.0
 
 [node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
-omni_range = 5.0
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
 transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -0.0021242325, -284.6135, 2.1201868, -46.56684)

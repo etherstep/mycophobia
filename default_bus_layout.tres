@@ -32,6 +32,12 @@ room_size = 1.0
 damping = 0.2
 wet = 0.2
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.98
+damping = 0.2
+wet = 0.1
+
 [resource]
 bus/1/name = &"Music"
 bus/1/solo = false
@@ -51,7 +57,7 @@ bus/3/name = &"SFX-Interaction"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -3.3962598
+bus/3/volume_db = -11.957565
 bus/3/send = &"Game"
 bus/3/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
 bus/3/effect/0/enabled = true
@@ -95,3 +101,17 @@ bus/8/volume_db = -13.698619
 bus/8/send = &"Game"
 bus/8/effect/0/effect = SubResource("AudioEffectReverb_k2ilm")
 bus/8/effect/0/enabled = true
+bus/9/name = &"SFX-Enemy"
+bus/9/solo = false
+bus/9/mute = false
+bus/9/bypass_fx = false
+bus/9/volume_db = -11.957565
+bus/9/send = &"Game"
+bus/9/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
+bus/9/effect/0/enabled = true
+bus/10/name = &"SFX-Ambience"
+bus/10/solo = false
+bus/10/mute = false
+bus/10/bypass_fx = false
+bus/10/volume_db = -12.29549
+bus/10/send = &"Game"

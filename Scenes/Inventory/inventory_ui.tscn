@@ -205,12 +205,12 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_jroks")
 
 [node name="ItemSelectWindow1" type="Sprite2D" parent="VisualSlots" unique_id=520099883]
-position = Vector2(731.7, 1415.8)
+position = Vector2(731.7, 1848.8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_oyd3a")
 
 [node name="ItemSelectWindow2" type="Sprite2D" parent="VisualSlots" unique_id=2075243073]
-position = Vector2(731.7, 1415.8)
+position = Vector2(731.7, 1848.8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_sgisd")
 
