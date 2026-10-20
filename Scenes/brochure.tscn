@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0t8jcnv734j8"]
 
-[ext_resource type="Script" uid="uid://ctxlo4m6dch7b" path="res://Scenes/brochure.gd" id="1_rxxsa"]
+[ext_resource type="Script" uid="uid://ctxlo4m6dch7b" path="res://Scripts/brochure.gd" id="1_rxxsa"]
 [ext_resource type="Texture2D" uid="uid://bb62hqsxih1yk" path="res://Assets/UI/Photo before.png" id="2_iawld"]
 
 [node name="Brochure" type="Control" unique_id=417166242 node_paths=PackedStringArray("skip_text")]

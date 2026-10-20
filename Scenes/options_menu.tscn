@@ -123,7 +123,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_m6e8v")
 theme_override_font_sizes/font_size = 32
-text = "Volume"
+text = "Music Volume"
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer/VolumeRow" unique_id=1967945903]
 custom_minimum_size = Vector2(280, 24)
@@ -134,6 +134,33 @@ step = 0.05
 value = 0.5
 
 [node name="VolumeValue" type="Label" parent="VBoxContainer/VolumeRow" unique_id=972424911]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_m6e8v")
+theme_override_font_sizes/font_size = 32
+text = "50%"
+
+[node name="VolumeRow2" type="HBoxContainer" parent="VBoxContainer" unique_id=971615138]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="VolumeLabel" type="Label" parent="VBoxContainer/VolumeRow2" unique_id=52339600]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_m6e8v")
+theme_override_font_sizes/font_size = 32
+text = "Game Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer/VolumeRow2" unique_id=1503806749]
+custom_minimum_size = Vector2(280, 24)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="VolumeValue" type="Label" parent="VBoxContainer/VolumeRow2" unique_id=1162378870]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_m6e8v")

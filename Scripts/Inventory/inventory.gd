@@ -15,6 +15,7 @@ func add_item(item: ItemData) -> bool:
 		print("Inventory is full!")
 		return false
 
+	#if items.
 	items.append(item)
 	inventory_changed.emit()
 

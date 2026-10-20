@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="AudioStream" uid="uid://cm6b8a2tlggum" path="res://Assets/SFX/Footsteps/untitled - Track 1.wav" id="2_8erm5"]
-[ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scenes/camera_3d.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://1qis3w7j73t7" path="res://Assets/SFX/Footsteps/untitled - Track 2.wav" id="3_f1ek2"]
 [ext_resource type="AudioStream" uid="uid://bf7b83p5n4x03" path="res://Assets/SFX/Footsteps/untitled - Track 3.wav" id="4_tx1dd"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
-[ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scenes/note_viewer.gd" id="19_l6n3p"]
+[ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
