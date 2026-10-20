@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="19_p1odr"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
 [ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
@@ -29,8 +30,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
 
-[node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("player_hand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
 script = ExtResource("1_v0iea")
+held_item_crosshair = NodePath("HUD/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")
 footstep_sounds = Array[AudioStream]([ExtResource("2_8erm5"), ExtResource("3_f1ek2"), ExtResource("4_tx1dd"), ExtResource("5_gymyn")])
 running_player_sfx = ExtResource("6_gymyn")
@@ -209,6 +211,17 @@ texture = ExtResource("19_0gysh")
 expand_mode = 3
 script = ExtResource("20_vfarp")
 player = NodePath("../..")
+[node name="CrosshairSelectedItem" type="TextureRect" parent="HUD" unique_id=1112793597]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("19_p1odr")
 
 [node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
 script = ExtResource("19_l6n3p")

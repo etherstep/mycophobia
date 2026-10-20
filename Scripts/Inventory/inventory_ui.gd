@@ -1,7 +1,10 @@
 
 extends Control
 
+signal world_item_selected(item: ItemData)
+
 @export var inventory: Inventory
+@export var player: Player
 
 @export var player: Player
 
@@ -120,9 +123,57 @@ func refresh_inventory() -> void:
 			new_item_text.add_theme_constant_override("shadow_offset_y", 1)
 			slot.add_child(new_item_text)
 
+			var quantity := 1
+			if i < inventory.quantities.size():
+				quantity = inventory.quantities[i]
+
+			if item.stackable and quantity > 1:
+				var quantity_label := Label.new()
+				quantity_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+				quantity_label.text = "x" + str(quantity)
+				quantity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				quantity_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+				quantity_label.add_theme_font_size_override("font_size", 20)
+				quantity_label.add_theme_color_override("font_color", Color.WHITE)
+				quantity_label.add_theme_color_override("font_shadow_color", Color.BLACK)
+				quantity_label.add_theme_constant_override("shadow_offset_x", 1)
+				quantity_label.add_theme_constant_override("shadow_offset_y", 1)
+				quantity_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+				# Position the quantity below the item name.
+				quantity_label.anchor_top = 0.65
+				quantity_label.anchor_bottom = 1.0
+				quantity_label.offset_top = 0
+				quantity_label.offset_bottom = 0
+
+				slot.add_child(quantity_label)
+
 			slot.gui_input.connect(_on_slot_input.bind(item))
 
 		slots.add_child(slot)
+
+func use_item(item: ItemData) -> void:
+	match item.item_effect:
+		ItemData.ItemEffect.CURE_INFECTION:
+			var player := get_tree().get_first_node_in_group("player")
+
+			if player == null:
+				return
+
+			if not player.has_method("decrease_infection"):
+				push_warning("Player is missing cure_infection().")
+				return
+
+			player.decrease_infection(item.infection_cure_amount)
+
+			if item.consume_on_use:
+				_remove_one_item(item)
+
+			play_pressed()
+
+func _remove_one_item(item: ItemData) -> void:
+	if inventory != null:
+		inventory.remove_one_item(item)
 
 func _create_readable_text_background() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
@@ -164,6 +215,13 @@ func _on_slot_input(event: InputEvent, item: ItemData) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			play_pressed()
+			if item.item_effect == ItemData.ItemEffect.SALT_ENEMY \
+			or item.item_effect == ItemData.ItemEffect.KILL_SALTED_ENEMY:
+				world_item_selected.emit(item)
+				return
+			if item.item_effect != ItemData.ItemEffect.NONE:
+				use_item(item)
+				return
 			if item.item_type == ItemData.ItemType.NOTE:
 				play_note_pressed()
 				note_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

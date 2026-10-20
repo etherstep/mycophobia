@@ -22,6 +22,8 @@ const BOB_FREQUENCY := 10.0
 const SPRINT_BOB_MULTIPLIER := 1.35
 const BOB_SMOOTHING := 10.0
 
+const ITEM_USE_RANGE := 3.0
+
 var bob_time := 0.0
 var camera_base_y := 0.0
 
@@ -40,6 +42,9 @@ const MAX_INFECTION: float = 100.0
 const MIN_INFECTION: float = 0.0
 var infection_level: float = MIN_INFECTION
 
+@export var inventory: Inventory
+@export var held_item_crosshair: TextureRect
+var selected_world_item: ItemData = null
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var camera_3d: Camera3D = $Camera3D
@@ -63,37 +68,192 @@ var running_sfx_timer: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if inventory_ui:
+
+	if inventory_ui != null:
 		inventory_ui.hide()
-	if player_hand:
+
+		if inventory_ui.has_signal("world_item_selected"):
+			if not inventory_ui.world_item_selected.is_connected(select_world_item):
+				inventory_ui.world_item_selected.connect(select_world_item)
+	else:
+		push_warning("Player: Inventory UI is not assigned.")
+
+	if player_hand != null:
 		player_hand.show()
+
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
 	stand_height = capsule.height
 	stand_shape_y = collision_shape_3d.position.y
 	stand_camera_y = camera_3d.position.y
 	camera_base_y = camera_3d.position.y
 
+	if held_item_crosshair != null:
+		held_item_crosshair.hide()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if dead:
 		return
+
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
+
 	if event.is_action_pressed("inventory"):
 		toggle_inventory()
 		return
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_LEFT \
+	and event.pressed:
+
+		# Only use a world item if Salt or Matches is selected.
+		if selected_world_item != null:
+			_try_use_world_item()
+			get_viewport().set_input_as_handled()
+			return
+
+		# Otherwise, preserve your normal mouse capture behavior.
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			return
+
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
+
 	if event is InputEventMouseMotion:
-		# Yaw turns the body. Pitch turns only the camera, so the horizon stays level.
 		rotate_y(-event.relative.x * Settings.mouse_sensitivity)
-		pitch = clampf(pitch - event.relative.y * Settings.mouse_sensitivity, -PITCH_LIMIT, PITCH_LIMIT)
+		pitch = clampf(
+			pitch - event.relative.y * Settings.mouse_sensitivity,
+			-PITCH_LIMIT,
+			PITCH_LIMIT
+		)
 		camera_3d.rotation.x = pitch
 		return
+
+
+func _try_use_world_item() -> void:
+	if selected_world_item == null:
+		print("World item: no item selected")
+		return
+
+	var camera := get_viewport().get_camera_3d()
+	if camera == null:
+		print("World item: no active camera found")
+		cancel_world_item()
+		return
+
+	# Aim from the center of the screen.
+	var screen_center := get_viewport().get_visible_rect().size * 0.5
+	var origin := camera.project_ray_origin(screen_center)
+	var end := origin + camera.project_ray_normal(screen_center) * ITEM_USE_RANGE
+
+	var query := PhysicsRayQueryParameters3D.create(origin, end)
+	query.exclude = [get_rid()]
+	query.collide_with_bodies = true
+	query.collide_with_areas = true
+
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+
+	if hit.is_empty():
+		print("World item: raycast hit nothing")
+		cancel_world_item()
+		return
+
+	var target := hit["collider"] as Node
+	print("World item: hit ", target.get_path())
+
+	var enemy := _find_enemy(target)
+
+	if enemy == null:
+		print("World item: hit object is not inside the enemies group")
+		cancel_world_item()
+		return
+
+	print("World item: found enemy ", enemy.get_path())
+	print("World item effect: ", selected_world_item.item_effect)
+
+	match selected_world_item.item_effect:
+		ItemData.ItemEffect.SALT_ENEMY:
+			if enemy.has_method("apply_salted"):
+				enemy.apply_salted()
+				print("World item: applied salt")
+				_consume_selected_item()
+			else:
+				print("World item: enemy has no apply_salted() method")
+				cancel_world_item()
+
+		ItemData.ItemEffect.KILL_SALTED_ENEMY:
+			if enemy.has_method("is_salted") and enemy.is_salted():
+				if enemy.has_method("kill_by_matches"):
+					enemy.kill_by_matches()
+					print("World item: killed salted enemy")
+					_consume_selected_item()
+				else:
+					print("World item: enemy has no kill_by_matches() method")
+					cancel_world_item()
+			else:
+				print("World item: enemy is not salted")
+				cancel_world_item()
+
+		_:
+			print("World item: selected item has the wrong ItemEffect")
+			cancel_world_item()
+
+
+func _consume_selected_item() -> void:
+	var item := selected_world_item
+
+	cancel_world_item()
+
+	if item == null:
+		return
+
+	if inventory == null:
+		push_warning("Player: Inventory is not assigned.")
+		return
+
+	inventory.remove_one_item(item)
+
+
+func _find_enemy(target: Node) -> Node:
+	var current: Node = target
+
+	while current != null:
+		if current.is_in_group("enemies"):
+			return current
+		current = current.get_parent()
+
+	return null
+
+
+func select_world_item(item: ItemData) -> void:
+	if item == null:
+		return
+
+	selected_world_item = item
+
+	# Close the inventory without toggling it back open.
+	if inventory_ui != null and inventory_ui.visible:
+		inventory_ui.visible = false
+		inventory_ui.play_inventory_close()
+		_update_inventory_state()
+
+	# Keep the hand/crosshair layer visible.
+	if player_hand != null:
+		player_hand.show()
+
+	if held_item_crosshair != null:
+		held_item_crosshair.texture = item.texture
+		held_item_crosshair.show()
+
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func cancel_world_item() -> void:
+	selected_world_item = null
+
+	if held_item_crosshair != null:
+		held_item_crosshair.hide()
 
 func die() -> void:
 	if dead:
@@ -221,6 +381,7 @@ func _can_stand() -> bool:
 	query.margin = 0.0
 	query.transform = global_transform * Transform3D(Basis(), Vector3(0, stand_shape_y + lift, 0))
 	query.exclude = [get_rid()]
+	query.collision_mask = 1 << 2
 	var hits := get_world_3d().direct_space_state.intersect_shape(query, 1)
 	return hits.is_empty()
 
