@@ -2705,11 +2705,11 @@ environment = SubResource("Environment_baysf")
 navigation_mesh = ExtResource("12_nav")
 
 [node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385, 41, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
 omni_range = 5.0
 
 [node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -376, 41, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
 omni_range = 5.0
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
@@ -2717,27 +2717,27 @@ transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -
 inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -395, 40, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -40)
 
 [node name="PatrolA" type="Marker3D" parent="." unique_id=236161329 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -395, 40, -18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -22)
 
 [node name="PatrolB" type="Marker3D" parent="." unique_id=261258822 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -376, 40, -18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 2.05, -12)
 
 [node name="PatrolC" type="Marker3D" parent="." unique_id=450060164 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -376, 40, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285, 2.05, -34)
 
 [node name="StashPoint" type="Marker3D" parent="." unique_id=514351422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385, 40, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 2.05, -20)
 
 [node name="DrDonovan" parent="." unique_id=654395283 node_paths=PackedStringArray("guard_point") instance=ExtResource("2_go701")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385, 40, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -294, 2.05, -22)
 guards = true
 guard_point = NodePath("../StashPoint")
 
 [node name="AlertZone" type="Area3D" parent="." unique_id=2029997656 node_paths=PackedStringArray("enemy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -380, 40, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 2.05, -26)
 script = ExtResource("11_alert")
 enemy = NodePath("../Enemy")
 
