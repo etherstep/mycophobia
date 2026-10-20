@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c4eh1q43ecu8r" path="res://Assets/UI/Select fill in.PNG" id="18_f46an"]
 [ext_resource type="Texture2D" uid="uid://betosej4178g3" path="res://Assets/UI/Select outline.PNG" id="19_dk1fi"]
 [ext_resource type="Texture2D" uid="uid://dnwsnjuim587g" path="res://Assets/UI/Select triangle.PNG" id="20_c3dep"]
+[ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="20_f1vfh"]
 [ext_resource type="Texture2D" uid="uid://d4js3nfc6qr43" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
 [ext_resource type="Texture2D" uid="uid://nx3uhtm013n0" path="res://Assets/UI/Infection Meter Micellium Overlay.png" id="26_f1vfh"]
 [ext_resource type="Texture2D" uid="uid://bjk6gc70lfs4a" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
@@ -31,7 +32,7 @@
 atlas = ExtResource("26_f1vfh")
 margin = Rect2(-24.2, -7.93, 0, 0)
 
-[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "item_quantity", "infection_meter", "selection_ui")]
+[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "item_quantity", "item_select_text", "infection_meter", "selection_ui")]
 z_index = 100
 layout_mode = 3
 anchors_preset = 15
@@ -48,6 +49,7 @@ inventory_close_sfx = ExtResource("6_f1vfh")
 item_texture = NodePath("ItemDetails/ItemTexture")
 item_text = NodePath("ItemDetails/ItemTexture/ItemText")
 item_quantity = NodePath("ItemDetails/ItemTexture/ItemQuantity")
+item_select_text = NodePath("VisualSlots/Control/ItemSelectWindow2/RichTextLabel")
 infection_meter = NodePath("VisualSlots/InfectionMeter/InfectionMeterControl")
 selection_ui = NodePath("VisualSlots/SelectUI")
 
@@ -205,8 +207,13 @@ texture = ExtResource("11_jroks")
 
 [node name="Control" type="Control" parent="VisualSlots" unique_id=1299129004]
 anchors_preset = 0
+offset_left = 1024.0
+offset_top = 392.0
+offset_right = 1024.0
+offset_bottom = 392.0
 
 [node name="ItemSelectWindow1" type="Sprite2D" parent="VisualSlots/Control" unique_id=520099883]
+position = Vector2(8, 8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_oyd3a")
 region_enabled = true
@@ -217,6 +224,17 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_sgisd")
 region_enabled = true
 region_rect = Rect2(742.037, 412.139, 604, 771)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VisualSlots/Control/ItemSelectWindow2" unique_id=1359807208]
+offset_left = -300.0
+offset_top = -384.0
+offset_right = 302.0
+offset_bottom = 384.0
+theme_override_fonts/normal_font = ExtResource("20_f1vfh")
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SelectUI" type="Control" parent="VisualSlots" unique_id=450111258]
 visible = false
