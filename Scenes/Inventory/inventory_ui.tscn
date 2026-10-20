@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://c0ic550ow5aeh" path="res://Assets/UI/Inventory Row 3C.PNG" id="11_jroks"]
 [ext_resource type="Texture2D" uid="uid://cbkxc6iypssxj" path="res://Assets/UI/Item select window1.PNG" id="12_oyd3a"]
 [ext_resource type="Texture2D" uid="uid://scatt13k4v0w" path="res://Assets/UI/Item select window 2.PNG" id="13_sgisd"]
-[ext_resource type="Texture2D" uid="uid://dc3pbb0o5quhl" path="res://Assets/UI/Overlay.PNG" id="14_81ic1"]
 [ext_resource type="Texture2D" uid="uid://ct2008a8vng2l" path="res://Assets/UI/Potrait shadow.PNG" id="15_s435f"]
 [ext_resource type="Texture2D" uid="uid://cpxndu8saiyir" path="res://Assets/UI/Row 2C.PNG" id="17_wv4rb"]
 [ext_resource type="Texture2D" uid="uid://c4eh1q43ecu8r" path="res://Assets/UI/Select fill in.PNG" id="18_f46an"]
@@ -204,15 +203,20 @@ position = Vector2(779.7, 447.8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_jroks")
 
-[node name="ItemSelectWindow1" type="Sprite2D" parent="VisualSlots" unique_id=520099883]
-position = Vector2(731.7, 1848.8)
+[node name="Control" type="Control" parent="VisualSlots" unique_id=1299129004]
+anchors_preset = 0
+
+[node name="ItemSelectWindow1" type="Sprite2D" parent="VisualSlots/Control" unique_id=520099883]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_oyd3a")
+region_enabled = true
+region_rect = Rect2(719.93, 399.389, 604, 771)
 
-[node name="ItemSelectWindow2" type="Sprite2D" parent="VisualSlots" unique_id=2075243073]
-position = Vector2(731.7, 1848.8)
+[node name="ItemSelectWindow2" type="Sprite2D" parent="VisualSlots/Control" unique_id=2075243073]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_sgisd")
+region_enabled = true
+region_rect = Rect2(742.037, 412.139, 604, 771)
 
 [node name="SelectUI" type="Control" parent="VisualSlots" unique_id=450111258]
 visible = false
@@ -242,12 +246,6 @@ region_rect = Rect2(241, 500, 358, 442)
 position = Vector2(683.7, 487.8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("21_tm4mo")
-
-[node name="Overlay" type="Sprite2D" parent="VisualSlots" unique_id=1813552273]
-visible = false
-position = Vector2(963.7, 527.8)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_81ic1")
 
 [node name="PotraitShadow" type="Sprite2D" parent="VisualSlots" unique_id=942076616]
 position = Vector2(1248, 635)

@@ -22,6 +22,9 @@ signal world_item_selected(item: ItemData)
 @onready var note_readable_text: RichTextLabel = $NoteView/NoteReadablePanel/NoteReadableText
 @onready var note_readable_panel: PanelContainer = $NoteView/NoteReadablePanel
 
+@onready var item_select_view_front: Sprite2D = $VisualSlots/Control/ItemSelectWindow1
+@onready var item_select_view_back: Sprite2D = $VisualSlots/Control/ItemSelectWindow2
+
 @export var infection_meter: Control
 
 var selected_item: ItemData = null
