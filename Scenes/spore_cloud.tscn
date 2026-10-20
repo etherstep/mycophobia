@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bsporecloud01"]
+
+[ext_resource type="Script" uid="uid://c7sp0recloud" path="res://Scripts/spore_cloud.gd" id="1_spore"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cloud"]
+transparency = 1
+albedo_color = Color(0.45, 0.62, 0.28, 0.45)
+emission_enabled = true
+emission = Color(0.4, 0.65, 0.22, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_cloud"]
+material = SubResource("StandardMaterial3D_cloud")
+radius = 0.4
+height = 0.8
+
+[node name="SporeCloud" type="Node3D" unique_id=1742201101]
+script = ExtResource("1_spore")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1742201102]
+mesh = SubResource("SphereMesh_cloud")

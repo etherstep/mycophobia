@@ -10,12 +10,15 @@
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
+[ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/alert_zone.gd" id="11_alert"]
+[ext_resource type="NavigationMesh" path="res://Scenes/floor_nav.tres" id="12_nav"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
+[ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/spore_cloud.tscn" id="15_spore"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -2690,18 +2693,60 @@ points = PackedVector3Array(-348.375, 2, -5.125, -348.375, 4, -5.125, -348.375, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hawyw"]
 points = PackedVector3Array(-348.25, 4, -3.875, -348.25, 6, -3.875, -348.25, 4, -5.875, -348.25, 6, -5.875, -346.25, 4, -3.875, -346.25, 6, -3.875, -346.25, 4, -5.875, -346.25, 6, -5.875)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
+size = Vector3(4, 2, 4)
+
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
 
+[node name="Navigation" type="NavigationRegion3D" parent="." unique_id=259160484]
+navigation_mesh = ExtResource("12_nav")
+
+[node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
+omni_range = 5.0
+
+[node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
+omni_range = 5.0
+
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory_ui") instance=ExtResource("1_a02cp")]
 transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -0.0021242325, -284.6135, 2.1201868, -46.56684)
 inventory_ui = NodePath("../Inventory_ui")
 
 [node name="Enemy" parent="." unique_id=1972230293 instance=ExtResource("2_go701")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -376.38953, 43, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -40)
+
+[node name="PatrolA" type="Marker3D" parent="." unique_id=236161329 groups=["patrol_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -22)
+
+[node name="PatrolB" type="Marker3D" parent="." unique_id=261258822 groups=["patrol_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 2.05, -12)
+
+[node name="PatrolC" type="Marker3D" parent="." unique_id=450060164 groups=["patrol_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285, 2.05, -34)
+
+[node name="StashPoint" type="Marker3D" parent="." unique_id=514351422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 2.05, -20)
+
+[node name="DrDonovan" parent="." unique_id=654395283 node_paths=PackedStringArray("guard_point") instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -294, 2.05, -22)
+guards = true
+guard_point = NodePath("../StashPoint")
+
+[node name="AlertZone" type="Area3D" parent="." unique_id=2029997656 node_paths=PackedStringArray("enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 2.05, -26)
+script = ExtResource("11_alert")
+enemy = NodePath("../Enemy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
+shape = SubResource("BoxShape3D_alert")
+
+[node name="SporeCloud" parent="." unique_id=1742201103 instance=ExtResource("15_spore")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288, 3.2, -24)
 
 [node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
 
@@ -2776,7 +2821,7 @@ metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1776206430]
 collision_mask = 0
 
-[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2046574497]
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2046574497 groups=["nav_source"]]
 mesh = SubResource("ArrayMesh_xbk3s")
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=950703413]
