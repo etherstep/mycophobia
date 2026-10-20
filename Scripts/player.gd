@@ -42,6 +42,8 @@ const MAX_INFECTION: float = 100.0
 const MIN_INFECTION: float = 0.0
 var infection_level: float = MIN_INFECTION
 
+var syringe_used = false
+
 @export var inventory: Inventory
 @export var held_item_crosshair: TextureRect
 var selected_world_item: ItemData = null
@@ -102,6 +104,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		toggle_inventory()
 		return
 
+	# Don't process gameplay mouse input while the inventory is open.
+	if inventory_ui != null and inventory_ui.visible:
+		return
+
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_LEFT \
 	and event.pressed:
@@ -112,7 +118,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 
-		# Otherwise, preserve your normal mouse capture behavior.
+		# Otherwise, preserve normal mouse capture behavior.
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			return
@@ -275,10 +281,17 @@ func toggle_inventory() -> void:
 	if inventory_ui == null:
 		push_warning("Inventory UI is not assigned!")
 		return
+
 	if inventory_ui.close_note_if_open():
 		get_viewport().set_input_as_handled()
 		return
+
 	inventory_ui.visible = not inventory_ui.visible
+
+	# If opening the inventory, cancel any selected world item.
+	if inventory_ui.visible and selected_world_item != null:
+		cancel_world_item()
+
 	inventory_ui.play_inventory_sfx(inventory_ui.visible)
 	_update_inventory_state()
 	get_viewport().set_input_as_handled()

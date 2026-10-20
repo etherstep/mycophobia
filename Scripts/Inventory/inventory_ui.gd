@@ -22,6 +22,11 @@ signal world_item_selected(item: ItemData)
 @onready var note_readable_text: RichTextLabel = $NoteView/NoteReadablePanel/NoteReadableText
 @onready var note_readable_panel: PanelContainer = $NoteView/NoteReadablePanel
 
+@onready var item_select_view_container: Control = $VisualSlots/Control
+@onready var item_select_view_front: Sprite2D = $VisualSlots/Control/ItemSelectWindow1
+@onready var item_select_view_back: Sprite2D = $VisualSlots/Control/ItemSelectWindow2
+@export var item_select_text: Control
+
 @export var infection_meter: Control
 
 var selected_item: ItemData = null
@@ -55,6 +60,11 @@ func _ready() -> void:
 	inventory.inventory_changed.connect(refresh_inventory)
 	infection_meter.size = infection_meter.custom_minimum_size
 	player.infection_level_changed.connect(_on_infection_level_changed)
+
+	item_select_view_container.hide()
+	item_select_view_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if item_select_text != null:
+		item_select_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	refresh_inventory()
 
 func _on_slot_mouse_entered(slot: Control) -> void:
@@ -87,6 +97,7 @@ func refresh_inventory() -> void:
 		child.queue_free()
 
 	for i in range(9):
+		_hide_item_select()
 		var slot := Control.new()
 		slot.custom_minimum_size = Vector2(200, 200)
 		slot.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -96,6 +107,9 @@ func refresh_inventory() -> void:
 
 		if i < inventory.items.size():
 			var item: ItemData = inventory.items[i]
+
+			slot.mouse_entered.connect(_show_item_select.bind(item))
+			slot.mouse_exited.connect(_on_item_select_exit)
 
 			var new_item_icon := TextureRect.new()
 			new_item_icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -168,6 +182,13 @@ func use_item(item: ItemData) -> void:
 				_remove_one_item(item)
 
 			play_pressed()
+		ItemData.ItemEffect.APPLY_SYRINGE:
+			var player := get_tree().get_first_node_in_group("player")
+			if player == null:
+				return
+			player.syringe_used = true
+			if item.consume_on_use:
+				_remove_one_item(item)
 
 func _remove_one_item(item: ItemData) -> void:
 	if inventory != null:
@@ -267,6 +288,36 @@ func _clear_details() -> void:
 	selected_item = null
 	item_texture.texture = null
 	item_text.text = "No item selected"
+
+func _show_item_select(item: ItemData) -> void:
+	if item == null:
+		_hide_item_select()
+		return
+
+	# Show both Sprite2D panels and their parent.
+	item_select_view_container.show()
+	item_select_view_front.show()
+	item_select_view_back.show()
+
+	# Update the description if a text node has been assigned.
+	if item_select_text == null:
+		push_warning("ItemSelect: Assign item_select_text in the Inspector.")
+		return
+
+	if item_select_text is Label:
+		(item_select_text as Label).text = item.text
+	elif item_select_text is RichTextLabel:
+		(item_select_text as RichTextLabel).text = item.text
+
+	print("Hovering item: ", item.name)
+
+
+func _hide_item_select() -> void:
+	item_select_view_container.hide()
+
+
+func _on_item_select_exit() -> void:
+	_hide_item_select()
 
 func play_hovered() -> void:
 	MusicManager.play_ui_sfx(button_hover_sfx)

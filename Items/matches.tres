@@ -11,4 +11,5 @@ item_type = 0
 stack_limit = 8
 texture = ExtResource("2_3b8n2")
 stackable = true
+text = "Used to light things on fire. what did you expect?"
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"
