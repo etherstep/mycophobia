@@ -7,6 +7,8 @@ extends Node3D
 
 @export var salted_color := Color(0.9, 0.85, 0.65)
 
+var salt_fx = preload("res://Scenes/salt_effect.tscn")
+
 const AIM_HEIGHT := 1.0
 const HIT_DISTANCE := 0.6
 const SPORE_LIFETIME := 4.0
@@ -55,12 +57,18 @@ func _physics_process(delta: float) -> void:
 
 # Called by the player's Salt item.
 func apply_salted() -> void:
+
+	var salt: SaltEffect = salt_fx.instantiate()
+	add_child(salt)
+	salt.position = Vector3.ZERO
+	salt.position.y += 0.5
+	if salt.fx:
+		salt.fx.restart()
+		salt.fx.emitting = true
 	if _dead or _salted:
 		return
-
 	_salted = true
 	_set_enemy_color(salted_color)
-
 
 # Called by the player's Matches item.
 func is_salted() -> bool:

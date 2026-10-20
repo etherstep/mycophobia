@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b3cs8esw1fo4b"]
 
+[ext_resource type="Script" uid="uid://slgby0lelex7" path="res://Scripts/salt_effect.gd" id="1_caxbr"]
+
 [sub_resource type="Gradient" id="Gradient_m57f2"]
 offsets = PackedFloat32Array(0, 0.93442625, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.25409836, 0.972549, 0.49803922, 0.36862746, 0)
@@ -58,6 +60,7 @@ material = SubResource("StandardMaterial3D_nxepx")
 size = Vector2(0.02, 0.02)
 
 [node name="SaltEffect" type="Node3D" unique_id=513186737]
+script = ExtResource("1_caxbr")
 
 [node name="Salt" type="GPUParticles3D" parent="." unique_id=1862684908]
 cast_shadow = 0
@@ -65,6 +68,7 @@ emitting = false
 amount = 400
 lifetime = 1.5
 one_shot = true
+speed_scale = 1.5
 explosiveness = 0.9
 randomness = 0.39
 process_material = SubResource("ParticleProcessMaterial_mal8d")
