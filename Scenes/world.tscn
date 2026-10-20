@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
 [ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/spore_cloud.tscn" id="15_spore"]
+[ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -2814,6 +2815,10 @@ item_data = ExtResource("13_t2t4p")
 [node name="matches_4" parent="Collectibles" unique_id=2040173787 instance=ExtResource("5_o06y3")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 4.5945435, 1, -16.24413)
 item_data = ExtResource("13_t2t4p")
+
+[node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 8.570618, 1, -17.686844)
+item_data = ExtResource("17_1cojt")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
 script = ExtResource("12_e0ngr")

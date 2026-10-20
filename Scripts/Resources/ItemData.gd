@@ -1,13 +1,14 @@
 extends Resource
 class_name ItemData
 
-enum ItemType { MATCHES, SALT, SALINE, NOTE }
+enum ItemType { SYRINGE, MATCHES, SALT, SALINE, NOTE }
 
 enum ItemEffect {
 	NONE,
 	CURE_INFECTION,
 	SALT_ENEMY,
-	KILL_SALTED_ENEMY
+	KILL_SALTED_ENEMY,
+	APPLY_SYRINGE
 }
 
 @export var item_effect: ItemEffect = ItemEffect.NONE

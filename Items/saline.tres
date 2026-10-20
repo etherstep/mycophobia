@@ -11,4 +11,5 @@ item_type = 2
 stack_limit = 8
 texture = ExtResource("2_e228r")
 stackable = true
+text = "Sea salt wound wash. Used to cure infection."
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

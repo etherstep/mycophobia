@@ -168,6 +168,13 @@ func use_item(item: ItemData) -> void:
 				_remove_one_item(item)
 
 			play_pressed()
+		ItemData.ItemEffect.APPLY_SYRINGE:
+			var player := get_tree().get_first_node_in_group("player")
+			if player == null:
+				return
+			print("used syringe")
+			if item.consume_on_use:
+				_remove_one_item(item)
 
 func _remove_one_item(item: ItemData) -> void:
 	if inventory != null:

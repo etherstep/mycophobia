@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("1_ih4ee")
 item_effect = 2
-name = "salt"
+name = "Salt"
 item_type = 1
 stack_limit = 8
 texture = ExtResource("2_ih4ee")
 stackable = true
+text = "Your basic table salt. Dries out smaller mushrooms."
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"
