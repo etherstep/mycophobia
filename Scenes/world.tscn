@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
+[ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/spore_cloud.tscn" id="15_spore"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -2743,6 +2744,9 @@ enemy = NodePath("../Enemy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
+
+[node name="SporeCloud" parent="." unique_id=1742201103 instance=ExtResource("15_spore")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288, 3.2, -24)
 
 [node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
 
