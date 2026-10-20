@@ -3,6 +3,8 @@ extends Control
 
 @export var inventory: Inventory
 
+@export var player: Player
+
 @export var button_hover_sfx: AudioStream
 @export var button_pressed_sfx: AudioStream
 @export var note_pressed_sfx: AudioStream
@@ -19,6 +21,8 @@ extends Control
 @onready var note_readable_text: RichTextLabel = $NoteView/NoteReadablePanel/NoteReadableText
 @onready var note_readable_panel: PanelContainer = $NoteView/NoteReadablePanel
 
+@export var infection_meter: Control
+
 var selected_item: ItemData = null
 var readable_font: Font = ThemeDB.fallback_font
 var decorative_font: Font = preload("res://Assets/Fonts/Bastliga One.otf")
@@ -27,6 +31,8 @@ var decorative_font: Font = preload("res://Assets/Fonts/Bastliga One.otf")
 @export var inventory_slots: Array[Control] = []
 
 var hovered_slot: Sprite2D = null
+
+const MAX_INFECTION: float = Player.MAX_INFECTION
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -46,6 +52,8 @@ func _ready() -> void:
 		slot.mouse_exited.connect(_on_slot_mouse_exited.bind(slot))
 
 	inventory.inventory_changed.connect(refresh_inventory)
+	infection_meter.size = infection_meter.custom_minimum_size
+	player.infection_level_changed.connect(_on_infection_level_changed)
 	refresh_inventory()
 
 func _on_slot_mouse_entered(slot: Control) -> void:
@@ -221,3 +229,8 @@ func play_inventory_open() -> void:
 
 func play_inventory_close() -> void:
 	MusicManager.play_ui_sfx(inventory_close_sfx)
+	
+func _on_infection_level_changed(infection: float) -> void:
+	var infection_percent: float = infection / MAX_INFECTION
+	var meter_width: float = infection_percent * infection_meter.custom_maximum_size.x
+	infection_meter.size.x = meter_width

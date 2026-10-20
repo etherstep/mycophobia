@@ -2750,9 +2750,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288, 3.2, -24)
 
 [node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
 
-[node name="Inventory_ui" parent="." unique_id=196500527 node_paths=PackedStringArray("inventory") instance=ExtResource("4_5ukr8")]
+[node name="Inventory_ui" parent="." unique_id=196500527 node_paths=PackedStringArray("inventory", "player") instance=ExtResource("4_5ukr8")]
 visible = false
 inventory = NodePath("../Inventory")
+player = NodePath("../Player")
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=3839576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.77112, 2.4988518, -16.07994)

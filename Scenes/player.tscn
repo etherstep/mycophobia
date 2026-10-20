@@ -14,13 +14,14 @@
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
 [ext_resource type="Texture2D" uid="uid://xqr4b0ilxp1x" path="res://Assets/Sprites/Stage_2_flashlight.PNG" id="11_fd4e3"]
-[ext_resource type="Script" uid="uid://cf5p3sxco6q56" path="res://Scripts/infection_meter.gd" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
+[ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
@@ -166,30 +167,6 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
-[node name="InfectionMeter" type="Node2D" parent="HUD" unique_id=2078770289 node_paths=PackedStringArray("background", "meter", "player")]
-position = Vector2(940, 520)
-script = ExtResource("11_gymyn")
-background = NodePath("Background")
-meter = NodePath("Meter")
-player = NodePath("../..")
-
-[node name="Background" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2036380106]
-custom_minimum_size = Vector2(312, 64)
-offset_left = -924.0
-offset_top = 488.0
-offset_right = -612.0
-offset_bottom = 552.0
-color = Color(0, 0, 0, 1)
-
-[node name="Meter" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2004676187]
-custom_minimum_size = Vector2(0, 48)
-custom_maximum_size = Vector2(300, -1)
-offset_left = -916.0
-offset_top = 496.0
-offset_right = -620.0
-offset_bottom = 544.0
-color = Color(2.9841065e-06, 0.68424076, 0, 1)
-
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
 anchor_left = 0.5
@@ -221,6 +198,17 @@ grow_vertical = 2
 text = "•"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InfectionOverlay" type="TextureRect" parent="HUD" unique_id=1278943244 node_paths=PackedStringArray("player")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_0gysh")
+expand_mode = 3
+script = ExtResource("20_vfarp")
+player = NodePath("../..")
 
 [node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
 script = ExtResource("19_l6n3p")

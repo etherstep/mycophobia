@@ -20,15 +20,20 @@
 [ext_resource type="Texture2D" uid="uid://scatt13k4v0w" path="res://Assets/UI/Item select window 2.PNG" id="13_sgisd"]
 [ext_resource type="Texture2D" uid="uid://dc3pbb0o5quhl" path="res://Assets/UI/Overlay.PNG" id="14_81ic1"]
 [ext_resource type="Texture2D" uid="uid://ct2008a8vng2l" path="res://Assets/UI/Potrait shadow.PNG" id="15_s435f"]
-[ext_resource type="Texture2D" uid="uid://c66ci4nx0gtnx" path="res://Assets/UI/Progress.PNG" id="16_jtn5v"]
 [ext_resource type="Texture2D" uid="uid://cpxndu8saiyir" path="res://Assets/UI/Row 2C.PNG" id="17_wv4rb"]
 [ext_resource type="Texture2D" uid="uid://c4eh1q43ecu8r" path="res://Assets/UI/Select fill in.PNG" id="18_f46an"]
 [ext_resource type="Texture2D" uid="uid://betosej4178g3" path="res://Assets/UI/Select outline.PNG" id="19_dk1fi"]
 [ext_resource type="Texture2D" uid="uid://dnwsnjuim587g" path="res://Assets/UI/Select triangle.PNG" id="20_c3dep"]
 [ext_resource type="Texture2D" uid="uid://d4js3nfc6qr43" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
+[ext_resource type="Texture2D" uid="uid://nx3uhtm013n0" path="res://Assets/UI/Infection Meter Micellium Overlay.png" id="26_f1vfh"]
 [ext_resource type="Texture2D" uid="uid://bjk6gc70lfs4a" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
 
 [node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "item_quantity", "selection_ui", "inventory_slots")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxepx"]
+atlas = ExtResource("26_f1vfh")
+margin = Rect2(-24.2, -7.93, 0, 0)
+
+[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "infection_meter", "selection_ui")]
 z_index = 100
 layout_mode = 3
 anchors_preset = 15
@@ -45,8 +50,8 @@ inventory_close_sfx = ExtResource("6_f1vfh")
 item_texture = NodePath("ItemDetails/ItemTexture")
 item_text = NodePath("ItemDetails/ItemTexture/ItemText")
 item_quantity = NodePath("ItemDetails/ItemTexture/ItemQuantity")
+infection_meter = NodePath("VisualSlots/InfectionMeter/InfectionMeterControl")
 selection_ui = NodePath("VisualSlots/SelectUI")
-inventory_slots = [NodePath("VisualSlots/1a")]
 
 [node name="Slots" type="GridContainer" parent="." unique_id=863513507]
 z_index = 1
@@ -234,11 +239,6 @@ texture = ExtResource("20_c3dep")
 region_enabled = true
 region_rect = Rect2(241, 500, 358, 442)
 
-[node name="Progress" type="Sprite2D" parent="VisualSlots" unique_id=1855584474]
-position = Vector2(683.7, 487.8)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("16_jtn5v")
-
 [node name="TopBar" type="Sprite2D" parent="VisualSlots" unique_id=343650401]
 position = Vector2(683.7, 487.8)
 scale = Vector2(0.5, 0.5)
@@ -254,6 +254,43 @@ texture = ExtResource("14_81ic1")
 position = Vector2(1248, 635)
 scale = Vector2(0.44, 0.44)
 texture = ExtResource("15_s435f")
+
+[node name="InfectionMeter" type="Node2D" parent="VisualSlots" unique_id=538254370]
+
+[node name="InfectionBackground" type="ColorRect" parent="VisualSlots/InfectionMeter" unique_id=428208190]
+custom_minimum_size = Vector2(0, 26)
+custom_maximum_size = Vector2(-1, 52)
+offset_top = 128.0
+offset_right = 808.0
+offset_bottom = 176.0
+color = Color(0.7176471, 0.39607844, 0.30980393, 1)
+
+[node name="InfectionMeterControl" type="Control" parent="VisualSlots/InfectionMeter" unique_id=182848641]
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(776, 32)
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 792.0
+offset_bottom = 168.0
+
+[node name="InfectionMeter" type="ColorRect" parent="VisualSlots/InfectionMeter/InfectionMeterControl" unique_id=455798381]
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(776, 32)
+layout_mode = 0
+offset_right = 776.0
+offset_bottom = 32.0
+color = Color(0.14117648, 0.16862746, 0.18039216, 1)
+
+[node name="MicelliumOverlay" type="TextureRect" parent="VisualSlots/InfectionMeter/InfectionMeterControl" unique_id=338256935]
+modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_nxepx")
+expand_mode = 1
 
 [node name="Portrait" type="Sprite2D" parent="." unique_id=1056993300]
 position = Vector2(1607, 639)
