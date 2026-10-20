@@ -6,8 +6,6 @@ signal world_item_selected(item: ItemData)
 @export var inventory: Inventory
 @export var player: Player
 
-@export var player: Player
-
 @export var button_hover_sfx: AudioStream
 @export var button_pressed_sfx: AudioStream
 @export var note_pressed_sfx: AudioStream

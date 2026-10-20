@@ -207,10 +207,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("19_0gysh")
 expand_mode = 3
 script = ExtResource("20_vfarp")
 player = NodePath("../..")
+
 [node name="CrosshairSelectedItem" type="TextureRect" parent="HUD" unique_id=1112793597]
 visible = false
 anchors_preset = 8

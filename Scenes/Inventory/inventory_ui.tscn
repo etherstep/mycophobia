@@ -32,7 +32,7 @@
 atlas = ExtResource("26_f1vfh")
 margin = Rect2(-24.2, -7.93, 0, 0)
 
-[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "infection_meter", "selection_ui")]
+[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "item_quantity", "infection_meter", "selection_ui")]
 z_index = 100
 layout_mode = 3
 anchors_preset = 15
@@ -262,6 +262,7 @@ custom_maximum_size = Vector2(-1, 52)
 offset_top = 128.0
 offset_right = 808.0
 offset_bottom = 176.0
+mouse_filter = 2
 color = Color(0.7176471, 0.39607844, 0.30980393, 1)
 
 [node name="InfectionMeterControl" type="Control" parent="VisualSlots/InfectionMeter" unique_id=182848641]
@@ -274,6 +275,7 @@ offset_left = 16.0
 offset_top = 136.0
 offset_right = 792.0
 offset_bottom = 168.0
+mouse_filter = 2
 
 [node name="InfectionMeter" type="ColorRect" parent="VisualSlots/InfectionMeter/InfectionMeterControl" unique_id=455798381]
 custom_minimum_size = Vector2(0, 32)
@@ -281,6 +283,7 @@ custom_maximum_size = Vector2(776, 32)
 layout_mode = 0
 offset_right = 776.0
 offset_bottom = 32.0
+mouse_filter = 2
 color = Color(0.14117648, 0.16862746, 0.18039216, 1)
 
 [node name="MicelliumOverlay" type="TextureRect" parent="VisualSlots/InfectionMeter/InfectionMeterControl" unique_id=338256935]
@@ -288,6 +291,7 @@ modulate = Color(1, 1, 1, 0.47058824)
 layout_mode = 0
 offset_right = 800.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = SubResource("AtlasTexture_nxepx")
 expand_mode = 1
 
