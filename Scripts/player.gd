@@ -42,6 +42,8 @@ const MAX_INFECTION: float = 100.0
 const MIN_INFECTION: float = 0.0
 var infection_level: float = MIN_INFECTION
 
+var syringe_used = false
+
 @export var inventory: Inventory
 @export var held_item_crosshair: TextureRect
 var selected_world_item: ItemData = null

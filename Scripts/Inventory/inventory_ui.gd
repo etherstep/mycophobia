@@ -172,7 +172,7 @@ func use_item(item: ItemData) -> void:
 			var player := get_tree().get_first_node_in_group("player")
 			if player == null:
 				return
-			print("used syringe")
+			player.syringe_used = true
 			if item.consume_on_use:
 				_remove_one_item(item)
 

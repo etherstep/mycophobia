@@ -34,8 +34,12 @@ func _physics_process(delta: float) -> void:
 
 	_cooldown = fire_interval
 
-	var player := get_tree().get_first_node_in_group("player") as Node3D
+	var player := get_tree().get_first_node_in_group("player") as Player
 	if player == null:
+		return
+
+	# Ignore the player after they have used the syringe.
+	if player.syringe_used:
 		return
 
 	var aim := player.global_position + Vector3(0, AIM_HEIGHT, 0)
@@ -168,6 +172,11 @@ class Spore extends MeshInstance3D:
 			global_position += to_target.normalized() * step
 
 		if player == null or not is_instance_valid(player):
+			return
+
+		# Remove spores if the player has used the syringe.
+		if player is Player and (player as Player).syringe_used:
+			queue_free()
 			return
 
 		var body := player.global_position + Vector3(0, aim_height, 0)

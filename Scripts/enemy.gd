@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var player := get_tree().get_first_node_in_group("player") as Node3D
-	if player != null and _fully_infected(player):
+	if player != null and _has_used_syringe(player):
 		if state != State.WANDER:
 			state = State.WANDER
 			_pick_patrol_point()
@@ -213,17 +213,15 @@ func _inside_leash(at: Vector3) -> bool:
 	flat.y = 0.0
 	return flat.length() <= leash_radius
 
-
-func _fully_infected(player: Node3D) -> bool:
+func _has_used_syringe(player: Node3D) -> bool:
 	if player is Player:
 		var body: Player = player
-		return body.infection_level >= Player.MAX_INFECTION
+		return body.syringe_used
 	return false
-
 
 func alert(at: Vector3) -> void:
 	var player := get_tree().get_first_node_in_group("player") as Node3D
-	if player != null and _fully_infected(player):
+	if player != null and _has_used_syringe(player):
 		return
 
 	if state != State.CHASE:
@@ -236,7 +234,7 @@ func alert(at: Vector3) -> void:
 
 
 func _on_catch_area_body_entered(body: Node3D) -> void:
-	if _fully_infected(body):
+	if _has_used_syringe(body):
 		return
 	if body.is_in_group("player") and body.has_method("die"):
 		body.die()
