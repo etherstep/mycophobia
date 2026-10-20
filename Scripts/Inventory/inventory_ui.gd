@@ -12,6 +12,7 @@ extends Control
 @onready var slots: GridContainer = $Slots
 @export var item_texture: TextureRect
 @export var item_text: Label
+@export var item_quantity: Label
 @onready var note_view: Control = $NoteView
 @onready var note_texture: TextureRect = $NoteView/NoteTexture
 @onready var note_text: RichTextLabel = $NoteView/NoteText

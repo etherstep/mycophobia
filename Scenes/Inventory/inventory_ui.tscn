@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://d4js3nfc6qr43" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
 [ext_resource type="Texture2D" uid="uid://bjk6gc70lfs4a" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
 
-[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "selection_ui", "inventory_slots")]
+[node name="InventoryUI" type="Control" unique_id=196500527 node_paths=PackedStringArray("item_texture", "item_text", "item_quantity", "selection_ui", "inventory_slots")]
 z_index = 100
 layout_mode = 3
 anchors_preset = 15
@@ -44,6 +44,7 @@ inventory_open_sfx = ExtResource("5_eqgu5")
 inventory_close_sfx = ExtResource("6_f1vfh")
 item_texture = NodePath("ItemDetails/ItemTexture")
 item_text = NodePath("ItemDetails/ItemTexture/ItemText")
+item_quantity = NodePath("ItemDetails/ItemTexture/ItemQuantity")
 selection_ui = NodePath("VisualSlots/SelectUI")
 inventory_slots = [NodePath("VisualSlots/1a")]
 
@@ -86,6 +87,11 @@ theme_override_fonts/font = ExtResource("3_s1kqi")
 theme_override_font_sizes/font_size = 21
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ItemQuantity" type="Label" parent="ItemDetails/ItemTexture" unique_id=339753071]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="NoteView" type="Control" parent="." unique_id=2013187292]
 z_index = 1
