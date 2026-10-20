@@ -52,13 +52,22 @@ flashlight_asset = NodePath("../PlayerHands/FlashLightStage1")
 flashlight_on_sfx = ExtResource("7_tx1dd")
 flashlight_off_sfx = ExtResource("8_gymyn")
 
-[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633 groups=["detection_light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035404205, -0.49950033)
-light_color = Color(0.9647059, 0.9372549, 0.92156863, 1)
-spot_range = 80.0
-spot_attenuation = 0.4
-spot_angle = 26.25
-spot_angle_attenuation = 1.4640903
+[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=739574546 groups=["detection_light"]]
+transform = Transform3D(0.99453217, 0.030593013, 0.09984891, -0.016278196, 0.9898547, -0.14114776, -0.10315405, 0.13875063, 0.9849404, 0.4766215, -0.6343856, -0.029269874)
+light_color = Color(0.929673, 0.98395807, 0.92091703, 1)
+light_energy = 6.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 0.1
+light_size = 0.35
+shadow_enabled = true
+shadow_normal_bias = 2.875
+shadow_reverse_cull_face = true
+shadow_transmittance_bias = 2.05
+shadow_blur = 0.313
+spot_range = 12.343
+spot_attenuation = 0.69
+spot_angle = 15.0
+spot_angle_attenuation = 0.6597539
 script = ExtResource("9_qqcod")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
