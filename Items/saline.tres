@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("1_e228r")
+item_effect = 1
 name = "saline"
 item_type = 2
-stack_limit = 2
+stack_limit = 8
 texture = ExtResource("2_e228r")
+stackable = true
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

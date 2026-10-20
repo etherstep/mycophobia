@@ -60,14 +60,21 @@ func apply_volume() -> void:
 		)
 
 func music_volume_to_db(percent: float) -> float:
-	return lerpf(-80.0, 6.0, clampf(percent / 100.0, 0.0, 1.0))
+	var normalized := clampf(percent / 100.0, 0.0, 1.0)
+
+	if normalized <= 0.0:
+		return -80.0
+
+	return lerpf(-30.0, 12.0, normalized)
 
 
 func game_volume_to_db(percent: float) -> float:
 	var normalized := clampf(percent / 100.0, 0.0, 1.0)
+
 	if normalized <= 0.0:
 		return -80.0
-	return linear_to_db(normalized)
+
+	return lerpf(-30.0, 12.0, normalized)
 
 func apply_gamma(world_environment: WorldEnvironment) -> void:
 	if world_environment.environment == null:

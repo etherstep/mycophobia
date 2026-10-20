@@ -14,8 +14,16 @@ material = SubResource("StandardMaterial3D_cloud")
 radius = 0.4
 height = 0.8
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ik1hn"]
+
 [node name="SporeCloud" type="Node3D" unique_id=1742201101]
 script = ExtResource("1_spore")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1742201102]
 mesh = SubResource("SphereMesh_cloud")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1375636674]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1387467450]
+shape = SubResource("SphereShape3D_ik1hn")

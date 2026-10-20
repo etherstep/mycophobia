@@ -18,6 +18,9 @@ enum State { WANDER, CHASE, SEARCH }
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 
+@onready var chase_sfx_player: AudioStreamPlayer = $ChaseSFX
+@onready var lose_interest_sfx_player: AudioStreamPlayer = $LoseInterestSFX
+
 var state := State.WANDER
 var last_known := Vector3.ZERO
 var unseen_time := 0.0
@@ -28,10 +31,8 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	_pick_patrol_point()
 
-
 func _process(_delta: float) -> void:
 	render_correct_animation()
-
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -54,11 +55,13 @@ func _physics_process(delta: float) -> void:
 		unseen_time = 0.0
 		if _inside_leash(player.global_position):
 			state = State.CHASE
+			chase_sfx_player.play()
 	elif state == State.CHASE:
 		unseen_time += delta
 		var left_leash := player != null and not _inside_leash(player.global_position)
 		if unseen_time >= lose_time or left_leash:
 			state = State.SEARCH
+			lose_interest_sfx_player.play()
 			agent.target_position = guard_point.global_position if guards and guard_point != null else last_known
 
 	match state:
@@ -75,7 +78,6 @@ func _physics_process(delta: float) -> void:
 
 	_move_along_path()
 	move_and_slide()
-
 
 func _can_see(player: Node3D) -> bool:
 	var to_player := player.global_position - global_position
@@ -223,6 +225,10 @@ func alert(at: Vector3) -> void:
 	var player := get_tree().get_first_node_in_group("player") as Node3D
 	if player != null and _fully_infected(player):
 		return
+
+	if state != State.CHASE:
+		chase_sfx_player.play()
+
 	last_known = at
 	unseen_time = 0.0
 	state = State.CHASE
