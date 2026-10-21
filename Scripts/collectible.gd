@@ -10,7 +10,7 @@ extends Area3D
 @export var label: Label3D
 @export var note_interact_sfx: AudioStream
 
-const BASE_SCALE = Vector3(0.15, 0.15, 0.15)
+const BASE_SCALE = Vector3(0.02, 0.02, 0.02)
 var original_modulate: Color = Color.WHITE
 
 

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="4_73n1k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
-size = Vector3(0.36930656, 0.54725647, 0.15234375)
+size = Vector3(0.38145018, 0.5619321, 0.15234375)
 
 [node name="Collectible" type="Area3D" unique_id=376975287 node_paths=PackedStringArray("sprite", "label")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
@@ -18,11 +18,10 @@ label = NodePath("Label3D")
 note_interact_sfx = ExtResource("3_73n1k")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=936071494]
-modulate = Color(0.6189661, 0.6073571, 0.5496641, 1)
 texture = ExtResource("4_73n1k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1578078474]
-transform = Transform3D(34.745, 0, 0, 0, 34.745, 0, 0, 0, 34.745, 0, 0, 0)
+transform = Transform3D(34.745, 0, 0, 0, 34.745, 0, 0, 0, 34.745, 0, 0.28131136, 0)
 shape = SubResource("BoxShape3D_y1mi7")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=457749072]
