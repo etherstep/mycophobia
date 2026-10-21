@@ -18,6 +18,16 @@
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
+[ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
+[ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
+[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="21_yq1aw"]
+[ext_resource type="Script" uid="uid://dcmknv4owwx12" path="res://Scenes/random_ambience_point.gd" id="22_pyn1s"]
+[ext_resource type="AudioStream" uid="uid://bukb402oyoo0p" path="res://Assets/SFX/Athmosphere/ambient_noise_1.wav" id="23_dt0r1"]
+[ext_resource type="AudioStream" uid="uid://dvpqbnt1t5p5k" path="res://Assets/SFX/Athmosphere/ambient_noise_2.wav" id="24_qebug"]
+[ext_resource type="AudioStream" uid="uid://b1j1bg3b1oc47" path="res://Assets/SFX/Athmosphere/ambient_noise_3.wav" id="25_o2rbt"]
+[ext_resource type="AudioStream" uid="uid://qyoldsjy24bt" path="res://Assets/SFX/Athmosphere/ambient_noise_4.wav" id="26_1vso6"]
+[ext_resource type="AudioStream" uid="uid://cr3jstcnav8xy" path="res://Assets/SFX/Athmosphere/ambient_noise_5.wav" id="27_3ua1v"]
+[ext_resource type="AudioStream" uid="uid://rsbk8k362wyf" path="res://Assets/SFX/Athmosphere/ambient_noise_6.wav" id="28_r0ikl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -2698,6 +2708,10 @@ points = PackedVector3Array(-348.375, 2, -5.125, -348.375, 4, -5.125, -348.375, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hawyw"]
 points = PackedVector3Array(-348.25, 4, -3.875, -348.25, 6, -3.875, -348.25, 4, -5.875, -348.25, 6, -5.875, -346.25, 4, -3.875, -346.25, 6, -3.875, -346.25, 4, -5.875, -346.25, 6, -5.875)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hhcb3"]
+height = 12.031
+radius = 9.0
+
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
 
@@ -2748,7 +2762,7 @@ player = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.77112, 2.4988518, -16.07994)
 
 [node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
-transform = Transform3D(-0.019978708, 0, 0.00092254253, 0, 0.02, 0, -0.00092254253, 0, -0.019978708, 1.6973877, 1, 0)
+transform = Transform3D(-0.019978711, 0, 0.00092254137, 0, 0.02, 0, -0.00092254137, 0, -0.019978711, 1.6973877, 1, 0)
 
 [node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1, 1, 0)
@@ -2763,27 +2777,27 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.59687805, 1, 0)
 item_data = ExtResource("9_ikia7")
 
 [node name="salt_1" parent="Collectibles" unique_id=648026096 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 8.392334, 1, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 8.392334, 1, -16.24413)
 item_data = ExtResource("11_e0ngr")
 
 [node name="salt_2" parent="Collectibles" unique_id=1135687664 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 9.143402, 0.35634065, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.143402, 0.35634065, -16.24413)
 item_data = ExtResource("11_e0ngr")
 
 [node name="salt_3" parent="Collectibles" unique_id=938361332 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 8.392334, 0.34691358, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 8.392334, 0.34691358, -16.24413)
 item_data = ExtResource("11_e0ngr")
 
 [node name="salt_4" parent="Collectibles" unique_id=273507407 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 9.122803, 1, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.122803, 1, -16.24413)
 item_data = ExtResource("11_e0ngr")
 
 [node name="saline_1" parent="Collectibles" unique_id=1714809678 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 7.4092407, 1, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.4092407, 1, -16.24413)
 item_data = ExtResource("12_hgpy0")
 
 [node name="saline_2" parent="Collectibles" unique_id=768498298 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 7.8852844, 1, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.8852844, 1, -16.24413)
 item_data = ExtResource("12_hgpy0")
 
 [node name="matches_1" parent="Collectibles" unique_id=1578993740 instance=ExtResource("5_o06y3")]
@@ -2803,7 +2817,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.031372, 1, -16.244
 item_data = ExtResource("13_t2t4p")
 
 [node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 8.570618, 1, -17.686844)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 8.570618, 1, -17.686844)
 item_data = ExtResource("17_1cojt")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
@@ -5354,3 +5368,94 @@ light_volumetric_fog_energy = 2.404
 light_size = 0.298
 light_specular = 5.306
 shadow_enabled = true
+
+[node name="SafeHouse" type="Area3D" parent="." unique_id=888880273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -279.84714, 4.4450264, -50.9497)
+audio_bus_name = &"SFX-World"
+script = ExtResource("19_1cojt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse" unique_id=992969654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.2, 0)
+shape = SubResource("CylinderShape3D_hhcb3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse" unique_id=1775186966]
+stream = ExtResource("20_yq1aw")
+bus = &"Music"
+
+[node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("21_yq1aw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.41824, 2.6442, -20.738623)
+
+[node name="RandomAmbiencePoint" type="Node3D" parent="." unique_id=25133711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.08496, 11.492045, 17.308651)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint" unique_id=1058733444]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint2" type="Node3D" parent="." unique_id=2021936959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.08496, 11.492045, -63.133625)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint2" unique_id=2105676270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.428558, 0, 5.3869324)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint3" type="Node3D" parent="." unique_id=237149247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -424.28018, 11.492045, 14.035458)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint3" unique_id=875227926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.039612, 0, -24.17795)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint6" type="Node3D" parent="." unique_id=1605149260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -424.28018, 11.492045, 97.30629)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint6" unique_id=1728743072]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint7" type="Node3D" parent="." unique_id=885697845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -316.94437, 11.492045, 57.74518)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint7" unique_id=994986809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.11499, -3.220213, -9.068878)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint4" type="Node3D" parent="." unique_id=1946602513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385.23593, 11.492045, -43.047455)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint4" unique_id=2114722221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0365171, 5.6127777)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint5" type="Node3D" parent="." unique_id=650742912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -481.56778, 30.655388, -36.979794)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint5" unique_id=1517738343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.195919)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"

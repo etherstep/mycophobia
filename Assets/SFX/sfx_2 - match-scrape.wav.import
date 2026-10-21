@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2doeyalk7i08"
+path="res://.godot/imported/sfx_2 - match-scrape.wav-1a233d0066b282d949c795a4f8bc1a72.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/sfx_2 - match-scrape.wav"
+dest_files=["res://.godot/imported/sfx_2 - match-scrape.wav-1a233d0066b282d949c795a4f8bc1a72.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

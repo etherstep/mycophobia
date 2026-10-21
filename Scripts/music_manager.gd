@@ -6,6 +6,7 @@ var starting_effect_player: AudioStreamPlayer
 var brochure_player: AudioStreamPlayer
 var world_player: AudioStreamPlayer
 var ambience_player: AudioStreamPlayer
+var ambience_player_2: AudioStreamPlayer
 var player_player: AudioStreamPlayer
 
 const STARTING_EFFECT: AudioStream = preload("res://Assets/SFX/UI/game-start.wav")
@@ -47,11 +48,27 @@ func _ready() -> void:
 	ambience_player = AudioStreamPlayer.new()
 	ambience_player.bus = "SFX-Ambience"
 	add_child(ambience_player)
+	
+	ambience_player_2 = AudioStreamPlayer.new()
+	ambience_player_2.bus = "SFX-Ambience"
+	add_child(ambience_player_2)
 
 func play_game_ambience() -> void:
-	var game_song = preload("res://Assets/Music/game_ambience.mp3") as AudioStream
+	# Stop the main menu theme.
+	stop()
+
+	var game_song: AudioStream = preload(
+		"res://Assets/SFX/Athmosphere/ambient_drone.wav"
+	)
+	var game_song_2: AudioStream = preload(
+		"res://Assets/SFX/Athmosphere/wind.mp3"
+	)
+
 	ambience_player.stream = game_song
 	ambience_player.play()
+
+	ambience_player_2.stream = game_song_2
+	ambience_player_2.play()
 
 func play_sfx(sound: AudioStream) -> void:
 	if sound == null:

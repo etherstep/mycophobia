@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://b1cgcym7nya6" path="res://Assets/Sprites/fungal.png" id="2_1f0kj"]
-[ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="3_afpow"]
-[ext_resource type="AudioStream" uid="uid://dbpkvseuruvxf" path="res://Assets/SFX/UI/game-start.wav" id="4_287tu"]
-[ext_resource type="AudioStream" uid="uid://dca7lglg4imuw" path="res://Assets/Music/main_menu_theme.mp3" id="5_0830c"]
+[ext_resource type="AudioStream" uid="uid://dy4y8t050ny11" path="res://Assets/SFX/sfx_2 - enemy_step_1.wav" id="2_ghaa6"]
+[ext_resource type="AudioStream" uid="uid://bmoiv8usschgy" path="res://Assets/SFX/sfx_2 - enemy_step_2.wav" id="3_1dp5w"]
+[ext_resource type="AudioStream" uid="uid://buclbg01nl2oy" path="res://Assets/SFX/Athmosphere/chase_2.wav" id="4_0830c"]
+[ext_resource type="AudioStream" uid="uid://bgktiom1uy4rt" path="res://Assets/SFX/Athmosphere/chase-end_2.wav" id="5_ghaa6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 radius = 0.4
@@ -52,6 +53,7 @@ radius = 1.2
 [node name="Enemy" type="CharacterBody3D" unique_id=1473996547 node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("1_1f0kj")
 animated_sprite = NodePath("AnimatedSprite3D")
+footstep_sounds = Array[AudioStream]([ExtResource("2_ghaa6"), ExtResource("3_1dp5w")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1425749593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -82,20 +84,23 @@ shape = SubResource("SphereShape3D_catch")
 
 [node name="EnemySfx" type="AudioStreamPlayer3D" parent="." unique_id=867803430]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5157971, 0)
-stream = ExtResource("3_afpow")
 autoplay = true
 max_distance = 20.0
 bus = &"SFX-Enemy"
 emission_angle_enabled = true
 emission_angle_degrees = 52.1
-parameters/looping = true
 
 [node name="ChaseSFX" type="AudioStreamPlayer" parent="." unique_id=1337109100]
-stream = ExtResource("4_287tu")
+stream = ExtResource("4_0830c")
 bus = &"Music"
 
 [node name="LoseInterestSFX" type="AudioStreamPlayer" parent="." unique_id=110984720]
-stream = ExtResource("5_0830c")
+stream = ExtResource("5_ghaa6")
 bus = &"Music"
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1279238638]
+transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
+bus = &"SFX-Enemy"
+emission_angle_enabled = true
 
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

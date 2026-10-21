@@ -3,6 +3,12 @@ class_name Inventory
 
 signal inventory_changed
 
+#@export var note_interact_sfx: AudioStream
+@export var salt_use_sfx: AudioStream
+@export var matches_use_sfx: AudioStream
+@export var saline_use_sfx: AudioStream
+@export var syringe_use_sfx: AudioStream
+
 class ItemStack:
 	var item: ItemData
 	var quantity: int
@@ -42,6 +48,16 @@ func remove_one_item(item: ItemData) -> void:
 			else:
 				items.remove_at(i)
 				quantities.remove_at(i)
+			if item.item_type == ItemData.ItemType.SALT:
+				MusicManager.play_player_dialogue(salt_use_sfx)
 
+			if item.item_type == ItemData.ItemType.MATCHES:
+				MusicManager.play_player_dialogue(matches_use_sfx)
+
+			if item.item_type == ItemData.ItemType.SALINE:
+				MusicManager.play_player_dialogue(saline_use_sfx)
+
+			if item.item_type == ItemData.ItemType.SYRINGE:
+				MusicManager.play_player_dialogue(syringe_use_sfx)
 			inventory_changed.emit()
 			return

@@ -7,7 +7,7 @@
 script = ExtResource("1_e228r")
 item_effect = 1
 name = "saline"
-item_type = 2
+item_type = 3
 stack_limit = 8
 texture = ExtResource("2_e228r")
 stackable = true

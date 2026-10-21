@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://casgcs7q8ujxx"]
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="AudioStream" uid="uid://cm6b8a2tlggum" path="res://Assets/SFX/Footsteps/untitled - Track 1.wav" id="2_8erm5"]
+[ext_resource type="AudioStream" uid="uid://cuf1k24xj2r37" path="res://Assets/SFX/sfx_2 - step_1.wav" id="2_2ijsl"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
-[ext_resource type="AudioStream" uid="uid://1qis3w7j73t7" path="res://Assets/SFX/Footsteps/untitled - Track 2.wav" id="3_f1ek2"]
-[ext_resource type="AudioStream" uid="uid://bf7b83p5n4x03" path="res://Assets/SFX/Footsteps/untitled - Track 3.wav" id="4_tx1dd"]
+[ext_resource type="AudioStream" uid="uid://bpvgof8ro80pk" path="res://Assets/SFX/sfx_2 - step_2.wav" id="3_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
-[ext_resource type="AudioStream" uid="uid://bdg1c8o8vgqf3" path="res://Assets/SFX/Footsteps/untitled - Track 4.wav" id="5_gymyn"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
-[ext_resource type="AudioStream" uid="uid://cx1fkshtswgva" path="res://Assets/SFX/Flashlight/flashlight-on.wav" id="7_tx1dd"]
-[ext_resource type="AudioStream" uid="uid://cfys2ibbhxyp4" path="res://Assets/SFX/Flashlight/flashlight-off.wav" id="8_gymyn"]
+[ext_resource type="AudioStream" uid="uid://hhf2se68ku8s" path="res://Assets/SFX/sfx_2 - flashlight-on.wav" id="8_0gysh"]
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
+[ext_resource type="AudioStream" uid="uid://dj5wjjslrh253" path="res://Assets/SFX/sfx_2 - flashlight close.wav" id="9_vfarp"]
 [ext_resource type="Texture2D" uid="uid://xqr4b0ilxp1x" path="res://Assets/Sprites/Stage_2_flashlight.PNG" id="11_fd4e3"]
 [ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
@@ -34,7 +32,7 @@ height = 2.6291504
 script = ExtResource("1_v0iea")
 held_item_crosshair = NodePath("HUD/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")
-footstep_sounds = Array[AudioStream]([ExtResource("2_8erm5"), ExtResource("3_f1ek2"), ExtResource("4_tx1dd"), ExtResource("5_gymyn")])
+footstep_sounds = Array[AudioStream]([ExtResource("2_2ijsl"), ExtResource("3_p1odr")])
 running_player_sfx = ExtResource("6_gymyn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944353870]
@@ -49,8 +47,8 @@ crosshair_interact = NodePath("../HUD/Crosshair_interact")
 crosshair_normal = NodePath("../HUD/Crosshair_normal")
 flashlight = NodePath("FlashLight")
 flashlight_asset = NodePath("../PlayerHands/FlashLightStage1")
-flashlight_on_sfx = ExtResource("7_tx1dd")
-flashlight_off_sfx = ExtResource("8_gymyn")
+flashlight_on_sfx = ExtResource("8_0gysh")
+flashlight_off_sfx = ExtResource("9_vfarp")
 
 [node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=739574546 groups=["detection_light"]]
 transform = Transform3D(0.99453217, 0.030593013, 0.09984891, -0.016278196, 0.9898547, -0.14114776, -0.10315405, 0.13875063, 0.9849404, 0.4766215, -0.6343856, -0.029269874)

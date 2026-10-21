@@ -55,12 +55,15 @@ var selected_world_item: ItemData = null
 
 # AUDIO
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+const FOOTSTEP_POOL_SIZE := 4
+var footstep_players: Array[AudioStreamPlayer3D] = []
+var footstep_player_index: int = 0
 @export var footstep_sounds: Array[AudioStream]
 @onready var dialogue_player: AudioStreamPlayer3D = $DialoguePlayer
 @export var running_player_sfx: AudioStream
-@export var footstep_interval: float = 0.45
-@export var footstep_interval_sprint: float = 0.25
-@export var footstep_interval_crouch: float = 0.75
+@export var footstep_interval: float = 0.32
+@export var footstep_interval_sprint: float = 0.18
+@export var footstep_interval_crouch: float = 0.65
 var footstep_tween: Tween
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
@@ -69,6 +72,7 @@ var last_footstep_index: int = -1
 var running_sfx_timer: float = 0.0
 
 func _ready() -> void:
+	setup_footstep_pool()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if inventory_ui != null:
@@ -91,6 +95,15 @@ func _ready() -> void:
 
 	if held_item_crosshair != null:
 		held_item_crosshair.hide()
+
+func setup_footstep_pool() -> void:
+	footstep_players.clear()
+	footstep_players.append(footstep_player)
+
+	for i in range(FOOTSTEP_POOL_SIZE - 1):
+		var player := footstep_player.duplicate() as AudioStreamPlayer3D
+		add_child(player)
+		footstep_players.append(player)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dead:
@@ -443,9 +456,8 @@ func update_footsteps(delta: float) -> void:
 	footstep_timer -= delta
 
 	if footstep_timer <= 0.0:
-		if is_sprinting or not footstep_player.playing:
-			play_random_footstep(is_sprinting)
-			footstep_timer = current_interval
+		play_random_footstep(is_sprinting)
+		footstep_timer = current_interval
 
 func stop_footsteps() -> void:
 	if not footstep_player.playing:
@@ -465,10 +477,8 @@ func play_random_footstep(force_restart: bool = false) -> void:
 	if footstep_sounds.is_empty():
 		return
 
-	if footstep_player.playing and not force_restart:
-		return
-
 	var sound_index: int
+
 	if footstep_sounds.size() == 1:
 		sound_index = 0
 	else:
@@ -477,8 +487,13 @@ func play_random_footstep(force_restart: bool = false) -> void:
 			sound_index = randi_range(0, footstep_sounds.size() - 1)
 
 	last_footstep_index = sound_index
-	footstep_player.stream = footstep_sounds[sound_index]
-	footstep_player.play()
+
+	var player := footstep_players[footstep_player_index]
+	footstep_player_index = (footstep_player_index + 1) % footstep_players.size()
+
+	player.stream = footstep_sounds[sound_index]
+	player.volume_db = 0.0
+	player.play()
 
 func increase_infection(amount: int) -> void:
 	if (amount <= 0):
