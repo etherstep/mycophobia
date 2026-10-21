@@ -16,10 +16,10 @@ func _ready() -> void:
 	active_sprite_array[2].visible = false
 	player.infection_level_changed.connect(_on_infection_changed)
 	flashlight.flashlight_visibility_changed.connect(_on_flashlight_visibility_changed)
-	if flashlight.visible:
-		active_sprite_array = flashlight_array
-	else:
-		active_sprite_array = hands_array
+	#if flashlight.visible:
+	active_sprite_array = flashlight_array
+	#else:
+		#active_sprite_array = hands_array
 	calculate_hand_sprite_visibility(player.infection_level)
 
 func calculate_hand_sprite_visibility(infection_level: float) -> void:
@@ -51,8 +51,8 @@ func _on_flashlight_visibility_changed(is_visible: bool) -> void:
 		for sprite in hands_array:
 			sprite.visible = false
 		active_sprite_array = flashlight_array
-	else:
-		for sprite in flashlight_array:
-			sprite.visible = false
-		active_sprite_array = hands_array
+	#else:
+		#for sprite in flashlight_array:
+			#sprite.visible = false
+		#active_sprite_array = hands_array
 	calculate_hand_sprite_visibility(player.infection_level)
