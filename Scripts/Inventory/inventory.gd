@@ -42,6 +42,12 @@ func add_item(item: ItemData) -> bool:
 	inventory_changed.emit()
 	return true
 
+func has_type(type: ItemData.ItemType) -> bool:
+	for item in items:
+		if item != null and item.item_type == type:
+			return true
+	return false
+
 func remove_one_item(item: ItemData) -> void:
 	for i in range(items.size()):
 		if items[i] == item:
@@ -64,3 +70,29 @@ func remove_one_item(item: ItemData) -> void:
 				MusicManager.play_player_dialogue(syringe_use_sfx)
 			inventory_changed.emit()
 			return
+
+func remove_one_item_by_type(type: ItemData.ItemType) -> bool:
+	for i in range(items.size()):
+		var item := items[i]
+
+		if item != null and item.item_type == type:
+			if quantities[i] > 1:
+				quantities[i] -= 1
+			else:
+				items.remove_at(i)
+				quantities.remove_at(i)
+
+			if type == ItemData.ItemType.SALT:
+				MusicManager.play_player_dialogue(salt_use_sfx)
+			elif type == ItemData.ItemType.MATCHES:
+				MusicManager.play_player_dialogue(matches_use_sfx)
+			elif type == ItemData.ItemType.SALINE:
+				MusicManager.play_player_dialogue(saline_use_sfx)
+			elif type == ItemData.ItemType.SYRINGE:
+				player.increase_infection(100)
+				MusicManager.play_player_dialogue(syringe_use_sfx)
+
+			inventory_changed.emit()
+			return true
+
+	return false

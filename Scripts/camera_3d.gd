@@ -77,6 +77,7 @@ func update_target() -> void:
 	)
 	query.collide_with_areas = true
 	query.collide_with_bodies = true
+	query.collision_mask &= ~2
 	query.exclude = [get_parent().get_rid()]
 
 	var result := get_world_3d().direct_space_state.intersect_ray(query)

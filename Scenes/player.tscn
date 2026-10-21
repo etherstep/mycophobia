@@ -29,6 +29,7 @@
 height = 2.6291504
 
 [node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
+collision_mask = 3
 script = ExtResource("1_v0iea")
 held_item_crosshair = NodePath("HUD/Control/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")

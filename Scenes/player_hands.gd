@@ -34,14 +34,12 @@ func calculate_hand_sprite_visibility(infection_level: float) -> void:
 		active_sprite_array[1].visible = true
 		var alpha: float = (current_infection_level - QUARTER_MAX_INFECTION) / HALF_MAX_INFECTION
 		active_sprite_array[1].modulate.a = clampf(alpha, 0.0, 1.0)
-		print("sprite 2: ", active_sprite_array[1].modulate.a)
 	if current_infection_level < HALF_MAX_INFECTION:
 		active_sprite_array[2].visible = false
 	else:
 		active_sprite_array[2].visible = true
 		var alpha: float = (current_infection_level - HALF_MAX_INFECTION) / HALF_MAX_INFECTION
 		active_sprite_array[2].modulate.a = clampf(alpha, 0.0, 1.0)
-		print("sprite 2: ", active_sprite_array[1].modulate.a)
 
 func _on_infection_changed(infection_level: float) -> void:
 	calculate_hand_sprite_visibility(infection_level)
