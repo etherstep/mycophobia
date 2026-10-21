@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bsporecloud01"]
 
-[ext_resource type="Script" uid="uid://c7sp0recloud" path="res://Scripts/spore_cloud.gd" id="1_spore"]
+[ext_resource type="Script" uid="uid://c7sp0recloud" path="res://Scripts/Enemies/spore_cloud.gd" id="1_spore"]
 [ext_resource type="Shader" uid="uid://o467u40jyv1k" path="res://Shaders/spore_smoke_lod.gdshader" id="2_smoke"]
 [ext_resource type="Texture2D" uid="uid://c2k0vypco3cfg" path="res://Assets/VFX/T_Noise_001R.png" id="3_noise"]
 [ext_resource type="Texture2D" uid="uid://1s454oif21cr" path="res://Assets/VFX/T_VFX_circle_1.png" id="4_mask"]
@@ -73,6 +73,7 @@ draw_pass_1 = SubResource("QuadMesh_smoke")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1742201106]
 collision_layer = 0
+collision_mask = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1742201107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)

@@ -69,7 +69,7 @@ var syringe_used = false
 var selected_world_item: ItemData = null
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var _infection_overlay: TextureRect = $HUD/InfectionOverlay
+@onready var _infection_vignette: ColorRect = $HUD/InfectionVignette
 @onready var _infection_timer: Label = $HUD/InfectionTimer
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
@@ -583,17 +583,17 @@ func _process(delta: float) -> void:
 	_vignette_left = maxf(_vignette_left - delta, 0.0)
 	_set_vignette_strength(_vignette_left / VIGNETTE_TIME)
 	if _vignette_left <= 0.0:
-		_infection_overlay.visible = false
+		_infection_vignette.visible = false
 
 
 func _pulse_infection_vignette() -> void:
 	_vignette_left = VIGNETTE_TIME
-	_infection_overlay.visible = true
+	_infection_vignette.visible = true
 	_set_vignette_strength(1.0)
 
 
 func _set_vignette_strength(strength: float) -> void:
-	var mat := _infection_overlay.material as ShaderMaterial
+	var mat := _infection_vignette.material as ShaderMaterial
 	if mat != null:
 		mat.set_shader_parameter("strength", strength)
 

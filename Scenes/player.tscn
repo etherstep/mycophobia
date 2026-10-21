@@ -24,6 +24,11 @@
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
+[ext_resource type="Shader" uid="uid://cheh3ia123ivp" path="res://Shaders/infection_vignette.gdshader" id="24_vignette"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
+shader = ExtResource("24_vignette")
+shader_parameter/strength = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -175,6 +180,16 @@ texture = ExtResource("15_fs7ks")
 flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
+
+[node name="InfectionVignette" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+material = SubResource("ShaderMaterial_infection")
 
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
