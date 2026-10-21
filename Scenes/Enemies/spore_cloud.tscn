@@ -31,8 +31,8 @@ initial_velocity_max = 1.25
 angular_velocity_min = -50.0
 angular_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
-scale_min = 3.0
-scale_max = 3.5
+scale_min = 1.2
+scale_max = 1.6
 color_ramp = SubResource("GradientTexture1D_lod")
 alpha_curve = SubResource("CurveTexture_alpha")
 
@@ -61,10 +61,10 @@ shape = SubResource("BoxShape3D_wall")
 
 [node name="Smoke" type="GPUParticles3D" parent="." unique_id=1742201105]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 1.2, 0)
-amount = 20
-lifetime = 3.2
-preprocess = 3.2
-fixed_fps = 60
+amount = 8
+lifetime = 2.2
+preprocess = 2.2
+fixed_fps = 0
 visibility_aabb = AABB(-2.5, -2.5, -2.5, 8, 5, 5)
 local_coords = true
 draw_order = 3
