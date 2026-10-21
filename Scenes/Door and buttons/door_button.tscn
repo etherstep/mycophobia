@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://oanea2yybmgb"]
+
+[ext_resource type="Script" uid="uid://byoklbk2oxy43" path="res://Scripts/Door and buttons/door_button.gd" id="1_251c2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0dak"]
+size = Vector3(0.5, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_251c2"]
+albedo_color = Color(0.5294535, 0.4763505, 0.33348083, 1)
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f0dak"]
+material = SubResource("StandardMaterial3D_251c2")
+size = Vector3(0.6, 0.6, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pxtm"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_abje3"]
+material = SubResource("StandardMaterial3D_0pxtm")
+size = Vector3(0.5, 0.5, 0.1)
+
+[node name="DoorButton" type="StaticBody3D" unique_id=1550683738]
+script = ExtResource("1_251c2")
+
+[node name="Timer" type="Timer" parent="." unique_id=894647372]
+wait_time = 5.676
+one_shot = true
+ignore_time_scale = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1485840788]
+shape = SubResource("BoxShape3D_f0dak")
+
+[node name="ButtonBody" type="MeshInstance3D" parent="." unique_id=1447167153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10747178)
+mesh = SubResource("BoxMesh_f0dak")
+
+[node name="Button" type="MeshInstance3D" parent="." unique_id=1826259187]
+mesh = SubResource("BoxMesh_abje3")
