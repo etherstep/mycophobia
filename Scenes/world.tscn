@@ -4859,9 +4859,12 @@ points = PackedVector3Array(-308.25, 22, 22.15624, -308.25, -2, 22.15624, -303.4
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0x5k4"]
 points = PackedVector3Array(-314, 22, 20.999996, -314, -2, 20.999996, -308.25003, 22, 22.156244, -308.25003, -2, 22.156244, -314, 22, 22.000002, -314, -2, 22.000002, -308.65622, 22, 23.062496, -308.65622, -2, 23.062496)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_hhcb3"]
-height = 12.031
-radius = 9.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhcb3"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_opbav"]
+height = 12.929
+radius = 14.708
 
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
@@ -9122,19 +9125,6 @@ light_size = 0.298
 light_specular = 5.306
 shadow_enabled = true
 
-[node name="SafeHouse" type="Area3D" parent="." unique_id=888880273]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -279.84714, 4.4450264, -50.9497)
-audio_bus_name = &"SFX-World"
-script = ExtResource("19_1cojt")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse" unique_id=992969654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.2, 0)
-shape = SubResource("CylinderShape3D_hhcb3")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse" unique_id=1775186966]
-stream = ExtResource("20_yq1aw")
-bus = &"Music"
-
 [node name="RandomAmbiencePoint" type="Node3D" parent="." unique_id=25133711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.08496, 11.492045, 17.308651)
 script = ExtResource("22_pyn1s")
@@ -9238,3 +9228,36 @@ timeout = 4.0
 
 [node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("33_r0ikl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.61884, 2.6441994, -33.63006)
+
+[node name="SafeHouse" type="Area3D" parent="." unique_id=834722421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -371.9173, 4.4450264, -5.041924)
+audio_bus_name = &"SFX-World"
+script = ExtResource("19_1cojt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse" unique_id=797226703]
+shape = SubResource("BoxShape3D_hhcb3")
+debug_color = Color(0.9737751, 0.6190104, 0.78901684, 0.41960785)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse" unique_id=1678508463]
+transform = Transform3D(1, 0, 0, 0, -0.080030784, 0.9967924, 0, -0.9967924, -0.080030784, -3.5234985, 5.9045544, 0)
+stream = ExtResource("20_yq1aw")
+max_distance = 10.0
+bus = &"Music"
+emission_angle_enabled = true
+
+[node name="SafeHouse2" type="Area3D" parent="." unique_id=1438314852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -490.97626, 4.4450264, 17.673208)
+audio_bus_name = &"SFX-World"
+script = ExtResource("19_1cojt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse2" unique_id=1888162428]
+shape = SubResource("CylinderShape3D_opbav")
+debug_color = Color(0.9737751, 0.6190104, 0.78901684, 0.41960785)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse2" unique_id=155774051]
+transform = Transform3D(0.60274994, -0.58736724, -0.5400853, 0.7445187, 0.17051753, 0.6454577, -0.28702664, -0.79115325, 0.5400853, 3.438385, 4.128314, -2.5154705)
+stream = ExtResource("20_yq1aw")
+max_distance = 20.0
+bus = &"Music"
+emission_angle_enabled = true
+emission_angle_degrees = 36.1
