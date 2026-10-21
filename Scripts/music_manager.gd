@@ -5,6 +5,8 @@ var ui_player: AudioStreamPlayer
 var starting_effect_player: AudioStreamPlayer
 var brochure_player: AudioStreamPlayer
 var world_player: AudioStreamPlayer
+var ambience_player: AudioStreamPlayer
+var ambience_player_2: AudioStreamPlayer
 var player_player: AudioStreamPlayer
 
 const STARTING_EFFECT: AudioStream = preload("res://Assets/SFX/UI/game-start.wav")
@@ -12,6 +14,11 @@ const BROCHURE_PART_1: AudioStream = preload("res://Assets/SFX/Dialogue/brochure
 
 var menu_music_volume_db: float = 0.0
 var music_tween: Tween
+
+const NOTE_1_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_1_reaction.mp3")
+const NOTE_2_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_2_reaction.mp3")
+const NOTE_3_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_3_reaction.mp3")
+const NOTE_4_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_4_reaction.mp3")
 
 func _ready() -> void:
 	#stream = preload("res://Assets/Music/main_menu_theme.mp3")
@@ -43,10 +50,30 @@ func _ready() -> void:
 	world_player.bus = "SFX-World"
 	add_child(world_player)
 
-func play_game_music() -> void:
-	var game_song = preload("res://Assets/Music/game_ambience.mp3")
-	stream = game_song
-	play()
+	ambience_player = AudioStreamPlayer.new()
+	ambience_player.bus = "SFX-Ambience"
+	add_child(ambience_player)
+	
+	ambience_player_2 = AudioStreamPlayer.new()
+	ambience_player_2.bus = "SFX-Ambience"
+	add_child(ambience_player_2)
+
+func play_game_ambience() -> void:
+	# Stop the main menu theme.
+	stop()
+
+	var game_song: AudioStream = preload(
+		"res://Assets/SFX/Athmosphere/ambient_drone.wav"
+	)
+	var game_song_2: AudioStream = preload(
+		"res://Assets/SFX/Athmosphere/wind.mp3"
+	)
+
+	ambience_player.stream = game_song
+	ambience_player.play()
+
+	ambience_player_2.stream = game_song_2
+	ambience_player_2.play()
 
 func play_sfx(sound: AudioStream) -> void:
 	if sound == null:
@@ -55,6 +82,12 @@ func play_sfx(sound: AudioStream) -> void:
 	sfx_player.play()
 
 func play_world_sfx(sound: AudioStream) -> void:
+	if sound == null:
+		return
+	ambience_player.stream = sound
+	ambience_player.play()
+
+func play_ambience_sfx(sound: AudioStream) -> void:
 	if sound == null:
 		return
 	world_player.stream = sound

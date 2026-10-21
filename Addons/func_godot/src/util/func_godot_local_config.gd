@@ -1,11 +1,11 @@
 @tool
 @icon("res://Addons/func_godot/icons/icon_godot_ranger.svg")
 class_name FuncGodotLocalConfig extends Resource
-## Local machine project wide settings. [color=red]WARNING![/color] Do not create your own! Use the resource in [i]addons/func_godot[/i].
+## Local machine project wide settings. [color=red]WARNING![/color] Do not create your own! Use the resource in [i]Addons/func_godot[/i].
 ## 
 ## Local machine project wide settings. Can define global defaults for some FuncGodot properties.
 ## [color=red][b]DO NOT CREATE A NEW RESOURCE![/b][/color] This resource works by saving a configuration file to your game's [b][i]user://[/i][/b] folder 
-## and pulling the properties from that config file rather than this resource. Use the premade [b][i]addons/func_godot/func_godot_local_config.tres[/i][/b] instead.
+## and pulling the properties from that config file rather than this resource. Use the premade [b][i]Addons/func_godot/func_godot_local_config.tres[/i][/b] instead.
 ## [br][br]
 ## [b]Fgd Output Folder :[/b] Global directory path that [FuncGodotFGDFile] saves to when exported. Overridden when exported from a game configuration resource like [TrenchBroomGameConfig].[br][br]
 ## [b]Trenchbroom Game Config Folder :[/b] Global directory path where your TrenchBroom game configuration should be saved to. Consult the [url="https://trenchbroom.github.io/manual/latest/#game_configuration_files"]TrenchBroom Manual's Game Configuration documentation[/url] for more information.[br][br]

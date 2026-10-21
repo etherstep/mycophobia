@@ -132,29 +132,49 @@ func _update_readable_panel() -> void:
 func play_note_sound(note_id: String) -> void:
 	print("Note ID received: ", note_id)
 
-	var sound: AudioStream = null
+	var note_sound: AudioStream = null
+	var reaction_sound: AudioStream = null
+	var reaction_delay: float = 0.0
 
 	match note_id:
 		"note_1":
-			sound = note_1
+			note_sound = note_1
+			reaction_sound = MusicManager.NOTE_1_REACTION
+			reaction_delay = 34.0
+
 		"note_2":
-			sound = note_2
+			note_sound = note_2
+			reaction_sound = MusicManager.NOTE_2_REACTION
+			reaction_delay = 26.0
+
 		"note_3":
-			sound = note_3
+			note_sound = note_3
+			reaction_sound = MusicManager.NOTE_3_REACTION
+			reaction_delay = 11.0
+
 		"note_4":
-			sound = note_4
+			note_sound = note_4
+			reaction_sound = MusicManager.NOTE_4_REACTION
+			reaction_delay = 23.0
+
 		_:
 			push_error("Unrecognized note ID: '%s'" % note_id)
 			return
 
-	if sound == null:
-		push_error("Audio stream is empty for '%s'. Check NoteViewer Inspector." % note_id)
+	if note_sound == null or reaction_sound == null:
+		push_error("Missing audio for '%s'." % note_id)
 		return
 
+	# Play the original note SFX.
 	note_dialogue_player.stop()
-	note_dialogue_player.stream = sound
+	note_dialogue_player.stream = note_sound
 	note_dialogue_player.volume_db = 0.0
 	note_dialogue_player.play(2.30)
 
-	print("Playing: ", sound.resource_path)
-	print("Player playing: ", note_dialogue_player.playing)
+	# Wait for the specified delay.
+	await get_tree().create_timer(reaction_delay).timeout
+
+	# Play the reaction through MusicManager.
+	MusicManager.play_player_dialogue(reaction_sound)
+
+	print("Playing reaction for ", note_id)

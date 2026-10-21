@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const WALK_SPEED := 2.5
+const CHASE_SPEED := 4.5
 const GRAVITY := 18.0
 
 enum State { WANDER, CHASE, SEARCH, GRAB, LEAVE, RETURN }
@@ -26,6 +27,29 @@ const ENEMY_SCENE_PATH := "res://Scenes/Enemies/enemy.tscn"
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 
+@onready var chase_sfx_player: AudioStreamPlayer = $ChaseSFX
+@onready var lose_interest_sfx_player: AudioStreamPlayer = $LoseInterestSFX
+const LOSE_INTEREST_FADE_TIME := 1.5
+
+@onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+@export var footstep_sounds: Array[AudioStream]
+
+@export var footstep_interval: float = 0.45
+@export var footstep_interval_chase: float = 0.22
+
+@onready var enemy_voice_player: AudioStreamPlayer3D = $EnemyVoicePlayer
+
+@export var enemy_sounds: Array[AudioStream]
+
+@export var enemy_sound_interval_min: float = 3.0
+@export var enemy_sound_interval_max: float = 7.0
+
+var enemy_sound_timer: float = 0.0
+var last_enemy_sound_index: int = -1
+
+var footstep_timer: float = 0.0
+var last_footstep_index: int = -1
+
 var state := State.WANDER
 var last_known := Vector3.ZERO
 var unseen_time := 0.0
@@ -36,13 +60,13 @@ var _held_player: Player = null
 
 func _ready() -> void:
 	animated_sprite.play("front")
+	_reset_enemy_sound_timer()
+
 	await get_tree().physics_frame
 	_pick_patrol_point()
 
-
 func _process(_delta: float) -> void:
 	render_correct_animation()
-
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -64,9 +88,10 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var player := get_tree().get_first_node_in_group("player") as Node3D
-	if player != null and _fully_infected(player):
+	if player != null and _has_used_syringe(player):
 		if state != State.WANDER:
 			state = State.WANDER
+			chase_sfx_player.stop()
 			_pick_patrol_point()
 		_move_along_path()
 		move_and_slide()
@@ -76,12 +101,16 @@ func _physics_process(delta: float) -> void:
 		last_known = player.global_position
 		unseen_time = 0.0
 		if _inside_leash(player.global_position):
-			state = State.CHASE
+			if state != State.CHASE:
+				state = State.CHASE
+				chase_sfx_player.play()
 	elif state == State.CHASE:
 		unseen_time += delta
 		var left_leash := player != null and not _inside_leash(player.global_position)
 		if unseen_time >= lose_time or left_leash:
 			state = State.SEARCH
+			chase_sfx_player.stop()
+			play_lose_interest_sfx()
 			agent.target_position = guard_point.global_position if guards and guard_point != null else last_known
 
 	match state:
@@ -98,7 +127,46 @@ func _physics_process(delta: float) -> void:
 
 	_move_along_path()
 	move_and_slide()
+	update_footsteps(delta)
+	update_enemy_sounds(delta)
 
+func update_footsteps(delta: float) -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_moving := is_on_floor() and horizontal_speed > 0.1
+
+	if not is_moving:
+		footstep_timer = 0.0
+		return
+
+	var current_interval := footstep_interval
+
+	if state == State.CHASE:
+		current_interval = footstep_interval_chase
+
+	footstep_timer -= delta
+
+	if footstep_timer <= 0.0:
+		play_random_footstep()
+		footstep_timer = current_interval
+
+
+func play_random_footstep() -> void:
+	if footstep_sounds.is_empty():
+		return
+
+	var sound_index: int
+
+	if footstep_sounds.size() == 1:
+		sound_index = 0
+	else:
+		sound_index = randi_range(0, footstep_sounds.size() - 1)
+
+		while sound_index == last_footstep_index:
+			sound_index = randi_range(0, footstep_sounds.size() - 1)
+
+	last_footstep_index = sound_index
+	footstep_player.stream = footstep_sounds[sound_index]
+	footstep_player.play()
 
 func _can_see(player: Node3D) -> bool:
 	var to_player := player.global_position - global_position
@@ -218,8 +286,13 @@ func _move_along_path() -> void:
 		velocity.z = 0.0
 		return
 	var direction := flat.normalized()
-	velocity.x = direction.x * WALK_SPEED
-	velocity.z = direction.z * WALK_SPEED
+	var current_speed := WALK_SPEED
+
+	if state == State.CHASE:
+		current_speed = CHASE_SPEED
+
+	velocity.x = direction.x * current_speed
+	velocity.z = direction.z * current_speed
 	_face_direction(direction)
 
 
@@ -234,30 +307,31 @@ func _inside_leash(at: Vector3) -> bool:
 	flat.y = 0.0
 	return flat.length() <= leash_radius
 
-
-func _fully_infected(player: Node3D) -> bool:
+func _has_used_syringe(player: Node3D) -> bool:
 	if player is Player:
 		var body: Player = player
-		return body.infection_level >= Player.MAX_INFECTION
+		return body.syringe_used
 	return false
-
 
 func alert(at: Vector3) -> void:
 	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
 		return
 	var player := get_tree().get_first_node_in_group("player") as Node3D
-	if player != null and _fully_infected(player):
+	if player != null and _has_used_syringe(player):
 		return
+
+	if state != State.CHASE:
+		state = State.CHASE
+		chase_sfx_player.play()
+
 	last_known = at
 	unseen_time = 0.0
-	state = State.CHASE
 	agent.target_position = at
-
 
 func _on_catch_area_body_entered(body: Node3D) -> void:
 	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
 		return
-	if _fully_infected(body):
+	if _has_used_syringe(body):
 		return
 	if not body is Player or not body.is_in_group("player"):
 		return
@@ -429,3 +503,54 @@ func play_correct_angle_animation_4_way(_angle_deg: float) -> void:
 func play_correct_angle_animation_8_way(_angle_deg: float) -> void:
 	animated_sprite.flip_h = false
 	animated_sprite.play("front")
+
+
+func play_lose_interest_sfx() -> void:
+	lose_interest_sfx_player.stop()
+	lose_interest_sfx_player.volume_db = -40.0
+	lose_interest_sfx_player.play()
+
+	var tween := create_tween()
+	tween.tween_property(
+		lose_interest_sfx_player,
+		"volume_db",
+		0.0,
+		LOSE_INTEREST_FADE_TIME
+	)
+
+func update_enemy_sounds(delta: float) -> void:
+	if enemy_sounds.is_empty():
+		return
+
+	enemy_sound_timer -= delta
+
+	if enemy_sound_timer <= 0.0:
+		play_random_enemy_sound()
+		_reset_enemy_sound_timer()
+
+
+func play_random_enemy_sound() -> void:
+	if enemy_sounds.is_empty():
+		return
+
+	var sound_index := randi_range(0, enemy_sounds.size() - 1)
+
+	if enemy_sounds.size() > 1:
+		while sound_index == last_enemy_sound_index:
+			sound_index = randi_range(0, enemy_sounds.size() - 1)
+
+	last_enemy_sound_index = sound_index
+
+	enemy_voice_player.stream = enemy_sounds[sound_index]
+	enemy_voice_player.play()
+
+
+func _reset_enemy_sound_timer() -> void:
+	var min_interval := enemy_sound_interval_min
+	var max_interval := enemy_sound_interval_max
+
+	if state == State.CHASE:
+		min_interval *= 0.5
+		max_interval *= 0.5
+
+	enemy_sound_timer = randf_range(min_interval, max_interval)

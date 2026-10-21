@@ -1,7 +1,10 @@
 
 extends Control
 
+signal world_item_selected(item: ItemData)
+
 @export var inventory: Inventory
+@export var player: Player
 
 @export var button_hover_sfx: AudioStream
 @export var button_pressed_sfx: AudioStream
@@ -19,6 +22,13 @@ extends Control
 @onready var note_readable_text: RichTextLabel = $NoteView/NoteReadablePanel/NoteReadableText
 @onready var note_readable_panel: PanelContainer = $NoteView/NoteReadablePanel
 
+@onready var item_select_view_container: Control = $VisualSlots/Control
+@onready var item_select_view_front: Sprite2D = $VisualSlots/Control/ItemSelectWindow1
+@onready var item_select_view_back: Sprite2D = $VisualSlots/Control/ItemSelectWindow2
+@export var item_select_text: Control
+
+@export var infection_meter: Control
+
 var selected_item: ItemData = null
 var readable_font: Font = ThemeDB.fallback_font
 var decorative_font: Font = preload("res://Assets/Fonts/Bastliga One.otf")
@@ -27,6 +37,8 @@ var decorative_font: Font = preload("res://Assets/Fonts/Bastliga One.otf")
 @export var inventory_slots: Array[Control] = []
 
 var hovered_slot: Sprite2D = null
+
+const MAX_INFECTION: float = Player.MAX_INFECTION
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -46,6 +58,13 @@ func _ready() -> void:
 		slot.mouse_exited.connect(_on_slot_mouse_exited.bind(slot))
 
 	inventory.inventory_changed.connect(refresh_inventory)
+	infection_meter.size = infection_meter.custom_minimum_size
+	player.infection_level_changed.connect(_on_infection_level_changed)
+
+	item_select_view_container.hide()
+	item_select_view_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if item_select_text != null:
+		item_select_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	refresh_inventory()
 
 func _on_slot_mouse_entered(slot: Control) -> void:
@@ -78,6 +97,7 @@ func refresh_inventory() -> void:
 		child.queue_free()
 
 	for i in range(9):
+		_hide_item_select()
 		var slot := Control.new()
 		slot.custom_minimum_size = Vector2(200, 200)
 		slot.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -87,6 +107,9 @@ func refresh_inventory() -> void:
 
 		if i < inventory.items.size():
 			var item: ItemData = inventory.items[i]
+
+			slot.mouse_entered.connect(_show_item_select.bind(item))
+			slot.mouse_exited.connect(_on_item_select_exit)
 
 			var new_item_icon := TextureRect.new()
 			new_item_icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -112,9 +135,64 @@ func refresh_inventory() -> void:
 			new_item_text.add_theme_constant_override("shadow_offset_y", 1)
 			slot.add_child(new_item_text)
 
+			var quantity := 1
+			if i < inventory.quantities.size():
+				quantity = inventory.quantities[i]
+
+			if item.stackable and quantity > 1:
+				var quantity_label := Label.new()
+				quantity_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+				quantity_label.text = "x" + str(quantity)
+				quantity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				quantity_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+				quantity_label.add_theme_font_size_override("font_size", 20)
+				quantity_label.add_theme_color_override("font_color", Color.WHITE)
+				quantity_label.add_theme_color_override("font_shadow_color", Color.BLACK)
+				quantity_label.add_theme_constant_override("shadow_offset_x", 1)
+				quantity_label.add_theme_constant_override("shadow_offset_y", 1)
+				quantity_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+				# Position the quantity below the item name.
+				quantity_label.anchor_top = 0.65
+				quantity_label.anchor_bottom = 1.0
+				quantity_label.offset_top = 0
+				quantity_label.offset_bottom = 0
+
+				slot.add_child(quantity_label)
+
 			slot.gui_input.connect(_on_slot_input.bind(item))
 
 		slots.add_child(slot)
+
+func use_item(item: ItemData) -> void:
+	match item.item_effect:
+		ItemData.ItemEffect.CURE_INFECTION:
+			var player := get_tree().get_first_node_in_group("player")
+
+			if player == null:
+				return
+
+			if not player.has_method("decrease_infection"):
+				push_warning("Player is missing cure_infection().")
+				return
+
+			player.decrease_infection(item.infection_cure_amount)
+
+			if item.consume_on_use:
+				_remove_one_item(item)
+
+			play_pressed()
+		ItemData.ItemEffect.APPLY_SYRINGE:
+			var player := get_tree().get_first_node_in_group("player")
+			if player == null:
+				return
+			player.syringe_used = true
+			if item.consume_on_use:
+				_remove_one_item(item)
+
+func _remove_one_item(item: ItemData) -> void:
+	if inventory != null:
+		inventory.remove_one_item(item)
 
 func _create_readable_text_background() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
@@ -156,6 +234,13 @@ func _on_slot_input(event: InputEvent, item: ItemData) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			play_pressed()
+			if item.item_effect == ItemData.ItemEffect.SALT_ENEMY \
+			or item.item_effect == ItemData.ItemEffect.KILL_SALTED_ENEMY:
+				world_item_selected.emit(item)
+				return
+			if item.item_effect != ItemData.ItemEffect.NONE:
+				use_item(item)
+				return
 			if item.item_type == ItemData.ItemType.NOTE:
 				play_note_pressed()
 				note_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -204,6 +289,36 @@ func _clear_details() -> void:
 	item_texture.texture = null
 	item_text.text = "No item selected"
 
+func _show_item_select(item: ItemData) -> void:
+	if item == null:
+		_hide_item_select()
+		return
+
+	# Show both Sprite2D panels and their parent.
+	item_select_view_container.show()
+	item_select_view_front.show()
+	item_select_view_back.show()
+
+	# Update the description if a text node has been assigned.
+	if item_select_text == null:
+		push_warning("ItemSelect: Assign item_select_text in the Inspector.")
+		return
+
+	if item_select_text is Label:
+		(item_select_text as Label).text = item.text
+	elif item_select_text is RichTextLabel:
+		(item_select_text as RichTextLabel).text = item.text
+
+	print("Hovering item: ", item.name)
+
+
+func _hide_item_select() -> void:
+	item_select_view_container.hide()
+
+
+func _on_item_select_exit() -> void:
+	_hide_item_select()
+
 func play_hovered() -> void:
 	MusicManager.play_ui_sfx(button_hover_sfx)
 
@@ -221,3 +336,8 @@ func play_inventory_open() -> void:
 
 func play_inventory_close() -> void:
 	MusicManager.play_ui_sfx(inventory_close_sfx)
+	
+func _on_infection_level_changed(infection: float) -> void:
+	var infection_percent: float = infection / MAX_INFECTION
+	var meter_width: float = infection_percent * infection_meter.custom_maximum_size.x
+	infection_meter.size.x = meter_width

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y3wffoaoc0gx"
-path.s3tc="res://.godot/imported/PNG-Single Sheet-02.png-4887826f9f7e6596625e431356f0e21b.s3tc.ctex"
+uid="uid://vrtafr0aw0c"
+path.s3tc="res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sprites/PNG-Single Sheet-02.png"
-dest_files=["res://.godot/imported/PNG-Single Sheet-02.png-4887826f9f7e6596625e431356f0e21b.s3tc.ctex"]
+source_file="res://Assets/Sprites/note outline.PNG"
+dest_files=["res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.s3tc.ctex"]
 
 [params]
 

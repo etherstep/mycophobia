@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://c0v0snal5vfl3"]
 
 [ext_resource type="Script" uid="uid://doit532aggyvj" path="res://Scripts/Inventory/inventory.gd" id="1_lfv3a"]
+[ext_resource type="AudioStream" uid="uid://bhcw6x7pq5vmp" path="res://Assets/SFX/sfx_2 - salt_use.wav" id="2_evvmy"]
+[ext_resource type="AudioStream" uid="uid://d2doeyalk7i08" path="res://Assets/SFX/sfx_2 - match-scrape.wav" id="3_s8uyb"]
+[ext_resource type="AudioStream" uid="uid://bkm2e4pjlsdht" path="res://Assets/SFX/sfx_2 - saline_use_3.wav" id="4_nffyk"]
+[ext_resource type="AudioStream" uid="uid://cp84kuiuqb54i" path="res://Assets/SFX/player/effort_syringe.mp3" id="5_evvmy"]
 
 [node name="Inventory" type="Node" unique_id=2098244082]
 script = ExtResource("1_lfv3a")
+salt_use_sfx = ExtResource("2_evvmy")
+matches_use_sfx = ExtResource("3_s8uyb")
+saline_use_sfx = ExtResource("4_nffyk")
+syringe_use_sfx = ExtResource("5_evvmy")

@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://wuon56xger2q"]
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_wn210"]
-[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/Sprites/PNG-Single Sheet-02.png" id="2_wn210"]
+[ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="2_wn210"]
+[ext_resource type="Texture2D" uid="uid://vrtafr0aw0c" path="res://Assets/Sprites/note outline.PNG" id="3_v7nnn"]
 
 [resource]
 script = ExtResource("1_wn210")
 name = "note_1"
 texture = ExtResource("2_wn210")
+texture_outline = ExtResource("3_v7nnn")
 text = "Houses infected.
 Breathing out spores. 
 People transforming.

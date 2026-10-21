@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ck2x7gq3y85ng"]
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_4ato6"]
-[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/Sprites/PNG-Single Sheet-02.png" id="2_v23vv"]
+[ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="2_4ato6"]
+[ext_resource type="Texture2D" uid="uid://vrtafr0aw0c" path="res://Assets/Sprites/note outline.PNG" id="3_v23vv"]
 
 [resource]
 script = ExtResource("1_4ato6")
 name = "note_2"
-texture = ExtResource("2_v23vv")
+texture = ExtResource("2_4ato6")
+texture_outline = ExtResource("3_v23vv")
 text = "Need to restore the people’s health.
 Thought I knew what I was doing.
 The cave at the edge of town had a special mushroom. I thought it might be interesting to test it.

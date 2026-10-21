@@ -78,3 +78,16 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1742201107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_touch")
+;[sub_resource type="SphereShape3D" id="SphereShape3D_ik1hn"]
+;
+;[node name="SporeCloud" type="Node3D" unique_id=1742201101]
+;script = ExtResource("1_spore")
+;
+;[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1742201102]
+;mesh = SubResource("SphereMesh_cloud")
+;
+;[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1375636674]
+;collision_layer = 5
+;
+;[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1387467450]
+;shape = SubResource("SphereShape3D_ik1hn")

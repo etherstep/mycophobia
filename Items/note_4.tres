@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://gs3xlxv3tk2m"]
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_bhbqf"]
-[ext_resource type="Texture2D" uid="uid://y3wffoaoc0gx" path="res://Assets/Sprites/PNG-Single Sheet-02.png" id="2_d2s8c"]
+[ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="2_bhbqf"]
+[ext_resource type="Texture2D" uid="uid://vrtafr0aw0c" path="res://Assets/Sprites/note outline.PNG" id="3_d2s8c"]
 
 [resource]
 script = ExtResource("1_bhbqf")
 name = "note_4"
-texture = ExtResource("2_d2s8c")
+texture = ExtResource("2_bhbqf")
+texture_outline = ExtResource("3_d2s8c")
 text = "The mother mushroom links all the others. 
 Salt and fire her, and all will reset.
 I could not get past the cloud to reach the center.

@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://casgcs7q8ujxx"]
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="AudioStream" uid="uid://cm6b8a2tlggum" path="res://Assets/SFX/Footsteps/untitled - Track 1.wav" id="2_8erm5"]
+[ext_resource type="AudioStream" uid="uid://cuf1k24xj2r37" path="res://Assets/SFX/sfx_2 - step_1.wav" id="2_2ijsl"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
-[ext_resource type="AudioStream" uid="uid://1qis3w7j73t7" path="res://Assets/SFX/Footsteps/untitled - Track 2.wav" id="3_f1ek2"]
-[ext_resource type="AudioStream" uid="uid://bf7b83p5n4x03" path="res://Assets/SFX/Footsteps/untitled - Track 3.wav" id="4_tx1dd"]
+[ext_resource type="AudioStream" uid="uid://bpvgof8ro80pk" path="res://Assets/SFX/sfx_2 - step_2.wav" id="3_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
-[ext_resource type="AudioStream" uid="uid://bdg1c8o8vgqf3" path="res://Assets/SFX/Footsteps/untitled - Track 4.wav" id="5_gymyn"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
-[ext_resource type="AudioStream" uid="uid://cx1fkshtswgva" path="res://Assets/SFX/Flashlight/flashlight-on.wav" id="7_tx1dd"]
-[ext_resource type="AudioStream" uid="uid://cfys2ibbhxyp4" path="res://Assets/SFX/Flashlight/flashlight-off.wav" id="8_gymyn"]
+[ext_resource type="AudioStream" uid="uid://hhf2se68ku8s" path="res://Assets/SFX/sfx_2 - flashlight-on.wav" id="8_0gysh"]
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
+[ext_resource type="AudioStream" uid="uid://dj5wjjslrh253" path="res://Assets/SFX/sfx_2 - flashlight close.wav" id="9_vfarp"]
 [ext_resource type="Texture2D" uid="uid://xqr4b0ilxp1x" path="res://Assets/Sprites/Stage_2_flashlight.PNG" id="11_fd4e3"]
-[ext_resource type="Script" uid="uid://cf5p3sxco6q56" path="res://Scripts/infection_meter.gd" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
+[ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
+[ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
@@ -33,11 +33,13 @@ shader_parameter/strength = 0.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
 
-[node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("player_hand") groups=["player"]]
+;[node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("player_hand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_v0iea")
+held_item_crosshair = NodePath("HUD/Control/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")
-footstep_sounds = Array[AudioStream]([ExtResource("2_8erm5"), ExtResource("3_f1ek2"), ExtResource("4_tx1dd"), ExtResource("5_gymyn")])
+footstep_sounds = Array[AudioStream]([ExtResource("2_2ijsl"), ExtResource("3_p1odr")])
 running_player_sfx = ExtResource("6_gymyn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944353870]
@@ -52,16 +54,24 @@ crosshair_interact = NodePath("../HUD/Crosshair_interact")
 crosshair_normal = NodePath("../HUD/Crosshair_normal")
 flashlight = NodePath("FlashLight")
 flashlight_asset = NodePath("../PlayerHands/FlashLightStage1")
-flashlight_on_sfx = ExtResource("7_tx1dd")
-flashlight_off_sfx = ExtResource("8_gymyn")
+flashlight_on_sfx = ExtResource("8_0gysh")
+flashlight_off_sfx = ExtResource("9_vfarp")
 
-[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=1023540633 groups=["detection_light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035404205, -0.49950033)
-light_color = Color(0.9647059, 0.9372549, 0.92156863, 1)
-spot_range = 80.0
-spot_attenuation = 0.4
-spot_angle = 26.25
-spot_angle_attenuation = 1.4640903
+[node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=739574546 groups=["detection_light"]]
+transform = Transform3D(0.99453217, 0.030593013, 0.09984891, -0.016278196, 0.9898547, -0.14114776, -0.10315405, 0.13875063, 0.9849404, 0.4766215, -0.6343856, -0.029269874)
+light_color = Color(0.929673, 0.98395807, 0.92091703, 1)
+light_energy = 6.0
+light_volumetric_fog_energy = 0.1
+light_size = 0.189
+shadow_enabled = true
+shadow_normal_bias = 2.875
+shadow_reverse_cull_face = true
+shadow_transmittance_bias = 2.05
+shadow_blur = 0.313
+spot_range = 12.343
+spot_attenuation = 0.69
+spot_angle = 15.0
+spot_angle_attenuation = 0.6597539
 script = ExtResource("9_qqcod")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
@@ -172,6 +182,7 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
+;;;
 [node name="InfectionOverlay" type="ColorRect" parent="HUD" unique_id=1742201110]
 visible = false
 anchors_preset = 15
@@ -227,7 +238,7 @@ theme_override_font_sizes/font_size = 36
 text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
-
+;;;
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
 anchor_left = 0.5
@@ -260,6 +271,50 @@ text = "•"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InfectionOverlay" type="TextureRect" parent="HUD" unique_id=1278943244 node_paths=PackedStringArray("player")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("19_0gysh")
+expand_mode = 3
+script = ExtResource("20_vfarp")
+player = NodePath("../..")
+
+[node name="Control" type="Control" parent="HUD" unique_id=634520778]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CrosshairSelectedItem" type="TextureRect" parent="HUD/Control" unique_id=1112793597]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.96
+offset_top = -54.64
+offset_right = 40.96
+offset_bottom = 54.64
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("18_2ijsl")
+expand_mode = 1
+
 [node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
 script = ExtResource("19_l6n3p")
 note_1 = ExtResource("20_2ijsl")
@@ -273,6 +328,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = 1.0
+offset_right = -23.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
