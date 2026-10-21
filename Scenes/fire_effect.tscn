@@ -17,7 +17,7 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_dyyat"]
 curve = SubResource("Curve_1e8la")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_prbhg"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c3ywe"]
 angle_min = -179.99998
 angle_max = 180.00002
 direction = Vector3(0, 0.1, 0)
@@ -55,7 +55,7 @@ particles_anim_loop = false
 proximity_fade_enabled = true
 proximity_fade_distance = 0.2
 
-[sub_resource type="QuadMesh" id="QuadMesh_nc87f"]
+[sub_resource type="QuadMesh" id="QuadMesh_dyyat"]
 material = SubResource("StandardMaterial3D_43hsj")
 size = Vector2(0.5, 0.5)
 
@@ -65,8 +65,8 @@ script = ExtResource("1_c3ywe")
 [node name="Flames" type="GPUParticles3D" parent="." unique_id=864618606]
 cast_shadow = 0
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_prbhg")
-draw_pass_1 = SubResource("QuadMesh_nc87f")
+process_material = SubResource("ParticleProcessMaterial_c3ywe")
+draw_pass_1 = SubResource("QuadMesh_dyyat")
 
 [node name="Light" type="OmniLight3D" parent="." unique_id=1046688757]
 light_color = Color(1, 0.6666667, 0.26666668, 1)

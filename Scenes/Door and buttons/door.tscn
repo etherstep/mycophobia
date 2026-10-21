@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cvvjht5xbhqkq"]
+
+[ext_resource type="Script" uid="uid://c2d0ot7qsy2br" path="res://Scripts/Door and buttons/door.gd" id="1_lv8wr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abje3"]
+albedo_color = Color(0.44484326, 0.4448433, 0.4448433, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_251c2"]
+material = SubResource("StandardMaterial3D_abje3")
+size = Vector3(3, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0pxtm"]
+size = Vector3(3, 3, 0.5)
+
+[node name="Door" type="AnimatableBody3D" unique_id=2109253433]
+script = ExtResource("1_lv8wr")
+
+[node name="Door" type="MeshInstance3D" parent="." unique_id=194039743]
+mesh = SubResource("BoxMesh_251c2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=631304828]
+shape = SubResource("BoxShape3D_0pxtm")
