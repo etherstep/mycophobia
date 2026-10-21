@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7xgbi7ivbs3q"
+path="res://.godot/imported/sfx_2 - syringe collect.wav-53d0fc2804b37e6293d3d37de5b072b4.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/sfx_2 - syringe collect.wav"
+dest_files=["res://.godot/imported/sfx_2 - syringe collect.wav-53d0fc2804b37e6293d3d37de5b072b4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

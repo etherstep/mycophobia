@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const WALK_SPEED := 2.5
+const CHASE_SPEED := 4.5
 const GRAVITY := 18.0
 
 enum State { WANDER, CHASE, SEARCH }
@@ -20,6 +21,16 @@ enum State { WANDER, CHASE, SEARCH }
 
 @onready var chase_sfx_player: AudioStreamPlayer = $ChaseSFX
 @onready var lose_interest_sfx_player: AudioStreamPlayer = $LoseInterestSFX
+const LOSE_INTEREST_FADE_TIME := 1.5
+
+@onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+@export var footstep_sounds: Array[AudioStream]
+
+@export var footstep_interval: float = 0.45
+@export var footstep_interval_chase: float = 0.22
+
+var footstep_timer: float = 0.0
+var last_footstep_index: int = -1
 
 var state := State.WANDER
 var last_known := Vector3.ZERO
@@ -64,7 +75,7 @@ func _physics_process(delta: float) -> void:
 		if unseen_time >= lose_time or left_leash:
 			state = State.SEARCH
 			chase_sfx_player.stop()
-			lose_interest_sfx_player.play()
+			play_lose_interest_sfx()
 			agent.target_position = guard_point.global_position if guards and guard_point != null else last_known
 
 	match state:
@@ -81,6 +92,45 @@ func _physics_process(delta: float) -> void:
 
 	_move_along_path()
 	move_and_slide()
+	update_footsteps(delta)
+
+func update_footsteps(delta: float) -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_moving := is_on_floor() and horizontal_speed > 0.1
+
+	if not is_moving:
+		footstep_timer = 0.0
+		return
+
+	var current_interval := footstep_interval
+
+	if state == State.CHASE:
+		current_interval = footstep_interval_chase
+
+	footstep_timer -= delta
+
+	if footstep_timer <= 0.0:
+		play_random_footstep()
+		footstep_timer = current_interval
+
+
+func play_random_footstep() -> void:
+	if footstep_sounds.is_empty():
+		return
+
+	var sound_index: int
+
+	if footstep_sounds.size() == 1:
+		sound_index = 0
+	else:
+		sound_index = randi_range(0, footstep_sounds.size() - 1)
+
+		while sound_index == last_footstep_index:
+			sound_index = randi_range(0, footstep_sounds.size() - 1)
+
+	last_footstep_index = sound_index
+	footstep_player.stream = footstep_sounds[sound_index]
+	footstep_player.play()
 
 func _can_see(player: Node3D) -> bool:
 	var to_player := player.global_position - global_position
@@ -200,8 +250,13 @@ func _move_along_path() -> void:
 		velocity.z = 0.0
 		return
 	var direction := flat.normalized()
-	velocity.x = direction.x * WALK_SPEED
-	velocity.z = direction.z * WALK_SPEED
+	var current_speed := WALK_SPEED
+
+	if state == State.CHASE:
+		current_speed = CHASE_SPEED
+
+	velocity.x = direction.x * current_speed
+	velocity.z = direction.z * current_speed
 	_face_direction(direction)
 
 
@@ -263,3 +318,17 @@ func play_correct_angle_animation_4_way(_angle_deg: float) -> void:
 func play_correct_angle_animation_8_way(_angle_deg: float) -> void:
 	animated_sprite.flip_h = false
 	animated_sprite.play("front")
+
+
+func play_lose_interest_sfx() -> void:
+	lose_interest_sfx_player.stop()
+	lose_interest_sfx_player.volume_db = -40.0
+	lose_interest_sfx_player.play()
+
+	var tween := create_tween()
+	tween.tween_property(
+		lose_interest_sfx_player,
+		"volume_db",
+		0.0,
+		LOSE_INTEREST_FADE_TIME
+	)

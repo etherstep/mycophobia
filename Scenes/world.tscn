@@ -20,7 +20,7 @@
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
 [ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
-[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="21_yq1aw"]
+[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="21_yq1aw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
