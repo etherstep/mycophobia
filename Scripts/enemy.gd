@@ -45,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	if player != null and _has_used_syringe(player):
 		if state != State.WANDER:
 			state = State.WANDER
+			chase_sfx_player.stop()
 			_pick_patrol_point()
 		_move_along_path()
 		move_and_slide()
@@ -54,13 +55,15 @@ func _physics_process(delta: float) -> void:
 		last_known = player.global_position
 		unseen_time = 0.0
 		if _inside_leash(player.global_position):
-			state = State.CHASE
-			chase_sfx_player.play()
+			if state != State.CHASE:
+				state = State.CHASE
+				chase_sfx_player.play()
 	elif state == State.CHASE:
 		unseen_time += delta
 		var left_leash := player != null and not _inside_leash(player.global_position)
 		if unseen_time >= lose_time or left_leash:
 			state = State.SEARCH
+			chase_sfx_player.stop()
 			lose_interest_sfx_player.play()
 			agent.target_position = guard_point.global_position if guards and guard_point != null else last_known
 
@@ -225,13 +228,12 @@ func alert(at: Vector3) -> void:
 		return
 
 	if state != State.CHASE:
+		state = State.CHASE
 		chase_sfx_player.play()
 
 	last_known = at
 	unseen_time = 0.0
-	state = State.CHASE
 	agent.target_position = at
-
 
 func _on_catch_area_body_entered(body: Node3D) -> void:
 	if _has_used_syringe(body):

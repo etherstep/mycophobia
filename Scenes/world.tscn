@@ -18,6 +18,9 @@
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
+[ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
+[ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
+[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="21_yq1aw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -2698,6 +2701,10 @@ points = PackedVector3Array(-348.375, 2, -5.125, -348.375, 4, -5.125, -348.375, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hawyw"]
 points = PackedVector3Array(-348.25, 4, -3.875, -348.25, 6, -3.875, -348.25, 4, -5.875, -348.25, 6, -5.875, -346.25, 4, -3.875, -346.25, 6, -3.875, -346.25, 4, -5.875, -346.25, 6, -5.875)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hhcb3"]
+height = 12.031
+radius = 9.0
+
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
 
@@ -5354,3 +5361,19 @@ light_volumetric_fog_energy = 2.404
 light_size = 0.298
 light_specular = 5.306
 shadow_enabled = true
+
+[node name="SafeHouse" type="Area3D" parent="." unique_id=888880273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -370.48245, 39.773445, 30.846014)
+audio_bus_name = &"SFX-World"
+script = ExtResource("19_1cojt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse" unique_id=992969654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.2, 0)
+shape = SubResource("CylinderShape3D_hhcb3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse" unique_id=1775186966]
+stream = ExtResource("20_yq1aw")
+bus = &"Music"
+
+[node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("21_yq1aw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.41824, 2.6442, -20.738623)
