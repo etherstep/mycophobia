@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
-[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="18_1vso6"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
@@ -4857,9 +4857,8 @@ points = PackedVector3Array(-308.25, 22, 22.15624, -308.25, -2, 22.15624, -303.4
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0x5k4"]
 points = PackedVector3Array(-314, 22, 20.999996, -314, -2, 20.999996, -308.25003, 22, 22.156244, -308.25003, -2, 22.156244, -314, 22, 22.000002, -314, -2, 22.000002, -308.65622, 22, 23.062496, -308.65622, -2, 23.062496)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_hhcb3"]
-height = 12.031
-radius = 9.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhcb3"]
+size = Vector3(10, 10, 10)
 
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
@@ -9114,17 +9113,20 @@ light_specular = 5.306
 shadow_enabled = true
 
 [node name="SafeHouse" type="Area3D" parent="." unique_id=888880273]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -279.84714, 4.4450264, -50.9497)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -371.36844, 4.4450264, -5.041924)
 audio_bus_name = &"SFX-World"
 script = ExtResource("19_1cojt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse" unique_id=992969654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.2, 0)
-shape = SubResource("CylinderShape3D_hhcb3")
+shape = SubResource("BoxShape3D_hhcb3")
+debug_color = Color(0.9737751, 0.6190104, 0.78901684, 0.41960785)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse" unique_id=1775186966]
+transform = Transform3D(1, 0, 0, 0, -0.080030784, 0.9967924, 0, -0.9967924, -0.080030784, -3.5234985, 5.9045544, 0)
 stream = ExtResource("20_yq1aw")
+max_distance = 10.0
 bus = &"Music"
+emission_angle_enabled = true
 
 [node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("21_yq1aw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.41824, 2.6442, -20.738623)
@@ -9183,23 +9185,91 @@ max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
 [node name="RandomAmbiencePoint4" type="Node3D" parent="." unique_id=1946602513]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385.23593, 11.492045, -43.047455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -352.23062, 9.803064, -43.32476)
 script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint4" unique_id=2114722221]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0365171, 5.6127777)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint8" type="Node3D" parent="." unique_id=1034007248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -387.7312, 9.803064, -39.966324)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint8" unique_id=891105375]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint12" type="Node3D" parent="." unique_id=718842801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -387.7312, 9.803064, 7.232765)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint12" unique_id=1650573088]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint13" type="Node3D" parent="." unique_id=164638227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350.02487, 9.803064, 7.232765)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint13" unique_id=1177205702]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint14" type="Node3D" parent="." unique_id=1739515184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.3806, 9.803064, -13.660271)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint14" unique_id=1113384422]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint9" type="Node3D" parent="." unique_id=1811408127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -418.26724, 18.560917, -25.018784)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint9" unique_id=1620589829]
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint10" type="Node3D" parent="." unique_id=263812160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -449.78165, 18.560917, -1.4804821)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint10" unique_id=1747137533]
 max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
 [node name="RandomAmbiencePoint5" type="Node3D" parent="." unique_id=650742912]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -481.56778, 30.655388, -36.979794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -494.75763, 24.471428, -42.26481)
 script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint5" unique_id=1517738343]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.195919)
+max_distance = 500.0
+max_polyphony = 2
+bus = &"SFX-WorldAmbience"
+
+[node name="RandomAmbiencePoint11" type="Node3D" parent="." unique_id=1894078328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -483.16934, 5.5013657, -12.57859)
+script = ExtResource("22_pyn1s")
+ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint11" unique_id=522409628]
 max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
