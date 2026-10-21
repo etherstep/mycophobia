@@ -29,6 +29,16 @@ const LOSE_INTEREST_FADE_TIME := 1.5
 @export var footstep_interval: float = 0.45
 @export var footstep_interval_chase: float = 0.22
 
+@onready var enemy_voice_player: AudioStreamPlayer3D = $EnemyVoicePlayer
+
+@export var enemy_sounds: Array[AudioStream]
+
+@export var enemy_sound_interval_min: float = 3.0
+@export var enemy_sound_interval_max: float = 7.0
+
+var enemy_sound_timer: float = 0.0
+var last_enemy_sound_index: int = -1
+
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
 
@@ -39,6 +49,8 @@ var unseen_time := 0.0
 
 func _ready() -> void:
 	animated_sprite.play("front")
+	_reset_enemy_sound_timer()
+
 	await get_tree().physics_frame
 	_pick_patrol_point()
 
@@ -93,6 +105,7 @@ func _physics_process(delta: float) -> void:
 	_move_along_path()
 	move_and_slide()
 	update_footsteps(delta)
+	update_enemy_sounds(delta)
 
 func update_footsteps(delta: float) -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
@@ -332,3 +345,40 @@ func play_lose_interest_sfx() -> void:
 		0.0,
 		LOSE_INTEREST_FADE_TIME
 	)
+
+func update_enemy_sounds(delta: float) -> void:
+	if enemy_sounds.is_empty():
+		return
+
+	enemy_sound_timer -= delta
+
+	if enemy_sound_timer <= 0.0:
+		play_random_enemy_sound()
+		_reset_enemy_sound_timer()
+
+
+func play_random_enemy_sound() -> void:
+	if enemy_sounds.is_empty():
+		return
+
+	var sound_index := randi_range(0, enemy_sounds.size() - 1)
+
+	if enemy_sounds.size() > 1:
+		while sound_index == last_enemy_sound_index:
+			sound_index = randi_range(0, enemy_sounds.size() - 1)
+
+	last_enemy_sound_index = sound_index
+
+	enemy_voice_player.stream = enemy_sounds[sound_index]
+	enemy_voice_player.play()
+
+
+func _reset_enemy_sound_timer() -> void:
+	var min_interval := enemy_sound_interval_min
+	var max_interval := enemy_sound_interval_max
+
+	if state == State.CHASE:
+		min_interval *= 0.5
+		max_interval *= 0.5
+
+	enemy_sound_timer = randf_range(min_interval, max_interval)
