@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkm2e4pjlsdht"
+path="res://.godot/imported/sfx_2 - saline_use_3.wav-cacb45fcb0695bb93e85b068f9010220.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/sfx_2 - saline_use_3.wav"
+dest_files=["res://.godot/imported/sfx_2 - saline_use_3.wav-cacb45fcb0695bb93e85b068f9010220.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

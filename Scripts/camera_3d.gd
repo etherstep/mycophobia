@@ -43,6 +43,30 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_target.interact()
 
 func update_target() -> void:
+	# Hide interaction crosshairs while the inventory is open.
+	var player := get_parent() as Player
+	var inventory_open := (
+		player != null
+		and player.inventory_ui != null
+		and player.inventory_ui.visible
+	)
+
+	if inventory_open:
+		if is_instance_valid(current_target):
+			if current_target.has_method("set_hovered"):
+				current_target.set_hovered(false)
+
+		current_target = null
+
+		if is_instance_valid(crosshair_interact):
+			crosshair_interact.hide()
+
+		if is_instance_valid(crosshair_normal):
+			crosshair_normal.hide()
+
+		return  # IMPORTANT: stop here while inventory is open
+
+	# Raycast to find an interactable object.
 	var screen_center := get_viewport().get_visible_rect().size / 2.0
 	var ray_origin := project_ray_origin(screen_center)
 	var ray_direction := project_ray_normal(screen_center)
@@ -75,7 +99,7 @@ func update_target() -> void:
 			if current_target.has_method("set_hovered"):
 				current_target.set_hovered(true)
 
-	# Update crosshair visibility
+	# Update crosshair visibility during gameplay.
 	if is_instance_valid(crosshair_interact):
 		crosshair_interact.visible = is_instance_valid(current_target)
 

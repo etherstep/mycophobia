@@ -22,6 +22,8 @@ const BOB_FREQUENCY := 10.0
 const SPRINT_BOB_MULTIPLIER := 1.35
 const BOB_SMOOTHING := 10.0
 
+const ITEM_USE_RANGE := 3.0
+
 var bob_time := 0.0
 var camera_base_y := 0.0
 
@@ -60,9 +62,14 @@ var _infection_left := -1.0
 const VIGNETTE_TIME := 2.5
 const INFECTION_DEATH_TIME := 15.0
 
+var syringe_used = false
+
+@export var inventory: Inventory
+@export var held_item_crosshair: TextureRect
+var selected_world_item: ItemData = null
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var _infection_overlay: ColorRect = $HUD/InfectionOverlay
+@onready var _infection_overlay: ColorRect = $HUD/InfectionVignette
 @onready var _infection_timer: Label = $HUD/InfectionTimer
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
@@ -70,12 +77,15 @@ const INFECTION_DEATH_TIME := 15.0
 
 # AUDIO
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+const FOOTSTEP_POOL_SIZE := 4
+var footstep_players: Array[AudioStreamPlayer3D] = []
+var footstep_player_index: int = 0
 @export var footstep_sounds: Array[AudioStream]
 @onready var dialogue_player: AudioStreamPlayer3D = $DialoguePlayer
 @export var running_player_sfx: AudioStream
-@export var footstep_interval: float = 0.45
-@export var footstep_interval_sprint: float = 0.25
-@export var footstep_interval_crouch: float = 0.75
+@export var footstep_interval: float = 0.32
+@export var footstep_interval_sprint: float = 0.18
+@export var footstep_interval_crouch: float = 0.65
 var footstep_tween: Tween
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
@@ -84,40 +94,208 @@ var last_footstep_index: int = -1
 var running_sfx_timer: float = 0.0
 
 func _ready() -> void:
+	setup_footstep_pool()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if inventory_ui:
+
+	if inventory_ui != null:
 		inventory_ui.hide()
-	if player_hand:
+
+		if inventory_ui.has_signal("world_item_selected"):
+			if not inventory_ui.world_item_selected.is_connected(select_world_item):
+				inventory_ui.world_item_selected.connect(select_world_item)
+	else:
+		push_warning("Player: Inventory UI is not assigned.")
+
+	if player_hand != null:
 		player_hand.show()
+
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
 	stand_height = capsule.height
 	stand_shape_y = collision_shape_3d.position.y
 	stand_camera_y = camera_3d.position.y
 	camera_base_y = camera_3d.position.y
 
+	if held_item_crosshair != null:
+		held_item_crosshair.hide()
+
+func setup_footstep_pool() -> void:
+	footstep_players.clear()
+	footstep_players.append(footstep_player)
+
+	for i in range(FOOTSTEP_POOL_SIZE - 1):
+		var player := footstep_player.duplicate() as AudioStreamPlayer3D
+		add_child(player)
+		footstep_players.append(player)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if dead:
 		return
+
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
+
 	if event.is_action_pressed("inventory"):
 		if held:
 			return
 		toggle_inventory()
 		return
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+
+	# Don't process gameplay mouse input while the inventory is open.
+	if inventory_ui != null and inventory_ui.visible:
+		return
+
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_LEFT \
+	and event.pressed:
+
+		# Only use a world item if Salt or Matches is selected.
+		if selected_world_item != null:
+			_try_use_world_item()
+			get_viewport().set_input_as_handled()
+			return
+
+		# Otherwise, preserve normal mouse capture behavior.
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			return
+
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
+
 	if event is InputEventMouseMotion:
-		# Yaw turns the body. Pitch turns only the camera, so the horizon stays level.
 		rotate_y(-event.relative.x * Settings.mouse_sensitivity)
-		pitch = clampf(pitch - event.relative.y * Settings.mouse_sensitivity, -PITCH_LIMIT, PITCH_LIMIT)
+		pitch = clampf(
+			pitch - event.relative.y * Settings.mouse_sensitivity,
+			-PITCH_LIMIT,
+			PITCH_LIMIT
+		)
 		camera_3d.rotation.x = pitch
 		return
+
+func _try_use_world_item() -> void:
+	if selected_world_item == null:
+		print("World item: no item selected")
+		return
+
+	var camera := get_viewport().get_camera_3d()
+	if camera == null:
+		print("World item: no active camera found")
+		cancel_world_item()
+		return
+
+	# Aim from the center of the screen.
+	var screen_center := get_viewport().get_visible_rect().size * 0.5
+	var origin := camera.project_ray_origin(screen_center)
+	var end := origin + camera.project_ray_normal(screen_center) * ITEM_USE_RANGE
+
+	var query := PhysicsRayQueryParameters3D.create(origin, end)
+	query.exclude = [get_rid()]
+	query.collide_with_bodies = true
+	query.collide_with_areas = true
+
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+
+	if hit.is_empty():
+		print("World item: raycast hit nothing")
+		cancel_world_item()
+		return
+
+	var target := hit["collider"] as Node
+	print("World item: hit ", target.get_path())
+
+	var enemy := _find_enemy(target)
+
+	if enemy == null:
+		print("World item: hit object is not inside the enemies group")
+		cancel_world_item()
+		return
+
+	print("World item: found enemy ", enemy.get_path())
+	print("World item effect: ", selected_world_item.item_effect)
+
+	match selected_world_item.item_effect:
+		ItemData.ItemEffect.SALT_ENEMY:
+			if enemy.has_method("apply_salted"):
+				enemy.apply_salted()
+				print("World item: applied salt")
+				_consume_selected_item()
+			else:
+				print("World item: enemy has no apply_salted() method")
+				cancel_world_item()
+
+		ItemData.ItemEffect.KILL_SALTED_ENEMY:
+			if enemy.has_method("is_salted") and enemy.is_salted():
+				if enemy.has_method("kill_by_matches"):
+					enemy.kill_by_matches()
+					print("World item: killed salted enemy")
+					_consume_selected_item()
+				else:
+					print("World item: enemy has no kill_by_matches() method")
+					cancel_world_item()
+			else:
+				print("World item: enemy is not salted")
+				cancel_world_item()
+
+		_:
+			print("World item: selected item has the wrong ItemEffect")
+			cancel_world_item()
+
+
+func _consume_selected_item() -> void:
+	var item := selected_world_item
+
+	cancel_world_item()
+
+	if item == null:
+		return
+
+	if inventory == null:
+		push_warning("Player: Inventory is not assigned.")
+		return
+
+	inventory.remove_one_item(item)
+
+
+func _find_enemy(target: Node) -> Node:
+	var current: Node = target
+
+	while current != null:
+		if current.is_in_group("enemies"):
+			return current
+		current = current.get_parent()
+
+	return null
+
+
+func select_world_item(item: ItemData) -> void:
+	if item == null:
+		return
+
+	selected_world_item = item
+
+	# Close the inventory without toggling it back open.
+	if inventory_ui != null and inventory_ui.visible:
+		inventory_ui.visible = false
+		inventory_ui.play_inventory_close()
+		_update_inventory_state()
+
+	# Keep the hand/crosshair layer visible.
+	if player_hand != null:
+		player_hand.show()
+
+	if held_item_crosshair != null:
+		held_item_crosshair.texture = item.texture
+		held_item_crosshair.show()
+
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func cancel_world_item() -> void:
+	selected_world_item = null
+
+	if held_item_crosshair != null:
+		held_item_crosshair.hide()
 
 func die(reason: String = "The enemy caught you") -> void:
 	if dead:
@@ -141,10 +319,17 @@ func toggle_inventory() -> void:
 	if inventory_ui == null:
 		push_warning("Inventory UI is not assigned!")
 		return
+
 	if inventory_ui.close_note_if_open():
 		get_viewport().set_input_as_handled()
 		return
+
 	inventory_ui.visible = not inventory_ui.visible
+
+	# If opening the inventory, cancel any selected world item.
+	if inventory_ui.visible and selected_world_item != null:
+		cancel_world_item()
+
 	inventory_ui.play_inventory_sfx(inventory_ui.visible)
 	_update_inventory_state()
 	get_viewport().set_input_as_handled()
@@ -270,6 +455,7 @@ func _can_stand() -> bool:
 	query.margin = 0.0
 	query.transform = global_transform * Transform3D(Basis(), Vector3(0, stand_shape_y + lift, 0))
 	query.exclude = [get_rid()]
+	query.collision_mask = 1 << 2
 	var hits := get_world_3d().direct_space_state.intersect_shape(query, 1)
 	return hits.is_empty()
 
@@ -318,9 +504,8 @@ func update_footsteps(delta: float) -> void:
 	footstep_timer -= delta
 
 	if footstep_timer <= 0.0:
-		if is_sprinting or not footstep_player.playing:
-			play_random_footstep(is_sprinting)
-			footstep_timer = current_interval
+		play_random_footstep(is_sprinting)
+		footstep_timer = current_interval
 
 func stop_footsteps() -> void:
 	if not footstep_player.playing:
@@ -340,10 +525,8 @@ func play_random_footstep(force_restart: bool = false) -> void:
 	if footstep_sounds.is_empty():
 		return
 
-	if footstep_player.playing and not force_restart:
-		return
-
 	var sound_index: int
+
 	if footstep_sounds.size() == 1:
 		sound_index = 0
 	else:
@@ -352,8 +535,13 @@ func play_random_footstep(force_restart: bool = false) -> void:
 			sound_index = randi_range(0, footstep_sounds.size() - 1)
 
 	last_footstep_index = sound_index
-	footstep_player.stream = footstep_sounds[sound_index]
-	footstep_player.play()
+
+	var player := footstep_players[footstep_player_index]
+	footstep_player_index = (footstep_player_index + 1) % footstep_players.size()
+
+	player.stream = footstep_sounds[sound_index]
+	player.volume_db = 0.0
+	player.play()
 
 func increase_infection(amount: int) -> void:
 	if (amount <= 0):

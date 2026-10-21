@@ -5,7 +5,7 @@ const OPTIONS_SCENE = preload("res://Scenes/options_menu.tscn")
 var _options_layer: CanvasLayer
 
 func _ready() -> void:
-	MusicManager.play_game_music()
+	MusicManager.play_game_ambience()
 	Settings.apply_gamma($WorldEnvironment)
 
 func _unhandled_input(event: InputEvent) -> void:
