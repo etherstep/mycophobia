@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_e228r"]
 [ext_resource type="Texture2D" uid="uid://er41ge2prc7m" path="res://Assets/Sprites/saline.png" id="2_e228r"]
+[ext_resource type="Texture2D" uid="uid://cex2we3l2hngv" path="res://Assets/Sprites/saline_outline.PNG" id="3_3vrgv"]
 
 [resource]
 script = ExtResource("1_e228r")
@@ -10,6 +11,7 @@ name = "saline"
 item_type = 3
 stack_limit = 8
 texture = ExtResource("2_e228r")
+texture_outline = ExtResource("3_3vrgv")
 stackable = true
 text = "Sea salt wound wash. Used to cure infection."
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

@@ -15,10 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="19_p1odr"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
 [ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
@@ -30,7 +30,7 @@ height = 2.6291504
 
 [node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
 script = ExtResource("1_v0iea")
-held_item_crosshair = NodePath("HUD/CrosshairSelectedItem")
+held_item_crosshair = NodePath("HUD/Control/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")
 footstep_sounds = Array[AudioStream]([ExtResource("2_2ijsl"), ExtResource("3_p1odr")])
 running_player_sfx = ExtResource("6_gymyn")
@@ -54,9 +54,8 @@ flashlight_off_sfx = ExtResource("9_vfarp")
 transform = Transform3D(0.99453217, 0.030593013, 0.09984891, -0.016278196, 0.9898547, -0.14114776, -0.10315405, 0.13875063, 0.9849404, 0.4766215, -0.6343856, -0.029269874)
 light_color = Color(0.929673, 0.98395807, 0.92091703, 1)
 light_energy = 6.0
-light_indirect_energy = 16.0
 light_volumetric_fog_energy = 0.1
-light_size = 0.35
+light_size = 0.189
 shadow_enabled = true
 shadow_normal_bias = 2.875
 shadow_reverse_cull_face = true
@@ -220,17 +219,37 @@ expand_mode = 3
 script = ExtResource("20_vfarp")
 player = NodePath("../..")
 
-[node name="CrosshairSelectedItem" type="TextureRect" parent="HUD" unique_id=1112793597]
-visible = false
+[node name="Control" type="Control" parent="HUD" unique_id=634520778]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("19_p1odr")
+
+[node name="CrosshairSelectedItem" type="TextureRect" parent="HUD/Control" unique_id=1112793597]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.96
+offset_top = -54.64
+offset_right = 40.96
+offset_bottom = 54.64
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("18_2ijsl")
+expand_mode = 1
 
 [node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
 script = ExtResource("19_l6n3p")
@@ -245,6 +264,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = 1.0
+offset_right = -23.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

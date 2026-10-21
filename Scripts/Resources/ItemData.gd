@@ -19,6 +19,7 @@ enum ItemEffect {
 @export var item_type: ItemType = ItemType.NOTE
 @export var stack_limit : int = 1
 @export var texture : Texture2D
+@export var texture_outline : Texture2D
 @export var stackable: bool = false
 @export_multiline var text: String = ""
 
