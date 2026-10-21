@@ -9,6 +9,10 @@ extends Area3D
 @export var sprite: Sprite3D
 @export var label: Label3D
 @export var note_interact_sfx: AudioStream
+@export var salt_interact_sfx: AudioStream
+@export var matches_interact_sfx: AudioStream
+@export var saline_interact_sfx: AudioStream
+@export var syringe_interact_sfx: AudioStream
 
 const BASE_SCALE = Vector3(0.02, 0.02, 0.02)
 var original_modulate: Color = Color.WHITE
@@ -60,13 +64,22 @@ func interact() -> void:
 		else:
 			push_warning("No NoteViewer found in the 'note_viewer' group.")
 
-	queue_free()
+	if item_data.item_type == ItemData.ItemType.SALT:
+		MusicManager.play_world_sfx(salt_interact_sfx)
 
+	if item_data.item_type == ItemData.ItemType.MATCHES:
+		MusicManager.play_world_sfx(matches_interact_sfx)
+
+	if item_data.item_type == ItemData.ItemType.SALINE:
+		MusicManager.play_world_sfx(saline_interact_sfx)
+
+	if item_data.item_type == ItemData.ItemType.SYRINGE:
+		MusicManager.play_world_sfx(syringe_interact_sfx)
+	queue_free()
 
 func set_hovered(hovered: bool) -> void:
 	if not sprite:
 		return
-
 	if hovered:
 		sprite.modulate = Color("c3c1b4ff")
 	else:

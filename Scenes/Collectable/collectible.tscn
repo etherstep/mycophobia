@@ -5,6 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://d3rwk4jywvwe3" path="res://Assets/SFX/Interact/note-interact_2.wav" id="3_73n1k"]
 [ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="4_8nals"]
 [ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="4_73n1k"]
+[ext_resource type="AudioStream" uid="uid://sc71heu7avy4" path="res://Assets/SFX/sfx_2 - salt_collect.wav" id="4_gqegf"]
+[ext_resource type="AudioStream" uid="uid://bw7f4dv2mqjj3" path="res://Assets/SFX/sfx_2 - matches_collect.wav" id="5_rg2w6"]
+[ext_resource type="AudioStream" uid="uid://b31lc452687fp" path="res://Assets/SFX/sfx_2 - collect_saline.wav" id="6_amw1k"]
+[ext_resource type="AudioStream" uid="uid://b7xgbi7ivbs3q" path="res://Assets/SFX/sfx_2 - syringe collect.wav" id="7_y21nk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
 size = Vector3(0.38145018, 0.5619321, 0.15234375)
@@ -16,6 +20,10 @@ item_data = ExtResource("2_bhxhe")
 sprite = NodePath("Sprite3D")
 label = NodePath("Label3D")
 note_interact_sfx = ExtResource("3_73n1k")
+salt_interact_sfx = ExtResource("4_gqegf")
+matches_interact_sfx = ExtResource("5_rg2w6")
+saline_interact_sfx = ExtResource("6_amw1k")
+syringe_interact_sfx = ExtResource("7_y21nk")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=936071494]
 texture = ExtResource("4_73n1k")
