@@ -24,16 +24,10 @@
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
-[ext_resource type="Shader" path="res://Shaders/infection_vignette.gdshader" id="24_vignette"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
-shader = ExtResource("24_vignette")
-shader_parameter/strength = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
 
-;[node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("player_hand") groups=["player"]]
 [node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_v0iea")
@@ -182,63 +176,6 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
-;;;
-[node name="InfectionOverlay" type="ColorRect" parent="HUD" unique_id=1742201110]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-material = SubResource("ShaderMaterial_infection")
-
-[node name="InfectionMeter" type="Node2D" parent="HUD" unique_id=2078770289 node_paths=PackedStringArray("background", "meter", "player")]
-position = Vector2(940, 520)
-script = ExtResource("11_gymyn")
-background = NodePath("Background")
-meter = NodePath("Meter")
-player = NodePath("../..")
-
-[node name="Background" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2036380106]
-custom_minimum_size = Vector2(312, 64)
-offset_left = -924.0
-offset_top = 488.0
-offset_right = -612.0
-offset_bottom = 552.0
-color = Color(0, 0, 0, 1)
-
-[node name="Meter" type="ColorRect" parent="HUD/InfectionMeter" unique_id=2004676187]
-custom_minimum_size = Vector2(0, 48)
-custom_maximum_size = Vector2(300, -1)
-offset_left = -916.0
-offset_top = 496.0
-offset_right = -620.0
-offset_bottom = 544.0
-color = Color(2.9841065e-06, 0.68424076, 0, 1)
-
-[node name="InfectionTimer" type="Label" parent="HUD"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -120.0
-offset_right = 120.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.8, 0.12, 0.08, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 36
-text = "15"
-horizontal_alignment = 1
-vertical_alignment = 1
-;;;
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
 anchor_left = 0.5

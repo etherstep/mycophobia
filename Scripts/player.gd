@@ -69,7 +69,7 @@ var syringe_used = false
 var selected_world_item: ItemData = null
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var _infection_overlay: ColorRect = $HUD/InfectionOverlay
+@onready var _infection_overlay: TextureRect = $HUD/InfectionOverlay
 @onready var _infection_timer: Label = $HUD/InfectionTimer
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
@@ -297,7 +297,7 @@ func cancel_world_item() -> void:
 	if held_item_crosshair != null:
 		held_item_crosshair.hide()
 
-func die() -> void:
+func die(reason: String = "dead") -> void:
 	if dead:
 		return
 	dead = true

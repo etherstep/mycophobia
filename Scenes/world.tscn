@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
-[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/Enemies/enemy.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
@@ -17,17 +16,15 @@
 [ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
-;[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="14_hgpy0"]
 [ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/Enemies/spore_cloud.tscn" id="15_spore"]
 [ext_resource type="PackedScene" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
-[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="18_1vso6"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
 [ext_resource type="PackedScene" uid="uid://cvvjht5xbhqkq" path="res://Scenes/Door and buttons/door.tscn" id="20_1cojt"]
 [ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
-[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="21_yq1aw"]
 [ext_resource type="Script" uid="uid://dcmknv4owwx12" path="res://Scenes/random_ambience_point.gd" id="22_pyn1s"]
 [ext_resource type="AudioStream" uid="uid://bukb402oyoo0p" path="res://Assets/SFX/Athmosphere/ambient_noise_1.wav" id="23_dt0r1"]
 [ext_resource type="AudioStream" uid="uid://dvpqbnt1t5p5k" path="res://Assets/SFX/Athmosphere/ambient_noise_2.wav" id="24_qebug"]
@@ -35,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://qyoldsjy24bt" path="res://Assets/SFX/Athmosphere/ambient_noise_4.wav" id="26_1vso6"]
 [ext_resource type="AudioStream" uid="uid://cr3jstcnav8xy" path="res://Assets/SFX/Athmosphere/ambient_noise_5.wav" id="27_3ua1v"]
 [ext_resource type="AudioStream" uid="uid://rsbk8k362wyf" path="res://Assets/SFX/Athmosphere/ambient_noise_6.wav" id="28_r0ikl"]
+[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="33_r0ikl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -76,9 +74,6 @@ adjustment_saturation = 0.49
 [sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
 size = Vector3(4, 2, 4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
-albedo_texture = ExtResource("14_hgpy0")
-metallic_specular = 0.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0ikl"]
 albedo_texture = ExtResource("18_1vso6")
 albedo_texture_force_srgb = true
@@ -4913,6 +4908,7 @@ transform = Transform3D(1.38, 0, 0, 0, 1.38, 0, 0, 0, 1.38, -288.61795, 2.05, -2
 [node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") instance=ExtResource("16_shooter")]
 transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -290.95816, 4.35184, -20.727905)
 cloud = NodePath("../SporeCloud")
+
 [node name="Inventory" parent="." unique_id=2098244082 node_paths=PackedStringArray("player") groups=["inventory"] instance=ExtResource("3_fo5ed")]
 player = NodePath("../Player")
 
@@ -9139,9 +9135,6 @@ shape = SubResource("CylinderShape3D_hhcb3")
 stream = ExtResource("20_yq1aw")
 bus = &"Music"
 
-[node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("21_yq1aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.41824, 2.6442, -20.738623)
-
 [node name="RandomAmbiencePoint" type="Node3D" parent="." unique_id=25133711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.08496, 11.492045, 17.308651)
 script = ExtResource("22_pyn1s")
@@ -9242,3 +9235,6 @@ timeout = 0.5
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -285.9952, 3.588463, -44.874496)
 door = NodePath("../Door")
 timeout = 4.0
+
+[node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("33_r0ikl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.61884, 2.6441994, -33.63006)
