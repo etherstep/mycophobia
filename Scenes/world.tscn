@@ -4900,7 +4900,8 @@ script = ExtResource("11_alert")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
 
-[node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
+[node name="Inventory" parent="." unique_id=2098244082 node_paths=PackedStringArray("player") groups=["inventory"] instance=ExtResource("3_fo5ed")]
+player = NodePath("../Player")
 
 [node name="Inventory_ui" parent="." unique_id=196500527 node_paths=PackedStringArray("inventory", "player") instance=ExtResource("4_5ukr8")]
 visible = false

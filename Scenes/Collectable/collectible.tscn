@@ -37,6 +37,7 @@ alpha_cut = 2
 texture = ExtResource("4_73n1k")
 
 [node name="Sprite3DHover" type="Sprite3D" parent="." unique_id=476101403]
+visible = false
 lod_bias = 0.001
 gi_mode = 2
 billboard = 1
