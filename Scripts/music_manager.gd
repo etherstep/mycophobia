@@ -15,6 +15,11 @@ const BROCHURE_PART_1: AudioStream = preload("res://Assets/SFX/Dialogue/brochure
 var menu_music_volume_db: float = 0.0
 var music_tween: Tween
 
+const NOTE_1_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_1_reaction.mp3")
+const NOTE_2_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_2_reaction.mp3")
+const NOTE_3_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_3_reaction.mp3")
+const NOTE_4_REACTION: AudioStream = preload("res://Assets/SFX/Dialogue/note_4_reaction.mp3")
+
 func _ready() -> void:
 	#stream = preload("res://Assets/Music/main_menu_theme.mp3")
 	stream = preload("res://Assets/Music/main_menu_theme_2.mp3")
