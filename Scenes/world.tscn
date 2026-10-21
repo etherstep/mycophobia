@@ -11,10 +11,10 @@
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
 [ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
-[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
-[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="18_1vso6"]
@@ -4900,7 +4900,8 @@ script = ExtResource("11_alert")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
 
-[node name="Inventory" parent="." unique_id=2098244082 groups=["inventory"] instance=ExtResource("3_fo5ed")]
+[node name="Inventory" parent="." unique_id=2098244082 node_paths=PackedStringArray("player") groups=["inventory"] instance=ExtResource("3_fo5ed")]
+player = NodePath("../Player")
 
 [node name="Inventory_ui" parent="." unique_id=196500527 node_paths=PackedStringArray("inventory", "player") instance=ExtResource("4_5ukr8")]
 visible = false

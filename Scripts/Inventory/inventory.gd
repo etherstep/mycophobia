@@ -9,6 +9,8 @@ signal inventory_changed
 @export var saline_use_sfx: AudioStream
 @export var syringe_use_sfx: AudioStream
 
+@export var player: Player
+
 class ItemStack:
 	var item: ItemData
 	var quantity: int
@@ -58,6 +60,7 @@ func remove_one_item(item: ItemData) -> void:
 				MusicManager.play_player_dialogue(saline_use_sfx)
 
 			if item.item_type == ItemData.ItemType.SYRINGE:
+				player.increase_infection(100)
 				MusicManager.play_player_dialogue(syringe_use_sfx)
 			inventory_changed.emit()
 			return

@@ -8,7 +8,7 @@
 script = ExtResource("1_e1ebl")
 item_effect = 4
 infection_cure_amount = 0.0
-name = "Syringe"
+name = "Special syringe"
 item_type = 0
 texture = ExtResource("2_e1ebl")
 texture_outline = ExtResource("3_slpd6")
