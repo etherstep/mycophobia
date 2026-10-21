@@ -261,8 +261,17 @@ func _find_enemy(target: Node) -> Node:
 	var current: Node = target
 
 	while current != null:
+		# The actual enemy is directly in the enemies group.
 		if current.is_in_group("enemies"):
 			return current
+
+		# The clicked object may be a separate StaticBody3D
+		# that references the enemy through its exported cloud variable.
+		if current.has_method("get_spore_shooter"):
+			var enemy = current.get_spore_shooter()
+			if is_instance_valid(enemy):
+				return enemy
+
 		current = current.get_parent()
 
 	return null

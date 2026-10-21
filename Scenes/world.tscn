@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/Enemies/spore_cloud.tscn" id="15_spore"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
+[ext_resource type="PackedScene" uid="uid://c8wkejo0w8bos" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
@@ -4902,11 +4902,11 @@ script = ExtResource("11_alert")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
 
-[node name="SporeCloud" parent="." unique_id=1742201103 instance=ExtResource("15_spore")]
+[node name="SporeCloud" parent="." unique_id=1742201103 groups=["enemies", "player"] instance=ExtResource("15_spore")]
 transform = Transform3D(1.38, 0, 0, 0, 1.38, 0, 0, 0, 1.38, -288.61795, 2.05, -20.727905)
 
-[node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") instance=ExtResource("16_shooter")]
-transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -290.95816, 4.35184, -20.727905)
+[node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
+transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -290.99533, 4.35184, -20.705004)
 cloud = NodePath("../SporeCloud")
 
 [node name="Inventory" parent="." unique_id=2098244082 node_paths=PackedStringArray("player") groups=["inventory"] instance=ExtResource("3_fo5ed")]
