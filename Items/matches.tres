@@ -7,7 +7,7 @@
 script = ExtResource("1_3b8n2")
 item_effect = 3
 name = "matches"
-item_type = 0
+item_type = 1
 stack_limit = 8
 texture = ExtResource("2_3b8n2")
 stackable = true

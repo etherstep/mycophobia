@@ -5391,7 +5391,7 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint" unique_id=1058733444]
-max_distance = 30.0
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
@@ -5401,7 +5401,8 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint2" unique_id=2105676270]
-max_distance = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.428558, 0, 5.3869324)
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
@@ -5411,7 +5412,8 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint3" unique_id=875227926]
-max_distance = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.039612, 0, -24.17795)
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
@@ -5421,7 +5423,7 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint6" unique_id=1728743072]
-max_distance = 30.0
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
@@ -5431,7 +5433,8 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint7" unique_id=994986809]
-max_distance = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.11499, -3.220213, -9.068878)
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
@@ -5441,7 +5444,8 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint4" unique_id=2114722221]
-max_distance = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0365171, 5.6127777)
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
@@ -5451,6 +5455,7 @@ script = ExtResource("22_pyn1s")
 ambience_sounds = Array[AudioStream]([ExtResource("23_dt0r1"), ExtResource("24_qebug"), ExtResource("25_o2rbt"), ExtResource("26_1vso6"), ExtResource("27_3ua1v"), ExtResource("28_r0ikl")])
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RandomAmbiencePoint5" unique_id=1517738343]
-max_distance = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.195919)
+max_distance = 500.0
 max_polyphony = 2
 bus = &"SFX-WorldAmbience"
