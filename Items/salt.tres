@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_ih4ee"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="2_ih4ee"]
+[ext_resource type="Texture2D" uid="uid://vivjbkh71dt3" path="res://Assets/Sprites/salt_outline.PNG" id="3_5uco1"]
 
 [resource]
 script = ExtResource("1_ih4ee")
@@ -10,6 +11,7 @@ name = "Salt"
 item_type = 2
 stack_limit = 8
 texture = ExtResource("2_ih4ee")
+texture_outline = ExtResource("3_5uco1")
 stackable = true
 text = "Your basic table salt. Dries out smaller mushrooms."
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

@@ -7,6 +7,7 @@ extends Area3D
 		_update_collectible()
 
 @export var sprite: Sprite3D
+@export var sprite_outline: Sprite3D
 @export var label: Label3D
 @export var note_interact_sfx: AudioStream
 @export var salt_interact_sfx: AudioStream
@@ -22,6 +23,9 @@ func _ready() -> void:
 	_update_collectible()
 	original_modulate = sprite.modulate if sprite else Color.WHITE
 
+	if sprite_outline:
+		sprite_outline.visible = false
+
 
 func _update_collectible() -> void:
 	if not is_inside_tree():
@@ -30,12 +34,17 @@ func _update_collectible() -> void:
 	if item_data == null:
 		if sprite:
 			sprite.texture = null
+		if sprite_outline:
+			sprite_outline.texture = null	
 		if label:
 			label.text = ""
 		return
 
 	if sprite:
 		sprite.texture = item_data.texture
+
+	if sprite_outline:
+		sprite_outline.texture = item_data.texture_outline
 
 	if label:
 		label.text = item_data.name
@@ -78,9 +87,11 @@ func interact() -> void:
 	queue_free()
 
 func set_hovered(hovered: bool) -> void:
-	if not sprite:
-		return
-	if hovered:
-		sprite.modulate = Color("c3c1b4ff")
-	else:
-		sprite.modulate = original_modulate
+	if sprite:
+		if hovered:
+			sprite.modulate = Color("c3c1b4ff")
+		else:
+			sprite.modulate = original_modulate
+
+	if sprite_outline:
+		sprite_outline.visible = hovered

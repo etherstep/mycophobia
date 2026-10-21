@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bd6cw241hd5e4"]
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_3b8n2"]
-[ext_resource type="Texture2D" uid="uid://cepexr6ela8kk" path="res://Assets/Sprites/Matchbox.PNG" id="2_3b8n2"]
+[ext_resource type="Texture2D" uid="uid://g0is8vlg4anc" path="res://Assets/Sprites/Matchbox.PNG" id="2_3b8n2"]
+[ext_resource type="Texture2D" uid="uid://b30a5nq66jq7q" path="res://Assets/Sprites/matchbox outline.PNG" id="3_6xsvi"]
 
 [resource]
 script = ExtResource("1_3b8n2")
@@ -10,6 +11,7 @@ name = "matches"
 item_type = 1
 stack_limit = 8
 texture = ExtResource("2_3b8n2")
+texture_outline = ExtResource("3_6xsvi")
 stackable = true
 text = "Used to light things on fire. what did you expect?"
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

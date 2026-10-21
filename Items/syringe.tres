@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://wdv1u0xby4td"]
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_e1ebl"]
-[ext_resource type="Texture2D" uid="uid://co58ktbjhyw3j" path="res://Assets/Sprites/syringe.jpg" id="2_e1ebl"]
+[ext_resource type="Texture2D" uid="uid://dm445umk6qsig" path="res://Assets/Sprites/syringe.PNG" id="2_e1ebl"]
+[ext_resource type="Texture2D" uid="uid://b6brg2l7baee1" path="res://Assets/Sprites/syringe_outline.PNG" id="3_slpd6"]
 
 [resource]
 script = ExtResource("1_e1ebl")
@@ -10,5 +11,6 @@ infection_cure_amount = 0.0
 name = "Syringe"
 item_type = 0
 texture = ExtResource("2_e1ebl")
+texture_outline = ExtResource("3_slpd6")
 text = "Leftover sample from the special glowing mushroom Dr. Donovan experienced with. "
 metadata/_custom_type_script = "uid://dafwh6dm3o2hn"

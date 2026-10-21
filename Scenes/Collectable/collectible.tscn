@@ -9,15 +9,17 @@
 [ext_resource type="AudioStream" uid="uid://bw7f4dv2mqjj3" path="res://Assets/SFX/sfx_2 - matches_collect.wav" id="5_rg2w6"]
 [ext_resource type="AudioStream" uid="uid://b31lc452687fp" path="res://Assets/SFX/sfx_2 - collect_saline.wav" id="6_amw1k"]
 [ext_resource type="AudioStream" uid="uid://b7xgbi7ivbs3q" path="res://Assets/SFX/sfx_2 - syringe collect.wav" id="7_y21nk"]
+[ext_resource type="Texture2D" uid="uid://vrtafr0aw0c" path="res://Assets/Sprites/note outline.PNG" id="9_rg2w6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
 size = Vector3(0.38145018, 0.5619321, 0.15234375)
 
-[node name="Collectible" type="Area3D" unique_id=376975287 node_paths=PackedStringArray("sprite", "label")]
+[node name="Collectible" type="Area3D" unique_id=376975287 node_paths=PackedStringArray("sprite", "sprite_outline", "label")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 script = ExtResource("1_sbuda")
 item_data = ExtResource("2_bhxhe")
 sprite = NodePath("Sprite3D")
+sprite_outline = NodePath("Sprite3DHover")
 label = NodePath("Label3D")
 note_interact_sfx = ExtResource("3_73n1k")
 salt_interact_sfx = ExtResource("4_gqegf")
@@ -26,7 +28,21 @@ saline_interact_sfx = ExtResource("6_amw1k")
 syringe_interact_sfx = ExtResource("7_y21nk")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=936071494]
+sorting_offset = 0.01
+lod_bias = 0.001
+gi_mode = 2
+billboard = 1
+shaded = true
+alpha_cut = 2
 texture = ExtResource("4_73n1k")
+
+[node name="Sprite3DHover" type="Sprite3D" parent="." unique_id=476101403]
+lod_bias = 0.001
+gi_mode = 2
+billboard = 1
+shaded = true
+alpha_cut = 2
+texture = ExtResource("9_rg2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1578078474]
 transform = Transform3D(34.745, 0, 0, 0, 34.745, 0, 0, 0, 34.745, 0, 0.28131136, 0)

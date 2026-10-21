@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cepexr6ela8kk"
-path.s3tc="res://.godot/imported/Matchbox.PNG-1d738c4d4b21ebda04ee5080dae2b2ed.s3tc.ctex"
+uid="uid://g0is8vlg4anc"
+path="res://.godot/imported/matchbox.PNG-9b76b5bd91b7ef270259f540e52685aa.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Matchbox.PNG"
-dest_files=["res://.godot/imported/Matchbox.PNG-1d738c4d4b21ebda04ee5080dae2b2ed.s3tc.ctex"]
+source_file="res://Assets/Sprites/matchbox.PNG"
+dest_files=["res://.godot/imported/matchbox.PNG-9b76b5bd91b7ef270259f540e52685aa.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
