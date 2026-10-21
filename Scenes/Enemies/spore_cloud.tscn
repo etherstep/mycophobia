@@ -41,7 +41,7 @@ render_priority = 0
 shader = ExtResource("2_smoke")
 shader_parameter/noise_tex = ExtResource("3_noise")
 shader_parameter/mask_tex = ExtResource("4_mask")
-shader_parameter/smoke_color = Color(0.82, 0.82, 0.82, 1)
+shader_parameter/smoke_color = Color(0.55, 0.72, 0.42, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_smoke"]
 material = SubResource("ShaderMaterial_smoke")
@@ -49,7 +49,7 @@ material = SubResource("ShaderMaterial_smoke")
 [sub_resource type="BoxShape3D" id="BoxShape3D_touch"]
 size = Vector3(3.2, 2.4, 1.2)
 
-[node name="SporeCloud" type="StaticBody3D" unique_id=1742201101]
+[node name="SporeCloud" type="StaticBody3D" unique_id=1742201101 groups=["spore_cloud"]]
 transform = Transform3D(1.39, 0, 0, 0, 1.39, 0, 0, 0, 1.39, 0, 0, 0)
 collision_layer = 2
 collision_mask = 0

@@ -39,16 +39,31 @@ signal infection_level_changed(infection: float)
 const MAX_INFECTION: float = 100.0
 const MIN_INFECTION: float = 0.0
 var infection_level: float = MIN_INFECTION
+var held := false:
+	set(value):
+		if held == value:
+			return
+		held = value
+		if not value:
+			return
+		_shove = Vector3.ZERO
+		_shove_left = 0.0
+		if inventory_ui != null and inventory_ui.visible:
+			inventory_ui.visible = false
+			_update_inventory_state()
 var _shove := Vector3.ZERO
 var _shove_left := 0.0
 const SHOVE_SPEED := 12.0
 var _vignette_left := 0.0
+var _infection_left := -1.0
 
 const VIGNETTE_TIME := 2.5
+const INFECTION_DEATH_TIME := 15.0
 
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var _infection_overlay: ColorRect = $HUD/InfectionOverlay
+@onready var _infection_timer: Label = $HUD/InfectionTimer
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
 @export var player_hand: CanvasLayer
@@ -87,6 +102,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
 	if event.is_action_pressed("inventory"):
+		if held:
+			return
 		toggle_inventory()
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -102,15 +119,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_3d.rotation.x = pitch
 		return
 
-func die() -> void:
+func die(reason: String = "The enemy caught you") -> void:
 	if dead:
 		return
 	dead = true
+	held = false
 	velocity = Vector3.ZERO
+	_cancel_infection_timer()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var layer := CanvasLayer.new()
 	var label := Label.new()
-	label.text = "The enemy caught you"
+	label.text = reason
 	label.position = Vector2(520, 340)
 	layer.add_child(label)
 	add_child(layer)
@@ -142,6 +161,15 @@ func _update_inventory_state() -> void:
 
 func _physics_process(delta: float) -> void:
 	if dead:
+		return
+	if held:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_shove = Vector3.ZERO
+		_shove_left = 0.0
+		if not is_on_floor():
+			velocity.y -= GRAVITY * delta
+		move_and_slide()
 		return
 	if Input.is_action_just_pressed("crouch"):
 		if crouched:
@@ -332,24 +360,36 @@ func increase_infection(amount: int) -> void:
 		return
 	var before := infection_level
 	infection_level += amount
-	if infection_level >= MAX_INFECTION:
+	var filled := infection_level >= MAX_INFECTION
+	if filled:
 		infection_level = MAX_INFECTION
 	if infection_level <= before:
 		return
 	infection_level_changed.emit(infection_level)
 	_pulse_infection_vignette()
+	if filled and before < MAX_INFECTION:
+		_infection_left = INFECTION_DEATH_TIME
+		_refresh_infection_timer()
 
 
-func shove(direction: Vector3, steps: int) -> void:
+func shove(direction: Vector3, steps: float) -> void:
 	var flat := Vector3(direction.x, 0.0, direction.z)
-	if flat.length_squared() < 0.0001 or steps <= 0:
+	if flat.length_squared() < 0.0001 or steps <= 0.0:
 		return
 	flat = flat.normalized()
 	_shove = flat * SHOVE_SPEED
-	_shove_left = SPEED * footstep_interval * float(steps)
+	_shove_left = SPEED * footstep_interval * steps
 
 
 func _process(delta: float) -> void:
+	if _infection_left >= 0.0 and not dead:
+		_infection_left = maxf(_infection_left - delta, 0.0)
+		_refresh_infection_timer()
+		if _infection_left <= 0.0:
+			_infection_left = -1.0
+			_cancel_infection_timer()
+			die("The infection took you")
+			return
 	if _vignette_left <= 0.0:
 		return
 	_vignette_left = maxf(_vignette_left - delta, 0.0)
@@ -376,6 +416,21 @@ func decrease_infection(amount: int) -> void:
 	if infection_level <= MIN_INFECTION:
 		infection_level = MIN_INFECTION
 	infection_level_changed.emit(infection_level)
+	if infection_level < MAX_INFECTION:
+		_cancel_infection_timer()
+
+
+func _refresh_infection_timer() -> void:
+	if _infection_timer == null:
+		return
+	_infection_timer.visible = true
+	_infection_timer.text = str(ceili(_infection_left))
+
+
+func _cancel_infection_timer() -> void:
+	_infection_left = -1.0
+	if _infection_timer != null:
+		_infection_timer.visible = false
 
 func update_running_sfx() -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()

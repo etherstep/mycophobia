@@ -3,7 +3,15 @@ extends CharacterBody3D
 const WALK_SPEED := 2.5
 const GRAVITY := 18.0
 
-enum State { WANDER, CHASE, SEARCH }
+enum State { WANDER, CHASE, SEARCH, GRAB, LEAVE, RETURN }
+
+const HOLD_TIME := 2.5
+const CATCH_INFECTION := 50
+const OUT_OF_SIGHT_TIME := 0.3
+const SPAWN_CLEARANCE := 16.0
+const CLOUD_CLEARANCE := 4.0
+const SPAWN_TRIES := 20
+const ENEMY_SCENE_PATH := "res://Scenes/Enemies/enemy.tscn"
 
 @export var animated_sprite: AnimatedSprite3D
 @export var detect_range := 8.0
@@ -21,6 +29,9 @@ enum State { WANDER, CHASE, SEARCH }
 var state := State.WANDER
 var last_known := Vector3.ZERO
 var unseen_time := 0.0
+var _hold_left := 0.0
+var _hidden_time := 0.0
+var _held_player: Player = null
 
 
 func _ready() -> void:
@@ -36,7 +47,19 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
+	if state == State.GRAB:
+		_hold(delta)
+		move_and_slide()
+		return
 	if NavigationServer3D.map_get_iteration_id(agent.get_navigation_map()) == 0:
+		move_and_slide()
+		return
+	if state == State.LEAVE:
+		if not _leave(delta):
+			move_and_slide()
+		return
+	if state == State.RETURN:
+		_return_home()
 		move_and_slide()
 		return
 
@@ -220,6 +243,8 @@ func _fully_infected(player: Node3D) -> bool:
 
 
 func alert(at: Vector3) -> void:
+	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
+		return
 	var player := get_tree().get_first_node_in_group("player") as Node3D
 	if player != null and _fully_infected(player):
 		return
@@ -230,10 +255,157 @@ func alert(at: Vector3) -> void:
 
 
 func _on_catch_area_body_entered(body: Node3D) -> void:
+	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
+		return
 	if _fully_infected(body):
 		return
-	if body.is_in_group("player") and body.has_method("die"):
-		body.die()
+	if not body is Player or not body.is_in_group("player"):
+		return
+	var player := body as Player
+	if player.dead or player.held:
+		return
+	player.increase_infection(CATCH_INFECTION)
+	player.held = true
+	_held_player = player
+	_hold_left = HOLD_TIME
+	state = State.GRAB
+	velocity.x = 0.0
+	velocity.z = 0.0
+
+
+func _hold(delta: float) -> void:
+	velocity.x = 0.0
+	velocity.z = 0.0
+	if _held_player != null and is_instance_valid(_held_player):
+		var to_player := _held_player.global_position - global_position
+		to_player.y = 0.0
+		if to_player.length() > 0.1:
+			_face_direction(to_player.normalized())
+	_hold_left -= delta
+	if _hold_left > 0.0:
+		return
+	_release()
+	if guards:
+		state = State.RETURN
+		if guard_point != null:
+			agent.target_position = guard_point.global_position
+		return
+	state = State.LEAVE
+	_hidden_time = 0.0
+	_pick_patrol_point()
+
+
+func _leave(delta: float) -> bool:
+	if agent.is_navigation_finished():
+		_pick_patrol_point()
+	_move_along_path()
+	var player := get_tree().get_first_node_in_group("player") as Player
+	if player == null or _out_of_sight(player):
+		_hidden_time += delta
+	else:
+		_hidden_time = 0.0
+	if _hidden_time < OUT_OF_SIGHT_TIME:
+		return false
+	_replace()
+	return true
+
+
+func _return_home() -> void:
+	if guard_point != null:
+		agent.target_position = guard_point.global_position
+	_move_along_path()
+	if agent.is_navigation_finished():
+		state = State.WANDER
+		_pick_patrol_point()
+
+
+func _out_of_sight(player: Player) -> bool:
+	var view := player.camera_3d
+	if view == null:
+		return true
+	var chest := global_position + Vector3(0.0, 1.2, 0.0)
+	if not view.is_position_in_frustum(chest):
+		return true
+	var query := PhysicsRayQueryParameters3D.create(view.global_position, chest)
+	query.exclude = [get_rid(), player.get_rid()]
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+	if hit.is_empty():
+		return false
+	return hit.collider != self
+
+
+func _replace() -> void:
+	var parent_node := get_parent()
+	if parent_node == null:
+		queue_free()
+		return
+	var packed := load(ENEMY_SCENE_PATH) as PackedScene
+	var next := packed.instantiate() as CharacterBody3D
+	parent_node.add_child(next)
+	next.global_position = _spawn_point()
+	queue_free()
+
+
+func _spawn_point() -> Vector3:
+	var player := get_tree().get_first_node_in_group("player") as Node3D
+	var map := agent.get_navigation_map()
+	var view: Camera3D = null
+	if player is Player:
+		view = (player as Player).camera_3d
+	for _attempt in SPAWN_TRIES:
+		var point := NavigationServer3D.map_get_random_point(map, 1, false)
+		if _spawn_ok(point, player, view, map):
+			return point
+	return _farthest_patrol(player)
+
+
+func _spawn_ok(point: Vector3, player: Node3D, view: Camera3D, map: RID) -> bool:
+	var closest := NavigationServer3D.map_get_closest_point(map, point)
+	if closest.distance_to(point) > 1.0:
+		return false
+	if player != null:
+		var flat := point - player.global_position
+		flat.y = 0.0
+		if flat.length() < SPAWN_CLEARANCE:
+			return false
+	if view != null and view.is_position_in_frustum(point + Vector3(0.0, 1.2, 0.0)):
+		return false
+	for cloud in get_tree().get_nodes_in_group("spore_cloud"):
+		if not cloud is Node3D:
+			continue
+		var to_cloud := point - (cloud as Node3D).global_position
+		to_cloud.y = 0.0
+		if to_cloud.length() < CLOUD_CLEARANCE:
+			return false
+	return true
+
+
+func _farthest_patrol(player: Node3D) -> Vector3:
+	var best := global_position
+	var best_distance := -1.0
+	for node in get_tree().get_nodes_in_group("patrol_point"):
+		if not node is Node3D:
+			continue
+		var point := (node as Node3D).global_position
+		var distance := 0.0
+		if player != null:
+			var flat := point - player.global_position
+			flat.y = 0.0
+			distance = flat.length()
+		if distance > best_distance:
+			best_distance = distance
+			best = point
+	return best
+
+
+func _release() -> void:
+	if _held_player != null and is_instance_valid(_held_player):
+		_held_player.held = false
+	_held_player = null
+
+
+func _exit_tree() -> void:
+	_release()
 
 
 func render_correct_animation() -> void:

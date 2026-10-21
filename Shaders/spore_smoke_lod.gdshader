@@ -3,7 +3,7 @@ render_mode blend_mix, depth_draw_never, cull_disabled;
 
 uniform sampler2D noise_tex : filter_linear_mipmap, repeat_enable;
 uniform sampler2D mask_tex : filter_linear, repeat_disable;
-uniform vec4 smoke_color : source_color = vec4(0.82, 0.82, 0.82, 1.0);
+uniform vec4 smoke_color : source_color = vec4(0.55, 0.72, 0.42, 1.0);
 
 void vertex() {
 	mat4 world = mat4(

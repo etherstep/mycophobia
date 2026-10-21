@@ -2,7 +2,7 @@ extends StaticBody3D
 
 const TOUCH_INFECTION := 5
 const TOUCH_COOLDOWN := 0.8
-const PUSH_STEPS := 1
+const PUSH_STEPS := 0.3
 
 var _cooldown := 0.0
 
