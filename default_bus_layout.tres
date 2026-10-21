@@ -4,6 +4,10 @@
 resource_name = "Reverb"
 wet = 0.05
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_2g6t7"]
+resource_name = "Reverb"
+wet = 0.05
+
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
 resource_name = "Reverb"
 room_size = 0.95
@@ -111,5 +115,7 @@ bus/10/name = &"SFX-Ambience"
 bus/10/solo = false
 bus/10/mute = false
 bus/10/bypass_fx = false
-bus/10/volume_db = -24.136963
+bus/10/volume_db = -32.034725
 bus/10/send = &"Game"
+bus/10/effect/0/effect = SubResource("AudioEffectReverb_2g6t7")
+bus/10/effect/0/enabled = true
