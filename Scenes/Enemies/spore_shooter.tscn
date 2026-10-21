@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c8wkejo0w8bos"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/spore_shooter.gd" id="1_shooter"]
+[ext_resource type="Script" uid="uid://ds3gjhn4jsljs" path="res://Scripts/Enemies/spore_shooter.gd" id="1_shooter"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pod"]
 albedo_color = Color(0.32, 0.38, 0.24, 1)
@@ -19,13 +19,13 @@ rings = 12
 [sub_resource type="SphereShape3D" id="SphereShape3D_pod"]
 radius = 0.28
 
-[node name="SporeShooter" type="StaticBody3D"]
+[node name="SporeShooter" type="StaticBody3D" unique_id=1384741125]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_shooter")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=295786186]
 mesh = SubResource("SphereMesh_pod")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1682043105]
 shape = SubResource("SphereShape3D_pod")
