@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody3D
 
 const WALK_SPEED := 2.5
@@ -340,6 +341,7 @@ func _on_catch_area_body_entered(body: Node3D) -> void:
 		return
 	player.increase_infection(CATCH_INFECTION)
 	player.held = true
+	player.turn_to_face_enemy(self)
 	_held_player = player
 	_hold_left = HOLD_TIME
 	state = State.GRAB
@@ -475,8 +477,8 @@ func _farthest_patrol(player: Node3D) -> Vector3:
 func _release() -> void:
 	if _held_player != null and is_instance_valid(_held_player):
 		_held_player.held = false
+		_held_player.release_and_throw(self)
 	_held_player = null
-
 
 func _exit_tree() -> void:
 	_release()

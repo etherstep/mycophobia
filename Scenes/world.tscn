@@ -32,7 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://qyoldsjy24bt" path="res://Assets/SFX/Athmosphere/ambient_noise_4.wav" id="26_1vso6"]
 [ext_resource type="AudioStream" uid="uid://cr3jstcnav8xy" path="res://Assets/SFX/Athmosphere/ambient_noise_5.wav" id="27_3ua1v"]
 [ext_resource type="AudioStream" uid="uid://rsbk8k362wyf" path="res://Assets/SFX/Athmosphere/ambient_noise_6.wav" id="28_r0ikl"]
-[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="33_r0ikl"]
+[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="33_r0ikl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -4882,9 +4882,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory", "inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -0.0021242325, -284.6135, 2.1201868, -46.56684)
+transform = Transform3D(0.6852473, 0, 0.72831047, 0, 1, 0, -0.72831047, 0, 0.6852473, -284.6135, 2.1201868, -46.56684)
 inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
+turn_to_enemy_animation_time = 1.2000000000000002
+enemy_lift_time = 0.7999999999999999
 
 [node name="PatrolA" type="Marker3D" parent="." unique_id=236161329 groups=["patrol_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -22)
@@ -9202,6 +9204,7 @@ bus = &"SFX-WorldAmbience"
 
 [node name="Door" parent="." unique_id=129536702 node_paths=PackedStringArray("buttons") instance=ExtResource("20_1cojt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -283.06778, 3.499998, -42.268085)
+visible = false
 open_offset = Vector3(3, 0, 0)
 slide_duration = 4.0
 buttons = [NodePath("../DoorButton"), NodePath("../DoorButton2"), NodePath("../DoorButton3"), NodePath("../DoorButton4")]
@@ -9227,7 +9230,7 @@ door = NodePath("../Door")
 timeout = 4.0
 
 [node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("33_r0ikl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.61884, 2.6441994, -33.63006)
+transform = Transform3D(0.9198135, 0, -0.39235592, 0, 1, 0, 0.39235592, 0, 0.9198135, -283.37448, 2.0657277, -44.014698)
 
 [node name="SafeHouse" type="Area3D" parent="." unique_id=834722421]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -371.9173, 4.4450264, -5.041924)
