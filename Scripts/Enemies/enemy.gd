@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody3D
 
 const WALK_SPEED := 2.5
@@ -6,7 +7,7 @@ const GRAVITY := 18.0
 
 enum State { WANDER, CHASE, SEARCH, GRAB, LEAVE, RETURN }
 
-const HOLD_TIME := 2.5
+const HOLD_TIME := 5
 const CATCH_INFECTION := 50
 const OUT_OF_SIGHT_TIME := 0.3
 const SPAWN_CLEARANCE := 16.0
@@ -56,9 +57,11 @@ var unseen_time := 0.0
 var _hold_left := 0.0
 var _hidden_time := 0.0
 var _held_player: Player = null
-
+@onready var spore_cloud: GPUParticles3D = $Smoke
 
 func _ready() -> void:
+	if spore_cloud:
+		spore_cloud.visible = false
 	animated_sprite.play("front")
 	_reset_enemy_sound_timer()
 
@@ -338,8 +341,10 @@ func _on_catch_area_body_entered(body: Node3D) -> void:
 	var player := body as Player
 	if player.dead or player.held:
 		return
+	player.caught_animation_finished.connect(_on_player_active_caught_tween_finished)
 	player.increase_infection(CATCH_INFECTION)
 	player.held = true
+	player.turn_to_face_enemy(self)
 	_held_player = player
 	_hold_left = HOLD_TIME
 	state = State.GRAB
@@ -475,8 +480,10 @@ func _farthest_patrol(player: Node3D) -> Vector3:
 func _release() -> void:
 	if _held_player != null and is_instance_valid(_held_player):
 		_held_player.held = false
+		_held_player.release_and_throw(self)
 	_held_player = null
-
+	if spore_cloud:
+		spore_cloud.visible = false
 
 func _exit_tree() -> void:
 	_release()
@@ -554,3 +561,8 @@ func _reset_enemy_sound_timer() -> void:
 		max_interval *= 0.5
 
 	enemy_sound_timer = randf_range(min_interval, max_interval)
+
+func _on_player_active_caught_tween_finished() -> void:
+	if spore_cloud:
+		spore_cloud.visible = true
+		spore_cloud.restart()

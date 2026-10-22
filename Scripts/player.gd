@@ -93,6 +93,19 @@ var last_footstep_index: int = -1
 @export var running_sfx_delay: float = 5.0
 var running_sfx_timer: float = 0.0
 
+# Enemy interaction
+signal caught_animation_finished
+@onready var camera: Camera3D = $Camera3D
+@export_range(0.1, 5, 0.1) var turn_to_enemy_animation_time: float = 0.6
+@export_range(0.1, 5, 0.1) var enemy_lift_time: float = 0.3
+@export_range(0.1, 5, 0.1) var enemy_throw_back_force: float = 12
+@export_range(0.1, 5, 0.1) var enemy_throw_up_force: float = 6
+@export_range(0.1, 5, 0.1) var throw_lockout_time: float = 0.6
+var saved_camera_pos: Vector3
+var saved_camera_pitch: float = 0.0
+var is_being_thrown: bool = false
+var active_caught_tween
+
 func _ready() -> void:
 	setup_footstep_pool()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -128,7 +141,7 @@ func setup_footstep_pool() -> void:
 		footstep_players.append(player)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if dead:
+	if dead or held or is_being_thrown:
 		return
 
 	if event.is_action_pressed("ui_cancel"):
@@ -651,3 +664,49 @@ func update_running_sfx() -> void:
 		running_sfx_timer = 0.0
 		if dialogue_player.playing:
 			dialogue_player.stop()
+
+func turn_to_face_enemy(enemy: Enemy) -> void:
+	store_camera_state()
+	var target_cam_pos := camera.global_position + Vector3(0, 0.5, 0)
+	var target_enemy_pos := enemy.global_position + Vector3(0, 2.2, 0)
+	var target_transform := camera.global_transform.looking_at(target_enemy_pos, Vector3.UP)
+	active_caught_tween = create_tween().set_parallel(true)
+	active_caught_tween.set_trans(Tween.TRANS_QUAD)
+	active_caught_tween.set_ease(Tween.EASE_OUT)
+	active_caught_tween.tween_property(camera, "global_position", target_cam_pos, enemy_lift_time)
+	active_caught_tween.tween_property(camera, "global_transform:basis", target_transform.basis, turn_to_enemy_animation_time)
+	active_caught_tween.finished.connect(func(): caught_animation_finished.emit())
+
+func store_camera_state() -> void:
+	saved_camera_pos = camera.position
+	saved_camera_pitch = camera.rotation.x
+
+func restore_camera_state(duration: float = 0.3) -> void:
+	var current_cam_world_yaw := camera.global_rotation.y
+	var current_cam_pitch := camera.rotation.x
+	
+	# Rotate player body to match camera direction
+	global_rotation.y = current_cam_world_yaw
+	
+	# Reset camera local Y (yaw) and Z (roll) to 0, keeping pitch
+	camera.rotation = Vector3(current_cam_pitch, 0.0, 0.0)
+
+	# 2. Tween height (position) and pitch back to original state
+	active_caught_tween = create_tween().set_parallel(true)
+	active_caught_tween.set_trans(Tween.TRANS_QUAD)
+	active_caught_tween.set_ease(Tween.EASE_OUT)
+
+	# Lower camera back to standard height
+	active_caught_tween.tween_property(camera, "position", saved_camera_pos, duration)
+	
+	# Smoothly restore pitch back to baseline pitch (or leave it at current_cam_pitch if desired)
+	active_caught_tween.tween_property(camera, "rotation:x", saved_camera_pitch, duration)
+
+func release_and_throw(enemy: Enemy) -> void:
+	restore_camera_state(0.3)
+	is_being_thrown = true
+	var throw_dir := (global_position - enemy.global_position)
+	throw_dir.y = 0.0
+	throw_dir = throw_dir.normalized()
+	velocity = (throw_dir * enemy_throw_back_force) + (Vector3.UP * enemy_throw_up_force)
+	get_tree().create_timer(0.3).timeout.connect(func(): is_being_thrown = false)
