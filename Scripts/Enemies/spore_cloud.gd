@@ -1,8 +1,6 @@
 
 extends StaticBody3D
 
-@export var salted_color := Color(0.9, 0.85, 0.65)
-
 const TOUCH_INFECTION := 5
 const TOUCH_COOLDOWN := 0.8
 const PUSH_STEPS := 0.3
@@ -16,53 +14,20 @@ var _original_materials: Array[Dictionary] = []
 func _ready() -> void:
 	if not is_in_group("enemies"):
 		add_to_group("enemies")
-
 	_cache_original_materials(self)
 
 
 func _physics_process(delta: float) -> void:
 	if _dead:
 		return
-
 	if _touch_cooldown > 0.0:
 		_touch_cooldown -= delta
-
 	var area := get_node_or_null("Area3D") as Area3D
 	if area == null:
 		return
-
 	for body in area.get_overlapping_bodies():
 		if body is Player:
 			_try_push(body as Player)
-
-
-# -------------------------
-# Salt and Matches
-# -------------------------
-
-func apply_salted() -> void:
-	if _dead or _salted:
-		return
-
-	_salted = true
-	_set_enemy_color(salted_color)
-
-
-func is_salted() -> bool:
-	return _salted and not _dead
-
-
-func kill_by_matches() -> void:
-	if _dead or not _salted:
-		return
-
-	_dead = true
-	queue_free()
-
-
-# -------------------------
-# Touch infection and pushing
-# -------------------------
 
 func _try_push(player: Player) -> void:
 	if _touch_cooldown > 0.0 or player.dead:
@@ -75,7 +40,6 @@ func _try_push(player: Player) -> void:
 	_touch_cooldown = TOUCH_COOLDOWN
 	player.shove(away, PUSH_STEPS)
 	player.increase_infection(TOUCH_INFECTION)
-
 
 func _push_normal(player: Player) -> Vector3:
 	var count := player.get_slide_collision_count()
@@ -100,11 +64,6 @@ func _push_normal(player: Player) -> Vector3:
 
 	return Vector3.ZERO
 
-
-# -------------------------
-# Enemy appearance
-# -------------------------
-
 func _cache_original_materials(node: Node) -> void:
 	if node is MeshInstance3D:
 		var mesh_instance := node as MeshInstance3D
@@ -124,7 +83,6 @@ func _cache_original_materials(node: Node) -> void:
 
 	for child in node.get_children():
 		_cache_original_materials(child)
-
 
 func _set_enemy_color(color: Color) -> void:
 	for entry in _original_materials:
