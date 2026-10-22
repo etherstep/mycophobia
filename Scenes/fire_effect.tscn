@@ -29,6 +29,9 @@ angular_velocity_max = 89.999985
 gravity = Vector3(0, -0.2, 0)
 scale_curve = SubResource("CurveTexture_dyyat")
 color_ramp = SubResource("GradientTexture1D_c3ywe")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
 
 [sub_resource type="Gradient" id="Gradient_0vkav"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -57,13 +60,16 @@ proximity_fade_distance = 0.2
 
 [sub_resource type="QuadMesh" id="QuadMesh_dyyat"]
 material = SubResource("StandardMaterial3D_43hsj")
-size = Vector2(0.5, 0.5)
+subdivide_width = 1
 
 [node name="Fire" type="Node3D" unique_id=413950635]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("1_c3ywe")
 
 [node name="Flames" type="GPUParticles3D" parent="." unique_id=864618606]
 cast_shadow = 0
+ignore_occlusion_culling = true
+emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_c3ywe")
 draw_pass_1 = SubResource("QuadMesh_dyyat")

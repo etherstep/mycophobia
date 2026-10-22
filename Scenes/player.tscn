@@ -59,18 +59,19 @@ flashlight_off_sfx = ExtResource("9_vfarp")
 [node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=739574546 groups=["detection_light"]]
 transform = Transform3D(0.99453217, 0.030593013, 0.09984891, -0.016278196, 0.9898547, -0.14114776, -0.10315405, 0.13875063, 0.9849404, 0.4766215, -0.6343856, -0.029269874)
 light_color = Color(0.929673, 0.98395807, 0.92091703, 1)
-light_energy = 6.0
+light_energy = 12.264
 light_volumetric_fog_energy = 0.1
-light_size = 0.189
+light_size = 0.255
+light_specular = 1.43
 shadow_enabled = true
 shadow_normal_bias = 2.875
 shadow_reverse_cull_face = true
 shadow_transmittance_bias = 2.05
 shadow_blur = 0.313
-spot_range = 12.343
-spot_attenuation = 0.69
+spot_range = 28.54
+spot_attenuation = 1.08
 spot_angle = 15.0
-spot_angle_attenuation = 0.6597539
+spot_angle_attenuation = 1.4640859
 script = ExtResource("9_qqcod")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]

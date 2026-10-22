@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://vdsbghwnjsje"]
+[gd_scene format=3 uid="uid://gbgmc8mxfeg5"]
 
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/Enemies/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
@@ -24,6 +24,9 @@
 [ext_resource type="AudioStream" uid="uid://1bnhsciubtok" path="res://Assets/SFX/enemy/mushroom_sound_14.wav" id="17_q0iv8"]
 [ext_resource type="AudioStream" uid="uid://d0x34ifapyfp2" path="res://Assets/SFX/enemy/mushroom_sound_15.wav" id="18_c1gwg"]
 [ext_resource type="AudioStream" uid="uid://cvt55gp1bhnx6" path="res://Assets/SFX/enemy/mushroom_sound_16.wav" id="19_3mxp7"]
+[ext_resource type="Shader" uid="uid://o467u40jyv1k" path="res://Shaders/spore_smoke_lod.gdshader" id="23_8cim4"]
+[ext_resource type="Texture2D" uid="uid://1s454oif21cr" path="res://Assets/VFX/T_VFX_circle_1.png" id="24_7x82w"]
+[ext_resource type="Texture2D" uid="uid://c2k0vypco3cfg" path="res://Assets/VFX/T_Noise_001R.png" id="25_iatxd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 radius = 0.4
@@ -190,6 +193,44 @@ animations = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_catch"]
 radius = 1.2
 
+[sub_resource type="Curve" id="Curve_qqxsh"]
+_data = [Vector2(0, 0), 0.0, 4.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.2, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_alpha"]
+curve = SubResource("Curve_qqxsh")
+
+[sub_resource type="Gradient" id="Gradient_0whn2"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lod"]
+gradient = SubResource("Gradient_0whn2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bx1xr"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.28
+angle_min = -180.0
+angle_max = 180.0
+initial_velocity_min = 0.7
+initial_velocity_max = 1.25
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.5
+color_ramp = SubResource("GradientTexture1D_lod")
+alpha_curve = SubResource("CurveTexture_alpha")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smoke"]
+render_priority = 0
+shader = ExtResource("23_8cim4")
+shader_parameter/noise_tex = ExtResource("25_iatxd")
+shader_parameter/mask_tex = ExtResource("24_7x82w")
+shader_parameter/smoke_color = Color(0.55, 0.72, 0.42, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_n85mp"]
+material = SubResource("ShaderMaterial_smoke")
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1473996547 node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("1_1f0kj")
 animated_sprite = NodePath("AnimatedSprite3D")
@@ -248,5 +289,18 @@ emission_angle_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4586496, 0)
 max_distance = 40.0
 bus = &"SFX-Enemy"
+
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=866365811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 2.4645207, -1.2605257)
+visible = false
+amount = 20
+lifetime = 3.2
+preprocess = 3.2
+fixed_fps = 60
+visibility_aabb = AABB(-2.5, -2.5, -2.5, 8, 5, 5)
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_bx1xr")
+draw_pass_1 = SubResource("QuadMesh_n85mp")
 
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

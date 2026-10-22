@@ -16,21 +16,17 @@ var _original_materials: Array[Dictionary] = []
 func _ready() -> void:
 	if not is_in_group("enemies"):
 		add_to_group("enemies")
-
 	_cache_original_materials(self)
 
 
 func _physics_process(delta: float) -> void:
 	if _dead:
 		return
-
 	if _touch_cooldown > 0.0:
 		_touch_cooldown -= delta
-
 	var area := get_node_or_null("Area3D") as Area3D
 	if area == null:
 		return
-
 	for body in area.get_overlapping_bodies():
 		if body is Player:
 			_try_push(body as Player)
@@ -46,6 +42,9 @@ func apply_salted() -> void:
 
 	_salted = true
 	_set_enemy_color(salted_color)
+	var shooter := _linked_shooter()
+	if shooter != null and shooter.has_method("apply_salted"):
+		shooter.apply_salted()
 
 
 func is_salted() -> bool:
@@ -57,6 +56,26 @@ func kill_by_matches() -> void:
 		return
 
 	_dead = true
+	_start_chase_if_linked()
+	var shooter := _linked_shooter()
+	if shooter != null and shooter.has_method("kill_by_matches"):
+		if shooter.has_method("apply_salted"):
+			shooter.apply_salted()
+		shooter.kill_by_matches()
+		return
+	queue_free()
+
+
+func _linked_shooter() -> Node:
+	for node in get_tree().get_nodes_in_group("enemies"):
+		if node == self:
+			continue
+		if node.get("cloud") == self and node.has_method("kill_by_matches"):
+			return node
+	return null
+
+
+func _start_chase_if_linked() -> void:
 	for node in get_tree().get_nodes_in_group("enemies"):
 		if node.get("starts_chase") != true or node.get("cloud") != self:
 			continue
@@ -64,7 +83,6 @@ func kill_by_matches() -> void:
 		if intro != null and intro.has_method("begin"):
 			intro.begin()
 		break
-	queue_free()
 
 
 # -------------------------
@@ -82,7 +100,6 @@ func _try_push(player: Player) -> void:
 	_touch_cooldown = TOUCH_COOLDOWN
 	player.shove(away, PUSH_STEPS)
 	player.increase_infection(TOUCH_INFECTION)
-
 
 func _push_normal(player: Player) -> Vector3:
 	var count := player.get_slide_collision_count()
@@ -107,11 +124,6 @@ func _push_normal(player: Player) -> Vector3:
 
 	return Vector3.ZERO
 
-
-# -------------------------
-# Enemy appearance
-# -------------------------
-
 func _cache_original_materials(node: Node) -> void:
 	if node is MeshInstance3D:
 		var mesh_instance := node as MeshInstance3D
@@ -131,7 +143,6 @@ func _cache_original_materials(node: Node) -> void:
 
 	for child in node.get_children():
 		_cache_original_materials(child)
-
 
 func _set_enemy_color(color: Color) -> void:
 	for entry in _original_materials:
