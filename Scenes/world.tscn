@@ -65,6 +65,9 @@
 [ext_resource type="Texture2D" uid="uid://d75s22uedrdb" path="res://Assets/Textures/Horror_Metal_02-256x256.png" id="37_82dmg"]
 [ext_resource type="Texture2D" uid="uid://ddi1uy56s47f7" path="res://Assets/Textures/Horror_Wall_09-256x256.png" id="38_0d7cr"]
 [ext_resource type="Texture2D" uid="uid://d1hk6610uvwwk" path="res://Assets/Textures/Horror_Wall_07-256x256.png" id="40_l4vrt"]
+[ext_resource type="Texture2D" uid="uid://c0ovn4tx3uk5j" path="res://Assets/Textures/crate-brown wood.jpg" id="41_eskoj"]
+[ext_resource type="Texture2D" uid="uid://slk7muikt420" path="res://Assets/Textures/weathered crate-fragile.jpg" id="43_5kw24"]
+[ext_resource type="Texture2D" uid="uid://t58dcxcwvlsv" path="res://Assets/Textures/rusted crate.jpg" id="45_dsm2w"]
 [ext_resource type="AudioStream" uid="uid://bpqd2j3852irk" path="res://Assets/SFX/player/reaction_after_chase_scene.mp3" id="45_te07t"]
 ;
 [ext_resource type="Texture2D" uid="uid://bqearff34vtms" path="res://Assets/Textures/Horror_Wall_13-256x256.png" id="32_eskoj"]
@@ -888,7 +891,8 @@ uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu3yg"]
-albedo_color = Color(0.11764706, 1, 1, 1)
+albedo_texture = ExtResource("41_eskoj")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sk1wo"]
 albedo_texture = ExtResource("32_36g3o")
@@ -896,7 +900,8 @@ metallic = 0.5
 uv1_scale = Vector3(0.215, 0.215, 0.215)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shvw8"]
-albedo_color = Color(0.8352941, 0.14901961, 0.7882353, 1)
+albedo_texture = ExtResource("43_5kw24")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hupnq"]
 albedo_texture = ExtResource("33_vhf2b")
@@ -910,7 +915,8 @@ uv1_scale = Vector3(0.525, 0.525, 0.525)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iqlm"]
-albedo_color = Color(0.5294118, 0.92156863, 0, 1)
+albedo_texture = ExtResource("45_dsm2w")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dsm2w"]
 points = PackedVector3Array(-410, 0, -31, -410, 2, -31, -394, 0, -31, -394, 2, -31, -410, 0, -47, -410, 2, -47, -394, 0, -47, -394, 2, -47)
@@ -9356,7 +9362,7 @@ bus = &"SFX-WorldAmbience"
 transform = Transform3D(-8.764134e-08, 0, 2.005, 0, 2.005, 0, -2.005, 0, -8.764134e-08, -362.4409, 3.499998, -39.037586)
 open_offset = Vector3(3, 0, 0)
 slide_duration = 4.0
-buttons = [NodePath("../DoorButton"), NodePath(""), NodePath(""), NodePath("../DoorButton4")]
+buttons = [NodePath("../DoorButton"), null, null, NodePath("../DoorButton4")]
 
 [node name="DoorButton" parent="." unique_id=458718114 node_paths=PackedStringArray("door") instance=ExtResource("19_axeuq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -363.70038, 3.588463, -44.47883)
