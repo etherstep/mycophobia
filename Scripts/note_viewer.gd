@@ -13,7 +13,7 @@ extends CanvasLayer
 @export var note_4: AudioStream
 
 var readable_font: Font = ThemeDB.fallback_font
-var decorative_font: Font = preload("res://Assets/Fonts/Bastliga One.otf")
+var decorative_font: Font = preload("res://Assets/Fonts/Allura-Regular.ttf")
 
 func _ready() -> void:
 	note_view.visible = false

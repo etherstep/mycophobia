@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://da2hb2lpfncvr"
-path="res://.godot/imported/Typewriter.ttf-75dfd1ed5a1f09aae2f77aabb0261515.fontdata"
+uid="uid://c5vdqg3r8atns"
+path="res://.godot/imported/Allura-Regular.ttf-291a2e07505ee2bc8ce84f5f68829e98.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Typewriter.ttf"
-dest_files=["res://.godot/imported/Typewriter.ttf-75dfd1ed5a1f09aae2f77aabb0261515.fontdata"]
+source_file="res://Assets/Fonts/Allura-Regular.ttf"
+dest_files=["res://.godot/imported/Allura-Regular.ttf-291a2e07505ee2bc8ce84f5f68829e98.fontdata"]
 
 [params]
 

@@ -31,7 +31,7 @@ signal world_item_selected(item: ItemData)
 
 var selected_item: ItemData = null
 var readable_font: Font = ThemeDB.fallback_font
-var decorative_font: Font = preload("res://Assets/Fonts/Bastliga One.otf")
+var decorative_font: Font = preload("res://Assets/Fonts/Allura-Regular.ttf")
 
 @export var selection_ui: Control
 @export var inventory_slots: Array[Control] = []
