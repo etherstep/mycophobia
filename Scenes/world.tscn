@@ -4887,6 +4887,7 @@ inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
 turn_to_enemy_animation_time = 1.2000000000000002
 enemy_lift_time = 0.7999999999999999
+throw_lockout_time = 0.7999999999999999
 
 [node name="PatrolA" type="Marker3D" parent="." unique_id=236161329 groups=["patrol_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -22)
