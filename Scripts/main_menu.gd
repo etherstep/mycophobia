@@ -23,7 +23,7 @@ func fade_in() -> void:
 	var fade := ColorRect.new()
 	fade.color = Color.BLACK
 	fade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	fade.mouse_filter = Control.MOUSE_FILTER_STOP
+	fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	fade.z_index = 100
 	add_child(fade)
 	var tween := create_tween()

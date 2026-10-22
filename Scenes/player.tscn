@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
 [ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
+[ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="21_0gysh"]
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
@@ -280,8 +281,29 @@ offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
+theme_override_fonts/font = ExtResource("21_0gysh")
 theme_override_font_sizes/font_size = 96
 text = "Press [SHIFT] to run"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpLabel" type="Label" parent="HUD" unique_id=894520228]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -606.5
+offset_top = -66.0
+offset_right = 606.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
+theme_override_fonts/font = ExtResource("21_0gysh")
+theme_override_font_sizes/font_size = 34
+text = "Press F to toggle flashlight"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -298,10 +320,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = 1.0
-offset_right = -23.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -316,8 +334,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 62
+theme_override_constants/paragraph_separation = 33
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="NoteViewer/NoteView" unique_id=292220182]
 z_index = 100

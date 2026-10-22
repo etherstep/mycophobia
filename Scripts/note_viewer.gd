@@ -44,7 +44,7 @@ func open_note(item: ItemData) -> void:
 	note_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	note_text.autowrap_mode = TextServer.AUTOWRAP_WORD
 	note_text.add_theme_font_override("normal_font", decorative_font)
-	note_text.add_theme_font_size_override("normal_font_size", 64)
+	note_text.add_theme_font_size_override("normal_font_size", 30)
 	note_text.add_theme_color_override("default_color", Color.BLACK)
 
 	# Plain, readable text overlay
