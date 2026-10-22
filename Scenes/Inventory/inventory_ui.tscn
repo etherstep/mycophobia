@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_ei62k"]
 [ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_mkjsv"]
 [ext_resource type="AudioStream" uid="uid://bc6wugfikl5e" path="res://Assets/SFX/UI/click1.wav" id="3_4grh2"]
-[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="3_s1kqi"]
 [ext_resource type="AudioStream" uid="uid://b3fqcwpq4euvt" path="res://Assets/SFX/UI/read-note.wav" id="4_4grh2"]
 [ext_resource type="Texture2D" uid="uid://cupilj73cdnxu" path="res://Assets/UI/Inventory Row 1A.PNG" id="4_o2r74"]
 [ext_resource type="AudioStream" uid="uid://3u1b4kve17df" path="res://Assets/SFX/UI/untitled - Track 1.wav" id="5_eqgu5"]
@@ -14,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cxucp5df2qrag" path="res://Assets/UI/Inventory Row 2A.PNG" id="7_wqvdr"]
 [ext_resource type="Texture2D" uid="uid://cvhnesxmxy1ep" path="res://Assets/UI/Inventory Row 2B.PNG" id="8_eqgu5"]
 [ext_resource type="Texture2D" uid="uid://dleb5sy513fvb" path="res://Assets/UI/Inventory Row 3A.PNG" id="9_f1vfh"]
+[ext_resource type="FontFile" uid="uid://c5vdqg3r8atns" path="res://Assets/Fonts/Allura-Regular.ttf" id="9_ghpjh"]
 [ext_resource type="Texture2D" uid="uid://tgprgkgrga8m" path="res://Assets/UI/Inventory Row 3B.PNG" id="10_ghpjh"]
 [ext_resource type="Texture2D" uid="uid://c0ic550ow5aeh" path="res://Assets/UI/Inventory Row 3C.PNG" id="11_jroks"]
 [ext_resource type="Texture2D" uid="uid://cbkxc6iypssxj" path="res://Assets/UI/Item select window1.PNG" id="12_oyd3a"]
@@ -88,7 +88,7 @@ layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_s1kqi")
+theme_override_fonts/font = ExtResource("20_f1vfh")
 theme_override_font_sizes/font_size = 21
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -97,6 +97,7 @@ vertical_alignment = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("20_f1vfh")
 
 [node name="NoteView" type="Control" parent="." unique_id=2013187292]
 z_index = 1
@@ -117,7 +118,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_s1kqi")
+theme_override_fonts/normal_font = ExtResource("9_ghpjh")
 theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
 
@@ -131,6 +132,7 @@ offset_left = -110.0
 offset_right = 110.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("20_f1vfh")
 text = "Press [TAB] to close the note"
 horizontal_alignment = 1
 

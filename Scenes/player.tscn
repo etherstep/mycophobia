@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
-[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
 [ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
@@ -319,7 +318,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("19_fs7ks")
 theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
 
