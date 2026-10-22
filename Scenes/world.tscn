@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
 [ext_resource type="PackedScene" uid="uid://cvvjht5xbhqkq" path="res://Scenes/Door and buttons/door.tscn" id="20_1cojt"]
 [ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
-[ext_resource type="Texture2D" uid="uid://cm3f2nhwnbavm" path="res://Assets/Sprites/texture/Oak/Planks/Oak_Planks_basecolor.png" id="22_opbav"]
 [ext_resource type="Script" uid="uid://dcmknv4owwx12" path="res://Scenes/random_ambience_point.gd" id="22_pyn1s"]
 [ext_resource type="AudioStream" uid="uid://bukb402oyoo0p" path="res://Assets/SFX/Athmosphere/ambient_noise_1.wav" id="23_dt0r1"]
 [ext_resource type="AudioStream" uid="uid://dvpqbnt1t5p5k" path="res://Assets/SFX/Athmosphere/ambient_noise_2.wav" id="24_qebug"]
@@ -691,7 +690,6 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3pel"]
-albedo_texture = ExtResource("22_opbav")
 refraction_scale = -1.0
 uv1_scale = Vector3(0.3, 0.3, 0.3)
 
@@ -712,6 +710,7 @@ albedo_color = Color(0.21176471, 0.5764706, 0.3254902, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kkex"]
 albedo_color = Color(1, 0.11372549, 0.14901961, 1)
+uv1_scale = Vector3(0.375, 0.375, 0.375)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2ilm"]
 albedo_color = Color(0.6912929, 0.00043875992, 0.70879096, 1)
@@ -742,6 +741,7 @@ albedo_color = Color(0.18039216, 0.28235295, 0.7058824, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjxdv"]
 albedo_color = Color(0.74509805, 0.21568628, 0.3137255, 1)
+metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnxjo"]
 albedo_color = Color(0.5294118, 0.7882353, 1, 1)
