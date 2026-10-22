@@ -77,6 +77,7 @@ var selected_world_item: ItemData = null
 @export var player_hand: CanvasLayer
 
 # AUDIO
+
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
 const FOOTSTEP_POOL_SIZE := 4
 var footstep_players: Array[AudioStreamPlayer3D] = []
@@ -356,7 +357,7 @@ func cancel_world_item() -> void:
 	if held_item_crosshair != null:
 		held_item_crosshair.hide()
 
-func die(reason: String = "dead") -> void:
+func die() -> void:
 	if dead:
 		return
 	dead = true
@@ -364,14 +365,9 @@ func die(reason: String = "dead") -> void:
 	velocity = Vector3.ZERO
 	_cancel_infection_timer()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	var layer := CanvasLayer.new()
-	var label := Label.new()
-	label.text = reason
-	label.position = Vector2(520, 340)
-	layer.add_child(label)
-	add_child(layer)
 	await get_tree().create_timer(1.5).timeout
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://Scenes/DeathScreen.tscn")
+
 
 func toggle_inventory() -> void:
 	if inventory_ui == null:
@@ -648,7 +644,7 @@ func _process(delta: float) -> void:
 			if syringe_used == true:
 				return
 			_cancel_infection_timer()
-			die("The infection took you")
+			die()
 			return
 	if _vignette_left <= 0.0:
 		return
