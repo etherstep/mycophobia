@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://gbgmc8mxfeg5"]
 
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/Enemies/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
 [ext_resource type="Texture2D" uid="uid://dvm3q3rqhgoa0" path="res://Assets/Sprites/fungal_back.png" id="2_back"]
-[ext_resource type="Texture2D" uid="uid://bifyl0wtlndhm" path="res://Assets/Sprites/fungal_side.png" id="2_side"]
+[ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
 [ext_resource type="AudioStream" uid="uid://dy4y8t050ny11" path="res://Assets/SFX/sfx_2 - enemy_step_1.wav" id="2_ghaa6"]
+[ext_resource type="Texture2D" uid="uid://bifyl0wtlndhm" path="res://Assets/Sprites/fungal_side.png" id="2_side"]
 [ext_resource type="AudioStream" uid="uid://bmoiv8usschgy" path="res://Assets/SFX/sfx_2 - enemy_step_2.wav" id="3_1dp5w"]
 [ext_resource type="AudioStream" uid="uid://buclbg01nl2oy" path="res://Assets/SFX/Athmosphere/chase_2.wav" id="4_0830c"]
 [ext_resource type="AudioStream" uid="uid://bcu5oj68y38bf" path="res://Assets/SFX/enemy/mushroom_sound_1.wav" id="4_vh8xy"]
@@ -32,52 +32,52 @@
 radius = 0.4
 height = 1.6
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_0"]
-atlas = ExtResource("2_front")
+[sub_resource type="AtlasTexture" id="AtlasTexture_iatxd"]
+atlas = ExtResource("2_back")
 region = Rect2(0, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_1"]
-atlas = ExtResource("2_front")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqxsh"]
+atlas = ExtResource("2_back")
 region = Rect2(1920, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_2"]
-atlas = ExtResource("2_front")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0whn2"]
+atlas = ExtResource("2_back")
 region = Rect2(3840, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_3"]
-atlas = ExtResource("2_front")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx1xr"]
+atlas = ExtResource("2_back")
 region = Rect2(5760, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_4"]
-atlas = ExtResource("2_front")
+[sub_resource type="AtlasTexture" id="AtlasTexture_n85mp"]
+atlas = ExtResource("2_back")
 region = Rect2(7680, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_5"]
-atlas = ExtResource("2_front")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxecp"]
+atlas = ExtResource("2_back")
 region = Rect2(9600, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_0"]
-atlas = ExtResource("2_back")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jaer"]
+atlas = ExtResource("2_front")
 region = Rect2(0, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_1"]
-atlas = ExtResource("2_back")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve8xs"]
+atlas = ExtResource("2_front")
 region = Rect2(1920, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_2"]
-atlas = ExtResource("2_back")
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0iv8"]
+atlas = ExtResource("2_front")
 region = Rect2(3840, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_3"]
-atlas = ExtResource("2_back")
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1gwg"]
+atlas = ExtResource("2_front")
 region = Rect2(5760, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_4"]
-atlas = ExtResource("2_back")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mxp7"]
+atlas = ExtResource("2_front")
 region = Rect2(7680, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_5"]
-atlas = ExtResource("2_back")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a56t"]
+atlas = ExtResource("2_front")
 region = Rect2(9600, 0, 1920, 1920)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_side_0"]
@@ -116,22 +116,22 @@ region = Rect2(13440, 0, 1920, 1920)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_0")
+"texture": SubResource("AtlasTexture_iatxd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_1")
+"texture": SubResource("AtlasTexture_qqxsh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_2")
+"texture": SubResource("AtlasTexture_0whn2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_3")
+"texture": SubResource("AtlasTexture_bx1xr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_4")
+"texture": SubResource("AtlasTexture_n85mp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_5")
+"texture": SubResource("AtlasTexture_nxecp")
 }],
 "loop": 1,
 "name": &"walk_back",
@@ -139,22 +139,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_0")
+"texture": SubResource("AtlasTexture_6jaer")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_1")
+"texture": SubResource("AtlasTexture_ve8xs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_2")
+"texture": SubResource("AtlasTexture_q0iv8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_3")
+"texture": SubResource("AtlasTexture_c1gwg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_4")
+"texture": SubResource("AtlasTexture_3mxp7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_5")
+"texture": SubResource("AtlasTexture_5a56t")
 }],
 "loop": 1,
 "name": &"walk_front",
@@ -242,15 +242,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_baysf")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=767845271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.583, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2345846, 0)
 gi_mode = 2
 pixel_size = 0.00232
 billboard = 2
 shaded = true
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_f0dak")
-animation = &"walk_front"
-frame_progress = 0.86904514
+animation = &"walk_back"
+frame = 3
+frame_progress = 0.82014066
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1446109693]
 path_desired_distance = 0.8
