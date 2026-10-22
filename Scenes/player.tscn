@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="AudioStream" uid="uid://bpvgof8ro80pk" path="res://Assets/SFX/sfx_2 - step_2.wav" id="3_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://c225h0neiq4dk" path="res://Assets/SFX/player/death.mp3" id="5_p1odr"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
 [ext_resource type="AudioStream" uid="uid://hhf2se68ku8s" path="res://Assets/SFX/sfx_2 - flashlight-on.wav" id="8_0gysh"]
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
@@ -39,6 +40,7 @@ held_item_crosshair = NodePath("HUD/Control/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")
 footstep_sounds = Array[AudioStream]([ExtResource("2_2ijsl"), ExtResource("3_p1odr")])
 running_player_sfx = ExtResource("6_gymyn")
+death_sfx = ExtResource("5_p1odr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944353870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2845459, 0)
@@ -353,3 +355,6 @@ emission_angle_enabled = true
 
 [node name="FlashlightPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1477521273]
 bus = &"SFX-Interaction"
+
+[node name="DeathSFX" type="AudioStreamPlayer3D" parent="." unique_id=846195740]
+bus = &"SFX-Player"

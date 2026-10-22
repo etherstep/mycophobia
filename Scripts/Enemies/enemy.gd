@@ -42,6 +42,8 @@ const LOSE_INTEREST_FADE_TIME := 1.5
 @export var footstep_interval_chase: float = 0.22
 
 @onready var enemy_voice_player: AudioStreamPlayer3D = $EnemyVoicePlayer
+@onready var enemy_spore_player: AudioStreamPlayer3D = $SporeSFX
+@onready var enemy_scream_player: AudioStreamPlayer3D = $EnemyScreamPlayer
 
 @export var enemy_sounds: Array[AudioStream]
 
@@ -689,3 +691,16 @@ func _on_player_active_caught_tween_finished() -> void:
 	if spore_cloud:
 		spore_cloud.visible = true
 		spore_cloud.restart()
+
+		if enemy_spore_player:
+			enemy_spore_player.stop()
+			enemy_spore_player.play()
+			enemy_scream_player.stop()
+			enemy_scream_player.play()
+
+func _on_smoke_finished() -> void:
+	if spore_cloud:
+		spore_cloud.visible = false
+
+	if enemy_spore_player:
+		enemy_spore_player.stop()
