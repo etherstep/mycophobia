@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://c2g4mg6q43r6o" path="res://Scripts/collectible.gd" id="1_sbuda"]
 [ext_resource type="Resource" uid="uid://wuon56xger2q" path="res://Items/note_1.tres" id="2_bhxhe"]
 [ext_resource type="AudioStream" uid="uid://d3rwk4jywvwe3" path="res://Assets/SFX/Interact/note-interact_2.wav" id="3_73n1k"]
-[ext_resource type="FontFile" uid="uid://btcxyxvw03gkt" path="res://Assets/Fonts/Bastliga One.otf" id="4_8nals"]
 [ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="4_73n1k"]
 [ext_resource type="AudioStream" uid="uid://sc71heu7avy4" path="res://Assets/SFX/sfx_2 - salt_collect.wav" id="4_gqegf"]
 [ext_resource type="AudioStream" uid="uid://bw7f4dv2mqjj3" path="res://Assets/SFX/sfx_2 - matches_collect.wav" id="5_rg2w6"]
 [ext_resource type="AudioStream" uid="uid://b31lc452687fp" path="res://Assets/SFX/sfx_2 - collect_saline.wav" id="6_amw1k"]
 [ext_resource type="AudioStream" uid="uid://b7xgbi7ivbs3q" path="res://Assets/SFX/sfx_2 - syringe collect.wav" id="7_y21nk"]
 [ext_resource type="Texture2D" uid="uid://vrtafr0aw0c" path="res://Assets/Sprites/note outline.PNG" id="9_rg2w6"]
+[ext_resource type="FontFile" uid="uid://c5vdqg3r8atns" path="res://Assets/Fonts/Allura-Regular.ttf" id="10_rg2w6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1mi7"]
 size = Vector3(0.38145018, 0.5619321, 0.15234375)
@@ -55,7 +55,7 @@ visible = false
 alpha_cut = 1
 modulate = Color(0, 0, 0, 1)
 text = "note_1"
-font = ExtResource("4_8nals")
+font = ExtResource("10_rg2w6")
 font_size = 48
 outline_size = 2
 

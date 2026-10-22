@@ -1,10 +1,10 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://cvex6toty8yn7"]
 
-[ext_resource type="Texture2D" uid="uid://bpdbifsbrtav2" path="res://Assets/Fonts/Raven-Scream-Font-by-Chad-Savage_-_SinisterFonts.jpg" id="1_o8jpj"]
+[ext_resource type="Texture2D" uid="uid://dutip72dl002r" path="res://Addons/func_godot/textures/origin.png" id="1_tmx88"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="2_tmx88"]
 
 [resource]
-albedo_texture = ExtResource("1_o8jpj")
+albedo_texture = ExtResource("1_tmx88")
 albedo_texture_force_srgb = true
 metallic = 1.0
 metallic_specular = 1.0
