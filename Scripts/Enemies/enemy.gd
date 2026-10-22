@@ -42,6 +42,8 @@ const LOSE_INTEREST_FADE_TIME := 1.5
 @export var footstep_interval_chase: float = 0.22
 
 @onready var enemy_voice_player: AudioStreamPlayer3D = $EnemyVoicePlayer
+@onready var enemy_spore_player: AudioStreamPlayer3D = $SporeSFX
+@onready var enemy_scream_player: AudioStreamPlayer3D = $EnemyScreamPlayer
 
 @export var enemy_sounds: Array[AudioStream]
 
@@ -177,7 +179,6 @@ func update_footsteps(delta: float) -> void:
 		play_random_footstep()
 		footstep_timer = current_interval
 
-
 func play_random_footstep() -> void:
 	if footstep_sounds.is_empty():
 		return
@@ -222,7 +223,6 @@ func _can_see(player: Node3D) -> bool:
 		return false
 	return _is_player_lit(player)
 
-
 func _player_head_height(player: Node3D) -> float:
 	if player is Player:
 		var body: Player = player
@@ -230,7 +230,6 @@ func _player_head_height(player: Node3D) -> float:
 			return Player.CROUCH_CAMERA_Y
 		return body.stand_camera_y
 	return 1.2
-
 
 func _is_player_lit(player: Node3D) -> bool:
 	var chest := player.global_position + Vector3(0, 1.2, 0)
@@ -246,7 +245,6 @@ func _is_player_lit(player: Node3D) -> bool:
 		if _light_reaches(light, chest, player):
 			return true
 	return false
-
 
 func _light_reaches(light: Light3D, chest: Vector3, player: Node3D) -> bool:
 	var to_chest := chest - light.global_position
@@ -274,7 +272,6 @@ func _light_reaches(light: Light3D, chest: Vector3, player: Node3D) -> bool:
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	return not hit.is_empty() and hit.collider == player
 
-
 func _point_hits_player(point: Vector3, player: Node3D) -> bool:
 	var query := PhysicsPointQueryParameters3D.new()
 	query.position = point
@@ -284,7 +281,6 @@ func _point_hits_player(point: Vector3, player: Node3D) -> bool:
 		if hit.collider == player:
 			return true
 	return false
-
 
 func _pick_patrol_point() -> void:
 	if guards and guard_point != null:
@@ -298,7 +294,6 @@ func _pick_patrol_point() -> void:
 		return
 	var point: Node3D = points.pick_random() as Node3D
 	agent.target_position = point.global_position
-
 
 func _move_along_path() -> void:
 	var next := agent.get_next_path_position()
@@ -326,10 +321,8 @@ func _move_along_path() -> void:
 	velocity.z = direction.z * current_speed
 	_face_direction(direction)
 
-
 func _face_direction(direction: Vector3) -> void:
 	look_at(global_position + direction, Vector3.UP)
-
 
 func _inside_leash(at: Vector3) -> bool:
 	if wander_zone != null:
@@ -340,12 +333,10 @@ func _inside_leash(at: Vector3) -> bool:
 	flat.y = 0.0
 	return flat.length() <= leash_radius
 
-
 func _zone_shape() -> CollisionShape3D:
 	if wander_zone == null:
 		return null
 	return wander_zone.get_node_or_null("CollisionShape3D") as CollisionShape3D
-
 
 func _zone_contains(at: Vector3) -> bool:
 	var shape_node := _zone_shape()
@@ -355,7 +346,6 @@ func _zone_contains(at: Vector3) -> bool:
 	var local := shape_node.global_transform.affine_inverse() * at
 	var half := box.size * 0.5
 	return absf(local.x) <= half.x and absf(local.z) <= half.z
-
 
 func _random_point_in_zone() -> Vector3:
 	var shape_node := _zone_shape()
@@ -396,8 +386,8 @@ func begin_committed_chase() -> void:
 	committed_chase = true
 	if state != State.CHASE:
 		state = State.CHASE
+		enemy_scream_player.play()
 		chase_sfx_player.play()
-
 
 func end_committed_chase() -> void:
 	if not committed_chase:
@@ -407,7 +397,6 @@ func end_committed_chase() -> void:
 		state = State.WANDER
 		chase_sfx_player.stop()
 		_pick_patrol_point()
-
 
 func alert(at: Vector3) -> void:
 	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
@@ -444,7 +433,6 @@ func _on_catch_area_body_entered(body: Node3D) -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
 
-
 func _hold(delta: float) -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
@@ -471,7 +459,6 @@ func _hold(delta: float) -> void:
 	_hidden_time = 0.0
 	_pick_patrol_point()
 
-
 func _leave(delta: float) -> bool:
 	if agent.is_navigation_finished():
 		_pick_patrol_point()
@@ -486,7 +473,6 @@ func _leave(delta: float) -> bool:
 	_replace()
 	return true
 
-
 func _return_home() -> void:
 	if guard_point != null:
 		agent.target_position = guard_point.global_position
@@ -494,7 +480,6 @@ func _return_home() -> void:
 	if agent.is_navigation_finished():
 		state = State.WANDER
 		_pick_patrol_point()
-
 
 func _out_of_sight(player: Player) -> bool:
 	var view := player.camera_3d
@@ -510,7 +495,6 @@ func _out_of_sight(player: Player) -> bool:
 		return false
 	return hit.collider != self
 
-
 func _replace() -> void:
 	var parent_node := get_parent()
 	if parent_node == null:
@@ -523,7 +507,6 @@ func _replace() -> void:
 	next.set("wander_zone", wander_zone)
 	next.global_position = _spawn_point()
 	queue_free()
-
 
 func _spawn_point() -> Vector3:
 	var floor_y := global_position.y
@@ -540,7 +523,6 @@ func _spawn_point() -> Vector3:
 	var fallback := _random_point_in_zone() if wander_zone != null else _farthest_patrol(player)
 	fallback.y = floor_y
 	return fallback
-
 
 func _spawn_ok(point: Vector3, player: Node3D, view: Camera3D, map: RID) -> bool:
 	var closest := NavigationServer3D.map_get_closest_point(map, point)
@@ -562,7 +544,6 @@ func _spawn_ok(point: Vector3, player: Node3D, view: Camera3D, map: RID) -> bool
 			return false
 	return true
 
-
 func _farthest_patrol(player: Node3D) -> Vector3:
 	var best := global_position
 	var best_distance := -1.0
@@ -580,7 +561,6 @@ func _farthest_patrol(player: Node3D) -> Vector3:
 			best = point
 	return best
 
-
 func _release() -> void:
 	if _held_player != null and is_instance_valid(_held_player):
 		_held_player.held = false
@@ -591,7 +571,6 @@ func _release() -> void:
 
 func _exit_tree() -> void:
 	_release()
-
 
 func render_correct_animation() -> void:
 	if camera == null:
@@ -613,7 +592,6 @@ func play_correct_angle_animation_4_way(angle_deg: float) -> void:
 func play_correct_angle_animation_8_way(angle_deg: float) -> void:
 	_play_walk_for_view(angle_deg)
 
-
 func _play_walk_for_view(angle_deg: float) -> void:
 	var abs_angle := absf(angle_deg)
 	var clip := "walk_front"
@@ -633,7 +611,6 @@ func _play_walk_for_view(angle_deg: float) -> void:
 		return
 	if animated_sprite.animation != clip or not animated_sprite.is_playing():
 		animated_sprite.play(clip)
-
 
 func play_lose_interest_sfx() -> void:
 	lose_interest_sfx_player.stop()
@@ -658,7 +635,6 @@ func update_enemy_sounds(delta: float) -> void:
 		play_random_enemy_sound()
 		_reset_enemy_sound_timer()
 
-
 func play_random_enemy_sound() -> void:
 	if enemy_sounds.is_empty():
 		return
@@ -674,7 +650,6 @@ func play_random_enemy_sound() -> void:
 	enemy_voice_player.stream = enemy_sounds[sound_index]
 	enemy_voice_player.play()
 
-
 func _reset_enemy_sound_timer() -> void:
 	var min_interval := enemy_sound_interval_min
 	var max_interval := enemy_sound_interval_max
@@ -689,3 +664,16 @@ func _on_player_active_caught_tween_finished() -> void:
 	if spore_cloud:
 		spore_cloud.visible = true
 		spore_cloud.restart()
+
+		if enemy_spore_player:
+			enemy_spore_player.stop()
+			enemy_spore_player.play()
+			enemy_scream_player.stop()
+			enemy_scream_player.play()
+
+func _on_smoke_finished() -> void:
+	if spore_cloud:
+		spore_cloud.visible = false
+
+	if enemy_spore_player:
+		enemy_spore_player.stop()

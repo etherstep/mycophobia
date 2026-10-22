@@ -61,7 +61,7 @@ var _vignette_left := 0.0
 var _infection_left := -1.0
 
 const VIGNETTE_TIME := 2.5
-const INFECTION_DEATH_TIME := 15.0
+const INFECTION_DEATH_TIME := 10.0
 
 var syringe_used = false
 
@@ -87,10 +87,13 @@ var footstep_player_index: int = 0
 @export var footstep_interval: float = 0.32
 @export var footstep_interval_sprint: float = 0.18
 @export var footstep_interval_crouch: float = 0.65
+@onready var death_sfx_player: AudioStreamPlayer3D = $DeathSFX
+@export var death_sfx: AudioStream
+var death_sfx_played := false
+
 var footstep_tween: Tween
 var footstep_timer: float = 0.0
 var last_footstep_index: int = -1
-
 @export var running_sfx_delay: float = 5.0
 var running_sfx_timer: float = 0.0
 
@@ -137,10 +140,8 @@ func begin_cutscene() -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
 
-
 func end_cutscene() -> void:
 	cutscene = false
-
 
 func look_toward(point: Vector3, duration: float) -> void:
 	var flat := point - global_position
@@ -159,7 +160,6 @@ func look_toward(point: Vector3, duration: float) -> void:
 	await tween.finished
 	pitch = 0.0
 
-
 func show_run_text() -> void:
 	var label := $HUD/RunLabel as Label
 	label.visible = true
@@ -170,7 +170,6 @@ func show_run_text() -> void:
 	tween.tween_property(label, "modulate:a", 0.0, 0.25)
 	await tween.finished
 	label.visible = false
-
 
 func setup_footstep_pool() -> void:
 	footstep_players.clear()
@@ -298,7 +297,6 @@ func _try_use_world_item() -> void:
 			print("World item: selected item has the wrong ItemEffect")
 			cancel_world_item()
 
-
 func _consume_selected_item() -> void:
 	var item := selected_world_item
 
@@ -312,7 +310,6 @@ func _consume_selected_item() -> void:
 		return
 
 	inventory.remove_one_item(item)
-
 
 func _find_enemy(target: Node) -> Node:
 	var current: Node = target
@@ -330,7 +327,6 @@ func _find_enemy(target: Node) -> Node:
 		current = current.get_parent()
 
 	return null
-
 
 func select_world_item(item: ItemData) -> void:
 	if item == null:
@@ -354,7 +350,6 @@ func select_world_item(item: ItemData) -> void:
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 func cancel_world_item() -> void:
 	selected_world_item = null
 
@@ -377,7 +372,6 @@ func die(reason: String = "dead") -> void:
 	add_child(layer)
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
-
 
 func toggle_inventory() -> void:
 	if inventory_ui == null:
@@ -555,7 +549,6 @@ func update_camera_bob(delta: float) -> void:
 		BOB_SMOOTHING * delta
 	)
 
-# AUDIO
 func update_footsteps(delta: float) -> void:
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
 	var is_moving := is_on_floor() and horizontal_speed > 0.1
@@ -628,8 +621,8 @@ func increase_infection(amount: int) -> void:
 	_pulse_infection_vignette()
 	if filled and before < MAX_INFECTION:
 		_infection_left = INFECTION_DEATH_TIME
+		death_sfx_played = false
 		_refresh_infection_timer()
-
 
 func shove(direction: Vector3, steps: float) -> void:
 	var flat := Vector3(direction.x, 0.0, direction.z)
@@ -639,11 +632,17 @@ func shove(direction: Vector3, steps: float) -> void:
 	_shove = flat * SHOVE_SPEED
 	_shove_left = SPEED * footstep_interval * steps
 
-
 func _process(delta: float) -> void:
 	if _infection_left >= 0.0 and not dead:
 		_infection_left = maxf(_infection_left - delta, 0.0)
 		_refresh_infection_timer()
+		if _infection_left <= 5.0 and not death_sfx_played:
+			death_sfx_played = true
+			if death_sfx != null:
+				death_sfx_player.stream = death_sfx
+				death_sfx_player.play()
+			else:
+				push_warning("Player: Death SFX is not assigned!")
 		if _infection_left <= 0.0:
 			_infection_left = -1.0
 			if syringe_used == true:
@@ -658,12 +657,10 @@ func _process(delta: float) -> void:
 	if _vignette_left <= 0.0:
 		_infection_vignette.visible = false
 
-
 func _pulse_infection_vignette() -> void:
 	_vignette_left = VIGNETTE_TIME
 	_infection_vignette.visible = true
 	_set_vignette_strength(1.0)
-
 
 func _set_vignette_strength(strength: float) -> void:
 	var mat := _infection_vignette.material as ShaderMaterial
@@ -678,15 +675,16 @@ func decrease_infection(amount: int) -> void:
 		infection_level = MIN_INFECTION
 	infection_level_changed.emit(infection_level)
 	if infection_level < MAX_INFECTION:
+		if infection_level < MAX_INFECTION:
+			_cancel_infection_timer()
+			death_sfx_played = false
 		_cancel_infection_timer()
-
 
 func _refresh_infection_timer() -> void:
 	if _infection_timer == null:
 		return
 	_infection_timer.visible = true
 	_infection_timer.text = str(ceili(_infection_left))
-
 
 func _cancel_infection_timer() -> void:
 	_infection_left = -1.0

@@ -11,7 +11,8 @@ texture = ExtResource("2_4ato6")
 texture_outline = ExtResource("3_v23vv")
 text = "Need to restore the people’s health.
 Thought I knew what I was doing.
-The cave at the edge of town had a special mushroom. I thought it might be interesting to test it.
+The cave at the edge of town had a special mushroom.
+I thought it might be interesting to test it.
 It crossbred with the houses. Now they’re dangerous. 
 Dr. Donovan"
 note_id = "note_2"

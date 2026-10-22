@@ -27,6 +27,8 @@
 [ext_resource type="Shader" uid="uid://o467u40jyv1k" path="res://Shaders/spore_smoke_lod.gdshader" id="23_8cim4"]
 [ext_resource type="Texture2D" uid="uid://1s454oif21cr" path="res://Assets/VFX/T_VFX_circle_1.png" id="24_7x82w"]
 [ext_resource type="Texture2D" uid="uid://c2k0vypco3cfg" path="res://Assets/VFX/T_Noise_001R.png" id="25_iatxd"]
+[ext_resource type="AudioStream" uid="uid://dmya30eagiurd" path="res://Assets/SFX/enemy/shooting_spores.wav" id="28_qqxsh"]
+[ext_resource type="AudioStream" uid="uid://cktp2jcycido" path="res://Assets/SFX/enemy/scream.wav" id="29_0whn2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 radius = 0.4
@@ -304,4 +306,13 @@ draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_bx1xr")
 draw_pass_1 = SubResource("QuadMesh_n85mp")
 
+[node name="SporeSFX" type="AudioStreamPlayer3D" parent="." unique_id=1185401915]
+stream = ExtResource("28_qqxsh")
+bus = &"SFX-Enemy"
+
+[node name="EnemyScreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=55641789]
+stream = ExtResource("29_0whn2")
+bus = &"SFX-Enemy"
+
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
+[connection signal="finished" from="Smoke" to="." method="_on_smoke_finished"]

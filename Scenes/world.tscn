@@ -5023,8 +5023,9 @@ size = Vector3(10, 10, 10)
 height = 12.929
 radius = 14.708
 
-[node name="World" type="Node3D" unique_id=322679481]
+[node name="World" type="Node3D" unique_id=322679481 node_paths=PackedStringArray("player")]
 script = ExtResource("10_world")
+player = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
