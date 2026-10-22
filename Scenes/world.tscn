@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
-[ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
@@ -32,7 +31,9 @@
 [ext_resource type="AudioStream" uid="uid://qyoldsjy24bt" path="res://Assets/SFX/Athmosphere/ambient_noise_4.wav" id="26_1vso6"]
 [ext_resource type="AudioStream" uid="uid://cr3jstcnav8xy" path="res://Assets/SFX/Athmosphere/ambient_noise_5.wav" id="27_3ua1v"]
 [ext_resource type="AudioStream" uid="uid://rsbk8k362wyf" path="res://Assets/SFX/Athmosphere/ambient_noise_6.wav" id="28_r0ikl"]
-[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="33_r0ikl"]
+[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="33_enemy"]
+[ext_resource type="Script" uid="uid://vw4rh4bl2aea" path="res://Scripts/Enemies/chase_intro.gd" id="34_intro"]
+[ext_resource type="Script" uid="uid://cchase0route1" path="res://Scripts/Enemies/chase_route.gd" id="35_chase"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -70,9 +71,6 @@ adjustment_enabled = true
 adjustment_brightness = 1.76
 adjustment_contrast = 0.945
 adjustment_saturation = 0.49
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
-size = Vector3(4, 2, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0ikl"]
 albedo_texture = ExtResource("18_1vso6")
@@ -4863,6 +4861,24 @@ points = PackedVector3Array(-314, 22, 20.999996, -314, -2, 20.999996, -308.25003
 height = 12.031
 radius = 9.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wander_notes"]
+size = Vector3(11.2, 6, 8.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chase_a"]
+size = Vector3(16, 6, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chase_b"]
+size = Vector3(16, 6, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chase_c"]
+size = Vector3(16, 6, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chase_d"]
+size = Vector3(16, 6, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chase_end"]
+size = Vector3(24, 5, 17)
+
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
 
@@ -4883,31 +4899,16 @@ transform = Transform3D(-0.0021242325, 0, -0.99999774, 0, 1, 0, 0.99999774, 0, -
 inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
 
-[node name="PatrolA" type="Marker3D" parent="." unique_id=236161329 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.05, -22)
-
-[node name="PatrolB" type="Marker3D" parent="." unique_id=261258822 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 2.05, -12)
-
-[node name="PatrolC" type="Marker3D" parent="." unique_id=450060164 groups=["patrol_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285, 2.05, -34)
-
 [node name="StashPoint" type="Marker3D" parent="." unique_id=514351422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 2.05, -20)
 
-[node name="AlertZone" type="Area3D" parent="." unique_id=2029997656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 2.05, -26)
-script = ExtResource("11_alert")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
-shape = SubResource("BoxShape3D_alert")
-
-[node name="SporeCloud" parent="." unique_id=1742201103 groups=["enemies", "player"] instance=ExtResource("15_spore")]
-transform = Transform3D(1.38, 0, 0, 0, 1.38, 0, 0, 0, 1.38, -288.61795, 2.05, -20.727905)
+[node name="SporeCloud" parent="." unique_id=1742201103 groups=["enemies"] instance=ExtResource("15_spore")]
+transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -313.88345, 2.05, -25.121035)
 
 [node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
-transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -290.99533, 4.35184, -20.705004)
+transform = Transform3D(1.8947194, -0.19675526, 0.22542682, 0.28819844, 1.5885773, -1.0357873, -0.0804459, 1.0569774, 1.5986929, -315.597, 4.35184, -23.998056)
 cloud = NodePath("../SporeCloud")
+starts_chase = true
 
 [node name="Inventory" parent="." unique_id=2098244082 node_paths=PackedStringArray("player") groups=["inventory"] instance=ExtResource("3_fo5ed")]
 player = NodePath("../Player")
@@ -9236,5 +9237,81 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -285
 door = NodePath("../Door")
 timeout = 4.0
 
-[node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("33_r0ikl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.61884, 2.6441994, -33.63006)
+[node name="SporeCloudWest" parent="." unique_id=2079239642 instance=ExtResource("15_spore")]
+transform = Transform3D(0, 0, 1.38, 0, 1.38, 0, -1.38, 0, 0, -439.5, 2.05, -31.5)
+
+[node name="SporeShooterWest" parent="." unique_id=51457755 node_paths=PackedStringArray("cloud") instance=ExtResource("16_shooter")]
+transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -439.5, 4.35184, -33.88)
+cloud = NodePath("../SporeCloudWest")
+
+[node name="WanderNotes" type="Area3D" parent="." unique_id=502470513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -308, 4, -20.5)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WanderNotes" unique_id=2063988286]
+shape = SubResource("BoxShape3D_wander_notes")
+
+[node name="WanderNotesA" parent="." unique_id=1421695072 node_paths=PackedStringArray("wander_zone") instance=ExtResource("33_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.5, -21)
+wander_zone = NodePath("../WanderNotes")
+
+[node name="ChaseRouteA" type="Area3D" parent="." unique_id=1030991669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320.8, 4, -21.1)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRouteA" unique_id=2011945841]
+shape = SubResource("BoxShape3D_chase_a")
+
+[node name="ChaseRouteB" type="Area3D" parent="." unique_id=606801957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -331.7, 4, -13.1)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRouteB" unique_id=2068400393]
+shape = SubResource("BoxShape3D_chase_b")
+
+[node name="ChaseRouteC" type="Area3D" parent="." unique_id=701417903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -342.7, 4, -5)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRouteC" unique_id=1051375212]
+shape = SubResource("BoxShape3D_chase_c")
+
+[node name="ChaseRouteD" type="Area3D" parent="." unique_id=328112223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -348.2, 4, -0.9)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRouteD" unique_id=556145156]
+shape = SubResource("BoxShape3D_chase_d")
+
+[node name="ChaseSpawn" type="Marker3D" parent="." unique_id=1555326354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -309.191, 2.5, -19.15096)
+
+[node name="ChaseEnd" type="Area3D" parent="." unique_id=1415793346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -348.2409, 3, -0.93357635)
+collision_layer = 0
+script = ExtResource("35_chase")
+ends_chase = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseEnd" unique_id=989826839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4.5)
+shape = SubResource("BoxShape3D_chase_end")
+
+[node name="ChaseIntro" type="Node3D" parent="." unique_id=928400118 node_paths=PackedStringArray("spawn_point", "chase_end") groups=["chase_intro"]]
+script = ExtResource("34_intro")
+spawn_point = NodePath("../ChaseSpawn")
+chase_end = NodePath("../ChaseEnd")

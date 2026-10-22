@@ -1,6 +1,9 @@
 extends StaticBody3D
 
+signal burned
+
 @export var cloud: Node3D
+@export var starts_chase := false
 
 func get_spore_shooter() -> Node3D:
 	if is_instance_valid(cloud):
@@ -33,4 +36,6 @@ func interact() -> void:
 	if cloud.has_method("is_salted") and cloud.is_salted():
 		cloud.kill_by_matches()
 		inventory.remove_one_item_by_type(ItemData.ItemType.MATCHES)
+		if starts_chase:
+			burned.emit()
 		queue_free()

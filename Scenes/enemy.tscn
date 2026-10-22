@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://vdsbghwnjsje"]
 
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/Enemies/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://b1cgcym7nya6" path="res://Assets/Sprites/fungal.png" id="2_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
+[ext_resource type="Texture2D" uid="uid://dvm3q3rqhgoa0" path="res://Assets/Sprites/fungal_back.png" id="2_back"]
+[ext_resource type="Texture2D" uid="uid://bifyl0wtlndhm" path="res://Assets/Sprites/fungal_side.png" id="2_side"]
 [ext_resource type="AudioStream" uid="uid://dy4y8t050ny11" path="res://Assets/SFX/sfx_2 - enemy_step_1.wav" id="2_ghaa6"]
 [ext_resource type="AudioStream" uid="uid://bmoiv8usschgy" path="res://Assets/SFX/sfx_2 - enemy_step_2.wav" id="3_1dp5w"]
 [ext_resource type="AudioStream" uid="uid://buclbg01nl2oy" path="res://Assets/SFX/Athmosphere/chase_2.wav" id="4_0830c"]
@@ -27,39 +29,161 @@
 radius = 0.4
 height = 1.6
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
-atlas = ExtResource("2_1f0kj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_0"]
+atlas = ExtResource("2_front")
 region = Rect2(0, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
-atlas = ExtResource("2_1f0kj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_1"]
+atlas = ExtResource("2_front")
 region = Rect2(1920, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
-atlas = ExtResource("2_1f0kj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_2"]
+atlas = ExtResource("2_front")
 region = Rect2(3840, 0, 1920, 1920)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ghaa6"]
-atlas = ExtResource("2_1f0kj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_3"]
+atlas = ExtResource("2_front")
 region = Rect2(5760, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_4"]
+atlas = ExtResource("2_front")
+region = Rect2(7680, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_5"]
+atlas = ExtResource("2_front")
+region = Rect2(9600, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_0"]
+atlas = ExtResource("2_back")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_1"]
+atlas = ExtResource("2_back")
+region = Rect2(1920, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_2"]
+atlas = ExtResource("2_back")
+region = Rect2(3840, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_3"]
+atlas = ExtResource("2_back")
+region = Rect2(5760, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_4"]
+atlas = ExtResource("2_back")
+region = Rect2(7680, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_5"]
+atlas = ExtResource("2_back")
+region = Rect2(9600, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_0"]
+atlas = ExtResource("2_side")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_1"]
+atlas = ExtResource("2_side")
+region = Rect2(1920, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_2"]
+atlas = ExtResource("2_side")
+region = Rect2(3840, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_3"]
+atlas = ExtResource("2_side")
+region = Rect2(5760, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_4"]
+atlas = ExtResource("2_side")
+region = Rect2(7680, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_5"]
+atlas = ExtResource("2_side")
+region = Rect2(9600, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_6"]
+atlas = ExtResource("2_side")
+region = Rect2(11520, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_7"]
+atlas = ExtResource("2_side")
+region = Rect2(13440, 0, 1920, 1920)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f0dak"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_afpow")
+"texture": SubResource("AtlasTexture_back_0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_287tu")
+"texture": SubResource("AtlasTexture_back_1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0830c")
+"texture": SubResource("AtlasTexture_back_2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ghaa6")
+"texture": SubResource("AtlasTexture_back_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_5")
 }],
 "loop": 1,
-"name": &"front",
+"name": &"walk_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_5")
+}],
+"loop": 1,
+"name": &"walk_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_7")
+}],
+"loop": 1,
+"name": &"walk_side",
 "speed": 5.0
 }]
 
@@ -84,7 +208,7 @@ billboard = 2
 shaded = true
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_f0dak")
-animation = &"front"
+animation = &"walk_front"
 frame_progress = 0.86904514
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1446109693]

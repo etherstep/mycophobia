@@ -57,6 +57,13 @@ func kill_by_matches() -> void:
 		return
 
 	_dead = true
+	for node in get_tree().get_nodes_in_group("enemies"):
+		if node.get("starts_chase") != true or node.get("cloud") != self:
+			continue
+		var intro := get_tree().get_first_node_in_group("chase_intro")
+		if intro != null and intro.has_method("begin"):
+			intro.begin()
+		break
 	queue_free()
 
 
