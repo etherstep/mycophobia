@@ -9,16 +9,17 @@
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
+[ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
-[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
-[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/Enemies/spore_cloud.tscn" id="15_spore"]
 [ext_resource type="PackedScene" uid="uid://c8wkejo0w8bos" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
-[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="18_1vso6"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
@@ -42,11 +43,11 @@
 [ext_resource type="Texture2D" uid="uid://b884frfrqsimi" path="res://Assets/Textures/Horror_Stone_01-256x256.png" id="30_uqdn7"]
 [ext_resource type="Texture2D" uid="uid://cbd0efvsd7l8q" path="res://Assets/Textures/Horror_Stone_09-256x256.png" id="31_gwaj6"]
 [ext_resource type="Texture2D" uid="uid://fl8fd8cnn7wt" path="res://Assets/Textures/Horror_Metal_04-256x256.png" id="32_36g3o"]
+[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="33_enemy"]
 [ext_resource type="Texture2D" uid="uid://bf5fycq7pwgkj" path="res://Assets/Textures/Horror_Misc_14-256x256.png" id="33_vhf2b"]
-[ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
-[ext_resource type="PackedScene" uid="uid://vdsbghwnjsje" path="res://Scenes/enemy.tscn" id="33_enemy"]
 [ext_resource type="Script" uid="uid://vw4rh4bl2aea" path="res://Scripts/Enemies/chase_intro.gd" id="34_intro"]
 [ext_resource type="Script" uid="uid://cchase0route1" path="res://Scripts/Enemies/chase_route.gd" id="35_chase"]
+[ext_resource type="AudioStream" uid="uid://bpqd2j3852irk" path="res://Assets/SFX/player/reaction_after_chase_scene.mp3" id="45_te07t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -75,13 +76,13 @@ glow_blend_mode = 2
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 1.67
-fog_sun_scatter = 0.2
+fog_light_energy = 2.42
+fog_sun_scatter = 0.01
 fog_density = 1.0
 fog_aerial_perspective = 0.683
 fog_sky_affect = 0.73
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.07
+volumetric_fog_density = 0.1109
 volumetric_fog_albedo = Color(0, 0.1764706, 0, 1)
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_detail_spread = 2.8284266
@@ -722,6 +723,7 @@ uv1_scale = Vector3(0.3, 0.3, 0.3)
 albedo_color = Color(0.26964638, 1, 0.922258, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8wo2"]
+albedo_color = Color(1, 0.011764706, 1, 1)
 albedo_texture = ExtResource("23_6mm6r")
 uv1_scale = Vector3(0.12, 0.12, 0.12)
 
@@ -732,18 +734,22 @@ albedo_color = Color(0.7372549, 0.3372549, 0.21568628, 1)
 albedo_color = Color(1, 0.45882353, 0.30588236, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqt2m"]
+albedo_color = Color(0.21176471, 0.5764706, 0.3254902, 1)
 albedo_texture = ExtResource("24_xcb5n")
 uv1_scale = Vector3(-0.11, -0.11, -0.11)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kkex"]
+albedo_color = Color(1, 0.11372549, 0.14901961, 1)
 albedo_texture = ExtResource("25_te07t")
 uv1_scale = Vector3(0.115, 0.115, 0.115)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2ilm"]
+albedo_color = Color(0.6912929, 0.00043875992, 0.70879096, 1)
 metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2g6t7"]
+albedo_color = Color(0.1764706, 1, 0.16078432, 1)
 albedo_texture = ExtResource("26_b4e6k")
 uv1_scale = Vector3(0.07, 0.07, 0.07)
 
@@ -754,21 +760,25 @@ albedo_color = Color(0.14901961, 0.14901961, 1, 1)
 albedo_color = Color(0.105882354, 0.73333335, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2wrs"]
+albedo_color = Color(1, 1, 0, 1)
 albedo_texture = ExtResource("27_0sgyr")
 uv1_scale = Vector3(0.395, 0.395, 0.395)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro4dx"]
+albedo_color = Color(0.18039216, 0.18039216, 0.13725491, 1)
 albedo_texture = ExtResource("28_l33cg")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51bpa"]
+albedo_color = Color(0.93333334, 0.28235295, 0.8509804, 1)
 albedo_texture = ExtResource("29_13n8b")
 metallic = 0.2
 metallic_texture = ExtResource("29_13n8b")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mq3o"]
+albedo_color = Color(0.43529412, 0.43529412, 0.34901962, 1)
 albedo_texture = ExtResource("30_uqdn7")
 uv1_scale = Vector3(0.08, 0.08, 0.08)
 uv1_triplanar = true
@@ -784,13 +794,16 @@ metallic = 1.0
 albedo_color = Color(0.5294118, 0.7882353, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r1kf"]
+albedo_color = Color(0.16862746, 0.09803922, 0.047058824, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf0co"]
+albedo_color = Color(0.14509805, 0.31764707, 0.36862746, 1)
 albedo_texture = ExtResource("30_uqdn7")
 emission_enabled = true
 uv1_scale = Vector3(0.305, 0.305, 0.305)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8t7n"]
+albedo_color = Color(1, 0.20392157, 0.19215687, 1)
 albedo_texture = ExtResource("31_gwaj6")
 uv1_scale = Vector3(0.185, 0.185, 0.185)
 
@@ -804,6 +817,7 @@ albedo_color = Color(0.2784314, 0.5254902, 0.39607844, 1)
 albedo_color = Color(0.31764707, 0.3137255, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sk1wo"]
+albedo_color = Color(0.70980394, 1, 0.8117647, 1)
 albedo_texture = ExtResource("32_36g3o")
 metallic = 0.5
 uv1_scale = Vector3(0.215, 0.215, 0.215)
@@ -812,6 +826,7 @@ uv1_scale = Vector3(0.215, 0.215, 0.215)
 albedo_color = Color(0.5137255, 0.32941177, 0.2901961, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hupnq"]
+albedo_color = Color(1, 0.47058824, 0.72156864, 1)
 albedo_texture = ExtResource("33_vhf2b")
 metallic = 0.51
 emission_enabled = true
@@ -823,6 +838,7 @@ uv1_scale = Vector3(0.525, 0.525, 0.525)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iqlm"]
+albedo_color = Color(0.5294118, 0.5019608, 0.5176471, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dsm2w"]
 points = PackedVector3Array(-410, 0, -31, -410, 2, -31, -394, 0, -31, -394, 2, -31, -410, 0, -47, -410, 2, -47, -394, 0, -47, -394, 2, -47)
@@ -4904,13 +4920,6 @@ points = PackedVector3Array(-308.25, 22, 22.15624, -308.25, -2, 22.15624, -303.4
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0x5k4"]
 points = PackedVector3Array(-314, 22, 20.999996, -314, -2, 20.999996, -308.25003, 22, 22.156244, -308.25003, -2, 22.156244, -314, 22, 22.000002, -314, -2, 22.000002, -308.65622, 22, 23.062496, -308.65622, -2, 23.062496)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hhcb3"]
-size = Vector3(10, 10, 10)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_opbav"]
-height = 12.929
-radius = 14.708
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_wander_notes"]
 size = Vector3(11.2, 6, 8.2)
 
@@ -4927,7 +4936,14 @@ size = Vector3(16, 6, 16)
 size = Vector3(16, 6, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chase_end"]
-size = Vector3(24, 5, 17)
+size = Vector3(2.0879517, 3.5340576, 2.185669)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhcb3"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_opbav"]
+height = 12.929
+radius = 14.708
 
 [node name="World" type="Node3D" unique_id=322679481]
 script = ExtResource("10_world")
@@ -4936,6 +4952,7 @@ script = ExtResource("10_world")
 environment = SubResource("Environment_baysf")
 
 [node name="Navigation" type="NavigationRegion3D" parent="." unique_id=259160484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12605286, -0.095947266, -0.053115845)
 navigation_mesh = ExtResource("12_nav")
 
 [node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
@@ -9333,6 +9350,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRouteC" unique_id=1051375212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000427, 0, 11.28533)
 shape = SubResource("BoxShape3D_chase_c")
 
 [node name="ChaseRouteD" type="Area3D" parent="." unique_id=328112223]
@@ -9343,6 +9361,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRouteD" unique_id=556145156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.579346, 0, 1.462595)
 shape = SubResource("BoxShape3D_chase_d")
 
 [node name="ChaseSpawn" type="Marker3D" parent="." unique_id=1555326354]
@@ -9355,8 +9374,12 @@ script = ExtResource("35_chase")
 ends_chase = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseEnd" unique_id=989826839]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3526306, -0.7329712, -0.28961182)
 shape = SubResource("BoxShape3D_chase_end")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ChaseEnd" unique_id=1811755491]
+stream = ExtResource("45_te07t")
+bus = &"SFX-Dialogue"
 
 [node name="ChaseIntro" type="Node3D" parent="." unique_id=928400118 node_paths=PackedStringArray("spawn_point", "chase_end") groups=["chase_intro"]]
 script = ExtResource("34_intro")
@@ -9417,3 +9440,13 @@ shadow_bias = 0.0
 shadow_blur = 4.0
 area_range = 25.885
 area_size = Vector2(0.47235107, 0.6656494)
+
+[node name="AreaLight3D3" type="AreaLight3D" parent="Node" unique_id=1687079579]
+transform = Transform3D(-0.9994804, -0.026036114, 0.019002039, 0.019249145, -0.009273374, 0.9997717, -0.025853956, 0.999618, 0.009769728, -317.3865, 18.889889, 34.195824)
+light_color = Color(1, 1, 0.5411765, 1)
+light_energy = 16.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_blur = 4.0
+area_range = 112.07
+area_attenuation = 0.574
