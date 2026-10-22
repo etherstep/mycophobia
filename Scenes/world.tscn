@@ -9204,8 +9204,7 @@ max_polyphony = 2
 bus = &"SFX-WorldAmbience"
 
 [node name="Door" parent="." unique_id=129536702 node_paths=PackedStringArray("buttons") instance=ExtResource("20_1cojt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -283.06778, 3.499998, -42.268085)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280.4838, 3.499998, -42.268085)
 open_offset = Vector3(3, 0, 0)
 slide_duration = 4.0
 buttons = [NodePath("../DoorButton"), NodePath("../DoorButton2"), NodePath("../DoorButton3"), NodePath("../DoorButton4")]
@@ -9231,7 +9230,7 @@ door = NodePath("../Door")
 timeout = 4.0
 
 [node name="Enemy" parent="." unique_id=1473996547 instance=ExtResource("33_r0ikl")]
-transform = Transform3D(0.9198135, 0, -0.39235592, 0, 1, 0, 0.39235592, 0, 0.9198135, -283.37448, 2.0657277, -44.014698)
+transform = Transform3D(0.9198135, 0, -0.39235592, 0, 1, 0, 0.39235592, 0, 0.9198135, -304.6508, 1.9434061, -19.298908)
 
 [node name="SafeHouse" type="Area3D" parent="." unique_id=834722421]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -371.9173, 4.4450264, -5.041924)

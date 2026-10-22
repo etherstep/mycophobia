@@ -168,6 +168,7 @@ bus = &"SFX-Enemy"
 
 [node name="Smoke" type="GPUParticles3D" parent="." unique_id=866365811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 2.4645207, -1.2605257)
+visible = false
 amount = 20
 lifetime = 3.2
 preprocess = 3.2
