@@ -248,6 +248,9 @@ func _try_use_world_item() -> void:
 	query.collide_with_bodies = true
 	query.collide_with_areas = true
 
+	# Ignore the spore cloud so the ray can hit the shooter behind it.
+	query.collision_mask = 1 # Adjust this to your interaction collision layer.
+
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 
 	if hit.is_empty():
@@ -643,6 +646,8 @@ func _process(delta: float) -> void:
 		_refresh_infection_timer()
 		if _infection_left <= 0.0:
 			_infection_left = -1.0
+			if syringe_used == true:
+				return
 			_cancel_infection_timer()
 			die("The infection took you")
 			return

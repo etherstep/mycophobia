@@ -3,6 +3,7 @@ extends StaticBody3D
 signal burned
 
 @onready var spore_audio_player: AudioStreamPlayer3D = $SporePlayer
+@onready var spore_audio_player_fire: AudioStreamPlayer3D = $SporePlayerFire
 
 @export var salted_color := Color(0.9, 0.85, 0.65)
 @export var cloud: StaticBody3D
@@ -72,6 +73,7 @@ func kill_by_matches() -> void:
 	# Play the fire effect.
 	if is_instance_valid(fire_particles):
 		fire_particles.restart()
+		spore_audio_player_fire.play()
 		fire_particles.emitting = true
 
 	# Let the fire play for 2 seconds, then destroy the shooter.
