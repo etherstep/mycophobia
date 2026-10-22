@@ -10,7 +10,7 @@ extends Node3D
 @onready var light: OmniLight3D = $Light
 
 # Base values (for scale = 1.0)
-const BASE_MESH_SIZE := Vector2(0.5, 0.5)
+const BASE_MESH_SIZE := Vector2(2.0, 2.0)
 const BASE_VELOCITY_MIN := 1.0
 const BASE_VELOCITY_MAX := 2.5
 const BASE_AMOUNT := 16
