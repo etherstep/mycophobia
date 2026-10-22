@@ -11,15 +11,15 @@
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
 [ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
-[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
-[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/Enemies/spore_cloud.tscn" id="15_spore"]
 [ext_resource type="PackedScene" uid="uid://c8wkejo0w8bos" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
-[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="18_1vso6"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
@@ -29,56 +29,36 @@
 [ext_resource type="Script" uid="uid://dcmknv4owwx12" path="res://Scenes/random_ambience_point.gd" id="22_pyn1s"]
 [ext_resource type="Texture2D" uid="uid://ci6eeokgfm00g" path="res://Assets/Textures/Horror_Metal_08-256x256.png" id="23_6mm6r"]
 [ext_resource type="AudioStream" uid="uid://bukb402oyoo0p" path="res://Assets/SFX/Athmosphere/ambient_noise_1.wav" id="23_dt0r1"]
-;
-[ext_resource type="Texture2D" uid="uid://q8b5ybb4a6hy" path="res://Assets/Textures/Horror_Wall_04-256x256.png" id="23_vhf2b"]
-[ext_resource type="Texture2D" uid="uid://bqearff34vtms" path="res://Assets/Textures/Horror_Wall_13-256x256.png" id="23_g44x5"]
 [ext_resource type="AudioStream" uid="uid://dvpqbnt1t5p5k" path="res://Assets/SFX/Athmosphere/ambient_noise_2.wav" id="24_qebug"]
 [ext_resource type="Texture2D" uid="uid://lvr7ij826erc" path="res://Assets/Textures/Horror_Brick_04-256x256.png" id="24_xcb5n"]
-[ext_resource type="Texture2D" uid="uid://dakfalf7jhake" path="res://Assets/Textures/Horror_Stone_13-256x256.png" id="25_kwnki"]
 [ext_resource type="AudioStream" uid="uid://b1j1bg3b1oc47" path="res://Assets/SFX/Athmosphere/ambient_noise_3.wav" id="25_o2rbt"]
 [ext_resource type="Texture2D" uid="uid://bvtqxfqwc0dvl" path="res://Assets/Textures/Horror_Misc_01-256x256.png" id="25_te07t"]
 [ext_resource type="AudioStream" uid="uid://qyoldsjy24bt" path="res://Assets/SFX/Athmosphere/ambient_noise_4.wav" id="26_1vso6"]
 [ext_resource type="Texture2D" uid="uid://b33jnpg6f46q3" path="res://Assets/Textures/Horror_Stone_03-256x256.png" id="26_b4e6k"]
-;
-[ext_resource type="Texture2D" uid="uid://ycj2sy2niuqn" path="res://Assets/Textures/Horror_Wall_11-256x256.png" id="26_g44x5"]
 [ext_resource type="Texture2D" uid="uid://lma8v76ej5kl" path="res://Assets/Textures/Horror_Brick_13-256x256.png" id="26_cvubk"]
 [ext_resource type="Texture2D" uid="uid://dbk6gwy0n1xdl" path="res://Assets/Textures/Horror_Misc_12-256x256.png" id="27_0sgyr"]
 [ext_resource type="AudioStream" uid="uid://cr3jstcnav8xy" path="res://Assets/SFX/Athmosphere/ambient_noise_5.wav" id="27_3ua1v"]
 [ext_resource type="Texture2D" uid="uid://bxvg64djcyx6f" path="res://Assets/Textures/Horror_Stone_06-256x256.png" id="28_l33cg"]
 [ext_resource type="AudioStream" uid="uid://rsbk8k362wyf" path="res://Assets/SFX/Athmosphere/ambient_noise_6.wav" id="28_r0ikl"]
 [ext_resource type="Texture2D" uid="uid://ddrllfigrh351" path="res://Assets/Textures/Horror_Metal_01-256x256.png" id="29_13n8b"]
-;[ext_resource type="Texture2D" uid="uid://bh741huouhsvm" path="res://Assets/Textures/Horror_Misc_15-256x256.png" id="29_kwnki"]
-;[ext_resource type="Texture2D" uid="uid://b884frfrqsimi" path="res://Assets/Textures/Horror_Stone_01-256x256.png" id="30_uqdn7"]
-[ext_resource type="Texture2D" uid="uid://cw50sdm7nx8ub" path="res://Assets/Textures/Horror_Stone_12-256x256.png" id="31_cvubk"]
-;[ext_resource type="Texture2D" uid="uid://cbd0efvsd7l8q" path="res://Assets/Textures/Horror_Stone_09-256x256.png" id="31_gwaj6"]
-;[ext_resource type="Texture2D" uid="uid://fl8fd8cnn7wt" path="res://Assets/Textures/Horror_Metal_04-256x256.png" id="32_36g3o"]
-;
 [ext_resource type="Texture2D" uid="uid://bh741huouhsvm" path="res://Assets/Textures/Horror_Misc_15-256x256.png" id="29_eskoj"]
 [ext_resource type="Texture2D" uid="uid://b884frfrqsimi" path="res://Assets/Textures/Horror_Stone_01-256x256.png" id="30_uqdn7"]
 [ext_resource type="Texture2D" uid="uid://cmdo0057jqkqc" path="res://Assets/Textures/Horror_Stone_07-256x256.png" id="31_5kw24"]
 [ext_resource type="Texture2D" uid="uid://cbd0efvsd7l8q" path="res://Assets/Textures/Horror_Stone_09-256x256.png" id="31_gwaj6"]
 [ext_resource type="Texture2D" uid="uid://fl8fd8cnn7wt" path="res://Assets/Textures/Horror_Metal_04-256x256.png" id="32_36g3o"]
-[ext_resource type="Texture2D" uid="uid://bnp4tqqyvgexc" path="res://Assets/Textures/Horror_Misc_06-256x256.png" id="32_dsm2w"]
+[ext_resource type="Texture2D" uid="uid://bqearff34vtms" path="res://Assets/Textures/Horror_Wall_13-256x256.png" id="32_eskoj"]
 [ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="33_enemy"]
+[ext_resource type="Texture2D" uid="uid://bf5fycq7pwgkj" path="res://Assets/Textures/Horror_Misc_14-256x256.png" id="33_vhf2b"]
 [ext_resource type="Script" uid="uid://vw4rh4bl2aea" path="res://Scripts/Enemies/chase_intro.gd" id="34_intro"]
 [ext_resource type="Script" uid="uid://cchase0route1" path="res://Scripts/Enemies/chase_route.gd" id="35_chase"]
-[ext_resource type="Texture2D" uid="uid://d75s22uedrdb" path="res://Assets/Textures/Horror_Metal_02-256x256.png" id="37_82dmg"]
-[ext_resource type="Texture2D" uid="uid://ddi1uy56s47f7" path="res://Assets/Textures/Horror_Wall_09-256x256.png" id="38_0d7cr"]
-[ext_resource type="Texture2D" uid="uid://d1hk6610uvwwk" path="res://Assets/Textures/Horror_Wall_07-256x256.png" id="40_l4vrt"]
-[ext_resource type="Texture2D" uid="uid://c0ovn4tx3uk5j" path="res://Assets/Textures/crate-brown wood.jpg" id="41_eskoj"]
-[ext_resource type="Texture2D" uid="uid://slk7muikt420" path="res://Assets/Textures/weathered crate-fragile.jpg" id="43_5kw24"]
-[ext_resource type="Texture2D" uid="uid://t58dcxcwvlsv" path="res://Assets/Textures/rusted crate.jpg" id="45_dsm2w"]
-[ext_resource type="AudioStream" uid="uid://bpqd2j3852irk" path="res://Assets/SFX/player/reaction_after_chase_scene.mp3" id="45_te07t"]
-;
-[ext_resource type="Texture2D" uid="uid://bqearff34vtms" path="res://Assets/Textures/Horror_Wall_13-256x256.png" id="32_eskoj"]
-;[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="33_r0ikl"]
-[ext_resource type="Texture2D" uid="uid://bf5fycq7pwgkj" path="res://Assets/Textures/Horror_Misc_14-256x256.png" id="33_vhf2b"]
-[ext_resource type="Texture2D" uid="uid://vmhillb45esq" path="res://Assets/Textures/Horror_Misc_05-256x256.png" id="36_5kw24"]
 [ext_resource type="Texture2D" uid="uid://ddi1uy56s47f7" path="res://Assets/Textures/Horror_Wall_09-256x256.png" id="37_dsm2w"]
 [ext_resource type="Texture2D" uid="uid://d75s22uedrdb" path="res://Assets/Textures/Horror_Metal_02-256x256.png" id="38_82dmg"]
 [ext_resource type="Texture2D" uid="uid://bnp4tqqyvgexc" path="res://Assets/Textures/Horror_Misc_06-256x256.png" id="39_0d7cr"]
+[ext_resource type="Texture2D" uid="uid://c0ovn4tx3uk5j" path="res://Assets/Textures/crate-brown wood.jpg" id="41_eskoj"]
 [ext_resource type="Texture2D" uid="uid://d1hk6610uvwwk" path="res://Assets/Textures/Horror_Wall_07-256x256.png" id="41_l4vrt"]
-[ext_resource type="Texture2D" uid="uid://cc5vkjkt410c8" path="res://Assets/Textures/Horror_Brick_11-256x256.png" id="42_ry8tx"]
+[ext_resource type="Texture2D" uid="uid://slk7muikt420" path="res://Assets/Textures/weathered crate-fragile.jpg" id="43_5kw24"]
+[ext_resource type="Texture2D" uid="uid://t58dcxcwvlsv" path="res://Assets/Textures/rusted crate.jpg" id="45_dsm2w"]
+[ext_resource type="AudioStream" uid="uid://bpqd2j3852irk" path="res://Assets/SFX/player/reaction_after_chase_scene.mp3" id="45_te07t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_c5t2i")
@@ -751,9 +731,7 @@ refraction_scale = -1.0
 uv1_scale = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g28q7"]
-;albedo_texture = ExtResource("23_vhf2b")
-;uv1_scale = Vector3(0.08, 0.08, 0.08)
-albedo_texture = ExtResource("23_g44x5")
+albedo_texture = ExtResource("32_eskoj")
 uv1_scale = Vector3(0.07, 0.07, 0.07)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8wo2"]
@@ -761,21 +739,13 @@ albedo_texture = ExtResource("23_6mm6r")
 uv1_scale = Vector3(0.12, 0.12, 0.12)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t1r3"]
-;
 albedo_texture = ExtResource("30_uqdn7")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cenje"]
-albedo_texture = ExtResource("26_g44x5")
-uv1_scale = Vector3(0.145, 0.145, 0.145)
-;
-albedo_texture = ExtResource("25_kwnki")
-uv1_scale = Vector3(0.385, 0.385, 0.385)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cenje"]
 albedo_texture = ExtResource("26_cvubk")
 uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
-;
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqt2m"]
 albedo_texture = ExtResource("24_xcb5n")
 uv1_scale = Vector3(-0.11, -0.11, -0.11)
@@ -787,9 +757,6 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2ilm"]
 albedo_color = Color(0.6912929, 0.00043875992, 0.70879096, 1)
-;metallic = 1.0
-;albedo_texture = ExtResource("29_kwnki")
-;uv1_scale = Vector3(0.07, 0.07, 0.07)
 albedo_texture = ExtResource("29_eskoj")
 uv1_scale = Vector3(0.09, 0.09, 0.09)
 uv1_triplanar = true
@@ -799,17 +766,11 @@ albedo_texture = ExtResource("26_b4e6k")
 uv1_scale = Vector3(0.07, 0.07, 0.07)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2dp7"]
-;albedo_texture = ExtResource("31_cvubk")
-;uv1_scale = Vector3(0.075, 0.075, 0.075)
-;
-;[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dapn3"]
-;albedo_texture = ExtResource("32_eskoj")
-;uv1_scale = Vector3(0.185, 0.185, 0.185)
 albedo_texture = ExtResource("31_5kw24")
 uv1_scale = Vector3(0.055, 0.055, 0.055)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dapn3"]
-albedo_texture = ExtResource("32_dsm2w")
+albedo_texture = ExtResource("39_0d7cr")
 uv1_scale = Vector3(0.19, 0.19, 0.19)
 uv1_triplanar = true
 
@@ -830,43 +791,23 @@ metallic = 0.2
 metallic_texture = ExtResource("29_13n8b")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mq3o"]
-;albedo_color = Color(0.43529412, 0.43529412, 0.34901962, 1)
-;albedo_texture = ExtResource("30_uqdn7")
-;uv1_scale = Vector3(0.08, 0.08, 0.08)
-;albedo_texture = ExtResource("36_5kw24")
-;uv1_scale = Vector3(0.215, 0.215, 0.215)
-;uv1_triplanar = true
-;
-;[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tfch"]
-;albedo_texture = ExtResource("38_82dmg")
-;uv1_scale = Vector3(0.095, 0.095, 0.095)
-;
-;[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjxdv"]
-;albedo_texture = ExtResource("37_dsm2w")
-;emission = Color(1, 1, 1, 1)
-;uv1_scale = Vector3(0.09, 0.09, 0.09)
-;uv1_triplanar = true
-;
-;[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnxjo"]
-;albedo_texture = ExtResource("38_82dmg")
-;emission_enabled = true
 albedo_texture = ExtResource("30_uqdn7")
 uv1_scale = Vector3(0.08, 0.08, 0.08)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tfch"]
-albedo_texture = ExtResource("37_82dmg")
+albedo_texture = ExtResource("38_82dmg")
 uv1_scale = Vector3(0.13, 0.13, 0.13)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjxdv"]
-albedo_texture = ExtResource("38_0d7cr")
+albedo_texture = ExtResource("37_dsm2w")
 metallic = 1.0
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnxjo"]
-albedo_texture = ExtResource("37_82dmg")
+albedo_texture = ExtResource("38_82dmg")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r1kf"]
 albedo_color = Color(0.16862746, 0.09803922, 0.047058824, 1)
@@ -882,7 +823,7 @@ albedo_texture = ExtResource("31_gwaj6")
 uv1_scale = Vector3(0.185, 0.185, 0.185)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7h8fu"]
-albedo_texture = ExtResource("40_l4vrt")
+albedo_texture = ExtResource("41_l4vrt")
 uv1_scale = Vector3(0.11, 0.11, 0.11)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lqp5"]
@@ -9363,7 +9304,7 @@ bus = &"SFX-WorldAmbience"
 transform = Transform3D(-8.764134e-08, 0, 2.005, 0, 2.005, 0, -2.005, 0, -8.764134e-08, -362.4409, 3.499998, -39.037586)
 open_offset = Vector3(3, 0, 0)
 slide_duration = 4.0
-buttons = [NodePath("../DoorButton"), null, null, NodePath("../DoorButton4")]
+buttons = [NodePath("../DoorButton"), NodePath("../DoorButton4")]
 
 [node name="DoorButton" parent="." unique_id=458718114 node_paths=PackedStringArray("door") instance=ExtResource("19_axeuq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -363.70038, 3.588463, -44.47883)
