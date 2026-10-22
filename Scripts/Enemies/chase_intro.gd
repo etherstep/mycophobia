@@ -79,6 +79,7 @@ func _show_run() -> void:
 	tween.tween_interval(0.9)
 	tween.tween_property(label, "modulate:a", 0.0, 0.25)
 	tween.tween_callback(_return_camera.bind(label))
+	_enemy.enemy_scream_player.play()
 
 
 func _return_camera(label: Label) -> void:
