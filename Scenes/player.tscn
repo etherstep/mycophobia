@@ -23,6 +23,11 @@
 [ext_resource type="AudioStream" uid="uid://slyrb4whc1ul" path="res://Assets/SFX/Dialogue/note_2.mp3" id="21_p1odr"]
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
+[ext_resource type="Shader" uid="uid://cheh3ia123ivp" path="res://Shaders/infection_vignette.gdshader" id="24_vignette"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
+shader = ExtResource("24_vignette")
+shader_parameter/strength = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -176,6 +181,16 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
+[node name="InfectionVignette" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+material = SubResource("ShaderMaterial_infection")
+
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
 anchor_left = 0.5
@@ -251,6 +266,26 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18_2ijsl")
 expand_mode = 1
+
+[node name="RunLabel" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -220.0
+offset_top = -60.0
+offset_right = 220.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
+theme_override_font_sizes/font_size = 96
+text = "RUN"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
 script = ExtResource("19_l6n3p")

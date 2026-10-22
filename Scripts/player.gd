@@ -30,6 +30,7 @@ var camera_base_y := 0.0
 var gravity: float = GRAVITY
 
 var dead := false
+var cutscene := false
 var pitch := 0.0
 var crouched := false
 var stand_height: float
@@ -69,7 +70,7 @@ var syringe_used = false
 var selected_world_item: ItemData = null
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var _infection_overlay: TextureRect = $HUD/InfectionOverlay
+@onready var _infection_vignette: ColorRect = $HUD/InfectionVignette
 @onready var _infection_timer: Label = $HUD/InfectionTimer
 @onready var camera_3d: Camera3D = $Camera3D
 @export var inventory_ui: Control
@@ -131,6 +132,46 @@ func _ready() -> void:
 	if held_item_crosshair != null:
 		held_item_crosshair.hide()
 
+func begin_cutscene() -> void:
+	cutscene = true
+	velocity.x = 0.0
+	velocity.z = 0.0
+
+
+func end_cutscene() -> void:
+	cutscene = false
+
+
+func look_toward(point: Vector3, duration: float) -> void:
+	var flat := point - global_position
+	flat.y = 0.0
+	if flat.length() < 0.05:
+		return
+	var look := Transform3D(Basis.IDENTITY, global_position).looking_at(global_position + flat, Vector3.UP)
+	var yaw := look.basis.get_euler().y
+	var from_yaw := rotation.y
+	var delta_yaw := wrapf(yaw - from_yaw, -PI, PI)
+	var tween := create_tween()
+	tween.tween_method(func(t: float) -> void:
+		rotation.y = from_yaw + delta_yaw * t
+	, 0.0, 1.0, duration)
+	tween.parallel().tween_property(camera_3d, "rotation:x", 0.0, duration)
+	await tween.finished
+	pitch = 0.0
+
+
+func show_run_text() -> void:
+	var label := $HUD/RunLabel as Label
+	label.visible = true
+	label.modulate.a = 0.0
+	var tween := create_tween()
+	tween.tween_property(label, "modulate:a", 1.0, 0.15)
+	tween.tween_interval(0.9)
+	tween.tween_property(label, "modulate:a", 0.0, 0.25)
+	await tween.finished
+	label.visible = false
+
+
 func setup_footstep_pool() -> void:
 	footstep_players.clear()
 	footstep_players.append(footstep_player)
@@ -141,7 +182,7 @@ func setup_footstep_pool() -> void:
 		footstep_players.append(player)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if dead or held or is_being_thrown:
+	if dead or held or is_being_thrown or cutscene:
 		return
 
 	if event.is_action_pressed("ui_cancel"):
@@ -274,16 +315,14 @@ func _find_enemy(target: Node) -> Node:
 	var current: Node = target
 
 	while current != null:
-		# The actual enemy is directly in the enemies group.
-		if current.is_in_group("enemies"):
-			return current
-
-		# The clicked object may be a separate StaticBody3D
-		# that references the enemy through its exported cloud variable.
+		# A spore shooter points at its cloud. Salt and matches act on that cloud.
 		if current.has_method("get_spore_shooter"):
 			var enemy = current.get_spore_shooter()
 			if is_instance_valid(enemy):
 				return enemy
+
+		if current.is_in_group("enemies"):
+			return current
 
 		current = current.get_parent()
 
@@ -368,6 +407,13 @@ func _update_inventory_state() -> void:
 
 func _physics_process(delta: float) -> void:
 	if dead:
+		return
+	if cutscene:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if not is_on_floor():
+			velocity.y -= GRAVITY * delta
+		move_and_slide()
 		return
 	if held:
 		velocity.x = 0.0
@@ -605,17 +651,17 @@ func _process(delta: float) -> void:
 	_vignette_left = maxf(_vignette_left - delta, 0.0)
 	_set_vignette_strength(_vignette_left / VIGNETTE_TIME)
 	if _vignette_left <= 0.0:
-		_infection_overlay.visible = false
+		_infection_vignette.visible = false
 
 
 func _pulse_infection_vignette() -> void:
 	_vignette_left = VIGNETTE_TIME
-	_infection_overlay.visible = true
+	_infection_vignette.visible = true
 	_set_vignette_strength(1.0)
 
 
 func _set_vignette_strength(strength: float) -> void:
-	var mat := _infection_overlay.material as ShaderMaterial
+	var mat := _infection_vignette.material as ShaderMaterial
 	if mat != null:
 		mat.set_shader_parameter("strength", strength)
 

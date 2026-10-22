@@ -1,6 +1,8 @@
 
 extends StaticBody3D
 
+@export var salted_color := Color(0.9, 0.85, 0.65)
+
 const TOUCH_INFECTION := 5
 const TOUCH_COOLDOWN := 0.8
 const PUSH_STEPS := 0.3
@@ -28,6 +30,64 @@ func _physics_process(delta: float) -> void:
 	for body in area.get_overlapping_bodies():
 		if body is Player:
 			_try_push(body as Player)
+
+
+# -------------------------
+# Salt and Matches
+# -------------------------
+
+func apply_salted() -> void:
+	if _dead or _salted:
+		return
+
+	_salted = true
+	_set_enemy_color(salted_color)
+	var shooter := _linked_shooter()
+	if shooter != null and shooter.has_method("apply_salted"):
+		shooter.apply_salted()
+
+
+func is_salted() -> bool:
+	return _salted and not _dead
+
+
+func kill_by_matches() -> void:
+	if _dead or not _salted:
+		return
+
+	_dead = true
+	_start_chase_if_linked()
+	var shooter := _linked_shooter()
+	if shooter != null and shooter.has_method("kill_by_matches"):
+		if shooter.has_method("apply_salted"):
+			shooter.apply_salted()
+		shooter.kill_by_matches()
+		return
+	queue_free()
+
+
+func _linked_shooter() -> Node:
+	for node in get_tree().get_nodes_in_group("enemies"):
+		if node == self:
+			continue
+		if node.get("cloud") == self and node.has_method("kill_by_matches"):
+			return node
+	return null
+
+
+func _start_chase_if_linked() -> void:
+	for node in get_tree().get_nodes_in_group("enemies"):
+		if node.get("starts_chase") != true or node.get("cloud") != self:
+			continue
+		var intro := get_tree().get_first_node_in_group("chase_intro")
+		if intro != null and intro.has_method("begin"):
+			intro.begin()
+		break
+
+
+# -------------------------
+# Touch infection and pushing
+# -------------------------
 
 func _try_push(player: Player) -> void:
 	if _touch_cooldown > 0.0 or player.dead:

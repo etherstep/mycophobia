@@ -1,9 +1,12 @@
 extends StaticBody3D
 
+signal burned
+
 @onready var spore_audio_player: AudioStreamPlayer3D = $SporePlayer
 
 @export var salted_color := Color(0.9, 0.85, 0.65)
 @export var cloud: StaticBody3D
+@export var starts_chase := false
 
 @export var salt_effect: Node3D
 
@@ -52,6 +55,11 @@ func kill_by_matches() -> void:
 		return
 
 	_dead = true
+	if starts_chase:
+		var intro := get_tree().get_first_node_in_group("chase_intro")
+		if intro != null and intro.has_method("begin"):
+			intro.begin()
+		burned.emit()
 
 	# Remove the salt effect.
 	if is_instance_valid(salt_effect):
@@ -66,11 +74,8 @@ func kill_by_matches() -> void:
 		fire_particles.restart()
 		fire_particles.emitting = true
 
-	# Let the fire play for 2 seconds.
-	await get_tree().create_timer(2.0).timeout
-
-	# Destroy the spore shooter after the fire.
-	queue_free()
+	# Let the fire play for 2 seconds, then destroy the shooter.
+	get_tree().create_timer(2.0).timeout.connect(queue_free)
 
 
 func interact() -> void:
