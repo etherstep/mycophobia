@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="AudioStream" uid="uid://cuf1k24xj2r37" path="res://Assets/SFX/sfx_2 - step_1.wav" id="2_2ijsl"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://246c44ncsi3i" path="res://Assets/Sprites/Stage_1_flashlights.PNG" id="3_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://bpvgof8ro80pk" path="res://Assets/SFX/sfx_2 - step_2.wav" id="3_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
@@ -11,8 +10,9 @@
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
 [ext_resource type="AudioStream" uid="uid://dj5wjjslrh253" path="res://Assets/SFX/sfx_2 - flashlight close.wav" id="9_vfarp"]
-[ext_resource type="Texture2D" uid="uid://xqr4b0ilxp1x" path="res://Assets/Sprites/Stage_2_flashlight.PNG" id="11_fd4e3"]
-[ext_resource type="Texture2D" uid="uid://b0f4khhvxubfw" path="res://Assets/Sprites/Stage_3_flashlight.PNG" id="12_qqcod"]
+[ext_resource type="Texture2D" uid="uid://c2jt128lga2ul" path="res://Assets/Sprites/flashlight_stage1.PNG" id="10_2ijsl"]
+[ext_resource type="Texture2D" uid="uid://uokg0jehuhdn" path="res://Assets/Sprites/flashlight_stage2.PNG" id="11_p1odr"]
+[ext_resource type="Texture2D" uid="uid://c3u5q06rlm51l" path="res://Assets/Sprites/flashlight_stage3.PNG" id="12_0gysh"]
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
@@ -25,12 +25,12 @@
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
 [ext_resource type="Shader" uid="uid://cheh3ia123ivp" path="res://Shaders/infection_vignette.gdshader" id="24_vignette"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
+height = 2.6291504
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
 shader = ExtResource("24_vignette")
 shader_parameter/strength = 0.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
-height = 2.6291504
 
 [node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
 collision_mask = 3
@@ -56,17 +56,15 @@ flashlight_on_sfx = ExtResource("8_0gysh")
 flashlight_off_sfx = ExtResource("9_vfarp")
 
 [node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=739574546 groups=["detection_light"]]
-transform = Transform3D(0.99453217, 0.030593013, 0.09984891, -0.016278196, 0.9898547, -0.14114776, -0.10315405, 0.13875063, 0.9849404, 0.4766215, -0.6343856, -0.029269874)
-light_color = Color(0.929673, 0.98395807, 0.92091703, 1)
-light_energy = 12.264
-light_volumetric_fog_energy = 0.1
-light_size = 0.255
+transform = Transform3D(0.9993954, 0.030377, 0.016916696, -0.030306974, 0.9995311, -0.0043807286, -0.017041825, 0.0038653868, 0.99984735, 0.15643951, -0.031244516, -0.12128334)
+light_color = Color(0.92941177, 0.9843137, 0.52156866, 1)
+light_energy = 14.939
+light_indirect_energy = 0.854
+light_size = 0.684
 light_specular = 1.43
 shadow_enabled = true
-shadow_normal_bias = 2.875
 shadow_reverse_cull_face = true
-shadow_transmittance_bias = 2.05
-shadow_blur = 0.313
+shadow_blur = 7.292
 spot_range = 28.54
 spot_attenuation = 1.08
 spot_angle = 15.0
@@ -87,49 +85,48 @@ flashlight = NodePath("../Camera3D/FlashLight")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 384.00003
-offset_top = 968.00006
-offset_right = 1196.0
-offset_bottom = 1936.0
+offset_left = 511.0
+offset_top = -478.00006
+offset_right = 511.0
+offset_bottom = -478.00006
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -0.61086524
-scale = Vector2(0.5, 0.5)
+rotation = 0.34906584
+scale = Vector2(0.975, 0.975)
 mouse_filter = 2
-texture = ExtResource("3_6t5aa")
-flip_h = true
+texture = ExtResource("10_2ijsl")
+expand_mode = 1
 
 [node name="FlashLightStage2" type="TextureRect" parent="PlayerHands" unique_id=568923382]
 visible = false
+modulate = Color(1, 1, 1, 0.34509805)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 384.00003
-offset_top = 968.00006
-offset_right = 1196.0
-offset_bottom = 1936.0
+offset_left = 483.90436
+offset_top = -502.495
+offset_right = 483.20093
+offset_bottom = -511.54578
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -0.61086524
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_fd4e3")
-flip_h = true
+rotation = 0.34906584
+texture = ExtResource("11_p1odr")
+expand_mode = 1
 
 [node name="FlashLightStage3" type="TextureRect" parent="PlayerHands" unique_id=318307901]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 384.00003
-offset_top = 968.00006
-offset_right = 1196.0
-offset_bottom = 1936.0
+offset_left = 487.0
+offset_top = -510.00006
+offset_right = 487.0
+offset_bottom = -510.00006
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -0.61086524
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_qqcod")
-flip_h = true
+rotation = 0.34906584
+texture = ExtResource("12_0gysh")
+expand_mode = 1
 
 [node name="HandsStage1" type="TextureRect" parent="PlayerHands" unique_id=464731495]
 visible = false
@@ -181,15 +178,15 @@ flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 
-[node name="InfectionVignette" type="ColorRect" parent="HUD"]
+[node name="InfectionVignette" type="ColorRect" parent="HUD" unique_id=1478529004]
 visible = false
+material = SubResource("ShaderMaterial_infection")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-material = SubResource("ShaderMaterial_infection")
 
 [node name="Crosshair_interact" type="TextureRect" parent="HUD" unique_id=1784283749]
 anchors_preset = 8
@@ -267,9 +264,9 @@ mouse_filter = 2
 texture = ExtResource("18_2ijsl")
 expand_mode = 1
 
-[node name="RunLabel" type="Label" parent="HUD"]
+[node name="RunLabel" type="Label" parent="HUD" unique_id=1959844326]
 visible = false
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.4
 anchor_right = 0.5
@@ -280,7 +277,6 @@ offset_right = 220.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
 theme_override_font_sizes/font_size = 96
 text = "RUN"

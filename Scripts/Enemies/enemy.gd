@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const WALK_SPEED := 2.5
 const CHASE_SPEED := 4.5
-const COMMITTED_CHASE_SPEED := 7.0
+const COMMITTED_CHASE_SPEED := 8.0
 const GRAVITY := 18.0
 
 enum State { WANDER, CHASE, SEARCH, GRAB, LEAVE, RETURN }
