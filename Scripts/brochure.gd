@@ -55,10 +55,15 @@ func go_to_world() -> void:
 	scene_changing = true
 	MusicManager.stop_brochure_sequence()
 
-	# Fade out to black
 	fade_screen.mouse_filter = Control.MOUSE_FILTER_STOP
+
 	var tween := create_tween()
 	tween.tween_property(fade_screen, "modulate:a", 1.0, 1.5)
 	await tween.finished
 
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	var error := get_tree().change_scene_to_file(
+		"res://Scenes/LoadingScreen.tscn"
+	)
+
+	if error != OK:
+		push_error("Failed to open LoadingScreen.tscn. Error: %s" % error)

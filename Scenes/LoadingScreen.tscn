@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dr6amt2iy3yjp"]
+
+[ext_resource type="Script" uid="uid://cmxhk1r7fyvq" path="res://Scripts/loading_screen.gd" id="1_m6rkq"]
+[ext_resource type="Texture2D" uid="uid://c7q6fweiriuqj" path="res://Assets/UI/Scene combine.JPG" id="2_qjj4j"]
+[ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="3_dq85b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhcb3"]
+bg_color = Color(0.18201035, 0.3072025, 0.16655529, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[node name="LoadingScreen" type="Control" unique_id=236591597]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m6rkq")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=273346144]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qjj4j")
+expand_mode = 1
+
+[node name="LoadingLabel" type="Label" parent="." unique_id=2028289468]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -252.5
+offset_top = -72.0
+offset_right = 252.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_dq85b")
+theme_override_font_sizes/font_size = 72
+text = "Enjoy the ride :P"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=364732820]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 339.0
+offset_top = -50.0
+offset_right = 915.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_dq85b")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/background = SubResource("StyleBoxFlat_hhcb3")
