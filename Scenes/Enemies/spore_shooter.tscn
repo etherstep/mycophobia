@@ -20,7 +20,6 @@ fire_effect = NodePath("FireEffect")
 [node name="Sprite" type="Sprite3D" parent="." unique_id=295786186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
 pixel_size = 0.001716
-billboard = 2
 alpha_cut = 1
 texture = ExtResource("2_fungus")
 

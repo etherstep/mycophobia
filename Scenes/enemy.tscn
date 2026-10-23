@@ -244,9 +244,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_baysf")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=767845271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2345846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8091316, 0)
 gi_mode = 2
-pixel_size = 0.00696
+pixel_size = 0.01044
 billboard = 2
 shaded = true
 alpha_cut = 2
