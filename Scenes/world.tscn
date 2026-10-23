@@ -5010,7 +5010,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12605286, -0.095947266, -0
 navigation_mesh = ExtResource("12_nav")
 
 [node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.589673, -18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288.4974, 4.0484815, -12.530169)
+
+[node name="NotesLight2" type="OmniLight3D" parent="." unique_id=831151889 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -366.2879, 4.0484815, 11.783102)
+
+[node name="NotesLight3" type="OmniLight3D" parent="." unique_id=1427337697 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -459.7147, 3.3662157, -21.60911)
+
+[node name="NotesLight4" type="OmniLight3D" parent="." unique_id=1338147387 groups=["detection_light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -445.5431, -3.0719151, 52.419212)
 
 [node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
@@ -5065,18 +5074,18 @@ player = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.77112, 2.4988518, -16.07994)
 
 [node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
-transform = Transform3D(-0.019978711, 0, 0.00092254137, 0, 0.02, 0, -0.00092254137, 0, -0.019978711, 1.6973877, 1, 0)
+transform = Transform3D(-0.01802855, 0, 0.008658598, 0, 0.02, 0, -0.008658598, 0, -0.01802855, 3.3042603, 1.4169326, 3.6055107)
 
 [node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -74.47415, 1.4062147, 28.150885)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -74.47415, 1.4062147, 28.065666)
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(-0.0054187262, 0, -0.019251944, 0, 0.02, 0, 0.019251944, 0, -0.0054187262, -167.7923, 0.8889251, -5.5377026)
+transform = Transform3D(-0.0054187262, 0, -0.019251944, 0, 0.02, 0, 0.019251944, 0, -0.0054187262, -168.00723, 0.8889251, -5.5377026)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.006122908, 0.006148179, -0.018019708, -0.0019780179, 0.019031549, 0.0058213016, 0.01893667, 4.4703483e-10, 0.0064344816, -153.62576, -5.632767, 68.48747)
+transform = Transform3D(0.006122908, 0.006148179, -0.018019708, -0.0019780179, 0.019031549, 0.0058213016, 0.01893667, 4.4703483e-10, 0.0064344816, -153.6882, -5.632767, 68.48747)
 item_data = ExtResource("9_ikia7")
 
 [node name="salt_1" parent="Collectibles" unique_id=648026096 instance=ExtResource("5_o06y3")]
@@ -5124,7 +5133,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -152.56451, -0.42256
 item_data = ExtResource("13_t2t4p")
 
 [node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -168.51877, -0.21468973, -5.3919697)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -168.51877, 0.6356797, -4.7215004)
 item_data = ExtResource("17_1cojt")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]

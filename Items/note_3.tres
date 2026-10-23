@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://buqhpnvq3x60w"]
 
 [ext_resource type="Script" uid="uid://dafwh6dm3o2hn" path="res://Scripts/Resources/ItemData.gd" id="1_owpok"]
-[ext_resource type="Texture2D" uid="uid://d4kroy7kaa7nu" path="res://Assets/Sprites/note.PNG" id="2_owpok"]
-[ext_resource type="Texture2D" uid="uid://vrtafr0aw0c" path="res://Assets/Sprites/note outline.PNG" id="3_2xg3g"]
+[ext_resource type="Texture2D" uid="uid://dt1367wakgpwi" path="res://Assets/Sprites/note.PNG" id="2_owpok"]
+[ext_resource type="Texture2D" uid="uid://bx3nh8quri6ui" path="res://Assets/Sprites/note outline.PNG" id="3_2xg3g"]
 
 [resource]
 script = ExtResource("1_owpok")
-name = "note_3"
+name = "Note 3"
 texture = ExtResource("2_owpok")
 texture_outline = ExtResource("3_2xg3g")
 text = "The infected do not trigger the
