@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="1_phjal"]
 [ext_resource type="Script" uid="uid://dxho26c3j0hl" path="res://Scripts/death_screen.gd" id="1_udgme"]
+[ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_c44sr"]
 [ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="2_udgme"]
-[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_xjc13"]
-[ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_wcigx"]
+[ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_ll4br"]
 [ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="5_bxuc8"]
 [ext_resource type="Texture2D" uid="uid://dvm3q3rqhgoa0" path="res://Assets/Sprites/fungal_back.png" id="8_c44sr"]
 [ext_resource type="AudioStream" uid="uid://c05odbfe4gjwf" path="res://Assets/Music/death_theme.mp3" id="8_wcigx"]
@@ -178,8 +178,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_udgme")
 play_again_button = NodePath("PlayAgain")
-button_hover_sfx = ExtResource("2_xjc13")
-button_pressed_sfx = ExtResource("3_wcigx")
+button_hover_sfx = ExtResource("2_c44sr")
+button_pressed_sfx = ExtResource("3_ll4br")
 
 [node name="DeathOverlay" type="TextureRect" parent="." unique_id=277374970]
 modulate = Color(0.77552164, 0.3666758, 0.455571, 1)

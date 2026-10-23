@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://difrr5pln7u8l"
+path="res://.godot/imported/sfx_2 - collect_saline.mp3-015f4152d6764344d862361495e17e6f.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/sfx_2 - collect_saline.mp3"
+dest_files=["res://.godot/imported/sfx_2 - collect_saline.mp3-015f4152d6764344d862361495e17e6f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
