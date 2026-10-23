@@ -4944,7 +4944,13 @@ points = PackedVector3Array(-308.25, 22, 22.15624, -308.25, -2, 22.15624, -303.4
 points = PackedVector3Array(-314, 22, 20.999996, -314, -2, 20.999996, -308.25003, 22, 22.156244, -308.25003, -2, 22.156244, -314, 22, 22.000002, -314, -2, 22.000002, -308.65622, 22, 23.062496, -308.65622, -2, 23.062496)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wander_notes"]
-size = Vector3(11.2, 6, 8.2)
+size = Vector3(11.2, 6, 30.834784)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wander_west"]
+size = Vector3(56.937378, 6, 59.08783)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wander_donovan"]
+size = Vector3(47.87744, 6, 49.38745)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chase_a"]
 size = Vector3(16, 6, 16)
@@ -9350,11 +9356,42 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WanderNotes" unique_id=2063988286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.317391)
 shape = SubResource("BoxShape3D_wander_notes")
 
 [node name="WanderNotesA" parent="." unique_id=1421695072 node_paths=PackedStringArray("wander_zone") instance=ExtResource("33_enemy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 2.5, -21)
 wander_zone = NodePath("../WanderNotes")
+
+[node name="WanderWest" type="Area3D" parent="." unique_id=1900002210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -396, 4, -16)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WanderWest" unique_id=1900002211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.468689, 0, -1.4551697)
+shape = SubResource("BoxShape3D_wander_west")
+
+[node name="WanderWestA" parent="." unique_id=1900002212 node_paths=PackedStringArray("wander_zone") instance=ExtResource("33_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 2.5, -18)
+wander_zone = NodePath("../WanderWest")
+
+[node name="WanderDonovan" type="Area3D" parent="." unique_id=1900002213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -466, 4, -28)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WanderDonovan" unique_id=1900002214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.552002, 0, 8.786011)
+shape = SubResource("BoxShape3D_wander_donovan")
+
+[node name="WanderDonovanA" parent="." unique_id=1900002215 node_paths=PackedStringArray("wander_zone") instance=ExtResource("33_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -474.5, 2.5, -44.5)
+wander_zone = NodePath("../WanderDonovan")
 
 [node name="ChaseRouteA" type="Area3D" parent="." unique_id=1030991669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320.8, 4, -21.1)
@@ -9420,7 +9457,7 @@ script = ExtResource("34_intro")
 spawn_point = NodePath("../ChaseSpawn")
 chase_end = NodePath("../ChaseEnd")
 
-[node name="SafeHouse" type="Area3D" parent="." unique_id=834722421]
+[node name="SafeHouse" type="Area3D" parent="." unique_id=834722421 groups=["safe_house"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -371.9173, 4.4450264, -5.041924)
 audio_bus_name = &"SFX-World"
 script = ExtResource("19_1cojt")
@@ -9429,6 +9466,13 @@ script = ExtResource("19_1cojt")
 shape = SubResource("BoxShape3D_hhcb3")
 debug_color = Color(0.9737751, 0.6190104, 0.78901684, 0.41960785)
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="SafeHouse" unique_id=1024893288]
+height = 10.0
+vertices = PackedVector3Array(-5, 0, -5, 5, 0, -5, 5, 0, 5, -5, 0, 5)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+avoidance_enabled = false
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse" unique_id=1678508463]
 transform = Transform3D(1, 0, 0, 0, -0.080030784, 0.9967924, 0, -0.9967924, -0.080030784, -3.5234985, 5.9045544, 0)
 stream = ExtResource("20_yq1aw")
@@ -9436,7 +9480,7 @@ max_distance = 10.0
 bus = &"Music"
 emission_angle_enabled = true
 
-[node name="SafeHouse2" type="Area3D" parent="." unique_id=1438314852]
+[node name="SafeHouse2" type="Area3D" parent="." unique_id=1438314852 groups=["safe_house"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -490.97626, 4.4450264, 17.673208)
 audio_bus_name = &"SFX-World"
 script = ExtResource("19_1cojt")
@@ -9444,6 +9488,13 @@ script = ExtResource("19_1cojt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SafeHouse2" unique_id=1888162428]
 shape = SubResource("CylinderShape3D_opbav")
 debug_color = Color(0.9737751, 0.6190104, 0.78901684, 0.41960785)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="SafeHouse2" unique_id=1723474241]
+radius = 14.708
+height = 12.929
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+avoidance_enabled = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SafeHouse2" unique_id=155774051]
 transform = Transform3D(0.60274994, -0.58736724, -0.5400853, 0.7445187, 0.17051753, 0.6454577, -0.28702664, -0.79115325, 0.5400853, 3.438385, 4.128314, -2.5154705)
