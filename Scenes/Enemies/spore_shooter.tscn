@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ds3gjhn4jsljs" path="res://Scripts/Enemies/spore_shooter.gd" id="1_shooter"]
 [ext_resource type="PackedScene" uid="uid://b3cs8esw1fo4b" path="res://Scenes/salt_effect.tscn" id="2_1v2ij"]
-[ext_resource type="Texture2D" uid="uid://dqeclkfluafub" path="res://Assets/Sprites/Spore shooter fungus.PNG" id="2_fungus"]
+[ext_resource type="Texture2D" uid="uid://b60p8307k1gfa" path="res://Assets/Sprites/Spore shooter fungus.PNG" id="2_fungus"]
 [ext_resource type="PackedScene" uid="uid://ck5afq4w7pkby" path="res://Scenes/fire_effect.tscn" id="3_imk8t"]
 [ext_resource type="AudioStream" uid="uid://dmdoug7cys448" path="res://Assets/SFX/enemy/spore_cloud_smoke.mp3" id="4_62nw4"]
 [ext_resource type="AudioStream" uid="uid://cfc6ti6road78" path="res://Assets/SFX/fire.mp3" id="6_sk3k1"]
@@ -19,8 +19,7 @@ fire_effect = NodePath("FireEffect")
 
 [node name="Sprite" type="Sprite3D" parent="." unique_id=295786186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
-pixel_size = 0.000572
-billboard = 2
+pixel_size = 0.001716
 alpha_cut = 1
 texture = ExtResource("2_fungus")
 
