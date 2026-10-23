@@ -5010,7 +5010,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12605286, -0.095947266, -0
 navigation_mesh = ExtResource("12_nav")
 
 [node name="NotesLight" type="OmniLight3D" parent="." unique_id=1742201001 groups=["detection_light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.589673, -18)
 
 [node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
@@ -5099,6 +5099,10 @@ item_data = ExtResource("11_e0ngr")
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -70.330414, -0.40756726, -5.0094604)
 item_data = ExtResource("12_hgpy0")
 
+[node name="saline_3" parent="Collectibles" unique_id=680228217 instance=ExtResource("5_o06y3")]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -83.28061, -0.40756726, 11.19278)
+item_data = ExtResource("12_hgpy0")
+
 [node name="saline_2" parent="Collectibles" unique_id=768498298 instance=ExtResource("5_o06y3")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -195.74298, -0.35492373, 29.426235)
 item_data = ExtResource("12_hgpy0")
@@ -5112,7 +5116,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -89.52231, 1.6103854
 item_data = ExtResource("13_t2t4p")
 
 [node name="matches_3" parent="Collectibles" unique_id=1468106813 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -174.31949, 1.337879, 0.8583698)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -174.06363, 1.337879, 1.1456518)
 item_data = ExtResource("13_t2t4p")
 
 [node name="matches_4" parent="Collectibles" unique_id=2040173787 instance=ExtResource("5_o06y3")]
@@ -5120,7 +5124,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -152.56451, -0.42256
 item_data = ExtResource("13_t2t4p")
 
 [node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -167.90347, -0.4373238, -5.3919697)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -168.51877, -0.21468973, -5.3919697)
 item_data = ExtResource("17_1cojt")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
@@ -9575,7 +9579,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
@@ -9590,7 +9594,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
@@ -9605,13 +9609,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
 
 [node name="Lamp10" type="MeshInstance3D" parent="." unique_id=1678586298]
-transform = Transform3D(-3.7195045e-09, 0, 0.08509234, 0, 0.08509234, 0, -0.08509234, 0, -3.7195045e-09, -285.16635, 9.67246, 16.984537)
+transform = Transform3D(0.08509234, 0, -2.220446e-16, 0, 0.08509234, 0, 2.220446e-16, 0, 0.08509234, -287.1572, 9.67246, -37.998863)
 cast_shadow = 0
 mesh = ExtResource("64_l4vrt")
 surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
@@ -9620,7 +9624,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
@@ -9635,13 +9639,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
 
 [node name="Lamp4" type="MeshInstance3D" parent="." unique_id=1479791780]
-transform = Transform3D(-3.7195045e-09, 0, -0.08509234, 0, 0.08509234, 0, 0.08509234, 0, -3.7195045e-09, -350.898, 9.829202, -46.894817)
+transform = Transform3D(0.08509234, 0, 2.220446e-16, 0, 0.08509234, 0, -2.220446e-16, 0, 0.08509234, -472.79605, 9.829202, -21.094124)
 cast_shadow = 0
 mesh = ExtResource("64_l4vrt")
 surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
@@ -9650,22 +9654,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
-spot_attenuation = -0.72
-spot_angle = 77.66
-spot_angle_attenuation = 0.8705503
-
-[node name="Lamp5" type="MeshInstance3D" parent="." unique_id=1392836214]
-transform = Transform3D(-3.7195045e-09, 0, 0.08509234, 0, 0.08509234, 0, -0.08509234, 0, -3.7195045e-09, -357.6071, 7.8043127, 16.019068)
-cast_shadow = 0
-mesh = ExtResource("64_l4vrt")
-surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Lamp5" unique_id=1316238755]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
-light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
-shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
@@ -9680,7 +9669,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
 light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
 shadow_enabled = true
-spot_range = 9.692
+spot_range = 14.245
 spot_attenuation = -0.72
 spot_angle = 77.66
 spot_angle_attenuation = 0.8705503
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1549971478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -312.2184, 8.709041, 34.900352)
+light_color = Color(0.5254902, 1, 0.56078434, 1)
+omni_range = 18.321
+omni_attenuation = 0.864
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=1956351256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -434.22552, 4.160844, -27.401983)
+light_color = Color(0.5254902, 1, 0.56078434, 1)
+omni_range = 16.954
+omni_attenuation = 0.679
