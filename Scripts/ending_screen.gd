@@ -7,6 +7,7 @@ extends Control
 @onready var end_screen_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	main_menu_button.mouse_entered.connect(_on_play_again_hovered)
 	main_menu_button.mouse_exited.connect(_on_play_again_unhovered)
 	if end_screen_player:

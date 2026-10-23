@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="2_j3kne"]
 [ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="3_x64vk"]
 [ext_resource type="AudioStream" uid="uid://2a4vovej078w" path="res://Assets/Music/main_menu_theme_2.mp3" id="4_x64vk"]
+[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="5_hover"]
+[ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="6_press"]
 
-[node name="EndingScreen" type="Control" unique_id=1881467181]
+[node name="EndingScreen" type="Control" unique_id=1881467181 node_paths=PackedStringArray("main_menu_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +15,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t3a5v")
+main_menu_button = NodePath("MainMenuButton")
+button_hover_sfx = ExtResource("5_hover")
+button_pressed_sfx = ExtResource("6_press")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=472025069]
 layout_mode = 1
@@ -48,3 +53,5 @@ flat = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1430578316]
 stream = ExtResource("4_x64vk")
 bus = &"Music"
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_play_again_button_pressed"]

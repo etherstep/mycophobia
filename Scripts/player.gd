@@ -248,6 +248,7 @@ func _try_use_world_item() -> void:
 	query.exclude = [get_rid()]
 	query.collide_with_bodies = true
 	query.collide_with_areas = true
+	query.hit_from_inside = true
 
 	# Ignore the spore cloud so the ray can hit the shooter behind it.
 	query.collision_mask = 1 # Adjust this to your interaction collision layer.
