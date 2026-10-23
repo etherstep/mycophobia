@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6oj5xtc8bdiy"
-path="res://.godot/imported/icon_godambler.svg-5c6f90099f5775569a340d95eddd8688.ctex"
+path="res://.godot/imported/icon_godambler.svg-a6dbba375ab2a45be046a1875b8d41e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/func_godot/icons/icon_godambler.svg"
-dest_files=["res://.godot/imported/icon_godambler.svg-5c6f90099f5775569a340d95eddd8688.ctex"]
+source_file="res://addons/func_godot/icons/icon_godambler.svg"
+dest_files=["res://.godot/imported/icon_godambler.svg-a6dbba375ab2a45be046a1875b8d41e6.ctex"]
 
 [params]
 
