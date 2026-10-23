@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://bp5x6ffm3lwd5"]
 
+[ext_resource type="Script" uid="uid://tpea4vkq273s" path="res://Scripts/ending_screen.gd" id="1_t3a5v"]
+[ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="2_j3kne"]
+[ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="3_x64vk"]
+[ext_resource type="AudioStream" uid="uid://2a4vovej078w" path="res://Assets/Music/main_menu_theme_2.mp3" id="4_x64vk"]
+
 [node name="EndingScreen" type="Control" unique_id=1881467181]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +12,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t3a5v")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=472025069]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j3kne")
+expand_mode = 1
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=393555867]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -24.0
+offset_right = 137.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_focus_color = Color(0.6431373, 0.6392157, 0.45882353, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_x64vk")
+theme_override_font_sizes/font_size = 40
+text = "PLAY AGAIN"
+flat = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1430578316]
+stream = ExtResource("4_x64vk")
+bus = &"Music"
