@@ -3,7 +3,7 @@ extends CharacterBody3D
 const WALK_SPEED := 1.0
 const GRAVITY := 18.0
 const WAIT_TIME := 2.5
-const BURN_TIME := 2.0
+const BURN_TIME := 5.0
 const ENDING_SCENE := "res://Scenes/EndingScreen.tscn"
 
 @export var chamber: Area3D

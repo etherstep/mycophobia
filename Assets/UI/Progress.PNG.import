@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c66ci4nx0gtnx"
-path.s3tc="res://.godot/imported/Progress.PNG-06667c03aaed92f42c2cc265696d64d3.s3tc.ctex"
+uid="uid://ctixy2ktlkrec"
+path="res://.godot/imported/Progress.PNG-06667c03aaed92f42c2cc265696d64d3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI/Progress.PNG"
-dest_files=["res://.godot/imported/Progress.PNG-06667c03aaed92f42c2cc265696d64d3.s3tc.ctex"]
+dest_files=["res://.godot/imported/Progress.PNG-06667c03aaed92f42c2cc265696d64d3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

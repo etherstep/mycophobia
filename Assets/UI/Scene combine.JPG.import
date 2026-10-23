@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7q6fweiriuqj"
-path.s3tc="res://.godot/imported/Scene combine.JPG-8e28cea8ba4d780eaa21321ff41aa7c6.s3tc.ctex"
+uid="uid://1djr0l0jxyx6"
+path="res://.godot/imported/Scene combine.JPG-8e28cea8ba4d780eaa21321ff41aa7c6.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI/Scene combine.JPG"
-dest_files=["res://.godot/imported/Scene combine.JPG-8e28cea8ba4d780eaa21321ff41aa7c6.s3tc.ctex"]
+dest_files=["res://.godot/imported/Scene combine.JPG-8e28cea8ba4d780eaa21321ff41aa7c6.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

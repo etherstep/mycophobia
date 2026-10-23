@@ -80,6 +80,7 @@ var selected_world_item: ItemData = null
 # AUDIO
 
 @onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+@onready var syringe_music_player: AudioStreamPlayer = $SyringeUseMusicPlayer
 const FOOTSTEP_POOL_SIZE := 4
 var footstep_players: Array[AudioStreamPlayer3D] = []
 var footstep_player_index: int = 0

@@ -1,32 +1,32 @@
 [gd_scene format=3 uid="uid://c7un65hd14m7y"]
 
 [ext_resource type="Script" uid="uid://car8gcbef5qxc" path="res://Scripts/Inventory/inventory_ui.gd" id="1_a3clf"]
-[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_ei62k"]
+[ext_resource type="Texture2D" uid="uid://b65vjwa3gj6in" path="res://Assets/UI/Background.PNG" id="2_ei62k"]
 [ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_f1vfh"]
 [ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_ghpjh"]
 [ext_resource type="AudioStream" uid="uid://fuu6lj3h0rkf" path="res://Assets/SFX/UI/read-note.mp3" id="4_jroks"]
-[ext_resource type="Texture2D" uid="uid://cupilj73cdnxu" path="res://Assets/UI/Inventory Row 1A.PNG" id="4_o2r74"]
-[ext_resource type="Texture2D" uid="uid://clp7kbacwda2x" path="res://Assets/UI/Inventory Row 1B.PNG" id="5_mkjsv"]
+[ext_resource type="Texture2D" uid="uid://cptc4sb6xvdsu" path="res://Assets/UI/Inventory Row 1A.PNG" id="4_o2r74"]
+[ext_resource type="Texture2D" uid="uid://71v54d63lnd1" path="res://Assets/UI/Inventory Row 1B.PNG" id="5_mkjsv"]
 [ext_resource type="AudioStream" uid="uid://lbcm36168io5" path="res://Assets/SFX/sfx_2 - inventory open.mp3" id="5_oyd3a"]
-[ext_resource type="Texture2D" uid="uid://c72b8ptwswg1o" path="res://Assets/UI/Inventory Row 1C.PNG" id="6_4grh2"]
+[ext_resource type="Texture2D" uid="uid://chc0gyiawvt0q" path="res://Assets/UI/Inventory Row 1C.PNG" id="6_4grh2"]
 [ext_resource type="AudioStream" uid="uid://6gpnu2xc7yqx" path="res://Assets/SFX/sfx_2 - inventory close.mp3" id="6_sgisd"]
-[ext_resource type="Texture2D" uid="uid://cxucp5df2qrag" path="res://Assets/UI/Inventory Row 2A.PNG" id="7_wqvdr"]
-[ext_resource type="Texture2D" uid="uid://cvhnesxmxy1ep" path="res://Assets/UI/Inventory Row 2B.PNG" id="8_eqgu5"]
-[ext_resource type="Texture2D" uid="uid://dleb5sy513fvb" path="res://Assets/UI/Inventory Row 3A.PNG" id="9_f1vfh"]
+[ext_resource type="Texture2D" uid="uid://beevtsjd1472j" path="res://Assets/UI/Inventory Row 2A.PNG" id="7_wqvdr"]
+[ext_resource type="Texture2D" uid="uid://c6ew0vqnyhths" path="res://Assets/UI/Inventory Row 2B.PNG" id="8_eqgu5"]
+[ext_resource type="Texture2D" uid="uid://v2ihlj4stkwa" path="res://Assets/UI/Inventory Row 3A.PNG" id="9_f1vfh"]
 [ext_resource type="FontFile" uid="uid://c5vdqg3r8atns" path="res://Assets/Fonts/Allura-Regular.ttf" id="9_ghpjh"]
-[ext_resource type="Texture2D" uid="uid://tgprgkgrga8m" path="res://Assets/UI/Inventory Row 3B.PNG" id="10_ghpjh"]
-[ext_resource type="Texture2D" uid="uid://c0ic550ow5aeh" path="res://Assets/UI/Inventory Row 3C.PNG" id="11_jroks"]
-[ext_resource type="Texture2D" uid="uid://cbkxc6iypssxj" path="res://Assets/UI/Item select window1.PNG" id="12_oyd3a"]
-[ext_resource type="Texture2D" uid="uid://scatt13k4v0w" path="res://Assets/UI/Item select window 2.PNG" id="13_sgisd"]
-[ext_resource type="Texture2D" uid="uid://ct2008a8vng2l" path="res://Assets/UI/Potrait shadow.PNG" id="15_s435f"]
-[ext_resource type="Texture2D" uid="uid://cpxndu8saiyir" path="res://Assets/UI/Row 2C.PNG" id="17_wv4rb"]
-[ext_resource type="Texture2D" uid="uid://c4eh1q43ecu8r" path="res://Assets/UI/Select fill in.PNG" id="18_f46an"]
-[ext_resource type="Texture2D" uid="uid://betosej4178g3" path="res://Assets/UI/Select outline.PNG" id="19_dk1fi"]
-[ext_resource type="Texture2D" uid="uid://dnwsnjuim587g" path="res://Assets/UI/Select triangle.PNG" id="20_c3dep"]
+[ext_resource type="Texture2D" uid="uid://drf12ic4bl4o3" path="res://Assets/UI/Inventory Row 3B.PNG" id="10_ghpjh"]
+[ext_resource type="Texture2D" uid="uid://q5oui67xjwc1" path="res://Assets/UI/Inventory Row 3C.PNG" id="11_jroks"]
+[ext_resource type="Texture2D" uid="uid://cgegbx272b4xu" path="res://Assets/UI/Item select window1.PNG" id="12_oyd3a"]
+[ext_resource type="Texture2D" uid="uid://xq837movul5w" path="res://Assets/UI/Item select window 2.PNG" id="13_sgisd"]
+[ext_resource type="Texture2D" uid="uid://d3avgh45vtt1" path="res://Assets/UI/Potrait shadow.PNG" id="15_s435f"]
+[ext_resource type="Texture2D" uid="uid://6g5v34s2xsl0" path="res://Assets/UI/Row 2C.PNG" id="17_wv4rb"]
+[ext_resource type="Texture2D" uid="uid://b32ffdboxmhnu" path="res://Assets/UI/Select fill in.PNG" id="18_f46an"]
+[ext_resource type="Texture2D" uid="uid://cymndn0pv6ydf" path="res://Assets/UI/Select outline.PNG" id="19_dk1fi"]
+[ext_resource type="Texture2D" uid="uid://cex75trebjgnh" path="res://Assets/UI/Select triangle.PNG" id="20_c3dep"]
 [ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="20_f1vfh"]
-[ext_resource type="Texture2D" uid="uid://d4js3nfc6qr43" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
-[ext_resource type="Texture2D" uid="uid://nx3uhtm013n0" path="res://Assets/UI/Infection Meter Micellium Overlay.png" id="26_f1vfh"]
-[ext_resource type="Texture2D" uid="uid://bjk6gc70lfs4a" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
+[ext_resource type="Texture2D" uid="uid://lbqnnibcribo" path="res://Assets/UI/Top bar.PNG" id="21_tm4mo"]
+[ext_resource type="Texture2D" uid="uid://dx3fifqhvmoms" path="res://Assets/UI/Infection Meter Micellium Overlay.png" id="26_f1vfh"]
+[ext_resource type="Texture2D" uid="uid://bdsbr8cvat0bb" path="res://Assets/UI/Portrait.PNG" id="27_f1vfh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxepx"]
 atlas = ExtResource("26_f1vfh")
@@ -163,48 +163,48 @@ mouse_filter = 2
 mouse_default_cursor_shape = 2
 
 [node name="InventoryRow1a" type="Sprite2D" parent="VisualSlots" unique_id=133876401]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_o2r74")
 
 [node name="InventoryRow1b" type="Sprite2D" parent="VisualSlots" unique_id=468626596]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.69995, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_mkjsv")
 
 [node name="InventoryRow1c" type="Sprite2D" parent="VisualSlots" unique_id=257271919]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.69995, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_4grh2")
 
 [node name="InventoryRow2a" type="Sprite2D" parent="VisualSlots" unique_id=2142138046]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("7_wqvdr")
 
 [node name="InventoryRow2c" type="Sprite2D" parent="VisualSlots" unique_id=1868530864]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("17_wv4rb")
 
 [node name="InventoryRow2b" type="Sprite2D" parent="VisualSlots" unique_id=252706331]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_eqgu5")
 
 [node name="InventoryRow3a" type="Sprite2D" parent="VisualSlots" unique_id=1923162226]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_f1vfh")
 
 [node name="InventoryRow3b" type="Sprite2D" parent="VisualSlots" unique_id=34268534]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_ghpjh")
 
 [node name="InventoryRow3c" type="Sprite2D" parent="VisualSlots" unique_id=1029367355]
-position = Vector2(779.7, 447.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(773.7, 446.8)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_jroks")
 
 [node name="Control" type="Control" parent="VisualSlots" unique_id=1299129004]
@@ -239,38 +239,40 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SelectUI" type="Control" parent="VisualSlots" unique_id=450111258]
-visible = false
 z_index = 10
-layout_mode = 1
 anchors_preset = 0
 mouse_filter = 2
 
 [node name="SelectFillIn" type="Sprite2D" parent="VisualSlots/SelectUI" unique_id=918550804]
 visible = false
-scale = Vector2(17.558334, 6.797619)
 texture = ExtResource("18_f46an")
+region_enabled = true
 
 [node name="SelectOutline" type="Sprite2D" parent="VisualSlots/SelectUI" unique_id=1374827335]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(1.52, 1.52)
 texture = ExtResource("19_dk1fi")
 region_enabled = true
-region_rect = Rect2(214, 512, 420, 442)
+region_rect = Rect2(80, 176, 120, 136)
 
 [node name="SelectTriangle" type="Sprite2D" parent="VisualSlots/SelectUI" unique_id=752496938]
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -88)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("20_c3dep")
 region_enabled = true
-region_rect = Rect2(241, 500, 358, 442)
+region_rect = Rect2(104, 168, 72, 24)
 
 [node name="TopBar" type="Sprite2D" parent="VisualSlots" unique_id=343650401]
-position = Vector2(683.7, 487.8)
-scale = Vector2(0.5, 0.5)
+position = Vector2(457.5999, 364.64996)
 texture = ExtResource("21_tm4mo")
 
 [node name="PotraitShadow" type="Sprite2D" parent="VisualSlots" unique_id=942076616]
-position = Vector2(1248, 635)
-scale = Vector2(0.44, 0.44)
+position = Vector2(1294, 615.5)
+scale = Vector2(1.3655324, 1.3455344)
 texture = ExtResource("15_s435f")
+
+[node name="Portrait" type="Sprite2D" parent="VisualSlots" unique_id=1056993300]
+position = Vector2(1666, 619)
+texture = ExtResource("27_f1vfh")
 
 [node name="InfectionMeter" type="Node2D" parent="VisualSlots" unique_id=538254370]
 
@@ -302,20 +304,15 @@ layout_mode = 0
 offset_right = 776.0
 offset_bottom = 32.0
 mouse_filter = 2
-color = Color(0.14117648, 0.16862746, 0.18039216, 1)
+color = Color(0.34509805, 0.5137255, 0.32941177, 1)
 
 [node name="MicelliumOverlay" type="TextureRect" parent="VisualSlots/InfectionMeter/InfectionMeterControl" unique_id=338256935]
 modulate = Color(1, 1, 1, 0.47058824)
 layout_mode = 0
-offset_right = 800.0
-offset_bottom = 40.0
+offset_right = 775.0
+offset_bottom = 32.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_nxepx")
 expand_mode = 1
-
-[node name="Portrait" type="Sprite2D" parent="." unique_id=1056993300]
-position = Vector2(1607, 639)
-scale = Vector2(0.325, 0.325)
-texture = ExtResource("27_f1vfh")
 
 [connection signal="gui_input" from="NoteView" to="." method="_on_note_view_gui_input"]

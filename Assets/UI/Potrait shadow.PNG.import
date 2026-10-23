@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct2008a8vng2l"
-path.s3tc="res://.godot/imported/Potrait shadow.PNG-c7018fe3b862d5d54da318cc2de05377.s3tc.ctex"
+uid="uid://d3avgh45vtt1"
+path="res://.godot/imported/Potrait shadow.PNG-c7018fe3b862d5d54da318cc2de05377.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI/Potrait shadow.PNG"
-dest_files=["res://.godot/imported/Potrait shadow.PNG-c7018fe3b862d5d54da318cc2de05377.s3tc.ctex"]
+dest_files=["res://.godot/imported/Potrait shadow.PNG-c7018fe3b862d5d54da318cc2de05377.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

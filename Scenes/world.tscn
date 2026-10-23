@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bokn5m4sjypna"]
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
-[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
-[ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="2_eskoj"]
+[ext_resource type="Texture2D" uid="uid://b65vjwa3gj6in" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
+[ext_resource type="Texture2D" uid="uid://py35mumcwkio" path="res://Assets/UI/Scene after.PNG" id="2_eskoj"]
 [ext_resource type="Script" uid="uid://dft6pwxvn7j66" path="res://Scripts/world_environment.gd" id="3_82dmg"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
@@ -5003,7 +5003,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("world", "inventory", "inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(0.012871943, 0, -0.9999171, 0, 1, 0, 0.9999171, 0, 0.012871943, -284.75262, 2.1201868, -45.86623)
+transform = Transform3D(0.012871943, 0, -0.9999171, 0, 1, 0, 0.9999171, 0, 0.012871943, -284.5294, 3.4190412, -45.586823)
 world = NodePath("..")
 inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
@@ -5063,7 +5063,7 @@ transform = Transform3D(-0.0054187262, 0, -0.019251944, 0, 0.02, 0, 0.019251944,
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.0061229086, 0.0061481795, -0.018019706, -0.0019780176, 0.019031549, 0.0058213016, 0.018936668, 0, 0.0064344825, -153.62576, -5.632767, 68.48747)
+transform = Transform3D(0.006122908, 0.006148179, -0.018019708, -0.0019780179, 0.019031549, 0.0058213016, 0.01893667, 4.4703483e-10, 0.0064344816, -153.62576, -5.632767, 68.48747)
 item_data = ExtResource("9_ikia7")
 
 [node name="salt_1" parent="Collectibles" unique_id=648026096 instance=ExtResource("5_o06y3")]
@@ -9327,20 +9327,21 @@ bus = &"SFX-WorldAmbience"
 
 [node name="Door" parent="." unique_id=129536702 node_paths=PackedStringArray("buttons") instance=ExtResource("20_1cojt")]
 transform = Transform3D(-8.764134e-08, 0, 2.005, 0, 2.005, 0, -2.005, 0, -8.764134e-08, -362.4409, 3.499998, -39.037586)
+open_offset = Vector3(0, 0, 3.5)
 slide_duration = 4.0
 buttons = [NodePath("../DoorButton"), NodePath("../DoorButton4")]
 
 [node name="DoorButton" parent="." unique_id=458718114 node_paths=PackedStringArray("door") instance=ExtResource("19_axeuq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -363.89255, 3.588463, -44.47883)
 door = NodePath("../Door")
-timeout = 60.0
-brightness = 10.0
+timeout = 5.0
+brightness = 4.0
 
 [node name="DoorButton4" parent="." unique_id=1581573885 node_paths=PackedStringArray("door") instance=ExtResource("19_axeuq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -401.7444, 3.588463, -0.6919562)
 door = NodePath("../Door")
-timeout = 60.0
-brightness = 10.0
+timeout = 25.0
+brightness = 4.0
 
 [node name="SporeCloudWest" parent="." unique_id=2079239642 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
 transform = Transform3D(-1.3409592, 0.024544619, 0.32500166, 0.022952326, 1.3797765, -0.009501327, -0.325118, -0.003827064, -1.3411503, -439.9975, 2.05, -20.337969)
