@@ -75,6 +75,11 @@ func play_game_ambience() -> void:
 	ambience_player_2.stream = game_song_2
 	ambience_player_2.play()
 
+func stop_game_ambience() -> void:
+	stop()
+	ambience_player.stop()
+	ambience_player_2.stop()
+
 func play_sfx(sound: AudioStream) -> void:
 	if sound == null:
 		return

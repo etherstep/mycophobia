@@ -307,6 +307,26 @@ text = "Press F to toggle flashlight"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HelpLabel2" type="Label" parent="HUD" unique_id=2050229111]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -606.5
+offset_top = -66.0
+offset_right = 606.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
+theme_override_fonts/font = ExtResource("21_0gysh")
+theme_override_font_sizes/font_size = 34
+text = "Press [TAB] or I to open inventory."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="NoteViewer" type="CanvasLayer" parent="." unique_id=1789533004 groups=["note_viewer"]]
 script = ExtResource("19_l6n3p")
 note_1 = ExtResource("20_2ijsl")

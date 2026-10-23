@@ -92,6 +92,5 @@ func set_hovered(hovered: bool) -> void:
 			sprite.modulate = Color("c3c1b4ff")
 		else:
 			sprite.modulate = original_modulate
-
 	if sprite_outline:
 		sprite_outline.visible = hovered

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
+[ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="2_eskoj"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
@@ -61,16 +62,18 @@
 [ext_resource type="AudioStream" uid="uid://bpqd2j3852irk" path="res://Assets/SFX/player/reaction_after_chase_scene.mp3" id="45_te07t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
-panorama = ExtResource("2_c5t2i")
+panorama = ExtResource("2_eskoj")
 
 [sub_resource type="Sky" id="Sky_ikia7"]
 sky_material = SubResource("PanoramaSkyMaterial_n8wo2")
+process_mode = 1
 
 [sub_resource type="Environment" id="Environment_baysf"]
 background_mode = 2
-background_energy_multiplier = 0.0
+background_energy_multiplier = 0.45
 sky = SubResource("Sky_ikia7")
-ambient_light_color = Color(0.48345667, 0.45739383, 0.33290654, 1)
+sky_rotation = Vector3(0, 0.4607669, 0)
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 3
 tonemap_exposure = 0.37
 tonemap_white = 16.0
@@ -92,7 +95,6 @@ fog_sun_scatter = 0.01
 fog_density = 1.0
 fog_aerial_perspective = 0.683
 fog_sky_affect = 0.73
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.1109
 volumetric_fog_albedo = Color(0, 0.1764706, 0, 1)
 volumetric_fog_emission_energy = 0.0
@@ -4982,7 +4984,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory", "inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(0.6852473, 0, 0.72831047, 0, 1, 0, -0.72831047, 0, 0.6852473, -284.6135, 2.1201868, -46.56684)
+transform = Transform3D(0.012871943, 0, -0.9999171, 0, 1, 0, 0.9999171, 0, 0.012871943, -284.75262, 2.1201868, -45.86623)
 inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
 turn_to_enemy_animation_time = 1.2000000000000002
@@ -4999,8 +5001,9 @@ script = ExtResource("11_alert")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
 
-[node name="SporeCloud" parent="." unique_id=1742201103 groups=["enemies"] instance=ExtResource("15_spore")]
+[node name="SporeCloud" parent="." unique_id=1742201103 node_paths=PackedStringArray("player") groups=["enemies"] instance=ExtResource("15_spore")]
 transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -313.88345, 2.05, -25.121035)
+player = NodePath("../Player")
 
 [node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
 transform = Transform3D(1.8947194, -0.19675526, 0.22542682, 0.28819844, 1.5885773, -1.0357873, -0.0804459, 1.0569774, 1.5986929, -315.597, 4.35184, -23.998056)
@@ -5008,8 +5011,9 @@ collision_layer = 9
 cloud = NodePath("../SporeCloud")
 starts_chase = true
 
-[node name="SporeCloud2" parent="." unique_id=1742201101 instance=ExtResource("15_spore")]
+[node name="SporeCloud2" parent="." unique_id=1742201101 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
 transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -289.1636, 2.1255784, -32.818443)
+player = NodePath("../Player")
 
 [node name="SporeShooter2" parent="." unique_id=1384741125 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
 transform = Transform3D(1.8947194, -0.19675526, 0.22542682, 0.28819844, 1.5885773, -1.0357873, -0.0804459, 1.0569774, 1.5986929, -290.87714, 4.4274187, -31.695467)
@@ -9210,14 +9214,14 @@ shape = SubResource("ConvexPolygonShape3D_0x5k4")
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -284, 2.03125, -46)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1442628819]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -592.7567, 402.9469, 442.1686)
-light_color = Color(0.44437638, 0.8569726, 0.95962995, 1)
-light_energy = 4.664
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -331.16803, 402.9469, 442.1686)
+visible = false
 light_volumetric_fog_energy = 7.195
 shadow_enabled = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=489496844]
 transform = Transform3D(-0.87112826, 0.48756024, 0.05848636, -0.22946951, -0.50947845, 0.8293223, 0.4341421, 0.70902526, 0.55570126, -314.54007, 4.454714, -37.938095)
+visible = false
 light_color = Color(0.86266446, 0.89861405, 0.74724084, 1)
 light_indirect_energy = 7.565
 light_volumetric_fog_energy = 2.404
@@ -9466,3 +9470,13 @@ shadow_bias = 0.0
 shadow_blur = 4.0
 area_range = 112.07
 area_attenuation = 0.574
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node" unique_id=1894225666]
+transform = Transform3D(0.20405295, -0.46531418, 0.86130434, 0.107269056, 0.8851456, 0.45278102, -0.97306514, -5.3855032e-14, 0.2305304, -233.39369, 12.205048, 11.220139)
+shadow_enabled = true
+sky_mode = 2
+
+[node name="AreaLight3D4" type="AreaLight3D" parent="Node" unique_id=1090393632]
+transform = Transform3D(0.56349593, -0.67954177, 0.46978226, 0.06355207, 0.60263425, 0.795483, -0.8236707, -0.41839585, 0.3827682, -282.834, 10.785066, -43.46416)
+shadow_enabled = true
+area_range = 18.105

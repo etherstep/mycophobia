@@ -74,7 +74,6 @@ func _on_new_game_pressed() -> void:
 	await tween.finished
 	await get_tree().create_timer(5.0).timeout
 
-	#get_tree().change_scene_to_file("res://Scenes/world.tscn")
 	get_tree().change_scene_to_file("res://Scenes/brochure.tscn")
 
 func _on_options_pressed() -> void:

@@ -172,6 +172,9 @@ func use_item(item: ItemData) -> void:
 			if player == null:
 				return
 
+			if player.syringe_used:
+				return
+
 			if not player.has_method("decrease_infection"):
 				push_warning("Player is missing cure_infection().")
 				return
@@ -213,7 +216,6 @@ func _update_readable_panel() -> void:
 	if available_size.x <= 0 or available_size.y <= 0:
 		return
 
-	# Match the actual Keep Aspect Centered image dimensions.
 	var scale_factor: float = minf(
 		available_size.x / texture_size.x,
 		available_size.y / texture_size.y
@@ -293,13 +295,10 @@ func _show_item_select(item: ItemData) -> void:
 	if item == null:
 		_hide_item_select()
 		return
-
-	# Show both Sprite2D panels and their parent.
 	item_select_view_container.show()
 	item_select_view_front.show()
 	item_select_view_back.show()
 
-	# Update the description if a text node has been assigned.
 	if item_select_text == null:
 		push_warning("ItemSelect: Assign item_select_text in the Inspector.")
 		return
@@ -309,12 +308,8 @@ func _show_item_select(item: ItemData) -> void:
 	elif item_select_text is RichTextLabel:
 		(item_select_text as RichTextLabel).text = item.text
 
-	print("Hovering item: ", item.name)
-
-
 func _hide_item_select() -> void:
 	item_select_view_container.hide()
-
 
 func _on_item_select_exit() -> void:
 	_hide_item_select()
