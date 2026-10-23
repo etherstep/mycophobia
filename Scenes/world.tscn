@@ -13,15 +13,15 @@
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
 [ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
-[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
-[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://Addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="13_kn0ld"]
 [ext_resource type="Resource" uid="uid://bd6cw241hd5e4" path="res://Items/matches.tres" id="13_t2t4p"]
 [ext_resource type="PackedScene" uid="uid://bsporecloud01" path="res://Scenes/Enemies/spore_cloud.tscn" id="15_spore"]
 [ext_resource type="PackedScene" uid="uid://c8wkejo0w8bos" path="res://Scenes/Enemies/spore_shooter.tscn" id="16_shooter"]
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
-[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
 [ext_resource type="Texture2D" uid="uid://34ar7ctuk4wp" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
@@ -63,6 +63,8 @@
 [ext_resource type="AudioStream" uid="uid://bngcx1y5tye62" path="res://Assets/SFX/Athmosphere/ambient_noise_4.mp3" id="52_tutfb"]
 [ext_resource type="AudioStream" uid="uid://vu0yh2u0umvq" path="res://Assets/SFX/Athmosphere/ambient_noise_5.mp3" id="53_s73dv"]
 [ext_resource type="AudioStream" uid="uid://dlrf38ti03v6c" path="res://Assets/SFX/Athmosphere/ambient_noise_6.mp3" id="54_lxtj3"]
+[ext_resource type="ArrayMesh" uid="uid://4oqa1tm4f7yh" path="res://Assets/Models/lamp.obj" id="64_l4vrt"]
+[ext_resource type="Texture2D" uid="uid://t2y5v0uveohb" path="res://Assets/Textures/emissivemask.png" id="65_ry8tx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n8wo2"]
 panorama = ExtResource("2_eskoj")
@@ -769,6 +771,9 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2g6t7"]
 albedo_texture = ExtResource("26_b4e6k")
+emission_enabled = true
+emission = Color(0, 0.57254905, 0.79607844, 1)
+emission_energy_multiplier = 0.18
 uv1_scale = Vector3(0.07, 0.07, 0.07)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2dp7"]
@@ -855,7 +860,7 @@ albedo_texture = ExtResource("33_vhf2b")
 metallic = 0.51
 emission_enabled = true
 emission = Color(0.22745098, 1, 0.8117647, 1)
-emission_energy_multiplier = 0.12
+emission_energy_multiplier = 0.3
 emission_operator = 1
 emission_texture = ExtResource("33_vhf2b")
 uv1_scale = Vector3(0.525, 0.525, 0.525)
@@ -4983,6 +4988,14 @@ radius = 5.6430664
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_82dmg"]
 height = 3.0
 radius = 11.333984
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6vgk"]
+albedo_texture = ExtResource("29_13n8b")
+emission_enabled = true
+emission = Color(0.6156863, 0.8901961, 0.9019608, 1)
+emission_energy_multiplier = 4.69
+emission_operator = 1
+emission_texture = ExtResource("65_ry8tx")
 
 [node name="World" type="Node3D" unique_id=322679481 node_paths=PackedStringArray("player")]
 script = ExtResource("10_world")
@@ -9234,22 +9247,6 @@ shape = SubResource("ConvexPolygonShape3D_0x5k4")
 [node name="entity_1_info_player_start" type="Marker3D" parent="FuncGodotMap" unique_id=1323564966]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -284, 2.03125, -46)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1442628819]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -331.16803, 402.9469, 442.1686)
-visible = false
-light_volumetric_fog_energy = 7.195
-shadow_enabled = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=489496844]
-transform = Transform3D(-0.87112826, 0.48756024, 0.05848636, -0.22946951, -0.50947845, 0.8293223, 0.4341421, 0.70902526, 0.55570126, -314.54007, 4.454714, -37.938095)
-visible = false
-light_color = Color(0.86266446, 0.89861405, 0.74724084, 1)
-light_indirect_energy = 7.565
-light_volumetric_fog_energy = 2.404
-light_size = 0.298
-light_specular = 5.306
-shadow_enabled = true
-
 [node name="RandomAmbiencePoint" type="Node3D" parent="." unique_id=25133711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.08496, 11.492045, 17.308651)
 script = ExtResource("22_pyn1s")
@@ -9523,36 +9520,6 @@ emission_angle_degrees = 36.1
 
 [node name="Node" type="Node" parent="." unique_id=676888636]
 
-[node name="AreaLight3D" type="AreaLight3D" parent="Node" unique_id=1048989947]
-transform = Transform3D(0.13842069, 0.013258603, -0.9902848, -0.990036, -0.02425045, -0.1387106, -0.02585396, 0.99961793, 0.0097697275, -314.57684, 9.476819, -33.882317)
-visible = false
-light_color = Color(1, 1, 0.5411765, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_blur = 4.0
-area_range = 25.885
-area_size = Vector2(0.10809326, 10.626511)
-
-[node name="AreaLight3D2" type="AreaLight3D" parent="Node" unique_id=1777670734]
-transform = Transform3D(-0.99966294, -0.025876075, 0.002144049, 0.0023960322, -0.009711002, 0.99995, -0.02585396, 0.99961805, 0.009769728, -308.3319, 9.7909775, -33.882317)
-light_color = Color(1, 1, 0.5411765, 1)
-light_energy = 8.385
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_blur = 4.0
-area_range = 25.885
-area_size = Vector2(0.47235107, 0.6656494)
-
-[node name="AreaLight3D3" type="AreaLight3D" parent="Node" unique_id=1687079579]
-transform = Transform3D(-0.9994804, -0.026036114, 0.019002039, 0.019249145, -0.009273374, 0.9997717, -0.025853956, 0.999618, 0.009769728, -317.3865, 18.889889, 34.195824)
-light_color = Color(1, 1, 0.5411765, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_blur = 4.0
-area_range = 112.07
-area_attenuation = 0.574
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node" unique_id=1894225666]
 transform = Transform3D(0.23461305, -0.2039132, 0.95046103, 0.044459157, 0.97897893, 0.19905712, -0.9710716, -0.0044447035, 0.23874703, -275.36206, 62.162666, -25.047165)
 visible = false
@@ -9562,11 +9529,6 @@ light_specular = 0.0
 shadow_enabled = true
 shadow_bias = 0.89
 sky_mode = 1
-
-[node name="AreaLight3D4" type="AreaLight3D" parent="Node" unique_id=1090393632]
-transform = Transform3D(0.56349593, -0.67954177, 0.46978226, 0.06355207, 0.60263425, 0.795483, -0.8236707, -0.41839585, 0.3827682, -282.834, 10.785066, -43.46416)
-shadow_enabled = true
-area_range = 18.105
 
 [node name="DonovanPost" type="Marker3D" parent="." unique_id=1900001001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -462.6017, 2.5, -25.541649)
@@ -9602,3 +9564,123 @@ debug_color = Color(4.5724212e-07, 0.34662852, 0.4067436, 0.9764706)
 [node name="MotherMushroom" parent="." unique_id=1900002112 node_paths=PackedStringArray("chamber") instance=ExtResource("36_mother")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -310.95786, -1.8818419, 37.87681)
 chamber = NodePath("../MotherChambers")
+
+[node name="Lamp2" type="MeshInstance3D" parent="." unique_id=70731032]
+transform = Transform3D(0.08509234, 0, 0, 0, 0.08509234, 0, 0, 0, 0.08509234, -377.17908, 9.829202, -5.97212)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp2" unique_id=1903355481]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp3" type="MeshInstance3D" parent="." unique_id=1266948242]
+transform = Transform3D(0.08509234, 0, 0, 0, 0.08509234, 0, 0, 0, 0.08509234, -362.2048, 9.829202, -19.174562)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp3" unique_id=240390731]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp6" type="MeshInstance3D" parent="." unique_id=1752965504]
+transform = Transform3D(0.08509234, 0, 0, 0, 0.08509234, 0, 0, 0, 0.08509234, -329.24792, 9.67246, -34.99807)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp6" unique_id=1535227398]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp10" type="MeshInstance3D" parent="." unique_id=1678586298]
+transform = Transform3D(-3.7195045e-09, 0, 0.08509234, 0, 0.08509234, 0, -0.08509234, 0, -3.7195045e-09, -285.16635, 9.67246, 16.984537)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp10" unique_id=1701512896]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp11" type="MeshInstance3D" parent="." unique_id=321436438]
+transform = Transform3D(-3.7195045e-09, 0, 0.08509234, 0, 0.08509234, 0, -0.08509234, 0, -3.7195045e-09, -340.46823, 7.7995653, 0.11499667)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp11" unique_id=1446465384]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp4" type="MeshInstance3D" parent="." unique_id=1479791780]
+transform = Transform3D(-3.7195045e-09, 0, -0.08509234, 0, 0.08509234, 0, 0.08509234, 0, -3.7195045e-09, -350.898, 9.829202, -46.894817)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp4" unique_id=598998447]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp5" type="MeshInstance3D" parent="." unique_id=1392836214]
+transform = Transform3D(-3.7195045e-09, 0, 0.08509234, 0, 0.08509234, 0, -0.08509234, 0, -3.7195045e-09, -357.6071, 7.8043127, 16.019068)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp5" unique_id=1316238755]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
+
+[node name="Lamp7" type="MeshInstance3D" parent="." unique_id=836591718]
+transform = Transform3D(-3.7195045e-09, 0, 0.08509234, 0, 0.08509234, 0, -0.08509234, 0, -3.7195045e-09, -451.2244, 10.095744, 8.257187)
+cast_shadow = 0
+mesh = ExtResource("64_l4vrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_a6vgk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp7" unique_id=748065699]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.4140625, -4.5771637, 0.054275513)
+light_color = Color(0.8666667, 0.8901961, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 9.692
+spot_attenuation = -0.72
+spot_angle = 77.66
+spot_angle_attenuation = 0.8705503
