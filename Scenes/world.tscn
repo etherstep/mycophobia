@@ -5074,7 +5074,7 @@ player = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.77112, 2.4988518, -16.07994)
 
 [node name="Note_1" parent="Collectibles" unique_id=376975287 instance=ExtResource("5_o06y3")]
-transform = Transform3D(-0.01802855, 0, 0.008658598, 0, 0.02, 0, -0.008658598, 0, -0.01802855, 3.3042603, 1.4169326, 3.6055107)
+transform = Transform3D(-0.01802855, 0, 0.008658601, 0, 0.02, 0, -0.008658601, 0, -0.01802855, 3.3074646, 1.4169326, 3.6055107)
 
 [node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -74.47415, 1.4062147, 28.065666)
@@ -9369,7 +9369,7 @@ cloud = NodePath("../SporeCloudWest")
 [node name="SporeShooterCave1" parent="." unique_id=1749922918 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
 transform = Transform3D(-3.5327327, -1.0288048, 0.0046803076, 1.0288006, -3.5327356, -0.0032663632, 0.005406924, -0.0018274445, 3.679486, -448.99103, -2.8177814, 43.119118)
 collision_layer = 9
-cloud = NodePath("../SporeCloudWest")
+cloud = NodePath("../SporeCloudCave2")
 
 [node name="SporeCloudCave" parent="." unique_id=1900002310 node_paths=PackedStringArray("player") instance=ExtResource("40_cavecloud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, -1.8788004, 44)
