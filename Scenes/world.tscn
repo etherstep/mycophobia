@@ -9322,10 +9322,10 @@ timeout = 10.0
 brightness = 10.0
 
 [node name="SporeCloudWest" parent="." unique_id=2079239642 instance=ExtResource("15_spore")]
-transform = Transform3D(0, 0, 1.38, 0, 1.38, 0, -1.38, 0, 0, -439.5, 2.05, -31.5)
+transform = Transform3D(-1.3409592, 0.024544619, 0.32500166, 0.022952326, 1.3797765, -0.009501327, -0.325118, -0.003827064, -1.3411503, -439.9975, 2.05, -20.830206)
 
 [node name="SporeShooterWest" parent="." unique_id=51457755 node_paths=PackedStringArray("cloud") instance=ExtResource("16_shooter")]
-transform = Transform3D(1.9182, 0, 0, 0, 1.9182, 0, 0, 0, 1.9182, -439.5, 4.35184, -33.88)
+transform = Transform3D(0.3701235, -1.8821476, -0.0045589837, 1.8821529, 0.3701224, 0.0008965196, 0, -0.004646297, 1.9181943, -439.03476, 3.9171228, -20.420582)
 cloud = NodePath("../SporeCloudWest")
 
 [node name="WanderNotes" type="Area3D" parent="." unique_id=502470513]
