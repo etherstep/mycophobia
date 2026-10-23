@@ -53,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://bf5fycq7pwgkj" path="res://Assets/Textures/Horror_Misc_14-256x256.png" id="33_vhf2b"]
 [ext_resource type="Script" uid="uid://vw4rh4bl2aea" path="res://Scripts/Enemies/chase_intro.gd" id="34_intro"]
 [ext_resource type="Script" uid="uid://cchase0route1" path="res://Scripts/Enemies/chase_route.gd" id="35_chase"]
+[ext_resource type="PackedScene" uid="uid://cmothermush01" path="res://Scenes/mother_mushroom.tscn" id="36_mother"]
 [ext_resource type="Texture2D" uid="uid://ddi1uy56s47f7" path="res://Assets/Textures/Horror_Wall_09-256x256.png" id="37_dsm2w"]
 [ext_resource type="Texture2D" uid="uid://d75s22uedrdb" path="res://Assets/Textures/Horror_Metal_02-256x256.png" id="38_82dmg"]
 [ext_resource type="Texture2D" uid="uid://bnp4tqqyvgexc" path="res://Assets/Textures/Horror_Misc_06-256x256.png" id="39_0d7cr"]
@@ -4971,6 +4972,10 @@ radius = 14.708
 height = 2.397461
 radius = 5.6430664
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_82dmg"]
+height = 3.0
+radius = 11.333984
+
 [node name="World" type="Node3D" unique_id=322679481 node_paths=PackedStringArray("player")]
 script = ExtResource("10_world")
 player = NodePath("Player")
@@ -9507,3 +9512,19 @@ enemy = NodePath("../DrDonovan")
 transform = Transform3D(1, 0, 0, 0, 0.99867225, 0.05151522, 0, -0.05151522, 0.99867225, -19.789795, 0.418463, 6.791754)
 shape = SubResource("CylinderShape3D_5kw24")
 debug_color = Color(0.53189695, 0.038620017, 0.40208304, 0.41960785)
+
+[node name="MotherChambers" type="Area3D" parent="." unique_id=1900002110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -310.95786, -1.0163522, 37.87681)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MotherChambers" unique_id=1900002111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1234741, 1.6699257, -1.946392)
+shape = SubResource("CylinderShape3D_82dmg")
+debug_color = Color(4.5724212e-07, 0.34662852, 0.4067436, 0.9764706)
+
+[node name="MotherMushroom" parent="." unique_id=1900002112 node_paths=PackedStringArray("chamber") instance=ExtResource("36_mother")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -310.95786, -1.8818419, 37.87681)
+chamber = NodePath("../MotherChambers")
