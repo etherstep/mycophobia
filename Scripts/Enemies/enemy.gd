@@ -27,6 +27,7 @@ const ENEMY_SCENE_PATH := "res://Scenes/Enemies/enemy.tscn"
 @export var wander_zone: Area3D
 @export var see_over_cover := true
 @export var eye_height := 2.6
+@export var requires_alert := false
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
@@ -58,6 +59,7 @@ var last_footstep_index: int = -1
 
 var state := State.WANDER
 var committed_chase := false
+var _alerted := true
 var last_known := Vector3.ZERO
 var unseen_time := 0.0
 var _hold_left := 0.0
@@ -68,6 +70,7 @@ var intro_hold := false
 
 
 func _ready() -> void:
+	_alerted = not requires_alert
 	if spore_cloud:
 		spore_cloud.visible = false
 	animated_sprite.play("walk_front")
@@ -123,7 +126,7 @@ func _physics_process(delta: float) -> void:
 			state = State.CHASE
 			if not chase_sfx_player.playing:
 				chase_sfx_player.play()
-	var seen := not committed_chase and player != null and _can_see(player)
+	var seen := not committed_chase and _alerted and player != null and _can_see(player)
 	if seen:
 		last_known = player.global_position
 		unseen_time = 0.0
@@ -325,6 +328,8 @@ func _face_direction(direction: Vector3) -> void:
 	look_at(global_position + direction, Vector3.UP)
 
 func _inside_leash(at: Vector3) -> bool:
+	if requires_alert and _alerted:
+		return true
 	if wander_zone != null:
 		return _zone_contains(at)
 	if not guards or guard_point == null:
@@ -399,7 +404,8 @@ func end_committed_chase() -> void:
 		_pick_patrol_point()
 
 func alert(at: Vector3) -> void:
-	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
+	_alerted = true
+	if state == State.GRAB or state == State.LEAVE:
 		return
 	var player := get_tree().get_first_node_in_group("player") as Node3D
 	if player != null and _has_used_syringe(player):
@@ -414,6 +420,8 @@ func alert(at: Vector3) -> void:
 	agent.target_position = at
 
 func _on_catch_area_body_entered(body: Node3D) -> void:
+	if requires_alert and not _alerted:
+		return
 	if state == State.GRAB or state == State.LEAVE or state == State.RETURN:
 		return
 	if _has_used_syringe(body):
@@ -423,7 +431,8 @@ func _on_catch_area_body_entered(body: Node3D) -> void:
 	var player := body as Player
 	if player.dead or player.held:
 		return
-	player.caught_animation_finished.connect(_on_player_active_caught_tween_finished)
+	if not player.caught_animation_finished.is_connected(_on_player_active_caught_tween_finished):
+		player.caught_animation_finished.connect(_on_player_active_caught_tween_finished, CONNECT_ONE_SHOT)
 	player.increase_infection(CATCH_INFECTION)
 	player.held = true
 	player.turn_to_face_enemy(self)
@@ -450,7 +459,11 @@ func _hold(delta: float) -> void:
 		if not chase_sfx_player.playing:
 			chase_sfx_player.play()
 		return
+	if chase_sfx_player.playing:
+		chase_sfx_player.stop()
 	if guards:
+		if requires_alert:
+			_alerted = false
 		state = State.RETURN
 		if guard_point != null:
 			agent.target_position = guard_point.global_position
