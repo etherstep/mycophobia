@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1ucbtivesgs1"
-path="res://.godot/imported/icon_godot_ranger3d.svg-6499d5ae6a6e0e3b82c2f927cba1c955.ctex"
+path="res://.godot/imported/icon_godot_ranger3d.svg-a9a2c9bcf2e8b1e07a0a941a16264e98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/func_godot/icons/icon_godot_ranger3d.svg"
-dest_files=["res://.godot/imported/icon_godot_ranger3d.svg-6499d5ae6a6e0e3b82c2f927cba1c955.ctex"]
+source_file="res://addons/func_godot/icons/icon_godot_ranger3d.svg"
+dest_files=["res://.godot/imported/icon_godot_ranger3d.svg-a9a2c9bcf2e8b1e07a0a941a16264e98.ctex"]
 
 [params]
 
