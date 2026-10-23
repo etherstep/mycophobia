@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://bdonovanenem1"]
+
+[ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="1_enemy"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/donoval_back.png" id="2_back"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/donoval_front.png" id="2_front"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/donoval_side.png" id="2_side"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_0"]
+atlas = ExtResource("2_back")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_1"]
+atlas = ExtResource("2_back")
+region = Rect2(1920, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_2"]
+atlas = ExtResource("2_back")
+region = Rect2(3840, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_3"]
+atlas = ExtResource("2_back")
+region = Rect2(5760, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_4"]
+atlas = ExtResource("2_back")
+region = Rect2(7680, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back_5"]
+atlas = ExtResource("2_back")
+region = Rect2(9600, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_0"]
+atlas = ExtResource("2_front")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_1"]
+atlas = ExtResource("2_front")
+region = Rect2(1920, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_2"]
+atlas = ExtResource("2_front")
+region = Rect2(3840, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_3"]
+atlas = ExtResource("2_front")
+region = Rect2(5760, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_4"]
+atlas = ExtResource("2_front")
+region = Rect2(7680, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_front_5"]
+atlas = ExtResource("2_front")
+region = Rect2(9600, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_0"]
+atlas = ExtResource("2_side")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_1"]
+atlas = ExtResource("2_side")
+region = Rect2(1920, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_2"]
+atlas = ExtResource("2_side")
+region = Rect2(3840, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_3"]
+atlas = ExtResource("2_side")
+region = Rect2(5760, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_4"]
+atlas = ExtResource("2_side")
+region = Rect2(7680, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_5"]
+atlas = ExtResource("2_side")
+region = Rect2(9600, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_6"]
+atlas = ExtResource("2_side")
+region = Rect2(11520, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_side_7"]
+atlas = ExtResource("2_side")
+region = Rect2(13440, 0, 1920, 1920)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_donovan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back_5")
+}],
+"loop": 1,
+"name": &"walk_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_front_5")
+}],
+"loop": 1,
+"name": &"walk_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_side_7")
+}],
+"loop": 1,
+"name": &"walk_side",
+"speed": 5.0
+}]
+
+[node name="DrDonovan" instance=ExtResource("1_enemy")]
+
+[node name="AnimatedSprite3D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_donovan")
+animation = &"walk_front"
+frame = 0
+frame_progress = 0.0

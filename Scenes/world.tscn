@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://cbd0efvsd7l8q" path="res://Assets/Textures/Horror_Stone_09-256x256.png" id="31_gwaj6"]
 [ext_resource type="Texture2D" uid="uid://fl8fd8cnn7wt" path="res://Assets/Textures/Horror_Metal_04-256x256.png" id="32_36g3o"]
 [ext_resource type="Texture2D" uid="uid://bqearff34vtms" path="res://Assets/Textures/Horror_Wall_13-256x256.png" id="32_eskoj"]
+[ext_resource type="PackedScene" uid="uid://bdonovanenem1" path="res://Scenes/dr_donovan.tscn" id="33_donovan"]
 [ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="33_enemy"]
 [ext_resource type="Texture2D" uid="uid://bf5fycq7pwgkj" path="res://Assets/Textures/Horror_Misc_14-256x256.png" id="33_vhf2b"]
 [ext_resource type="Script" uid="uid://vw4rh4bl2aea" path="res://Scripts/Enemies/chase_intro.gd" id="34_intro"]
@@ -4966,6 +4967,10 @@ size = Vector3(10, 10, 10)
 height = 12.929
 radius = 14.708
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5kw24"]
+height = 2.397461
+radius = 5.6430664
+
 [node name="World" type="Node3D" unique_id=322679481 node_paths=PackedStringArray("player")]
 script = ExtResource("10_world")
 player = NodePath("Player")
@@ -5100,6 +5105,7 @@ metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 collision_mask = 0
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1863789719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2781372, 3.8146973e-06, 0.081466675)
 mesh = SubResource("ArrayMesh_5kw24")
 surface_material_override/0 = SubResource("StandardMaterial3D_j3pel")
 surface_material_override/1 = SubResource("StandardMaterial3D_g28q7")
@@ -9321,11 +9327,13 @@ door = NodePath("../Door")
 timeout = 10.0
 brightness = 10.0
 
-[node name="SporeCloudWest" parent="." unique_id=2079239642 instance=ExtResource("15_spore")]
-transform = Transform3D(-1.3409592, 0.024544619, 0.32500166, 0.022952326, 1.3797765, -0.009501327, -0.325118, -0.003827064, -1.3411503, -439.9975, 2.05, -20.830206)
+[node name="SporeCloudWest" parent="." unique_id=2079239642 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
+transform = Transform3D(-1.3409592, 0.024544619, 0.32500166, 0.022952326, 1.3797765, -0.009501327, -0.325118, -0.003827064, -1.3411503, -439.9975, 2.05, -20.337969)
+player = NodePath("../Player")
 
-[node name="SporeShooterWest" parent="." unique_id=51457755 node_paths=PackedStringArray("cloud") instance=ExtResource("16_shooter")]
-transform = Transform3D(0.3701235, -1.8821476, -0.0045589837, 1.8821529, 0.3701224, 0.0008965196, 0, -0.004646297, 1.9181943, -439.03476, 3.9171228, -20.420582)
+[node name="SporeShooterWest" parent="." unique_id=51457755 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
+transform = Transform3D(0.3701235, -1.8821476, -0.0045589837, 1.8821529, 0.3701224, 0.0008965196, 0, -0.004646297, 1.9181943, -439.03476, 3.9171228, -19.658186)
+collision_layer = 9
 cloud = NodePath("../SporeCloudWest")
 
 [node name="WanderNotes" type="Area3D" parent="." unique_id=502470513]
@@ -9480,3 +9488,22 @@ sky_mode = 2
 transform = Transform3D(0.56349593, -0.67954177, 0.46978226, 0.06355207, 0.60263425, 0.795483, -0.8236707, -0.41839585, 0.3827682, -282.834, 10.785066, -43.46416)
 shadow_enabled = true
 area_range = 18.105
+
+[node name="DonovanPost" type="Marker3D" parent="." unique_id=1900001001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -462.6017, 2.5, -25.541649)
+
+[node name="DrDonovan" parent="." unique_id=1900001002 node_paths=PackedStringArray("guard_point") instance=ExtResource("33_donovan")]
+transform = Transform3D(-0.87692153, 0, 0.48063353, 0, 1, 0, -0.48063353, 0, -0.87692153, -464.5668, 2.5, -25.310705)
+guards = true
+guard_point = NodePath("../DonovanPost")
+requires_alert = true
+
+[node name="DonovanAlert" type="Area3D" parent="." unique_id=1900001003 node_paths=PackedStringArray("enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -446, 2.5, -30)
+script = ExtResource("11_alert")
+enemy = NodePath("../DrDonovan")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DonovanAlert" unique_id=1900001004]
+transform = Transform3D(1, 0, 0, 0, 0.99867225, 0.05151522, 0, -0.05151522, 0.99867225, -19.789795, 0.418463, 6.791754)
+shape = SubResource("CylinderShape3D_5kw24")
+debug_color = Color(0.53189695, 0.038620017, 0.40208304, 0.41960785)
