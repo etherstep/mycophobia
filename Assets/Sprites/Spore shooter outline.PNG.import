@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm82ietrldma4"
-path="res://.godot/imported/Spore shooter outline.PNG-15854cd2cbde53246ae8459c35fd2f51.ctex"
+uid="uid://lmononvwbs8h"
+path.s3tc="res://.godot/imported/Spore shooter outline.PNG-15854cd2cbde53246ae8459c35fd2f51.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Spore shooter outline.PNG"
-dest_files=["res://.godot/imported/Spore shooter outline.PNG-15854cd2cbde53246ae8459c35fd2f51.ctex"]
+dest_files=["res://.godot/imported/Spore shooter outline.PNG-15854cd2cbde53246ae8459c35fd2f51.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

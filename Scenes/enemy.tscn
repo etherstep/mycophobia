@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://gbgmc8mxfeg5"]
 
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/Enemies/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://dvm3q3rqhgoa0" path="res://Assets/Sprites/fungal_back.png" id="2_back"]
-[ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
+[ext_resource type="Texture2D" uid="uid://yyuvtpa7m882" path="res://Assets/Sprites/fungal_back.png" id="2_back"]
+[ext_resource type="Texture2D" uid="uid://cqc1i7vgf03il" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
 [ext_resource type="AudioStream" uid="uid://dxplgpc64e0yk" path="res://Assets/SFX/sfx_2 - enemy_step_1.mp3" id="2_iatxd"]
-[ext_resource type="Texture2D" uid="uid://bifyl0wtlndhm" path="res://Assets/Sprites/fungal_side.png" id="2_side"]
+[ext_resource type="Texture2D" uid="uid://c2l470hcg7udg" path="res://Assets/Sprites/fungal_side.png" id="2_side"]
 [ext_resource type="AudioStream" uid="uid://b2gyoifrybwkb" path="res://Assets/SFX/sfx_2 - enemy_step_2.mp3" id="3_qqxsh"]
 [ext_resource type="AudioStream" uid="uid://d168kcnqpbgav" path="res://Assets/SFX/enemy/mushroom_sound_1.mp3" id="4_0whn2"]
 [ext_resource type="AudioStream" uid="uid://b5s0b03uwwege" path="res://Assets/SFX/enemy/mushroom_sound_2.mp3" id="5_bx1xr"]
@@ -22,8 +22,10 @@
 [ext_resource type="AudioStream" uid="uid://bjf8pm8o8km8b" path="res://Assets/SFX/enemy/mushroom_sound_14.mp3" id="17_iol0x"]
 [ext_resource type="AudioStream" uid="uid://dcxf2mxkk3upa" path="res://Assets/SFX/enemy/mushroom_sound_15.mp3" id="18_ofqcr"]
 [ext_resource type="AudioStream" uid="uid://dk1w2e7ulu471" path="res://Assets/SFX/enemy/mushroom_sound_16.mp3" id="19_nus6a"]
+[ext_resource type="AudioStream" uid="uid://c25vfwnguclgw" path="res://Assets/SFX/Athmosphere/chase.mp3" id="23_0whn2"]
 [ext_resource type="Shader" uid="uid://o467u40jyv1k" path="res://Shaders/spore_smoke_lod.gdshader" id="23_8cim4"]
 [ext_resource type="Texture2D" uid="uid://1s454oif21cr" path="res://Assets/VFX/T_VFX_circle_1.png" id="24_7x82w"]
+[ext_resource type="AudioStream" uid="uid://dyb00y8nxf0vv" path="res://Assets/SFX/Athmosphere/chase-end_2.mp3" id="24_bx1xr"]
 [ext_resource type="Texture2D" uid="uid://c2k0vypco3cfg" path="res://Assets/VFX/T_Noise_001R.png" id="25_iatxd"]
 [ext_resource type="AudioStream" uid="uid://dmdoug7cys448" path="res://Assets/SFX/enemy/spore_cloud_smoke.mp3" id="26_imgxb"]
 [ext_resource type="AudioStream" uid="uid://cby2jmxjqygpu" path="res://Assets/SFX/enemy/scream.mp3" id="27_pyrvc"]
@@ -249,9 +251,9 @@ billboard = 2
 shaded = true
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_f0dak")
-animation = &"walk_back"
-frame = 3
-frame_progress = 0.82014066
+animation = &"walk_side"
+frame = 7
+frame_progress = 0.3581978
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1446109693]
 path_desired_distance = 0.8
@@ -274,9 +276,11 @@ emission_angle_enabled = true
 emission_angle_degrees = 52.1
 
 [node name="ChaseSFX" type="AudioStreamPlayer" parent="." unique_id=1337109100]
+stream = ExtResource("23_0whn2")
 bus = &"Music"
 
 [node name="LoseInterestSFX" type="AudioStreamPlayer" parent="." unique_id=110984720]
+stream = ExtResource("24_bx1xr")
 bus = &"Music"
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1279238638]

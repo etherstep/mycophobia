@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgt0nnp76fw83"
-path="res://.godot/imported/Normalfungal-front.PNG-56d1712435a6f5d332b10a4a1f375cdb.ctex"
+uid="uid://dpc8gu8tkrmn4"
+path.s3tc="res://.godot/imported/Normalfungal-front.PNG-56d1712435a6f5d332b10a4a1f375cdb.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Normalfungal-front.PNG"
-dest_files=["res://.godot/imported/Normalfungal-front.PNG-56d1712435a6f5d332b10a4a1f375cdb.ctex"]
+dest_files=["res://.godot/imported/Normalfungal-front.PNG-56d1712435a6f5d332b10a4a1f375cdb.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

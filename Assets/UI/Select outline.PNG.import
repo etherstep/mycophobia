@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://betosej4178g3"
-path="res://.godot/imported/Select outline.PNG-ca86796e800737ca35d6accb2aa47c68.ctex"
+path.s3tc="res://.godot/imported/Select outline.PNG-ca86796e800737ca35d6accb2aa47c68.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/UI/Select outline.PNG"
-dest_files=["res://.godot/imported/Select outline.PNG-ca86796e800737ca35d6accb2aa47c68.ctex"]
+dest_files=["res://.godot/imported/Select outline.PNG-ca86796e800737ca35d6accb2aa47c68.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

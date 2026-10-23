@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drga3waa6nm60"
-path="res://.godot/imported/Corefungal-front.PNG-8841a0683fade8f52305cecbc0622171.ctex"
+uid="uid://dt1glfox1wrkn"
+path.s3tc="res://.godot/imported/Corefungal-front.PNG-8841a0683fade8f52305cecbc0622171.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Corefungal-front.PNG"
-dest_files=["res://.godot/imported/Corefungal-front.PNG-8841a0683fade8f52305cecbc0622171.ctex"]
+dest_files=["res://.godot/imported/Corefungal-front.PNG-8841a0683fade8f52305cecbc0622171.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

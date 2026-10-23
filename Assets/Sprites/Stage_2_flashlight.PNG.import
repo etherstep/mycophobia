@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xqr4b0ilxp1x"
-path="res://.godot/imported/Stage_2_flashlight.PNG-1e11f12b7589ba2213ee09bac2aff165.ctex"
+path.s3tc="res://.godot/imported/Stage_2_flashlight.PNG-1e11f12b7589ba2213ee09bac2aff165.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Stage_2_flashlight.PNG"
-dest_files=["res://.godot/imported/Stage_2_flashlight.PNG-1e11f12b7589ba2213ee09bac2aff165.ctex"]
+dest_files=["res://.godot/imported/Stage_2_flashlight.PNG-1e11f12b7589ba2213ee09bac2aff165.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

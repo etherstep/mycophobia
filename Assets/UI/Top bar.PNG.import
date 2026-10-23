@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4js3nfc6qr43"
-path="res://.godot/imported/Top bar.PNG-94850130b1b4fe253075ea184e2db92d.ctex"
+path.s3tc="res://.godot/imported/Top bar.PNG-94850130b1b4fe253075ea184e2db92d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/UI/Top bar.PNG"
-dest_files=["res://.godot/imported/Top bar.PNG-94850130b1b4fe253075ea184e2db92d.ctex"]
+dest_files=["res://.godot/imported/Top bar.PNG-94850130b1b4fe253075ea184e2db92d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
