@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
 [ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
+[ext_resource type="Shader" uid="uid://bfacabsk3hqib" path="res://Shaders/syringe_vignette.gdshader" id="18_vfarp"]
 [ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
@@ -33,6 +34,13 @@ height = 2.6291504
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
 shader = ExtResource("24_vignette")
 shader_parameter/strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dsm2w"]
+shader = ExtResource("18_vfarp")
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 0.9670000459325
+shader_parameter/pulse_speed = 1.758000083505
+shader_parameter/pulse_amount = 0.2530000120175
 
 [node name="Player" type="CharacterBody3D" unique_id=892995834 node_paths=PackedStringArray("held_item_crosshair", "player_hand") groups=["player"]]
 collision_mask = 3
@@ -224,6 +232,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InfectionOverlay" type="TextureRect" parent="HUD" unique_id=1278943244 node_paths=PackedStringArray("player")]
+modulate = Color(0.51588553, 0.7434445, 0.5688112, 1)
+material = SubResource("ShaderMaterial_dsm2w")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

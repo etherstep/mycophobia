@@ -2,6 +2,7 @@
 extends Control
 
 signal world_item_selected(item: ItemData)
+signal syringe_used
 
 @export var inventory: Inventory
 @export var player: Player
@@ -189,6 +190,7 @@ func use_item(item: ItemData) -> void:
 			var player := get_tree().get_first_node_in_group("player")
 			if player == null:
 				return
+			syringe_used.emit()
 			player.syringe_used = true
 			if item.consume_on_use:
 				_remove_one_item(item)
