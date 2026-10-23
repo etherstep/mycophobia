@@ -57,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://ddi1uy56s47f7" path="res://Assets/Textures/Horror_Wall_09-256x256.png" id="37_dsm2w"]
 [ext_resource type="Texture2D" uid="uid://d75s22uedrdb" path="res://Assets/Textures/Horror_Metal_02-256x256.png" id="38_82dmg"]
 [ext_resource type="Texture2D" uid="uid://bnp4tqqyvgexc" path="res://Assets/Textures/Horror_Misc_06-256x256.png" id="39_0d7cr"]
+[ext_resource type="PackedScene" uid="uid://bcavecloud01" path="res://Scenes/Enemies/spore_cloud_zone.tscn" id="40_cavecloud"]
 [ext_resource type="Texture2D" uid="uid://c0ovn4tx3uk5j" path="res://Assets/Textures/crate-brown wood.jpg" id="41_eskoj"]
 [ext_resource type="Texture2D" uid="uid://d1hk6610uvwwk" path="res://Assets/Textures/Horror_Wall_07-256x256.png" id="41_l4vrt"]
 [ext_resource type="Texture2D" uid="uid://slk7muikt420" path="res://Assets/Textures/weathered crate-fragile.jpg" id="43_5kw24"]
@@ -9346,6 +9347,10 @@ player = NodePath("../Player")
 transform = Transform3D(0.3701235, -1.8821476, -0.0045589837, 1.8821529, 0.3701224, 0.0008965196, 0, -0.004646297, 1.9181943, -439.03476, 3.9171228, -19.658186)
 collision_layer = 9
 cloud = NodePath("../SporeCloudWest")
+
+[node name="SporeCloudCave" parent="." unique_id=1900002310 node_paths=PackedStringArray("player") instance=ExtResource("40_cavecloud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, -1.8788004, 44)
+player = NodePath("../Player")
 
 [node name="WanderNotes" type="Area3D" parent="." unique_id=502470513]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -308, 4, -20.5)
