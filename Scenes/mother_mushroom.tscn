@@ -7,8 +7,28 @@
 [ext_resource type="Texture2D" uid="uid://cdkh1ghga80ld" path="res://Assets/Sprites/mother_mushroom_front_motion.png" id="2_front_walk"]
 [ext_resource type="Texture2D" uid="uid://dkjyri61x88w8" path="res://Assets/Sprites/mother_mushroom_side_idle.png" id="2_side_idle"]
 [ext_resource type="Texture2D" uid="uid://c32c6e5rehdj3" path="res://Assets/Sprites/mother_mushroom_side_motion.png" id="2_side_walk"]
+[ext_resource type="AudioStream" uid="uid://dxplgpc64e0yk" path="res://Assets/SFX/sfx_2 - enemy_step_1.mp3" id="2_wpjo1"]
+[ext_resource type="AudioStream" uid="uid://b2gyoifrybwkb" path="res://Assets/SFX/sfx_2 - enemy_step_2.mp3" id="3_5rjx7"]
 [ext_resource type="PackedScene" uid="uid://b3cs8esw1fo4b" path="res://Scenes/salt_effect.tscn" id="3_salt"]
+[ext_resource type="AudioStream" uid="uid://d168kcnqpbgav" path="res://Assets/SFX/enemy/mushroom_sound_1.mp3" id="4_6mooj"]
 [ext_resource type="PackedScene" uid="uid://ck5afq4w7pkby" path="res://Scenes/fire_effect.tscn" id="4_fire"]
+[ext_resource type="AudioStream" uid="uid://b5s0b03uwwege" path="res://Assets/SFX/enemy/mushroom_sound_2.mp3" id="5_vuxk7"]
+[ext_resource type="AudioStream" uid="uid://f7vyr5qlh0lg" path="res://Assets/SFX/enemy/mushroom_sound_3.mp3" id="6_sbq1k"]
+[ext_resource type="AudioStream" uid="uid://c6g5g1edsokwi" path="res://Assets/SFX/enemy/mushroom_sound_4.mp3" id="7_rax30"]
+[ext_resource type="AudioStream" uid="uid://clfwpdk7ktvbd" path="res://Assets/SFX/enemy/mushroom_sound_5.mp3" id="8_fgc78"]
+[ext_resource type="AudioStream" uid="uid://ctpkwue3o5aye" path="res://Assets/SFX/enemy/mushroom_sound_6.mp3" id="9_6upmu"]
+[ext_resource type="AudioStream" uid="uid://m0b6e2jc5g3f" path="res://Assets/SFX/enemy/mushroom_sound_7.mp3" id="10_mfju2"]
+[ext_resource type="AudioStream" uid="uid://bvyy22bx2kbs8" path="res://Assets/SFX/enemy/mushroom_sound_8.mp3" id="11_64j32"]
+[ext_resource type="AudioStream" uid="uid://cby2jmxjqygpu" path="res://Assets/SFX/enemy/scream.mp3" id="11_rvg2l"]
+[ext_resource type="AudioStream" uid="uid://c8yovsting6ov" path="res://Assets/SFX/enemy/mushroom_sound_9.mp3" id="12_0eavm"]
+[ext_resource type="AudioStream" uid="uid://cfc6ti6road78" path="res://Assets/SFX/fire.mp3" id="12_rvg2l"]
+[ext_resource type="AudioStream" uid="uid://chuib2sq0qovn" path="res://Assets/SFX/enemy/mushroom_sound_10.mp3" id="13_8dhdx"]
+[ext_resource type="AudioStream" uid="uid://dbmefstdxf0cr" path="res://Assets/SFX/enemy/mushroom_sound_11.mp3" id="14_gp87q"]
+[ext_resource type="AudioStream" uid="uid://dxc40jlg8ihog" path="res://Assets/SFX/enemy/mushroom_sound_12.mp3" id="15_4kins"]
+[ext_resource type="AudioStream" uid="uid://b7oglf5wej0mf" path="res://Assets/SFX/enemy/mushroom_sound_13.mp3" id="16_01q8t"]
+[ext_resource type="AudioStream" uid="uid://bjf8pm8o8km8b" path="res://Assets/SFX/enemy/mushroom_sound_14.mp3" id="17_cgd1c"]
+[ext_resource type="AudioStream" uid="uid://dcxf2mxkk3upa" path="res://Assets/SFX/enemy/mushroom_sound_15.mp3" id="18_xj3fx"]
+[ext_resource type="AudioStream" uid="uid://dk1w2e7ulu471" path="res://Assets/SFX/enemy/mushroom_sound_16.mp3" id="19_40ls6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
 radius = 0.8
@@ -279,6 +299,8 @@ radius = 4.1
 script = ExtResource("1_script")
 salt_effect = NodePath("SaltEffect")
 fire_effect = NodePath("FireEffect")
+footstep_sounds = Array[AudioStream]([ExtResource("2_wpjo1"), ExtResource("3_5rjx7")])
+enemy_sounds = Array[AudioStream]([ExtResource("4_6mooj"), ExtResource("5_vuxk7"), ExtResource("6_sbq1k"), ExtResource("7_rax30"), ExtResource("8_fgc78"), ExtResource("9_6upmu"), ExtResource("10_mfju2"), ExtResource("11_64j32"), ExtResource("12_0eavm"), ExtResource("13_8dhdx"), ExtResource("14_gp87q"), ExtResource("15_4kins"), ExtResource("16_01q8t"), ExtResource("17_cgd1c"), ExtResource("18_xj3fx"), ExtResource("19_40ls6")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1900002102]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -315,3 +337,30 @@ transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0.9, 4.6, 0)
 
 [node name="FireEffect2" parent="." unique_id=1765688435 instance=ExtResource("4_fire")]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -1.1, 1.5, 0)
+
+[node name="EnemySfx" type="AudioStreamPlayer3D" parent="." unique_id=863432571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5157971, 0)
+autoplay = true
+max_distance = 20.0
+bus = &"SFX-Enemy"
+emission_angle_enabled = true
+emission_angle_degrees = 52.1
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1357135828]
+transform = Transform3D(1, 0, 0, 0, 0.013280196, -0.9999118, 0, 0.9999118, 0.013280196, 0, 0, 0)
+bus = &"SFX-Enemy"
+emission_angle_enabled = true
+
+[node name="EnemyVoicePlayer" type="AudioStreamPlayer3D" parent="." unique_id=1760708524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4586496, 0)
+max_distance = 40.0
+bus = &"SFX-Enemy"
+
+[node name="EnemyScreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=424286360]
+stream = ExtResource("11_rvg2l")
+bus = &"SFX-Enemy"
+
+[node name="SporePlayerFire" type="AudioStreamPlayer3D" parent="." unique_id=431132145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.022673965, 0)
+stream = ExtResource("12_rvg2l")
+bus = &"SFX-Enemy"

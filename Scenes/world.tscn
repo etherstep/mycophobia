@@ -5058,11 +5058,11 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -74.47415, 1.4062147
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(-0.0054187253, 0, -0.019251946, 0, 0.02, 0, 0.019251946, 0, -0.0054187253, -167.7923, 0.8889251, -5.5377026)
+transform = Transform3D(-0.0054187262, 0, -0.019251944, 0, 0.02, 0, 0.019251944, 0, -0.0054187262, -167.7923, 0.8889251, -5.5377026)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -160.13898, -5.3031425, 79.6372)
+transform = Transform3D(0.0061229086, 0.0061481795, -0.018019706, -0.0019780176, 0.019031549, 0.0058213016, 0.018936668, 0, 0.0064344825, -153.62576, -5.632767, 68.48747)
 item_data = ExtResource("9_ikia7")
 
 [node name="salt_1" parent="Collectibles" unique_id=648026096 instance=ExtResource("5_o06y3")]
@@ -9326,7 +9326,6 @@ bus = &"SFX-WorldAmbience"
 
 [node name="Door" parent="." unique_id=129536702 node_paths=PackedStringArray("buttons") instance=ExtResource("20_1cojt")]
 transform = Transform3D(-8.764134e-08, 0, 2.005, 0, 2.005, 0, -2.005, 0, -8.764134e-08, -362.4409, 3.499998, -39.037586)
-open_offset = Vector3(3, 0, 0)
 slide_duration = 4.0
 buttons = [NodePath("../DoorButton"), NodePath("../DoorButton4")]
 
