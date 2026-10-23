@@ -11,6 +11,8 @@ var _original_materials: Array[Dictionary] = []
 
 @onready var touch_sound: AudioStreamPlayer = $TouchSound
 
+@export var player: Player
+
 var sound_cooldown := 0.0
 const SOUND_COOLDOWN := 1.0
 
@@ -22,6 +24,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if _dead:
 		return
+	update_syringe_collision()
 	if sound_cooldown > 0.0:
 		sound_cooldown -= delta
 	if _touch_cooldown > 0.0:
@@ -30,11 +33,11 @@ func _physics_process(delta: float) -> void:
 	if area == null:
 		return
 	for body in area.get_overlapping_bodies():
-		if body is Player:
+		if body is Player and not player.syringe_used:
 			_try_push(body as Player)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body is CharacterBody3D and body.is_in_group("player"):
+	if body is CharacterBody3D and body.is_in_group("player") and not player.syringe_used:
 		if sound_cooldown <= 0.0:
 			touch_sound.play()
 			sound_cooldown = SOUND_COOLDOWN
@@ -90,6 +93,14 @@ func _push_normal(player: Player) -> Vector3:
 		return normal.normalized()
 
 	return Vector3.ZERO
+
+func update_syringe_collision() -> void:
+	if player == null:
+		return
+
+	if player.syringe_used:
+		collision_layer = collision_layer & ~(1 << 1)
+		collision_mask = collision_mask & ~(1 << 1)
 
 func _cache_original_materials(node: Node) -> void:
 	if node is MeshInstance3D:

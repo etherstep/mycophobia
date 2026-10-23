@@ -193,6 +193,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if held:
 			return
 		toggle_inventory()
+		$HUD/HelpLabel2.hide()
 		return
 
 	# Don't process gameplay mouse input while the inventory is open.
@@ -417,12 +418,11 @@ func _physics_process(delta: float) -> void:
 			velocity.y -= GRAVITY * delta
 		move_and_slide()
 		return
-	if Input.is_action_just_pressed("crouch"):
-		if crouched:
-			if _can_stand():
-				crouched = false
-		else:
-			crouched = true
+	if Input.is_action_pressed("crouch"):
+		crouched = true
+	else:
+		if not crouched or _can_stand():
+			crouched = false
 	
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
 	if crouched :
@@ -452,7 +452,6 @@ func _physics_process(delta: float) -> void:
 		speed = SPRINT_SPEED
 		
 	var input_dir := Input.get_vector("left", "right", "up", "down")
-	#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
 		# Responsive ground movement.

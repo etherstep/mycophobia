@@ -3,14 +3,14 @@ class_name Inventory
 
 signal inventory_changed
 
-#@export var note_interact_sfx: AudioStream
 @export var salt_use_sfx: AudioStream
 @export var matches_use_sfx: AudioStream
 @export var saline_use_sfx: AudioStream
 @export var syringe_use_sfx: AudioStream
 
 @export var player: Player
-
+var help_label: Label
+var help_label_check = false
 class ItemStack:
 	var item: ItemData
 	var quantity: int
@@ -40,6 +40,12 @@ func add_item(item: ItemData) -> bool:
 	items.append(item)
 	quantities.append(1)
 	inventory_changed.emit()
+	if help_label_check == false:
+		if player != null:
+			help_label_check = true
+			help_label = player.get_node("HUD/HelpLabel2") as Label
+			help_label.visible = true
+
 	return true
 
 func has_type(type: ItemData.ItemType) -> bool:

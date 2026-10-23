@@ -4984,7 +4984,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
 
 [node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory", "inventory_ui") instance=ExtResource("1_a02cp")]
-transform = Transform3D(0.6852473, 0, 0.72831047, 0, 1, 0, -0.72831047, 0, 0.6852473, -284.6135, 2.1201868, -46.56684)
+transform = Transform3D(0.012871943, 0, -0.9999171, 0, 1, 0, 0.9999171, 0, 0.012871943, -284.75262, 2.1201868, -45.86623)
 inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
 turn_to_enemy_animation_time = 1.2000000000000002
@@ -5001,8 +5001,9 @@ script = ExtResource("11_alert")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone" unique_id=196554887]
 shape = SubResource("BoxShape3D_alert")
 
-[node name="SporeCloud" parent="." unique_id=1742201103 groups=["enemies"] instance=ExtResource("15_spore")]
+[node name="SporeCloud" parent="." unique_id=1742201103 node_paths=PackedStringArray("player") groups=["enemies"] instance=ExtResource("15_spore")]
 transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -313.88345, 2.05, -25.121035)
+player = NodePath("../Player")
 
 [node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
 transform = Transform3D(1.8947194, -0.19675526, 0.22542682, 0.28819844, 1.5885773, -1.0357873, -0.0804459, 1.0569774, 1.5986929, -315.597, 4.35184, -23.998056)
@@ -5010,8 +5011,9 @@ collision_layer = 9
 cloud = NodePath("../SporeCloud")
 starts_chase = true
 
-[node name="SporeCloud2" parent="." unique_id=1742201101 instance=ExtResource("15_spore")]
+[node name="SporeCloud2" parent="." unique_id=1742201101 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
 transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -289.1636, 2.1255784, -32.818443)
+player = NodePath("../Player")
 
 [node name="SporeShooter2" parent="." unique_id=1384741125 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
 transform = Transform3D(1.8947194, -0.19675526, 0.22542682, 0.28819844, 1.5885773, -1.0357873, -0.0804459, 1.0569774, 1.5986929, -290.87714, 4.4274187, -31.695467)

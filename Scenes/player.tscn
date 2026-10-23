@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://casgcs7q8ujxx"]
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="AudioStream" uid="uid://cm6b8a2tlggum" path="res://Assets/SFX/Footsteps/untitled - Track 1.wav" id="2_0gysh"]
+[ext_resource type="AudioStream" uid="uid://cuf1k24xj2r37" path="res://Assets/SFX/sfx_2 - step_1.wav" id="2_2ijsl"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
-[ext_resource type="AudioStream" uid="uid://1qis3w7j73t7" path="res://Assets/SFX/Footsteps/untitled - Track 2.wav" id="3_vfarp"]
+[ext_resource type="AudioStream" uid="uid://bpvgof8ro80pk" path="res://Assets/SFX/sfx_2 - step_2.wav" id="3_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://c225h0neiq4dk" path="res://Assets/SFX/player/death.mp3" id="5_p1odr"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
@@ -39,7 +39,7 @@ collision_mask = 3
 script = ExtResource("1_v0iea")
 held_item_crosshair = NodePath("HUD/Control/CrosshairSelectedItem")
 player_hand = NodePath("PlayerHands")
-footstep_sounds = Array[AudioStream]([ExtResource("2_0gysh"), ExtResource("3_vfarp")])
+footstep_sounds = Array[AudioStream]([ExtResource("2_2ijsl"), ExtResource("3_p1odr")])
 running_player_sfx = ExtResource("6_gymyn")
 death_sfx = ExtResource("5_p1odr")
 
@@ -304,6 +304,26 @@ theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
 theme_override_fonts/font = ExtResource("21_0gysh")
 theme_override_font_sizes/font_size = 34
 text = "Press F to toggle flashlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpLabel2" type="Label" parent="HUD" unique_id=2050229111]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -606.5
+offset_top = -66.0
+offset_right = 606.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.96, 0.93, 0.88, 1)
+theme_override_fonts/font = ExtResource("21_0gysh")
+theme_override_font_sizes/font_size = 34
+text = "Press [TAB] or I to open inventory."
 horizontal_alignment = 1
 vertical_alignment = 1
 
