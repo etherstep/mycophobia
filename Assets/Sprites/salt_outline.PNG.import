@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vivjbkh71dt3"
+uid="uid://tsayry64dfnr"
 path.s3tc="res://.godot/imported/salt_outline.PNG-15210ba209e402be9e655391710ac317.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -21,10 +21,10 @@ compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
-compress/hdr_compression=2
-compress/normal_map=2
+compress/hdr_compression=1
+compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
