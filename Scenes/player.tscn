@@ -72,12 +72,12 @@ light_indirect_energy = 0.854
 light_size = 0.684
 light_specular = 1.43
 shadow_enabled = true
+shadow_bias = 2.245
 shadow_reverse_cull_face = true
 shadow_blur = 7.292
-spot_range = 28.54
-spot_attenuation = 1.08
-spot_angle = 15.0
-spot_angle_attenuation = 1.4640859
+spot_range = 26.052
+spot_angle = 31.18
+spot_angle_attenuation = 2.7320802
 script = ExtResource("9_qqcod")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
