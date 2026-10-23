@@ -5054,15 +5054,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.77112, 2.4988518, -16.07
 transform = Transform3D(-0.019978711, 0, 0.00092254137, 0, 0.02, 0, -0.00092254137, 0, -0.019978711, 1.6973877, 1, 0)
 
 [node name="Note_2" parent="Collectibles" unique_id=582842785 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -87.82657, 23.863155, 0)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -74.47415, 1.4062147, 28.150885)
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -167.90259, 0.8889251, -5.5377026)
+transform = Transform3D(-0.0054187253, 0, -0.019251946, 0, 0.02, 0, 0.019251946, 0, -0.0054187253, -167.7923, 0.8889251, -5.5377026)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -89.42343, 23.863155, 0)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -160.13898, -5.3031425, 79.6372)
 item_data = ExtResource("9_ikia7")
 
 [node name="salt_1" parent="Collectibles" unique_id=648026096 instance=ExtResource("5_o06y3")]
@@ -5070,23 +5070,23 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -34.263306, -0.37822
 item_data = ExtResource("11_e0ngr")
 
 [node name="salt_2" parent="Collectibles" unique_id=1135687664 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -79.68317, 23.219496, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -70.304504, -0.41966033, -5.215824)
 item_data = ExtResource("11_e0ngr")
 
 [node name="salt_3" parent="Collectibles" unique_id=938361332 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -80.434235, 23.21007, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -190.98517, -0.38429594, -20.605118)
 item_data = ExtResource("11_e0ngr")
 
 [node name="salt_4" parent="Collectibles" unique_id=273507407 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -79.703766, 23.863155, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -139.51022, -0.35284877, -0.8743248)
 item_data = ExtResource("11_e0ngr")
 
 [node name="saline_1" parent="Collectibles" unique_id=1714809678 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -81.41733, 23.863155, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -70.330414, -0.40756726, -5.0094604)
 item_data = ExtResource("12_hgpy0")
 
 [node name="saline_2" parent="Collectibles" unique_id=768498298 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -80.941284, 23.863155, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -195.74298, -0.35492373, 29.426235)
 item_data = ExtResource("12_hgpy0")
 
 [node name="matches_1" parent="Collectibles" unique_id=1578993740 instance=ExtResource("5_o06y3")]
@@ -5094,15 +5094,15 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -36.833252, 1.105512
 item_data = ExtResource("13_t2t4p")
 
 [node name="matches_2" parent="Collectibles" unique_id=2119621321 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -82.658356, 23.93088, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -89.52231, 1.6103854, -11.627422)
 item_data = ExtResource("13_t2t4p")
 
 [node name="matches_3" parent="Collectibles" unique_id=1468106813 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -83.24298, 23.87523, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -174.31949, 1.337879, 0.8583698)
 item_data = ExtResource("13_t2t4p")
 
 [node name="matches_4" parent="Collectibles" unique_id=2040173787 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -83.7952, 23.863155, -16.24413)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -152.56451, -0.4225633, 32.94297)
 item_data = ExtResource("13_t2t4p")
 
 [node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
@@ -9346,8 +9346,17 @@ brightness = 10.0
 transform = Transform3D(-1.3409592, 0.024544619, 0.32500166, 0.022952326, 1.3797765, -0.009501327, -0.325118, -0.003827064, -1.3411503, -439.9975, 2.05, -20.337969)
 player = NodePath("../Player")
 
+[node name="SporeCloudCave2" parent="." unique_id=932375097 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
+transform = Transform3D(-4.105926, 3.939991, 0.9841041, 3.826343, 4.2221837, -0.93961966, -1.3605474, -0.016015437, -5.612421, -456.91635, -1.0594406, 42.41671)
+player = NodePath("../Player")
+
 [node name="SporeShooterWest" parent="." unique_id=51457755 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
 transform = Transform3D(-1.5248866, 1.1637031, 0.0028187495, -1.1637064, -1.5248823, -0.0036936076, 3.2381996e-11, -0.0046462966, 1.9181943, -438.1795, 3.9109814, -19.658186)
+collision_layer = 9
+cloud = NodePath("../SporeCloudWest")
+
+[node name="SporeShooterCave1" parent="." unique_id=1749922918 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
+transform = Transform3D(-3.5327327, -1.0288048, 0.0046803076, 1.0288006, -3.5327356, -0.0032663632, 0.005406924, -0.0018274445, 3.679486, -448.99103, -2.8177814, 43.119118)
 collision_layer = 9
 cloud = NodePath("../SporeCloudWest")
 
