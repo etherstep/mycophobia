@@ -8,13 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
 [ext_resource type="Resource" uid="uid://ck2x7gq3y85ng" path="res://Items/note_2.tres" id="7_5v1tr"]
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
-[ext_resource type="AudioStream" uid="uid://bkr5h1vj2q2mb" path="res://Assets/SFX/sfx_2 - salt_use.mp3" id="9_0d7cr"]
 [ext_resource type="Resource" uid="uid://gs3xlxv3tk2m" path="res://Items/note_4.tres" id="9_ikia7"]
-[ext_resource type="AudioStream" uid="uid://bbsmlhjwsjsj3" path="res://Assets/SFX/sfx_2 - match-scrape.mp3" id="10_l4vrt"]
 [ext_resource type="Script" uid="uid://dutlvlyfrq4tm" path="res://Scripts/world.gd" id="10_world"]
 [ext_resource type="Script" uid="uid://bxo1pnosryixc" path="res://Scripts/Enemies/alert_zone.gd" id="11_alert"]
 [ext_resource type="Resource" uid="uid://cpg38ogwexy6o" path="res://Items/salt.tres" id="11_e0ngr"]
-[ext_resource type="AudioStream" uid="uid://dnbequou7hdr0" path="res://Assets/SFX/sfx_2 - saline_use_3.mp3" id="11_ry8tx"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://Addons/func_godot/src/map/func_godot_map.gd" id="12_e0ngr"]
 [ext_resource type="Resource" uid="uid://dcdcq2dykan23" path="res://Items/saline.tres" id="12_hgpy0"]
 [ext_resource type="NavigationMesh" uid="uid://jjiy4r1is2jy" path="res://Scenes/floor_nav.tres" id="12_nav"]
@@ -5040,9 +5037,6 @@ collision_layer = 9
 cloud = NodePath("../SporeCloud2")
 
 [node name="Inventory" parent="." unique_id=2098244082 node_paths=PackedStringArray("player") groups=["inventory"] instance=ExtResource("3_fo5ed")]
-salt_use_sfx = ExtResource("9_0d7cr")
-matches_use_sfx = ExtResource("10_l4vrt")
-saline_use_sfx = ExtResource("11_ry8tx")
 player = NodePath("../Player")
 
 [node name="Inventory_ui" parent="." unique_id=196500527 node_paths=PackedStringArray("inventory", "player") instance=ExtResource("4_5ukr8")]

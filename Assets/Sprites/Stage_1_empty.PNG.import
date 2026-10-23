@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxmdh74vx1vwp"
-path="res://.godot/imported/Stage_1_empty.PNG-bccecfbd4438895a987021700ec3e4bb.ctex"
+path.s3tc="res://.godot/imported/Stage_1_empty.PNG-bccecfbd4438895a987021700ec3e4bb.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Stage_1_empty.PNG"
-dest_files=["res://.godot/imported/Stage_1_empty.PNG-bccecfbd4438895a987021700ec3e4bb.ctex"]
+dest_files=["res://.godot/imported/Stage_1_empty.PNG-bccecfbd4438895a987021700ec3e4bb.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
