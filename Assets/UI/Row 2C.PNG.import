@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpxndu8saiyir"
-path.s3tc="res://.godot/imported/Row 2C.PNG-128d7bb2255e114263c991ab37318969.s3tc.ctex"
+uid="uid://6g5v34s2xsl0"
+path="res://.godot/imported/Row 2C.PNG-128d7bb2255e114263c991ab37318969.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI/Row 2C.PNG"
-dest_files=["res://.godot/imported/Row 2C.PNG-128d7bb2255e114263c991ab37318969.s3tc.ctex"]
+dest_files=["res://.godot/imported/Row 2C.PNG-128d7bb2255e114263c991ab37318969.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

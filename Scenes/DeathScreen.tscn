@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://drioowpamfe27"]
 
-[ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="1_phjal"]
+[ext_resource type="Texture2D" uid="uid://b65vjwa3gj6in" path="res://Assets/UI/Background.PNG" id="1_phjal"]
 [ext_resource type="Script" uid="uid://dxho26c3j0hl" path="res://Scripts/death_screen.gd" id="1_udgme"]
 [ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_c44sr"]
-[ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="2_udgme"]
+[ext_resource type="Texture2D" uid="uid://bfw7mv8odt1p7" path="res://Assets/UI/Infection overlay.png" id="2_udgme"]
 [ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_ll4br"]
 [ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="5_bxuc8"]
-[ext_resource type="Texture2D" uid="uid://dvm3q3rqhgoa0" path="res://Assets/Sprites/fungal_back.png" id="8_c44sr"]
+[ext_resource type="Texture2D" uid="uid://yyuvtpa7m882" path="res://Assets/Sprites/fungal_back.png" id="8_c44sr"]
 [ext_resource type="AudioStream" uid="uid://c05odbfe4gjwf" path="res://Assets/Music/death_theme.mp3" id="8_wcigx"]
-[ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="9_ll4br"]
-[ext_resource type="Texture2D" uid="uid://bifyl0wtlndhm" path="res://Assets/Sprites/fungal_side.png" id="10_w00fl"]
+[ext_resource type="Texture2D" uid="uid://cqc1i7vgf03il" path="res://Assets/Sprites/fungal_front.png" id="9_ll4br"]
+[ext_resource type="Texture2D" uid="uid://c2l470hcg7udg" path="res://Assets/Sprites/fungal_side.png" id="10_w00fl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iatxd"]
 atlas = ExtResource("8_c44sr")
@@ -248,6 +248,7 @@ flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2066386369]
 stream = ExtResource("8_wcigx")
+pitch_scale = 0.9
 bus = &"DeathMusic"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1819456770]

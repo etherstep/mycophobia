@@ -4,7 +4,6 @@
 [ext_resource type="AudioStream" uid="uid://3tc2bg3ht6fo" path="res://Assets/SFX/sfx_2 - step_1.mp3" id="2_2ijsl"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
 [ext_resource type="AudioStream" uid="uid://b1g8xfl5slcui" path="res://Assets/SFX/sfx_2 - step_2.mp3" id="3_p1odr"]
-[ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://c225h0neiq4dk" path="res://Assets/SFX/player/death.mp3" id="5_p1odr"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
 [ext_resource type="AudioStream" uid="uid://cmt4r06owgvur" path="res://Assets/SFX/sfx_2 - flashlight-on.mp3" id="7_0gysh"]
@@ -14,12 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://d3h1wab4ryihs" path="res://Assets/Sprites/flashlight_stage1.PNG" id="10_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://uflmnrmyqylb" path="res://Assets/Sprites/flashlight_stage2.PNG" id="11_p1odr"]
 [ext_resource type="Texture2D" uid="uid://bnj64qg6kdiep" path="res://Assets/Sprites/flashlight_stage3.PNG" id="12_0gysh"]
-;[ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
-;[ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
-[ext_resource type="Texture2D" uid="uid://bb62hqsxih1yk" path="res://Assets/UI/Photo before.png" id="17_y6uwr"]
+[ext_resource type="Texture2D" uid="uid://3uvlxfma74cj" path="res://Assets/UI/Photo before.png" id="17_y6uwr"]
 [ext_resource type="Texture2D" uid="uid://34ar7ctuk4wp" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
 [ext_resource type="Shader" uid="uid://bfacabsk3hqib" path="res://Shaders/syringe_vignette.gdshader" id="18_vfarp"]
-[ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
+[ext_resource type="Texture2D" uid="uid://bfw7mv8odt1p7" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
 [ext_resource type="AudioStream" uid="uid://csauruytl25c1" path="res://Assets/SFX/Dialogue/note_1.mp3" id="20_2ijsl"]
 [ext_resource type="Script" uid="uid://doyjyti8y53ab" path="res://Scripts/infection_overlay.gd" id="20_vfarp"]
@@ -28,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://d0ftob5pqawkc" path="res://Assets/SFX/Dialogue/note_3.mp3" id="22_0gysh"]
 [ext_resource type="AudioStream" uid="uid://dided56r28ia0" path="res://Assets/SFX/Dialogue/note_4.mp3" id="23_vfarp"]
 [ext_resource type="Shader" uid="uid://cheh3ia123ivp" path="res://Shaders/infection_vignette.gdshader" id="24_vignette"]
+[ext_resource type="AudioStream" uid="uid://c05odbfe4gjwf" path="res://Assets/Music/death_theme.mp3" id="26_0gysh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 height = 2.6291504
@@ -35,6 +33,8 @@ height = 2.6291504
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
 shader = ExtResource("24_vignette")
 shader_parameter/strength = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ijsl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dsm2w"]
 shader = ExtResource("18_vfarp")
@@ -90,7 +90,6 @@ target_position = Vector3(0, 0, -2.6)
 script = ExtResource("9_pu2lt")
 player = NodePath("..")
 flashlight_array = [NodePath("FlashLightStage1"), NodePath("FlashLightStage2"), NodePath("FlashLightStage3")]
-;hands_array = [NodePath("HandsStage1"), NodePath("HandsStage2"), NodePath("HandsStage3")]
 photo = NodePath("Photo")
 flashlight = NodePath("../Camera3D/FlashLight")
 
@@ -173,7 +172,7 @@ offset_right = 48.599976
 offset_bottom = 42.400024
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_vgqql")
+texture = SubResource("CompressedTexture2D_2ijsl")
 expand_mode = 1
 flip_h = true
 
@@ -372,3 +371,8 @@ bus = &"SFX-Interaction"
 [node name="DeathSFX" type="AudioStreamPlayer3D" parent="." unique_id=846195740]
 stream = ExtResource("5_p1odr")
 bus = &"SFX-Player"
+
+[node name="SyringeUseMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=472129011]
+stream = ExtResource("26_0gysh")
+pitch_scale = 0.4
+bus = &"Music"

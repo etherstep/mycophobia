@@ -192,6 +192,7 @@ func use_item(item: ItemData) -> void:
 				return
 			syringe_used.emit()
 			player.syringe_used = true
+			player.syringe_music_player.play(10.0)
 			if item.consume_on_use:
 				_remove_one_item(item)
 

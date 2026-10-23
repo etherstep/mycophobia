@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dleb5sy513fvb"
-path.s3tc="res://.godot/imported/Inventory Row 3A.PNG-8f5d145629e3865eee9793d1c41c1371.s3tc.ctex"
+uid="uid://v2ihlj4stkwa"
+path="res://.godot/imported/Inventory Row 3A.PNG-8f5d145629e3865eee9793d1c41c1371.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI/Inventory Row 3A.PNG"
-dest_files=["res://.godot/imported/Inventory Row 3A.PNG-8f5d145629e3865eee9793d1c41c1371.s3tc.ctex"]
+dest_files=["res://.godot/imported/Inventory Row 3A.PNG-8f5d145629e3865eee9793d1c41c1371.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

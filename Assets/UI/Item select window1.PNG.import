@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbkxc6iypssxj"
-path.s3tc="res://.godot/imported/Item select window1.PNG-2f6b7f0579950d807a6e446c8931474e.s3tc.ctex"
+uid="uid://cgegbx272b4xu"
+path="res://.godot/imported/Item select window1.PNG-2f6b7f0579950d807a6e446c8931474e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI/Item select window1.PNG"
-dest_files=["res://.godot/imported/Item select window1.PNG-2f6b7f0579950d807a6e446c8931474e.s3tc.ctex"]
+dest_files=["res://.godot/imported/Item select window1.PNG-2f6b7f0579950d807a6e446c8931474e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

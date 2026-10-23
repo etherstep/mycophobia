@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://tpea4vkq273s" path="res://Scripts/ending_screen.gd" id="1_t3a5v"]
 [ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_8r8il"]
-[ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="2_j3kne"]
 [ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_jf8s5"]
 [ext_resource type="FontFile" uid="uid://dgfyf08mc0e2u" path="res://Assets/Fonts/Bakula-OTF.otf" id="3_x64vk"]
-[ext_resource type="AudioStream" uid="uid://2a4vovej078w" path="res://Assets/Music/main_menu_theme_2.mp3" id="4_x64vk"]
+[ext_resource type="Texture2D" uid="uid://cgxq8f2thm335" path="res://Assets/UI/banner_1.png" id="4_jf8s5"]
+[ext_resource type="AudioStream" uid="uid://vay5i8f77kgo" path="res://Assets/Music/mother.mp3" id="6_jf8s5"]
+[ext_resource type="VideoStream" uid="uid://d32ufuqcxfuhm" path="res://Assets/Sprites/end_animation.ogv" id="7_jf8s5"]
 
 [node name="EndingScreen" type="Control" unique_id=1881467181 node_paths=PackedStringArray("main_menu_button")]
 layout_mode = 3
@@ -26,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_j3kne")
+texture = ExtResource("4_jf8s5")
 expand_mode = 1
 
 [node name="MainMenuButton" type="Button" parent="." unique_id=393555867]
@@ -47,11 +48,29 @@ theme_override_colors/font_focus_color = Color(0.6431373, 0.6392157, 0.45882353,
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_x64vk")
 theme_override_font_sizes/font_size = 40
-text = "PLAY AGAIN"
+text = "MAIN MENU"
 flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1430578316]
-stream = ExtResource("4_x64vk")
+stream = ExtResource("6_jf8s5")
 bus = &"Music"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1169448852]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("7_jf8s5")
+
+[node name="FadeRect" type="ColorRect" parent="." unique_id=2082460056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_play_again_button_pressed"]
