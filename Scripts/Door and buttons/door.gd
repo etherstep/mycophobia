@@ -2,7 +2,7 @@ class_name Door
 extends AnimatableBody3D
 
 ## Local direction and distance to slide when opening (e.g., slide 2 units on X)
-@export var open_offset: Vector3 = Vector3(2.0, 0.0, 0.0)
+@export var open_offset: Vector3 = Vector3(3.0, 0.0, 0.0)
 @export var slide_duration: float = 1.0
 @export var buttons: Array[DoorButton]
 

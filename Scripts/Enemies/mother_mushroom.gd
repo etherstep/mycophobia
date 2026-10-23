@@ -29,6 +29,27 @@ var _goal := Vector3.ZERO
 var _use_nav := false
 var _camera: Camera3D
 
+@onready var footstep_player: AudioStreamPlayer3D = $FootstepPlayer
+@export var footstep_sounds: Array[AudioStream]
+
+@export var footstep_interval: float = 0.45
+@export var footstep_interval_chase: float = 0.22
+
+@onready var enemy_voice_player: AudioStreamPlayer3D = $EnemyVoicePlayer
+@onready var enemy_spore_player: AudioStreamPlayer3D = $SporeSFX
+@onready var enemy_scream_player: AudioStreamPlayer3D = $EnemyScreamPlayer
+@onready var spore_audio_player_fire: AudioStreamPlayer3D = $SporePlayerFire
+@export var enemy_sounds: Array[AudioStream]
+
+@export var enemy_sound_interval_min: float = 3.0
+@export var enemy_sound_interval_max: float = 7.0
+
+var enemy_sound_timer: float = 0.0
+var last_enemy_sound_index: int = -1
+
+var footstep_timer: float = 0.0
+var last_footstep_index: int = -1
+
 
 func _ready() -> void:
 	if not is_in_group("enemies"):
@@ -36,6 +57,8 @@ func _ready() -> void:
 	animated_sprite.play("idle_front")
 	animated_sprite.pause()
 	_fit_use_area()
+	_reset_enemy_sound_timer()
+
 	await get_tree().physics_frame
 	_pick_point()
 
@@ -45,6 +68,9 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	update_footsteps(delta)
+	update_enemy_sounds(delta)
+
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
 	if _dead:
@@ -71,6 +97,70 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_watch_stuck(delta)
 
+func update_footsteps(delta: float) -> void:
+	if _dead:
+		return
+
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_moving := is_on_floor() and horizontal_speed > 0.1
+
+	if not is_moving:
+		footstep_timer = 0.0
+		return
+
+	footstep_timer -= delta
+
+	if footstep_timer <= 0.0:
+		play_random_footstep()
+		footstep_timer = footstep_interval
+
+
+func play_random_footstep() -> void:
+	if footstep_sounds.is_empty():
+		return
+
+	var sound_index := randi_range(0, footstep_sounds.size() - 1)
+
+	if footstep_sounds.size() > 1:
+		while sound_index == last_footstep_index:
+			sound_index = randi_range(0, footstep_sounds.size() - 1)
+
+	last_footstep_index = sound_index
+	footstep_player.stream = footstep_sounds[sound_index]
+	footstep_player.play()
+
+func update_enemy_sounds(delta: float) -> void:
+	if _dead or enemy_sounds.is_empty():
+		return
+
+	enemy_sound_timer -= delta
+
+	if enemy_sound_timer <= 0.0:
+		play_random_enemy_sound()
+		_reset_enemy_sound_timer()
+
+
+func play_random_enemy_sound() -> void:
+	if enemy_sounds.is_empty() or _dead:
+		return
+
+	var sound_index := randi_range(0, enemy_sounds.size() - 1)
+
+	if enemy_sounds.size() > 1:
+		while sound_index == last_enemy_sound_index:
+			sound_index = randi_range(0, enemy_sounds.size() - 1)
+
+	last_enemy_sound_index = sound_index
+
+	enemy_voice_player.stream = enemy_sounds[sound_index]
+	enemy_voice_player.play()
+
+
+func _reset_enemy_sound_timer() -> void:
+	enemy_sound_timer = randf_range(
+		enemy_sound_interval_min,
+		enemy_sound_interval_max
+	)
 
 func apply_salted() -> void:
 	if _dead or _salted:
@@ -90,6 +180,8 @@ func kill_by_matches() -> void:
 	if _dead or not _salted:
 		return
 	_dead = true
+	footstep_player.stop()
+	enemy_voice_player.stop()
 	velocity.x = 0.0
 	velocity.z = 0.0
 	if is_instance_valid(salt_effect):
