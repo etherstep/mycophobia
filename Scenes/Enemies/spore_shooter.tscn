@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dqeclkfluafub" path="res://Assets/Sprites/Spore shooter fungus.PNG" id="2_fungus"]
 [ext_resource type="PackedScene" uid="uid://ck5afq4w7pkby" path="res://Scenes/fire_effect.tscn" id="3_imk8t"]
 [ext_resource type="AudioStream" uid="uid://dmdoug7cys448" path="res://Assets/SFX/enemy/spore_cloud_smoke.mp3" id="4_62nw4"]
-[ext_resource type="AudioStream" uid="uid://oagj6q8ly6um" path="res://Assets/SFX/fire.wav" id="6_sk3k1"]
+[ext_resource type="AudioStream" uid="uid://cfc6ti6road78" path="res://Assets/SFX/fire.mp3" id="6_sk3k1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pod"]
 radius = 0.4

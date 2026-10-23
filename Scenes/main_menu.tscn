@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ddyetqyxkhfn8"]
 
 [ext_resource type="Script" uid="uid://dwj1y7tj8nsrl" path="res://Scripts/main_menu.gd" id="1_28flt"]
-[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_n45e2"]
-[ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_opfnp"]
+[ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_cp0ys"]
+[ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_yhxw7"]
 [ext_resource type="Shader" uid="uid://lv82xoxqgtwa" path="res://Shaders/blur_effect.gdshader" id="4_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="4_opfnp"]
 [ext_resource type="FontFile" uid="uid://bcl20euoib7c7" path="res://Assets/Fonts/Raven Scream.otf" id="6_cp0ys"]
@@ -20,8 +20,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
-button_hover_sfx = ExtResource("2_n45e2")
-button_pressed_sfx = ExtResource("3_opfnp")
+button_hover_sfx = ExtResource("2_cp0ys")
+button_pressed_sfx = ExtResource("3_yhxw7")
 new_game_button = NodePath("VBoxContainer/New_Game")
 options_button = NodePath("VBoxContainer/Options")
 

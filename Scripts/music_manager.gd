@@ -9,7 +9,7 @@ var ambience_player: AudioStreamPlayer
 var ambience_player_2: AudioStreamPlayer
 var player_player: AudioStreamPlayer
 
-const STARTING_EFFECT: AudioStream = preload("res://Assets/SFX/UI/game-start.wav")
+const STARTING_EFFECT: AudioStream = preload("res://Assets/SFX/UI/game-start.mp3")
 const BROCHURE_PART_1: AudioStream = preload("res://Assets/SFX/Dialogue/brochure_full.mp3")
 
 var menu_music_volume_db: float = 0.0
@@ -63,7 +63,7 @@ func play_game_ambience() -> void:
 	stop()
 
 	var game_song: AudioStream = preload(
-		"res://Assets/SFX/Athmosphere/ambient_drone.wav"
+		"res://Assets/SFX/Athmosphere/ambient_drone.mp3"
 	)
 	var game_song_2: AudioStream = preload(
 		"res://Assets/SFX/Athmosphere/wind.mp3"

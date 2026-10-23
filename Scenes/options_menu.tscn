@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://drtq5rcm0wxd8"]
 
 [ext_resource type="Script" uid="uid://fd8kr3vyfitw" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
-[ext_resource type="AudioStream" uid="uid://bpwds5ilpe43e" path="res://Assets/SFX/UI/click3.wav" id="2_inh3s"]
-[ext_resource type="AudioStream" uid="uid://buelqgbfuow2c" path="res://Assets/SFX/UI/click2.wav" id="3_m6e8v"]
+[ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_m6e8v"]
+[ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_tqe32"]
 [ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="4_m6e8v"]
 [ext_resource type="FontFile" uid="uid://sulgwod1q8a6" path="res://Assets/Fonts/Bakula-TTF.ttf" id="5_m6e8v"]
 
@@ -14,8 +14,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uj0ok")
-button_hover_sfx = ExtResource("2_inh3s")
-button_pressed_sfx = ExtResource("3_m6e8v")
+button_hover_sfx = ExtResource("2_m6e8v")
+button_pressed_sfx = ExtResource("3_tqe32")
 back_button = NodePath("VBoxContainer/Back")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2094356942]

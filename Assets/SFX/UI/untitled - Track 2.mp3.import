@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://h68oplranna1"
+path="res://.godot/imported/untitled - Track 2.mp3-a8d3c506b8637b64190889938509df79.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/UI/untitled - Track 2.mp3"
+dest_files=["res://.godot/imported/untitled - Track 2.mp3-a8d3c506b8637b64190889938509df79.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

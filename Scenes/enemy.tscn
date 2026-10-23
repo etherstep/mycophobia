@@ -3,32 +3,30 @@
 [ext_resource type="Script" uid="uid://gjm0jfnuwat1" path="res://Scripts/Enemies/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://dvm3q3rqhgoa0" path="res://Assets/Sprites/fungal_back.png" id="2_back"]
 [ext_resource type="Texture2D" uid="uid://bwdxhturwylsc" path="res://Assets/Sprites/fungal_front.png" id="2_front"]
-[ext_resource type="AudioStream" uid="uid://dy4y8t050ny11" path="res://Assets/SFX/sfx_2 - enemy_step_1.wav" id="2_ghaa6"]
+[ext_resource type="AudioStream" uid="uid://dxplgpc64e0yk" path="res://Assets/SFX/sfx_2 - enemy_step_1.mp3" id="2_iatxd"]
 [ext_resource type="Texture2D" uid="uid://bifyl0wtlndhm" path="res://Assets/Sprites/fungal_side.png" id="2_side"]
-[ext_resource type="AudioStream" uid="uid://bmoiv8usschgy" path="res://Assets/SFX/sfx_2 - enemy_step_2.wav" id="3_1dp5w"]
-[ext_resource type="AudioStream" uid="uid://buclbg01nl2oy" path="res://Assets/SFX/Athmosphere/chase_2.wav" id="4_0830c"]
-[ext_resource type="AudioStream" uid="uid://bcu5oj68y38bf" path="res://Assets/SFX/enemy/mushroom_sound_1.wav" id="4_vh8xy"]
-[ext_resource type="AudioStream" uid="uid://bgktiom1uy4rt" path="res://Assets/SFX/Athmosphere/chase-end_2.wav" id="5_ghaa6"]
-[ext_resource type="AudioStream" uid="uid://d2vfioekqx6lr" path="res://Assets/SFX/enemy/mushroom_sound_2.wav" id="5_qjcj6"]
-[ext_resource type="AudioStream" uid="uid://bwp01cs0j28ew" path="res://Assets/SFX/enemy/mushroom_sound_3.wav" id="6_4ycey"]
-[ext_resource type="AudioStream" uid="uid://d0etsge3bh6kk" path="res://Assets/SFX/enemy/mushroom_sound_4.wav" id="7_8cim4"]
-[ext_resource type="AudioStream" uid="uid://b002e2oxgkq81" path="res://Assets/SFX/enemy/mushroom_sound_5.wav" id="8_7x82w"]
-[ext_resource type="AudioStream" uid="uid://c4war3hfp2ucq" path="res://Assets/SFX/enemy/mushroom_sound_6.wav" id="9_iatxd"]
-[ext_resource type="AudioStream" uid="uid://bimaxyqof5cx1" path="res://Assets/SFX/enemy/mushroom_sound_7.wav" id="10_qqxsh"]
-[ext_resource type="AudioStream" uid="uid://b2t7e1yt8kbyj" path="res://Assets/SFX/enemy/mushroom_sound_8.wav" id="11_0whn2"]
-[ext_resource type="AudioStream" uid="uid://kb1xne4nm81i" path="res://Assets/SFX/enemy/mushroom_sound_9.wav" id="12_bx1xr"]
-[ext_resource type="AudioStream" uid="uid://de216h56tr6pl" path="res://Assets/SFX/enemy/mushroom_sound_10.wav" id="13_n85mp"]
-[ext_resource type="AudioStream" uid="uid://wd2kdqui87ci" path="res://Assets/SFX/enemy/mushroom_sound_11.wav" id="14_nxecp"]
-[ext_resource type="AudioStream" uid="uid://cycdnmff7qy0p" path="res://Assets/SFX/enemy/mushroom_sound_12.wav" id="15_6jaer"]
-[ext_resource type="AudioStream" uid="uid://bonhtt1wgrymt" path="res://Assets/SFX/enemy/mushroom_sound_13.wav" id="16_ve8xs"]
-[ext_resource type="AudioStream" uid="uid://1bnhsciubtok" path="res://Assets/SFX/enemy/mushroom_sound_14.wav" id="17_q0iv8"]
-[ext_resource type="AudioStream" uid="uid://d0x34ifapyfp2" path="res://Assets/SFX/enemy/mushroom_sound_15.wav" id="18_c1gwg"]
-[ext_resource type="AudioStream" uid="uid://cvt55gp1bhnx6" path="res://Assets/SFX/enemy/mushroom_sound_16.wav" id="19_3mxp7"]
+[ext_resource type="AudioStream" uid="uid://b2gyoifrybwkb" path="res://Assets/SFX/sfx_2 - enemy_step_2.mp3" id="3_qqxsh"]
+[ext_resource type="AudioStream" uid="uid://d168kcnqpbgav" path="res://Assets/SFX/enemy/mushroom_sound_1.mp3" id="4_0whn2"]
+[ext_resource type="AudioStream" uid="uid://b5s0b03uwwege" path="res://Assets/SFX/enemy/mushroom_sound_2.mp3" id="5_bx1xr"]
+[ext_resource type="AudioStream" uid="uid://f7vyr5qlh0lg" path="res://Assets/SFX/enemy/mushroom_sound_3.mp3" id="6_n85mp"]
+[ext_resource type="AudioStream" uid="uid://c6g5g1edsokwi" path="res://Assets/SFX/enemy/mushroom_sound_4.mp3" id="7_nxecp"]
+[ext_resource type="AudioStream" uid="uid://clfwpdk7ktvbd" path="res://Assets/SFX/enemy/mushroom_sound_5.mp3" id="8_6jaer"]
+[ext_resource type="AudioStream" uid="uid://ctpkwue3o5aye" path="res://Assets/SFX/enemy/mushroom_sound_6.mp3" id="9_ve8xs"]
+[ext_resource type="AudioStream" uid="uid://m0b6e2jc5g3f" path="res://Assets/SFX/enemy/mushroom_sound_7.mp3" id="10_q0iv8"]
+[ext_resource type="AudioStream" uid="uid://bvyy22bx2kbs8" path="res://Assets/SFX/enemy/mushroom_sound_8.mp3" id="11_c1gwg"]
+[ext_resource type="AudioStream" uid="uid://c8yovsting6ov" path="res://Assets/SFX/enemy/mushroom_sound_9.mp3" id="12_3mxp7"]
+[ext_resource type="AudioStream" uid="uid://chuib2sq0qovn" path="res://Assets/SFX/enemy/mushroom_sound_10.mp3" id="13_5a56t"]
+[ext_resource type="AudioStream" uid="uid://dbmefstdxf0cr" path="res://Assets/SFX/enemy/mushroom_sound_11.mp3" id="14_a6sir"]
+[ext_resource type="AudioStream" uid="uid://dxc40jlg8ihog" path="res://Assets/SFX/enemy/mushroom_sound_12.mp3" id="15_8ej4m"]
+[ext_resource type="AudioStream" uid="uid://b7oglf5wej0mf" path="res://Assets/SFX/enemy/mushroom_sound_13.mp3" id="16_bwheg"]
+[ext_resource type="AudioStream" uid="uid://bjf8pm8o8km8b" path="res://Assets/SFX/enemy/mushroom_sound_14.mp3" id="17_iol0x"]
+[ext_resource type="AudioStream" uid="uid://dcxf2mxkk3upa" path="res://Assets/SFX/enemy/mushroom_sound_15.mp3" id="18_ofqcr"]
+[ext_resource type="AudioStream" uid="uid://dk1w2e7ulu471" path="res://Assets/SFX/enemy/mushroom_sound_16.mp3" id="19_nus6a"]
 [ext_resource type="Shader" uid="uid://o467u40jyv1k" path="res://Shaders/spore_smoke_lod.gdshader" id="23_8cim4"]
 [ext_resource type="Texture2D" uid="uid://1s454oif21cr" path="res://Assets/VFX/T_VFX_circle_1.png" id="24_7x82w"]
 [ext_resource type="Texture2D" uid="uid://c2k0vypco3cfg" path="res://Assets/VFX/T_Noise_001R.png" id="25_iatxd"]
-[ext_resource type="AudioStream" uid="uid://dmya30eagiurd" path="res://Assets/SFX/enemy/shooting_spores.wav" id="28_qqxsh"]
-[ext_resource type="AudioStream" uid="uid://cktp2jcycido" path="res://Assets/SFX/enemy/scream.wav" id="29_0whn2"]
+[ext_resource type="AudioStream" uid="uid://dmdoug7cys448" path="res://Assets/SFX/enemy/spore_cloud_smoke.mp3" id="26_imgxb"]
+[ext_resource type="AudioStream" uid="uid://cby2jmxjqygpu" path="res://Assets/SFX/enemy/scream.mp3" id="27_pyrvc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_baysf"]
 radius = 0.4
@@ -236,8 +234,8 @@ material = SubResource("ShaderMaterial_smoke")
 [node name="Enemy" type="CharacterBody3D" unique_id=1473996547 node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("1_1f0kj")
 animated_sprite = NodePath("AnimatedSprite3D")
-footstep_sounds = Array[AudioStream]([ExtResource("2_ghaa6"), ExtResource("3_1dp5w")])
-enemy_sounds = Array[AudioStream]([ExtResource("4_vh8xy"), ExtResource("5_qjcj6"), ExtResource("6_4ycey"), ExtResource("7_8cim4"), ExtResource("8_7x82w"), ExtResource("9_iatxd"), ExtResource("10_qqxsh"), ExtResource("11_0whn2"), ExtResource("12_bx1xr"), ExtResource("13_n85mp"), ExtResource("14_nxecp"), ExtResource("15_6jaer"), ExtResource("16_ve8xs"), ExtResource("17_q0iv8"), ExtResource("18_c1gwg"), ExtResource("19_3mxp7")])
+footstep_sounds = Array[AudioStream]([ExtResource("2_iatxd"), ExtResource("3_qqxsh")])
+enemy_sounds = Array[AudioStream]([ExtResource("4_0whn2"), ExtResource("5_bx1xr"), ExtResource("6_n85mp"), ExtResource("7_nxecp"), ExtResource("8_6jaer"), ExtResource("9_ve8xs"), ExtResource("10_q0iv8"), ExtResource("11_c1gwg"), ExtResource("12_3mxp7"), ExtResource("13_5a56t"), ExtResource("14_a6sir"), ExtResource("15_8ej4m"), ExtResource("16_bwheg"), ExtResource("17_iol0x"), ExtResource("18_ofqcr"), ExtResource("19_nus6a")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1425749593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -276,11 +274,9 @@ emission_angle_enabled = true
 emission_angle_degrees = 52.1
 
 [node name="ChaseSFX" type="AudioStreamPlayer" parent="." unique_id=1337109100]
-stream = ExtResource("4_0830c")
 bus = &"Music"
 
 [node name="LoseInterestSFX" type="AudioStreamPlayer" parent="." unique_id=110984720]
-stream = ExtResource("5_ghaa6")
 bus = &"Music"
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1279238638]
@@ -307,11 +303,11 @@ process_material = SubResource("ParticleProcessMaterial_bx1xr")
 draw_pass_1 = SubResource("QuadMesh_n85mp")
 
 [node name="SporeSFX" type="AudioStreamPlayer3D" parent="." unique_id=1185401915]
-stream = ExtResource("28_qqxsh")
+stream = ExtResource("26_imgxb")
 bus = &"SFX-Enemy"
 
 [node name="EnemyScreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=55641789]
-stream = ExtResource("29_0whn2")
+stream = ExtResource("27_pyrvc")
 bus = &"SFX-Enemy"
 
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

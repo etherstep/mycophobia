@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3pi17re26hja"
+path="res://.godot/imported/sfx_2 - click_3-open.mp3-51297300195992d8317173f6d13b908b.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/sfx_2 - click_3-open.mp3"
+dest_files=["res://.godot/imported/sfx_2 - click_3-open.mp3-51297300195992d8317173f6d13b908b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

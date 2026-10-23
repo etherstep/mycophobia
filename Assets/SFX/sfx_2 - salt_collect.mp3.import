@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccwbqpw0ee8lo"
+path="res://.godot/imported/sfx_2 - salt_collect.mp3-1ace5399ffcabcf0ad82dc3182b41d16.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/sfx_2 - salt_collect.mp3"
+dest_files=["res://.godot/imported/sfx_2 - salt_collect.mp3-1ace5399ffcabcf0ad82dc3182b41d16.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

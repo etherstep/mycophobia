@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://casgcs7q8ujxx"]
 
 [ext_resource type="Script" uid="uid://dan8rdmtctyco" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="AudioStream" uid="uid://cuf1k24xj2r37" path="res://Assets/SFX/sfx_2 - step_1.wav" id="2_2ijsl"]
+[ext_resource type="AudioStream" uid="uid://3tc2bg3ht6fo" path="res://Assets/SFX/sfx_2 - step_1.mp3" id="2_2ijsl"]
 [ext_resource type="Script" uid="uid://jn25rxf5yoyl" path="res://Scripts/camera_3d.gd" id="2_cvnsp"]
-[ext_resource type="AudioStream" uid="uid://bpvgof8ro80pk" path="res://Assets/SFX/sfx_2 - step_2.wav" id="3_p1odr"]
+[ext_resource type="AudioStream" uid="uid://b1g8xfl5slcui" path="res://Assets/SFX/sfx_2 - step_2.mp3" id="3_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dxmdh74vx1vwp" path="res://Assets/Sprites/Stage_1_empty.PNG" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://c225h0neiq4dk" path="res://Assets/SFX/player/death.mp3" id="5_p1odr"]
 [ext_resource type="AudioStream" uid="uid://ba60jqp8xwho0" path="res://Assets/SFX/player/running-effort_1.mp3" id="6_gymyn"]
-[ext_resource type="AudioStream" uid="uid://hhf2se68ku8s" path="res://Assets/SFX/sfx_2 - flashlight-on.wav" id="8_0gysh"]
+[ext_resource type="AudioStream" uid="uid://cmt4r06owgvur" path="res://Assets/SFX/sfx_2 - flashlight-on.mp3" id="7_0gysh"]
+[ext_resource type="AudioStream" uid="uid://d0njwpj8b5pf5" path="res://Assets/SFX/sfx_2 - flashlight close.mp3" id="8_vfarp"]
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
-[ext_resource type="AudioStream" uid="uid://dj5wjjslrh253" path="res://Assets/SFX/sfx_2 - flashlight close.wav" id="9_vfarp"]
 [ext_resource type="Texture2D" uid="uid://c2jt128lga2ul" path="res://Assets/Sprites/flashlight_stage1.PNG" id="10_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://uokg0jehuhdn" path="res://Assets/Sprites/flashlight_stage2.PNG" id="11_p1odr"]
 [ext_resource type="Texture2D" uid="uid://c3u5q06rlm51l" path="res://Assets/Sprites/flashlight_stage3.PNG" id="12_0gysh"]
@@ -55,8 +55,8 @@ crosshair_interact = NodePath("../HUD/Crosshair_interact")
 crosshair_normal = NodePath("../HUD/Crosshair_normal")
 flashlight = NodePath("FlashLight")
 flashlight_asset = NodePath("../PlayerHands/FlashLightStage1")
-flashlight_on_sfx = ExtResource("8_0gysh")
-flashlight_off_sfx = ExtResource("9_vfarp")
+flashlight_on_sfx = ExtResource("7_0gysh")
+flashlight_off_sfx = ExtResource("8_vfarp")
 
 [node name="FlashLight" type="SpotLight3D" parent="Camera3D" unique_id=739574546 groups=["detection_light"]]
 transform = Transform3D(0.9993954, 0.030377, 0.016916696, -0.030306974, 0.9995311, -0.0043807286, -0.017041825, 0.0038653868, 0.99984735, 0.15643951, -0.031244516, -0.12128334)
@@ -398,4 +398,5 @@ emission_angle_enabled = true
 bus = &"SFX-Interaction"
 
 [node name="DeathSFX" type="AudioStreamPlayer3D" parent="." unique_id=846195740]
+stream = ExtResource("5_p1odr")
 bus = &"SFX-Player"
