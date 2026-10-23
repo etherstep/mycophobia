@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d3h1wab4ryihs" path="res://Assets/Sprites/flashlight_stage1.PNG" id="10_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://uflmnrmyqylb" path="res://Assets/Sprites/flashlight_stage2.PNG" id="11_p1odr"]
 [ext_resource type="Texture2D" uid="uid://bnj64qg6kdiep" path="res://Assets/Sprites/flashlight_stage3.PNG" id="12_0gysh"]
+[ext_resource type="Texture2D" uid="uid://cl2pea2jr32rr" path="res://Assets/Sprites/crosshair_hand.PNG" id="16_vfarp"]
 [ext_resource type="Texture2D" uid="uid://3uvlxfma74cj" path="res://Assets/UI/Photo before.png" id="17_y6uwr"]
 [ext_resource type="Texture2D" uid="uid://34ar7ctuk4wp" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
 [ext_resource type="Shader" uid="uid://bfacabsk3hqib" path="res://Shaders/syringe_vignette.gdshader" id="18_vfarp"]
@@ -33,8 +34,6 @@ height = 2.6291504
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_infection"]
 shader = ExtResource("24_vignette")
 shader_parameter/strength = 0.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ijsl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dsm2w"]
 shader = ExtResource("18_vfarp")
@@ -143,7 +142,8 @@ expand_mode = 1
 
 [node name="Photo" type="TextureRect" parent="PlayerHands" unique_id=648757595]
 offset_left = 173.0
-offset_right = 1700.3473
+offset_top = -6.3062744
+offset_right = 1685.0
 offset_bottom = 1088.0
 texture = ExtResource("17_y6uwr")
 expand_mode = 5
@@ -172,7 +172,7 @@ offset_right = 48.599976
 offset_bottom = 42.400024
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("CompressedTexture2D_2ijsl")
+texture = ExtResource("16_vfarp")
 expand_mode = 1
 flip_h = true
 
