@@ -9317,14 +9317,15 @@ slide_duration = 4.0
 buttons = [NodePath("../DoorButton"), NodePath("../DoorButton4")]
 
 [node name="DoorButton" parent="." unique_id=458718114 node_paths=PackedStringArray("door") instance=ExtResource("19_axeuq")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -363.70038, 3.588463, -44.47883)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -363.89255, 3.588463, -44.47883)
 door = NodePath("../Door")
+timeout = 60.0
 brightness = 10.0
 
 [node name="DoorButton4" parent="." unique_id=1581573885 node_paths=PackedStringArray("door") instance=ExtResource("19_axeuq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -401.7444, 3.588463, -0.6919562)
 door = NodePath("../Door")
-timeout = 10.0
+timeout = 60.0
 brightness = 10.0
 
 [node name="SporeCloudWest" parent="." unique_id=2079239642 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]

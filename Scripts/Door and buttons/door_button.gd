@@ -2,8 +2,8 @@ class_name DoorButton
 extends StaticBody3D
 
 @export var door: Door
-@export_range(0.1, 10.0) var timeout: float = 1.0
-@export_range(0.1, 10.0) var brightness: float = 1.0
+@export_range(1.0, 120.0, 1.0) var timeout: float = 1.0
+@export_range(1.0, 10.0, 0.1) var brightness: float = 1.0
 
 @onready var timer: Timer = $Timer
 
@@ -15,6 +15,15 @@ var door_opened: bool = false
 var button_material: StandardMaterial3D = null
 
 signal button_pressed
+
+func _process(_delta: float) -> void:
+	if not is_active:
+		return
+	var color_ratio: float = timer.time_left / timer.wait_time
+	var g_value: float = color_ratio * 1
+	var r_value: float = 1 - g_value
+	var color: Color = Color(r_value, g_value, 0)
+	set_button_color(color)
 
 func _ready() -> void:
 	door.door_opened.connect(_on_door_opened)
@@ -59,3 +68,4 @@ func set_button_color(color: Color) -> void:
 func _on_door_opened() -> void:
 	door_opened = true
 	set_button_color(Color.GREEN)
+	set_process(false)
