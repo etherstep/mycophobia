@@ -22,7 +22,7 @@
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
-[ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
+[ext_resource type="Texture2D" uid="uid://34ar7ctuk4wp" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
 [ext_resource type="PackedScene" uid="uid://cvvjht5xbhqkq" path="res://Scenes/Door and buttons/door.tscn" id="20_1cojt"]
 [ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
@@ -5055,7 +5055,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -87.82657, 23.863155
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -88.60989, 23.863155, 0)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -167.90259, 0.8889251, -5.5377026)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
@@ -5103,7 +5103,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -83.7952, 23.863155,
 item_data = ExtResource("13_t2t4p")
 
 [node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -80.25595, 23.863155, -17.686844)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -167.90347, -0.4373238, -5.3919697)
 item_data = ExtResource("17_1cojt")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]

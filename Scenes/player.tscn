@@ -11,12 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://d0njwpj8b5pf5" path="res://Assets/SFX/sfx_2 - flashlight close.mp3" id="8_vfarp"]
 [ext_resource type="Script" uid="uid://c74b27jtfsas7" path="res://Scenes/player_hands.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://devfpkalys4x5" path="res://Scripts/flash_light.gd" id="9_qqcod"]
-[ext_resource type="Texture2D" uid="uid://c2jt128lga2ul" path="res://Assets/Sprites/flashlight_stage1.PNG" id="10_2ijsl"]
-[ext_resource type="Texture2D" uid="uid://uokg0jehuhdn" path="res://Assets/Sprites/flashlight_stage2.PNG" id="11_p1odr"]
-[ext_resource type="Texture2D" uid="uid://c3u5q06rlm51l" path="res://Assets/Sprites/flashlight_stage3.PNG" id="12_0gysh"]
-[ext_resource type="Texture2D" uid="uid://ctrlh7kan1xjn" path="res://Assets/Sprites/Stage_2_empty.PNG" id="14_igrcy"]
-[ext_resource type="Texture2D" uid="uid://bw7egajup6sh5" path="res://Assets/Sprites/Stage_3_empty.PNG" id="15_fs7ks"]
-[ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
+[ext_resource type="Texture2D" uid="uid://d3h1wab4ryihs" path="res://Assets/Sprites/flashlight_stage1.PNG" id="10_2ijsl"]
+[ext_resource type="Texture2D" uid="uid://uflmnrmyqylb" path="res://Assets/Sprites/flashlight_stage2.PNG" id="11_p1odr"]
+[ext_resource type="Texture2D" uid="uid://bnj64qg6kdiep" path="res://Assets/Sprites/flashlight_stage3.PNG" id="12_0gysh"]
+[ext_resource type="Texture2D" uid="uid://34ar7ctuk4wp" path="res://Assets/Sprites/salt.png" id="18_2ijsl"]
 [ext_resource type="Shader" uid="uid://bfacabsk3hqib" path="res://Shaders/syringe_vignette.gdshader" id="18_vfarp"]
 [ext_resource type="Texture2D" uid="uid://doqe6kqmesp6x" path="res://Assets/UI/Infection overlay.png" id="19_0gysh"]
 [ext_resource type="Script" uid="uid://bduivooknhsa6" path="res://Scripts/note_viewer.gd" id="19_l6n3p"]
@@ -85,11 +83,10 @@ script = ExtResource("9_qqcod")
 [node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=952571717]
 target_position = Vector3(0, 0, -2.6)
 
-[node name="PlayerHands" type="CanvasLayer" parent="." unique_id=1444067506 node_paths=PackedStringArray("player", "flashlight_array", "hands_array", "flashlight")]
+[node name="PlayerHands" type="CanvasLayer" parent="." unique_id=1444067506 node_paths=PackedStringArray("player", "flashlight_array", "flashlight")]
 script = ExtResource("9_pu2lt")
 player = NodePath("..")
 flashlight_array = [NodePath("FlashLightStage1"), NodePath("FlashLightStage2"), NodePath("FlashLightStage3")]
-hands_array = [NodePath("HandsStage1"), NodePath("HandsStage2"), NodePath("HandsStage3")]
 flashlight = NodePath("../Camera3D/FlashLight")
 
 [node name="FlashLightStage1" type="TextureRect" parent="PlayerHands" unique_id=1666657837]
@@ -138,54 +135,6 @@ grow_vertical = 2
 rotation = 0.34906584
 texture = ExtResource("12_0gysh")
 expand_mode = 1
-
-[node name="HandsStage1" type="TextureRect" parent="PlayerHands" unique_id=464731495]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 384.00003
-offset_top = 968.00006
-offset_right = 1196.0
-offset_bottom = 1936.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.61086524
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_vgqql")
-flip_h = true
-
-[node name="HandsStage2" type="TextureRect" parent="PlayerHands" unique_id=784981196]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 384.00003
-offset_top = 968.00006
-offset_right = 1196.0
-offset_bottom = 1936.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.61086524
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_igrcy")
-flip_h = true
-
-[node name="HandsStage3" type="TextureRect" parent="PlayerHands" unique_id=456076870]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 384.00003
-offset_top = 968.00006
-offset_right = 1196.0
-offset_bottom = 1936.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.61086524
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("15_fs7ks")
-flip_h = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=706489439]
 

@@ -27,6 +27,7 @@ func _ready() -> void:
 		sprite_outline.visible = false
 
 
+
 func _update_collectible() -> void:
 	if not is_inside_tree():
 		return
@@ -35,21 +36,27 @@ func _update_collectible() -> void:
 		if sprite:
 			sprite.texture = null
 		if sprite_outline:
-			sprite_outline.texture = null	
+			sprite_outline.texture = null
 		if label:
 			label.text = ""
 		return
 
+	var is_note := item_data.item_type == ItemData.ItemType.NOTE
+	var billboard_mode := BaseMaterial3D.BILLBOARD_DISABLED if is_note else BaseMaterial3D.BILLBOARD_ENABLED
+
 	if sprite:
 		sprite.texture = item_data.texture
+		sprite.billboard = billboard_mode
 
 	if sprite_outline:
 		sprite_outline.texture = item_data.texture_outline
+		sprite_outline.billboard = billboard_mode
 
 	if label:
 		label.text = item_data.name
 
 	scale = BASE_SCALE
+
 
 
 func interact() -> void:
