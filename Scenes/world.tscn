@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://bgoh5yht0xksd" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="2_eskoj"]
+[ext_resource type="Script" uid="uid://dft6pwxvn7j66" path="res://Scripts/world_environment.gd" id="3_82dmg"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
@@ -22,7 +23,7 @@
 [ext_resource type="Resource" uid="uid://wdv1u0xby4td" path="res://Items/syringe.tres" id="17_1cojt"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://Addons/func_godot/textures/default_texture.png" id="18_1vso6"]
 [ext_resource type="Script" uid="uid://cld2aonjx4te" path="res://Scenes/safe_house.gd" id="19_1cojt"]
-[ext_resource type="Texture2D" uid="uid://bo4ipo3dshidk" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
+[ext_resource type="Texture2D" uid="uid://34ar7ctuk4wp" path="res://Assets/Sprites/salt.png" id="19_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://oanea2yybmgb" path="res://Scenes/Door and buttons/door_button.tscn" id="19_axeuq"]
 [ext_resource type="PackedScene" uid="uid://cvvjht5xbhqkq" path="res://Scenes/Door and buttons/door.tscn" id="20_1cojt"]
 [ext_resource type="AudioStream" uid="uid://bgnkjvgk2b5e7" path="res://Assets/Music/safety_2.mp3" id="20_yq1aw"]
@@ -68,43 +69,44 @@ panorama = ExtResource("2_eskoj")
 
 [sub_resource type="Sky" id="Sky_ikia7"]
 sky_material = SubResource("PanoramaSkyMaterial_n8wo2")
-process_mode = 1
 
 [sub_resource type="Environment" id="Environment_baysf"]
 background_mode = 2
-background_energy_multiplier = 0.45
+background_energy_multiplier = 0.46
 sky = SubResource("Sky_ikia7")
 sky_rotation = Vector3(0, 0.4607669, 0)
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.82355344, 0.9530392, 0.80757254, 1)
+ambient_light_energy = 0.04
 tonemap_mode = 3
-tonemap_exposure = 0.37
-tonemap_white = 16.0
-ssr_enabled = true
+tonemap_exposure = 0.28
 ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
 sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
+glow_intensity = 1.6
 glow_strength = 1.02
-glow_bloom = 0.5
+glow_bloom = 0.34
 glow_blend_mode = 2
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 2.42
-fog_sun_scatter = 0.01
-fog_density = 1.0
-fog_aerial_perspective = 0.683
-fog_sky_affect = 0.73
+fog_light_energy = 8.08
+fog_sun_scatter = 0.71
+fog_density = 0.6127
+fog_aerial_perspective = 0.035
+fog_sky_affect = 0.518
+fog_depth_curve = 0.26794398
+fog_depth_begin = -181.0
+fog_depth_end = 106.0
 volumetric_fog_density = 0.1109
 volumetric_fog_albedo = Color(0, 0.1764706, 0, 1)
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_detail_spread = 2.8284266
 adjustment_enabled = true
-adjustment_brightness = 1.76
-adjustment_contrast = 0.945
-adjustment_saturation = 0.49
+adjustment_brightness = 1.56
+adjustment_contrast = 0.965
+adjustment_saturation = 0.89
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_alert"]
 size = Vector3(4, 2, 4)
@@ -4988,6 +4990,7 @@ player = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
+script = ExtResource("3_82dmg")
 
 [node name="Navigation" type="NavigationRegion3D" parent="." unique_id=259160484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12605286, -0.095947266, -0.053115845)
@@ -5022,7 +5025,7 @@ transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409
 player = NodePath("../Player")
 
 [node name="SporeShooter" parent="." unique_id=1742201111 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
-transform = Transform3D(1.8947194, -0.19675526, 0.22542682, 0.28819844, 1.5885773, -1.0357873, -0.0804459, 1.0569774, 1.5986929, -315.597, 4.35184, -23.998056)
+transform = Transform3D(1.5521804, -0.9026389, 0.674886, 1.1241691, 1.321943, -0.817436, -0.08044593, 1.0569775, 1.5986931, -315.6764, 4.35184, -23.781141)
 collision_layer = 9
 cloud = NodePath("../SporeCloud")
 starts_chase = true
@@ -5055,7 +5058,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -87.82657, 23.863155
 item_data = ExtResource("7_5v1tr")
 
 [node name="Note_3" parent="Collectibles" unique_id=1202877062 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -88.60989, 23.863155, 0)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -167.90259, 0.8889251, -5.5377026)
 item_data = ExtResource("8_0fj1v")
 
 [node name="Note_4" parent="Collectibles" unique_id=861819309 instance=ExtResource("5_o06y3")]
@@ -5103,7 +5106,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -83.7952, 23.863155,
 item_data = ExtResource("13_t2t4p")
 
 [node name="syringe" parent="Collectibles" unique_id=561860417 instance=ExtResource("5_o06y3")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -80.25595, 23.863155, -17.686844)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -167.90347, -0.4373238, -5.3919697)
 item_data = ExtResource("17_1cojt")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1522497791]
@@ -9344,7 +9347,7 @@ transform = Transform3D(-1.3409592, 0.024544619, 0.32500166, 0.022952326, 1.3797
 player = NodePath("../Player")
 
 [node name="SporeShooterWest" parent="." unique_id=51457755 node_paths=PackedStringArray("cloud") groups=["enemies"] instance=ExtResource("16_shooter")]
-transform = Transform3D(0.3701235, -1.8821476, -0.0045589837, 1.8821529, 0.3701224, 0.0008965196, 0, -0.004646297, 1.9181943, -439.03476, 3.9171228, -19.658186)
+transform = Transform3D(-1.5248866, 1.1637031, 0.0028187495, -1.1637064, -1.5248823, -0.0036936076, 3.2381996e-11, -0.0046462966, 1.9181943, -438.1795, 3.9109814, -19.658186)
 collision_layer = 9
 cloud = NodePath("../SporeCloudWest")
 
@@ -9541,9 +9544,14 @@ area_range = 112.07
 area_attenuation = 0.574
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node" unique_id=1894225666]
-transform = Transform3D(0.20405295, -0.46531418, 0.86130434, 0.107269056, 0.8851456, 0.45278102, -0.97306514, -5.3855032e-14, 0.2305304, -233.39369, 12.205048, 11.220139)
+transform = Transform3D(0.23461305, -0.2039132, 0.95046103, 0.044459157, 0.97897893, 0.19905712, -0.9710716, -0.0044447035, 0.23874703, -275.36206, 62.162666, -25.047165)
+visible = false
+light_color = Color(0.612943, 0.77138925, 0.68901974, 1)
+light_energy = 1.421
+light_specular = 0.0
 shadow_enabled = true
-sky_mode = 2
+shadow_bias = 0.89
+sky_mode = 1
 
 [node name="AreaLight3D4" type="AreaLight3D" parent="Node" unique_id=1090393632]
 transform = Transform3D(0.56349593, -0.67954177, 0.46978226, 0.06355207, 0.60263425, 0.795483, -0.8236707, -0.41839585, 0.3827682, -282.834, 10.785066, -43.46416)
