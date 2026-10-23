@@ -65,6 +65,7 @@ const INFECTION_DEATH_TIME := 10.0
 
 var syringe_used = false
 
+@export var world: Node3D
 @export var inventory: Inventory
 @export var held_item_crosshair: TextureRect
 var selected_world_item: ItemData = null
@@ -108,7 +109,7 @@ signal caught_animation_finished
 @export_range(0.1, 5, 0.1) var throw_lockout_time: float = 0.6
 var saved_camera_pos: Vector3
 var saved_camera_pitch: float = 0.0
-var is_being_thrown: bool = false
+var mouse_disabled: bool = false
 var active_caught_tween
 
 func _ready() -> void:
@@ -182,7 +183,7 @@ func setup_footstep_pool() -> void:
 		footstep_players.append(player)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if dead or held or is_being_thrown or cutscene:
+	if dead or held or mouse_disabled or cutscene:
 		return
 
 	if event.is_action_pressed("ui_cancel"):
@@ -749,9 +750,9 @@ func restore_camera_state(duration: float = 0.3) -> void:
 
 func release_and_throw(enemy: Enemy) -> void:
 	restore_camera_state(0.3)
-	is_being_thrown = true
+	mouse_disabled = true
 	var throw_dir := (global_position - enemy.global_position)
 	throw_dir.y = 0.0
 	throw_dir = throw_dir.normalized()
 	velocity = (throw_dir * enemy_throw_back_force) + (Vector3.UP * enemy_throw_up_force)
-	get_tree().create_timer(0.3).timeout.connect(func(): is_being_thrown = false)
+	get_tree().create_timer(0.3).timeout.connect(func(): mouse_disabled = false)
