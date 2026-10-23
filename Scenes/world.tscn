@@ -5002,8 +5002,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290, 3.5, -18)
 [node name="PatrolLight" type="OmniLight3D" parent="." unique_id=1742201002 groups=["detection_light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304, 3.5, -12)
 
-[node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("inventory", "inventory_ui") instance=ExtResource("1_a02cp")]
+[node name="Player" parent="." unique_id=892995834 node_paths=PackedStringArray("world", "inventory", "inventory_ui") instance=ExtResource("1_a02cp")]
 transform = Transform3D(0.012871943, 0, -0.9999171, 0, 1, 0, 0.9999171, 0, 0.012871943, -284.75262, 2.1201868, -45.86623)
+world = NodePath("..")
 inventory = NodePath("../Inventory")
 inventory_ui = NodePath("../Inventory_ui")
 turn_to_enemy_animation_time = 1.2000000000000002

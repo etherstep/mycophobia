@@ -8,7 +8,7 @@ var _options_layer: CanvasLayer
 @export var player: Player
 
 var help_label: Label
-
+signal game_loaded
 
 func _ready() -> void:
 	MusicManager.play_game_ambience()
@@ -23,6 +23,7 @@ func _ready() -> void:
 
 		if is_instance_valid(help_label):
 			help_label.modulate.a = 1.0
+		game_loaded.emit()
 
 
 func _unhandled_input(event: InputEvent) -> void:
