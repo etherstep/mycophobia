@@ -265,6 +265,15 @@ region_rect = Rect2(104, 168, 72, 24)
 position = Vector2(457.5999, 364.64996)
 texture = ExtResource("21_tm4mo")
 
+[node name="Label" type="Label" parent="VisualSlots/TopBar" unique_id=1647615405]
+offset_left = -429.5999
+offset_top = -282.64996
+offset_right = -206.59991
+offset_bottom = -254.64996
+theme_override_fonts/font = ExtResource("20_f1vfh")
+theme_override_font_sizes/font_size = 20
+text = "INFECTION PROGRESS:"
+
 [node name="PotraitShadow" type="Sprite2D" parent="VisualSlots" unique_id=942076616]
 position = Vector2(1294, 615.5)
 scale = Vector2(1.3655324, 1.3455344)
@@ -314,5 +323,21 @@ offset_bottom = 32.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_nxepx")
 expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=940562522]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -216.0
+offset_right = 640.0
+offset_bottom = -32.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Press C to toggle crouch
+Press F to toggle flashlight
+Press TAB to open/close inventory"
+vertical_alignment = 1
 
 [connection signal="gui_input" from="NoteView" to="." method="_on_note_view_gui_input"]

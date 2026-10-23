@@ -421,11 +421,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y -= GRAVITY * delta
 		move_and_slide()
 		return
-	if Input.is_action_pressed("crouch"):
-		crouched = true
-	else:
-		if not crouched or _can_stand():
-			crouched = false
+	if Input.is_action_just_pressed("crouch"):
+		if crouched:
+			if _can_stand():
+				crouched = false
+		else:
+			crouched = true
 	
 	var capsule := collision_shape_3d.shape as CapsuleShape3D
 	if crouched :
