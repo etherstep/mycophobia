@@ -1,110 +1,110 @@
 [gd_scene format=3 uid="uid://bdonovanenem1"]
 
 [ext_resource type="PackedScene" uid="uid://gbgmc8mxfeg5" path="res://Scenes/enemy.tscn" id="1_enemy"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/donoval_back.png" id="2_back"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/donoval_front.png" id="2_front"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/donoval_side.png" id="2_side"]
+[ext_resource type="Texture2D" uid="uid://cuk1vb4afgxqp" path="res://Assets/Sprites/donoval_back.png" id="2_back"]
+[ext_resource type="Texture2D" uid="uid://mi0x6v3tu2xe" path="res://Assets/Sprites/donoval_front.png" id="2_front"]
+[ext_resource type="Texture2D" uid="uid://bhsy4hevdhsyk" path="res://Assets/Sprites/donoval_side.png" id="2_side"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7rcq"]
 atlas = ExtResource("2_back")
-region = Rect2(0, 0, 1920, 1920)
+region = Rect2(0, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwtq5"]
 atlas = ExtResource("2_back")
-region = Rect2(1920, 0, 1920, 1920)
+region = Rect2(640, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub6x4"]
 atlas = ExtResource("2_back")
-region = Rect2(3840, 0, 1920, 1920)
+region = Rect2(1280, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_01omy"]
 atlas = ExtResource("2_back")
-region = Rect2(5760, 0, 1920, 1920)
+region = Rect2(1920, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbfp4"]
 atlas = ExtResource("2_back")
-region = Rect2(7680, 0, 1920, 1920)
+region = Rect2(2560, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_back_5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1svi"]
 atlas = ExtResource("2_back")
-region = Rect2(9600, 0, 1920, 1920)
+region = Rect2(3200, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi6ns"]
 atlas = ExtResource("2_front")
-region = Rect2(0, 0, 1920, 1920)
+region = Rect2(0, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h246u"]
 atlas = ExtResource("2_front")
-region = Rect2(1920, 0, 1920, 1920)
+region = Rect2(640, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e30qb"]
 atlas = ExtResource("2_front")
-region = Rect2(3840, 0, 1920, 1920)
+region = Rect2(1280, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_idk3q"]
 atlas = ExtResource("2_front")
-region = Rect2(5760, 0, 1920, 1920)
+region = Rect2(1920, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhb3t"]
 atlas = ExtResource("2_front")
-region = Rect2(7680, 0, 1920, 1920)
+region = Rect2(2560, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_front_5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrw4n"]
 atlas = ExtResource("2_front")
-region = Rect2(9600, 0, 1920, 1920)
+region = Rect2(3200, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bowv"]
 atlas = ExtResource("2_side")
-region = Rect2(0, 0, 1920, 1920)
+region = Rect2(0, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1urod"]
 atlas = ExtResource("2_side")
-region = Rect2(1920, 0, 1920, 1920)
+region = Rect2(640, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw4nl"]
 atlas = ExtResource("2_side")
-region = Rect2(3840, 0, 1920, 1920)
+region = Rect2(1280, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_odunq"]
 atlas = ExtResource("2_side")
-region = Rect2(5760, 0, 1920, 1920)
+region = Rect2(1920, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6stb"]
 atlas = ExtResource("2_side")
-region = Rect2(7680, 0, 1920, 1920)
+region = Rect2(2560, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_igesn"]
 atlas = ExtResource("2_side")
-region = Rect2(9600, 0, 1920, 1920)
+region = Rect2(3200, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8aiti"]
 atlas = ExtResource("2_side")
-region = Rect2(11520, 0, 1920, 1920)
+region = Rect2(3840, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_side_7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0po62"]
 atlas = ExtResource("2_side")
-region = Rect2(13440, 0, 1920, 1920)
+region = Rect2(4480, 0, 640, 640)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_donovan"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_0")
+"texture": SubResource("AtlasTexture_q7rcq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_1")
+"texture": SubResource("AtlasTexture_jwtq5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_2")
+"texture": SubResource("AtlasTexture_ub6x4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_3")
+"texture": SubResource("AtlasTexture_01omy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_4")
+"texture": SubResource("AtlasTexture_hbfp4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_back_5")
+"texture": SubResource("AtlasTexture_e1svi")
 }],
 "loop": 1,
 "name": &"walk_back",
@@ -112,22 +112,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_0")
+"texture": SubResource("AtlasTexture_hi6ns")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_1")
+"texture": SubResource("AtlasTexture_h246u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_2")
+"texture": SubResource("AtlasTexture_e30qb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_3")
+"texture": SubResource("AtlasTexture_idk3q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_4")
+"texture": SubResource("AtlasTexture_hhb3t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_front_5")
+"texture": SubResource("AtlasTexture_lrw4n")
 }],
 "loop": 1,
 "name": &"walk_front",
@@ -135,38 +135,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_0")
+"texture": SubResource("AtlasTexture_4bowv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_1")
+"texture": SubResource("AtlasTexture_1urod")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_2")
+"texture": SubResource("AtlasTexture_jw4nl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_3")
+"texture": SubResource("AtlasTexture_odunq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_4")
+"texture": SubResource("AtlasTexture_g6stb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_5")
+"texture": SubResource("AtlasTexture_igesn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_6")
+"texture": SubResource("AtlasTexture_8aiti")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_side_7")
+"texture": SubResource("AtlasTexture_0po62")
 }],
 "loop": 1,
 "name": &"walk_side",
 "speed": 5.0
 }]
 
-[node name="DrDonovan" instance=ExtResource("1_enemy")]
+[node name="DrDonovan" unique_id=1649039040 instance=ExtResource("1_enemy")]
 
-[node name="AnimatedSprite3D" parent="." index="1"]
+[node name="AnimatedSprite3D" parent="." index="1" unique_id=767845271]
 sprite_frames = SubResource("SpriteFrames_donovan")
-animation = &"walk_front"
-frame = 0
-frame_progress = 0.0
