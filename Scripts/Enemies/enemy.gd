@@ -10,6 +10,7 @@ enum State { WANDER, CHASE, SEARCH, GRAB, LEAVE, RETURN }
 
 const HOLD_TIME := 5
 const CHASE_HOLD_TIME := 2.0
+const WANDER_WAIT := 2.5
 const CATCH_INFECTION := 50
 const OUT_OF_SIGHT_TIME := 0.3
 const SPAWN_CLEARANCE := 16.0
@@ -66,6 +67,10 @@ var _hold_left := 0.0
 var _hidden_time := 0.0
 var _held_player: Player = null
 var intro_hold := false
+var _wander_wait := 0.0
+var _wander_stuck := 0.0
+var _wander_goal := Vector3.ZERO
+var _wander_use_nav := false
 @onready var spore_cloud: GPUParticles3D = $Smoke
 
 
@@ -78,7 +83,10 @@ func _ready() -> void:
 	_reset_enemy_sound_timer()
 
 	await get_tree().physics_frame
-	_pick_patrol_point()
+	if guards:
+		_pick_patrol_point()
+	else:
+		_pick_wander_goal()
 
 func _process(_delta: float) -> void:
 	render_correct_animation()
@@ -115,9 +123,17 @@ func _physics_process(delta: float) -> void:
 		if state != State.WANDER:
 			state = State.WANDER
 			chase_sfx_player.stop()
-			_pick_patrol_point()
-		_move_along_path()
+			if guards:
+				_pick_patrol_point()
+			else:
+				_begin_wander_wait()
+		if guards:
+			_move_along_path()
+		else:
+			_step_wander(delta)
 		move_and_slide()
+		if not guards:
+			_watch_wander_stuck(delta)
 		return
 	if committed_chase and player != null:
 		last_known = player.global_position
@@ -148,18 +164,24 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.WANDER:
-			if agent.is_navigation_finished():
-				_pick_patrol_point()
+			_step_wander(delta)
 		State.CHASE:
 			if player != null:
 				agent.target_position = player.global_position
+			_move_along_path()
 		State.SEARCH:
 			if agent.is_navigation_finished():
 				state = State.WANDER
-				_pick_patrol_point()
+				if guards:
+					_pick_patrol_point()
+				else:
+					_begin_wander_wait()
+			else:
+				_move_along_path()
 
-	_move_along_path()
 	move_and_slide()
+	if state == State.WANDER:
+		_watch_wander_stuck(delta)
 	update_footsteps(delta)
 	update_enemy_sounds(delta)
 
@@ -295,8 +317,101 @@ func _pick_patrol_point() -> void:
 	var points := get_tree().get_nodes_in_group("patrol_point")
 	if points.is_empty():
 		return
-	var point: Node3D = points.pick_random() as Node3D
+	var open: Array[Node3D] = []
+	for node in points:
+		if node is Node3D and not _blocked_by_safe_house((node as Node3D).global_position):
+			open.append(node)
+	if open.is_empty():
+		return
+	var point: Node3D = open.pick_random()
 	agent.target_position = point.global_position
+
+func _begin_wander_wait() -> void:
+	_wander_wait = WANDER_WAIT
+	_wander_stuck = 0.0
+	velocity.x = 0.0
+	velocity.z = 0.0
+	_pick_wander_goal()
+
+func _pick_wander_goal() -> void:
+	_wander_goal = _choose_wander_goal()
+	_wander_use_nav = _wander_point_on_nav(_wander_goal)
+	_wander_stuck = 0.0
+	if _wander_use_nav:
+		agent.target_position = _wander_goal
+
+func _choose_wander_goal() -> Vector3:
+	if wander_zone != null:
+		return _random_point_in_zone()
+	var open: Array[Node3D] = []
+	for node in get_tree().get_nodes_in_group("patrol_point"):
+		if node is Node3D and not _in_safe_house((node as Node3D).global_position):
+			open.append(node)
+	if open.is_empty():
+		return global_position
+	return open.pick_random().global_position
+
+func _wander_point_on_nav(point: Vector3) -> bool:
+	var map := agent.get_navigation_map()
+	if NavigationServer3D.map_get_iteration_id(map) == 0:
+		return false
+	var closest := NavigationServer3D.map_get_closest_point(map, point)
+	var gap := closest - point
+	gap.y = 0.0
+	return gap.length() <= 0.6 and not _in_safe_house(closest)
+
+func _step_wander(delta: float) -> void:
+	if guards:
+		_move_along_path()
+		return
+	if _wander_wait > 0.0:
+		_wander_wait -= delta
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_wander_stuck = 0.0
+		return
+	if _wander_use_nav and agent.is_navigation_finished():
+		_begin_wander_wait()
+		return
+	if not _wander_use_nav and _flat_reached(_wander_goal):
+		_begin_wander_wait()
+		return
+	if _wander_use_nav:
+		_move_wander_toward(agent.get_next_path_position())
+	else:
+		_move_wander_toward(_wander_goal)
+
+func _flat_reached(point: Vector3) -> bool:
+	var flat := point - global_position
+	flat.y = 0.0
+	return flat.length() < 0.4
+
+func _move_wander_toward(point: Vector3) -> void:
+	var flat := point - global_position
+	flat.y = 0.0
+	if flat.length() < 0.15:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		return
+	var direction := flat.normalized()
+	if not _in_safe_house(global_position) and _in_safe_house(global_position + direction * 0.7):
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_pick_wander_goal()
+		return
+	velocity.x = direction.x * WALK_SPEED
+	velocity.z = direction.z * WALK_SPEED
+	_face_direction(direction)
+
+func _watch_wander_stuck(delta: float) -> void:
+	if guards or _wander_wait > 0.0:
+		return
+	if Vector2(velocity.x, velocity.z).length() > 0.05:
+		_wander_stuck = 0.0
+		return
+	_wander_stuck += delta
+	if _wander_stuck > 1.2:
+		_pick_wander_goal()
 
 func _move_along_path() -> void:
 	var next := agent.get_next_path_position()
@@ -307,9 +422,10 @@ func _move_along_path() -> void:
 		for point in path:
 			var candidate := point - global_position
 			candidate.y = 0.0
-			if candidate.length() >= 0.3:
-				flat = candidate
-				break
+			if candidate.length() < 0.3 or _in_safe_house(point):
+				continue
+			flat = candidate
+			break
 	if flat.length() < 0.1:
 		velocity.x = 0.0
 		velocity.z = 0.0
@@ -320,6 +436,12 @@ func _move_along_path() -> void:
 	if state == State.CHASE:
 		current_speed = COMMITTED_CHASE_SPEED if committed_chase else CHASE_SPEED
 
+	if not _in_safe_house(global_position) and _in_safe_house(global_position + direction * 0.7):
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if state == State.SEARCH or state == State.LEAVE:
+			_pick_patrol_point()
+		return
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed
 	_face_direction(direction)
@@ -345,34 +467,69 @@ func _zone_shape() -> CollisionShape3D:
 
 func _zone_contains(at: Vector3) -> bool:
 	var shape_node := _zone_shape()
-	if shape_node == null or not shape_node.shape is BoxShape3D:
+	if shape_node == null:
 		return true
-	var box := shape_node.shape as BoxShape3D
 	var local := shape_node.global_transform.affine_inverse() * at
-	var half := box.size * 0.5
-	return absf(local.x) <= half.x and absf(local.z) <= half.z
+	var shape := shape_node.shape
+	if shape is BoxShape3D:
+		var box := shape as BoxShape3D
+		var half := box.size * 0.5
+		return absf(local.x) <= half.x and absf(local.z) <= half.z
+	if shape is CylinderShape3D:
+		var cylinder := shape as CylinderShape3D
+		return Vector2(local.x, local.z).length() <= cylinder.radius
+	return true
+
+func _random_local_in_zone(shape: Shape3D) -> Vector3:
+	if shape is BoxShape3D:
+		var box := shape as BoxShape3D
+		var half := box.size * 0.5
+		return Vector3(randf_range(-half.x, half.x), 0.0, randf_range(-half.z, half.z))
+	if shape is CylinderShape3D:
+		var cylinder := shape as CylinderShape3D
+		var angle := randf() * TAU
+		var reach := cylinder.radius * sqrt(randf())
+		return Vector3(cos(angle) * reach, 0.0, sin(angle) * reach)
+	return Vector3.INF
 
 func _random_point_in_zone() -> Vector3:
 	var shape_node := _zone_shape()
-	if shape_node == null or not shape_node.shape is BoxShape3D:
+	if shape_node == null:
 		return global_position
-	var box := shape_node.shape as BoxShape3D
-	var half := box.size * 0.5
+	var any_point := global_position
+	var found_any := false
+	var far_point := global_position
+	var found_far := false
 	var map := agent.get_navigation_map()
-	for _attempt in 12:
-		var local := Vector3(randf_range(-half.x, half.x), 0.0, randf_range(-half.z, half.z))
+	var nav_ready := NavigationServer3D.map_get_iteration_id(map) != 0
+	for _attempt in 16:
+		var local := _random_local_in_zone(shape_node.shape)
+		if local == Vector3.INF:
+			return global_position
 		var world_point := shape_node.to_global(local)
 		world_point.y = global_position.y
-		if NavigationServer3D.map_get_iteration_id(map) == 0:
+		if _in_safe_house(world_point):
+			continue
+		any_point = world_point
+		found_any = true
+		var flat := world_point - global_position
+		flat.y = 0.0
+		if flat.length() < 2.0:
+			continue
+		far_point = world_point
+		found_far = true
+		if not nav_ready:
 			return world_point
 		var closest := NavigationServer3D.map_get_closest_point(map, world_point)
 		var flat_gap := closest - world_point
 		flat_gap.y = 0.0
 		if flat_gap.length() > 0.6:
 			continue
-		if _zone_contains(closest):
+		if _zone_contains(closest) and not _blocked_by_safe_house(closest):
 			return closest
-	return global_position
+	if found_far:
+		return far_point
+	return any_point if found_any else global_position
 
 func _has_used_syringe(player: Node3D) -> bool:
 	if player is Player:
@@ -401,7 +558,10 @@ func end_committed_chase() -> void:
 	if state == State.CHASE or state == State.SEARCH:
 		state = State.WANDER
 		chase_sfx_player.stop()
-		_pick_patrol_point()
+		if guards:
+			_pick_patrol_point()
+		else:
+			_begin_wander_wait()
 
 func alert(at: Vector3) -> void:
 	_alerted = true
@@ -492,7 +652,10 @@ func _return_home() -> void:
 	_move_along_path()
 	if agent.is_navigation_finished():
 		state = State.WANDER
-		_pick_patrol_point()
+		if guards:
+			_pick_patrol_point()
+		else:
+			_begin_wander_wait()
 
 func _out_of_sight(player: Player) -> bool:
 	var view := player.camera_3d
@@ -534,12 +697,16 @@ func _spawn_point() -> Vector3:
 			point.y = floor_y
 			return point
 	var fallback := _random_point_in_zone() if wander_zone != null else _farthest_patrol(player)
+	if _in_safe_house(fallback):
+		fallback = global_position
 	fallback.y = floor_y
 	return fallback
 
 func _spawn_ok(point: Vector3, player: Node3D, view: Camera3D, map: RID) -> bool:
 	var closest := NavigationServer3D.map_get_closest_point(map, point)
 	if closest.distance_to(point) > 1.0:
+		return false
+	if _in_safe_house(point):
 		return false
 	if player != null:
 		var flat := point - player.global_position
@@ -557,6 +724,38 @@ func _spawn_ok(point: Vector3, player: Node3D, view: Camera3D, map: RID) -> bool
 			return false
 	return true
 
+func _in_safe_house(at: Vector3) -> bool:
+	for house in get_tree().get_nodes_in_group("safe_house"):
+		if house is Area3D and _safe_house_contains(house as Area3D, at):
+			return true
+	return false
+
+func _blocked_by_safe_house(point: Vector3) -> bool:
+	if _in_safe_house(point):
+		return true
+	var map := agent.get_navigation_map()
+	if NavigationServer3D.map_get_iteration_id(map) == 0:
+		return false
+	var path := NavigationServer3D.map_get_path(map, global_position, point, true)
+	for step in path:
+		if _in_safe_house(step):
+			return true
+	return false
+
+func _safe_house_contains(house: Area3D, at: Vector3) -> bool:
+	var shape_node := house.get_node_or_null("CollisionShape3D") as CollisionShape3D
+	if shape_node == null or shape_node.shape == null:
+		return false
+	var local := shape_node.global_transform.affine_inverse() * at
+	var shape := shape_node.shape
+	if shape is BoxShape3D:
+		var half := (shape as BoxShape3D).size * 0.5
+		return absf(local.x) <= half.x and absf(local.y) <= half.y and absf(local.z) <= half.z
+	if shape is CylinderShape3D:
+		var cylinder := shape as CylinderShape3D
+		return Vector2(local.x, local.z).length() <= cylinder.radius and absf(local.y) <= cylinder.height * 0.5
+	return false
+
 func _farthest_patrol(player: Node3D) -> Vector3:
 	var best := global_position
 	var best_distance := -1.0
@@ -564,6 +763,8 @@ func _farthest_patrol(player: Node3D) -> Vector3:
 		if not node is Node3D:
 			continue
 		var point := (node as Node3D).global_position
+		if _in_safe_house(point):
+			continue
 		var distance := 0.0
 		if player != null:
 			var flat := point - player.global_position
