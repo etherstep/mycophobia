@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d75s22uedrdb"
 path.s3tc="res://.godot/imported/Horror_Metal_02-256x256.png-c7a7aef748e41e3f2e2ce6ba4119795e.s3tc.ctex"
+path.etc2="res://.godot/imported/Horror_Metal_02-256x256.png-c7a7aef748e41e3f2e2ce6ba4119795e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Horror_Metal_02-256x256.png"
-dest_files=["res://.godot/imported/Horror_Metal_02-256x256.png-c7a7aef748e41e3f2e2ce6ba4119795e.s3tc.ctex"]
+dest_files=["res://.godot/imported/Horror_Metal_02-256x256.png-c7a7aef748e41e3f2e2ce6ba4119795e.s3tc.ctex", "res://.godot/imported/Horror_Metal_02-256x256.png-c7a7aef748e41e3f2e2ce6ba4119795e.etc2.ctex"]
 
 [params]
 

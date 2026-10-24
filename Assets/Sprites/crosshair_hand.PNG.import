@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl2pea2jr32rr"
 path.s3tc="res://.godot/imported/crosshair_hand.PNG-5e9a6b3cb3b7e27edea6d2c546e655eb.s3tc.ctex"
+path.etc2="res://.godot/imported/crosshair_hand.PNG-5e9a6b3cb3b7e27edea6d2c546e655eb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/crosshair_hand.PNG"
-dest_files=["res://.godot/imported/crosshair_hand.PNG-5e9a6b3cb3b7e27edea6d2c546e655eb.s3tc.ctex"]
+dest_files=["res://.godot/imported/crosshair_hand.PNG-5e9a6b3cb3b7e27edea6d2c546e655eb.s3tc.ctex", "res://.godot/imported/crosshair_hand.PNG-5e9a6b3cb3b7e27edea6d2c546e655eb.etc2.ctex"]
 
 [params]
 

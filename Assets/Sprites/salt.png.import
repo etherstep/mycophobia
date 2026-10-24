@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://34ar7ctuk4wp"
 path.s3tc="res://.godot/imported/salt.png-74ba76f5ed2033e0e183d3499cf7d935.s3tc.ctex"
+path.etc2="res://.godot/imported/salt.png-74ba76f5ed2033e0e183d3499cf7d935.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/salt.png"
-dest_files=["res://.godot/imported/salt.png-74ba76f5ed2033e0e183d3499cf7d935.s3tc.ctex"]
+dest_files=["res://.godot/imported/salt.png-74ba76f5ed2033e0e183d3499cf7d935.s3tc.ctex", "res://.godot/imported/salt.png-74ba76f5ed2033e0e183d3499cf7d935.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx3nh8quri6ui"
 path.s3tc="res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.s3tc.ctex"
+path.etc2="res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/note outline.PNG"
-dest_files=["res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.s3tc.ctex"]
+dest_files=["res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.s3tc.ctex", "res://.godot/imported/note outline.PNG-54f87b5a1f9dad1b55965b2135861822.etc2.ctex"]
 
 [params]
 

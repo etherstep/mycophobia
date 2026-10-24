@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkjyri61x88w8"
 path.s3tc="res://.godot/imported/mother_mushroom_side_idle.png-c020f314eabe2b7b13b7d7b35640d820.s3tc.ctex"
+path.etc2="res://.godot/imported/mother_mushroom_side_idle.png-c020f314eabe2b7b13b7d7b35640d820.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/mother_mushroom_side_idle.png"
-dest_files=["res://.godot/imported/mother_mushroom_side_idle.png-c020f314eabe2b7b13b7d7b35640d820.s3tc.ctex"]
+dest_files=["res://.godot/imported/mother_mushroom_side_idle.png-c020f314eabe2b7b13b7d7b35640d820.s3tc.ctex", "res://.godot/imported/mother_mushroom_side_idle.png-c020f314eabe2b7b13b7d7b35640d820.etc2.ctex"]
 
 [params]
 

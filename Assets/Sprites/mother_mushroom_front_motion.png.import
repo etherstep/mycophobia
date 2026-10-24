@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdkh1ghga80ld"
 path.s3tc="res://.godot/imported/mother_mushroom_front_motion.png-43b60d1568cdef9022dc7763b5cbf40b.s3tc.ctex"
+path.etc2="res://.godot/imported/mother_mushroom_front_motion.png-43b60d1568cdef9022dc7763b5cbf40b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/mother_mushroom_front_motion.png"
-dest_files=["res://.godot/imported/mother_mushroom_front_motion.png-43b60d1568cdef9022dc7763b5cbf40b.s3tc.ctex"]
+dest_files=["res://.godot/imported/mother_mushroom_front_motion.png-43b60d1568cdef9022dc7763b5cbf40b.s3tc.ctex", "res://.godot/imported/mother_mushroom_front_motion.png-43b60d1568cdef9022dc7763b5cbf40b.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5b45twp7ipw3"
 path.s3tc="res://.godot/imported/matchbox outline.PNG-9ba947ed47b0c657b297b7efd12a976c.s3tc.ctex"
+path.etc2="res://.godot/imported/matchbox outline.PNG-9ba947ed47b0c657b297b7efd12a976c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/matchbox outline.PNG"
-dest_files=["res://.godot/imported/matchbox outline.PNG-9ba947ed47b0c657b297b7efd12a976c.s3tc.ctex"]
+dest_files=["res://.godot/imported/matchbox outline.PNG-9ba947ed47b0c657b297b7efd12a976c.s3tc.ctex", "res://.godot/imported/matchbox outline.PNG-9ba947ed47b0c657b297b7efd12a976c.etc2.ctex"]
 
 [params]
 

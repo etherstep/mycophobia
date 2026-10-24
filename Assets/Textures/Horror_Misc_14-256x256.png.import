@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf5fycq7pwgkj"
 path.s3tc="res://.godot/imported/Horror_Misc_14-256x256.png-a83525760b542619b17b63cd9f4b7302.s3tc.ctex"
+path.etc2="res://.godot/imported/Horror_Misc_14-256x256.png-a83525760b542619b17b63cd9f4b7302.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Horror_Misc_14-256x256.png"
-dest_files=["res://.godot/imported/Horror_Misc_14-256x256.png-a83525760b542619b17b63cd9f4b7302.s3tc.ctex"]
+dest_files=["res://.godot/imported/Horror_Misc_14-256x256.png-a83525760b542619b17b63cd9f4b7302.s3tc.ctex", "res://.godot/imported/Horror_Misc_14-256x256.png-a83525760b542619b17b63cd9f4b7302.etc2.ctex"]
 
 [params]
 

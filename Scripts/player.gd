@@ -88,7 +88,7 @@ var footstep_player_index: int = 0
 @onready var dialogue_player: AudioStreamPlayer3D = $DialoguePlayer
 @export var running_player_sfx: AudioStream
 @export var footstep_interval: float = 0.32
-@export var footstep_interval_sprint: float = 0.18
+@export var footstep_interval_sprint: float = 0.22
 @export var footstep_interval_crouch: float = 0.65
 @onready var death_sfx_player: AudioStreamPlayer3D = $DeathSFX
 @export var death_sfx: AudioStream

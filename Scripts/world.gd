@@ -1,4 +1,3 @@
-
 extends Node3D
 
 const OPTIONS_SCENE = preload("res://Scenes/options_menu.tscn")
@@ -10,44 +9,29 @@ var _options_layer: CanvasLayer
 var help_label: Label
 signal game_loaded
 
+
 func _ready() -> void:
+	var start_time := Time.get_ticks_msec()
+
 	MusicManager.play_game_ambience()
+	print("MusicManager: ", Time.get_ticks_msec() - start_time, " ms")
+
+	var gamma_start := Time.get_ticks_msec()
 	Settings.apply_gamma($WorldEnvironment)
+	print("Apply gamma: ", Time.get_ticks_msec() - gamma_start, " ms")
 
 	if player != null:
+		var player_start := Time.get_ticks_msec()
+
 		help_label = player.get_node("HUD/HelpLabel") as Label
 		help_label.visible = true
 		help_label.modulate.a = 0.0
 
-		await get_tree().create_timer(5.0).timeout
+		print("Player setup: ", Time.get_ticks_msec() - player_start, " ms")
+
+		await get_tree().create_timer(10.0).timeout
 
 		if is_instance_valid(help_label):
 			help_label.modulate.a = 1.0
+
 		game_loaded.emit()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if _options_layer != null:
-		return
-	if event.is_action_pressed("flashlight") and help_label != null:
-		help_label.hide()
-	if event.is_action_pressed("ui_cancel"):
-		_open_options()
-		get_viewport().set_input_as_handled()
-
-func _open_options() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_tree().paused = true
-	_options_layer = CanvasLayer.new()
-	_options_layer.process_mode = Node.PROCESS_MODE_ALWAYS
-	add_child(_options_layer)
-	var menu := OPTIONS_SCENE.instantiate()
-	menu.opened_from_game = true
-	menu.closed.connect(_close_options)
-	_options_layer.add_child(menu)
-
-func _close_options() -> void:
-	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	_options_layer.queue_free()
-	_options_layer = null
