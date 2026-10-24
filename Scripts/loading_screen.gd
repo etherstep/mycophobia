@@ -100,7 +100,7 @@ func _ready() -> void:
 		particle.emitting = true
 
 	# Keep the loading screen visible while effects play.
-	loading_label.text = "Enjoy the ride :P"
+	loading_label.text = "Sorry for the wait lol"
 	progress_bar.value = 100.0
 
 	await get_tree().create_timer(EFFECT_DURATION).timeout
