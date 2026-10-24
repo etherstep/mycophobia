@@ -187,8 +187,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if dead or held or mouse_disabled or cutscene:
 		return
 
+	if event.is_action_pressed("flashlight"):
+		if is_instance_valid(world):
+			world.hide_help_label()
+
 	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if is_instance_valid(world):
+			world.toggle_options_menu()
 		return
 
 	if event.is_action_pressed("inventory"):

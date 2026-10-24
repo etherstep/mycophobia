@@ -50,6 +50,7 @@ func _ready() -> void:
 	back_button.mouse_entered.connect(_on_back_hovered)
 	back_button.mouse_exited.connect(_on_back_unhovered)
 	back_button.pressed.connect(_on_button_pressed)
+	back_button.pressed.connect(_on_back_pressed)
 
 func _on_back_hovered() -> void:
 	back_button.text = back_focus_text
@@ -105,6 +106,11 @@ func _show_sensitivity(value: float) -> void:
 
 func _show_gamma(value: float) -> void:
 	gamma_value.text = "%.2f" % value
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and opened_from_game:
+		closed.emit()
+		get_viewport().set_input_as_handled()
 
 func _on_back_pressed() -> void:
 	if opened_from_game:

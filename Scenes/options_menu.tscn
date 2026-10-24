@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fd8kr3vyfitw" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
 [ext_resource type="AudioStream" uid="uid://bc6umpv8ggceh" path="res://Assets/SFX/UI/click3.mp3" id="2_m6e8v"]
 [ext_resource type="AudioStream" uid="uid://cw6f2w20h4pbj" path="res://Assets/SFX/UI/click2.mp3" id="3_tqe32"]
-[ext_resource type="Texture2D" uid="uid://cerwklh8xfr5i" path="res://Assets/UI/Scene after.PNG" id="4_m6e8v"]
+[ext_resource type="Texture2D" uid="uid://py35mumcwkio" path="res://Assets/UI/Scene after.PNG" id="4_m6e8v"]
 [ext_resource type="FontFile" uid="uid://sulgwod1q8a6" path="res://Assets/Fonts/Bakula-TTF.ttf" id="5_m6e8v"]
 
 [node name="OptionsMenu" type="Control" unique_id=2003868718 node_paths=PackedStringArray("back_button")]
