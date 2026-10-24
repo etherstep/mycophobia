@@ -3,9 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://casgcs7q8ujxx" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://b65vjwa3gj6in" path="res://Assets/UI/Background.PNG" id="2_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://py35mumcwkio" path="res://Assets/UI/Scene after.PNG" id="2_eskoj"]
+[ext_resource type="Script" uid="uid://drq4sh6v5utio" path="res://Scripts/preload_vfx.gd" id="2_xm6am"]
 [ext_resource type="Script" uid="uid://dft6pwxvn7j66" path="res://Scripts/world_environment.gd" id="3_82dmg"]
 [ext_resource type="PackedScene" uid="uid://c0v0snal5vfl3" path="res://Scenes/Inventory/inventory.tscn" id="3_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://b3cs8esw1fo4b" path="res://Scenes/salt_effect.tscn" id="3_tutfb"]
 [ext_resource type="PackedScene" uid="uid://c7un65hd14m7y" path="res://Scenes/Inventory/inventory_ui.tscn" id="4_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://ck5afq4w7pkby" path="res://Scenes/fire_effect.tscn" id="4_s73dv"]
 [ext_resource type="PackedScene" uid="uid://mrel6vbb8f75" path="res://Scenes/Collectable/collectible.tscn" id="5_o06y3"]
 [ext_resource type="Resource" uid="uid://ck2x7gq3y85ng" path="res://Items/note_2.tres" id="7_5v1tr"]
 [ext_resource type="Resource" uid="uid://buqhpnvq3x60w" path="res://Items/note_3.tres" id="8_0fj1v"]
@@ -5001,6 +5004,26 @@ emission_texture = ExtResource("65_ry8tx")
 script = ExtResource("10_world")
 player = NodePath("Player")
 
+[node name="Loading" type="Node3D" parent="." unique_id=491423883 node_paths=PackedStringArray("salt", "fire", "smoke")]
+script = ExtResource("2_xm6am")
+salt = NodePath("Loading_SaltVFX")
+fire = NodePath("Loading_FireVFX")
+smoke = NodePath("Loading_SporeCloud")
+
+[node name="Loading_SaltVFX" parent="Loading" unique_id=513186737 instance=ExtResource("3_tutfb")]
+transform = Transform3D(1, 0, 0, 0, 0.9999985, 0.0017245605, 0, -0.0017245605, 0.9999985, -278.7105, 3.7447166, -45.652386)
+
+[node name="Loading_FireVFX" parent="Loading" unique_id=413950635 instance=ExtResource("4_s73dv")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -277.9495, 4.372078, -44.57549)
+
+[node name="Loading_SporeCloud" parent="Loading" unique_id=1742201101 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
+transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -278.19287, 2.1255784, -45.4336)
+player = NodePath("../../Player")
+
+[node name="Camera3D" type="Camera3D" parent="Loading" unique_id=1142094604]
+transform = Transform3D(0.005498935, 0, 0.9999849, 0, 1, 0, -0.9999849, 0, 0.005498935, -257.72003, 21.312008, -24.747288)
+visible = false
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740707075]
 environment = SubResource("Environment_baysf")
 script = ExtResource("3_82dmg")
@@ -5053,7 +5076,7 @@ collision_layer = 9
 cloud = NodePath("../SporeCloud")
 starts_chase = true
 
-[node name="SporeCloud2" parent="." unique_id=1742201101 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
+[node name="SporeCloud2" parent="." unique_id=582649824 node_paths=PackedStringArray("player") instance=ExtResource("15_spore")]
 transform = Transform3D(0.7103205, 0.00657841, 1.1831322, -0.01277989, 1.3799409, 0, -1.1830816, -0.010956739, 0.710351, -289.1636, 2.1255784, -32.818443)
 player = NodePath("../Player")
 
