@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bygwtj43q671u"
 path.s3tc="res://.godot/imported/syringe.PNG-dbe649b6edf7917d8218302ed69f0ad3.s3tc.ctex"
+path.etc2="res://.godot/imported/syringe.PNG-dbe649b6edf7917d8218302ed69f0ad3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/syringe.PNG"
-dest_files=["res://.godot/imported/syringe.PNG-dbe649b6edf7917d8218302ed69f0ad3.s3tc.ctex"]
+dest_files=["res://.godot/imported/syringe.PNG-dbe649b6edf7917d8218302ed69f0ad3.s3tc.ctex", "res://.godot/imported/syringe.PNG-dbe649b6edf7917d8218302ed69f0ad3.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci11y3dwcy13s"
 path.s3tc="res://.godot/imported/saline.png-9f7055a4910a16eb57b4d118526f1b18.s3tc.ctex"
+path.etc2="res://.godot/imported/saline.png-9f7055a4910a16eb57b4d118526f1b18.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/saline.png"
-dest_files=["res://.godot/imported/saline.png-9f7055a4910a16eb57b4d118526f1b18.s3tc.ctex"]
+dest_files=["res://.godot/imported/saline.png-9f7055a4910a16eb57b4d118526f1b18.s3tc.ctex", "res://.godot/imported/saline.png-9f7055a4910a16eb57b4d118526f1b18.etc2.ctex"]
 
 [params]
 

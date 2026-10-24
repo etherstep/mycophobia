@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhsy4hevdhsyk"
 path.s3tc="res://.godot/imported/donoval_side.png-f7cedd086d41dd5d90aa4ce78d2d966b.s3tc.ctex"
+path.etc2="res://.godot/imported/donoval_side.png-f7cedd086d41dd5d90aa4ce78d2d966b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/donoval_side.png"
-dest_files=["res://.godot/imported/donoval_side.png-f7cedd086d41dd5d90aa4ce78d2d966b.s3tc.ctex"]
+dest_files=["res://.godot/imported/donoval_side.png-f7cedd086d41dd5d90aa4ce78d2d966b.s3tc.ctex", "res://.godot/imported/donoval_side.png-f7cedd086d41dd5d90aa4ce78d2d966b.etc2.ctex"]
 
 [params]
 
